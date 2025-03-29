@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تهنئة عيد الفطر</title>
+    <style>
+        body { text-align: center; font-family: Arial, sans-serif; direction: rtl; background-color: #f8f9fa; }
+        header { margin: 20px 0; }
+        img.logo { max-width: 150px; }
+        canvas { border: 1px solid #ccc; margin-top: 10px; max-width: 80%; height: auto; }
+        input, button, select { margin: 10px; padding: 10px; font-size: 16px; }
+    </style>
+    <script>
+        function changeLanguage(lang) {
+            document.documentElement.lang = lang;
+            if (lang === "en") {
+                document.body.style.direction = "ltr";
+                document.getElementById("title").innerText = "🎉 Eid Mubarak 🎉";
+                document.getElementById("message").innerText = "To the dear T&S family, we present these cards to spread joy and affection among your loved ones. Eid Mubarak, and may you be well every year.";
+                document.getElementById("nameLabel").placeholder = "Enter your name here";
+                document.getElementById("addNameBtn").innerText = "Add Name";
+                document.getElementById("designLabel").innerText = "Choose Design:";
+                document.getElementById("downloadBtn").innerText = "Download Greeting";
+            } else {
+                document.body.style.direction = "rtl";
+                document.getElementById("title").innerText = "🎉 عيدكم مبارك 🎉";
+                document.getElementById("message").innerText = "إلى عائلة T&S الأعزاء، نهديكم هذه البطاقات لتكونوا سببًا في نشر البهجة والمودة بين من تحبون. عيدكم مبارك، وكل عام وأنتم بخير.";
+                document.getElementById("nameLabel").placeholder = "أدخل اسمك هنا";
+                document.getElementById("addNameBtn").innerText = "إضافة الاسم";
+                document.getElementById("designLabel").innerText = "اختر التصميم:";
+                document.getElementById("downloadBtn").innerText = "تحميل التهنئة";
+            }
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <img class="logo" src="https://i.postimg.cc/vTxR7sPK/image.png" alt="شعار الشركة">
+        <select style="font-size: 12px; padding: 5px; position: absolute; left: 10px; top: 10px;" onchange="changeLanguage(this.value)">
+            <option value="ar">العربية</option>
+            <option value="en">English</option>
+        </select>
+    </header>
+    <h2 id="title">🎉 عيدكم مبارك 🎉</h2>
+    <p id="message">إلى عائلة T&S الأعزاء، نهديكم هذه البطاقات لتكونوا سببًا في نشر البهجة والمودة بين من تحبون. عيدكم مبارك، وكل عام وأنتم بخير.</p>
+    <div style="display: flex; justify-content: center; align-items: center; gap: 10px;">
+        <input type="text" id="nameLabel" placeholder="أدخل اسمك هنا">
+        <button id="addNameBtn" onclick="drawText()">إضافة الاسم</button>
+    </div>
+    <label id="designLabel" for="design">اختر التصميم:</label>
+    <select id="design" onchange="changeImage()">
+        <option value="design1">تصميم 1</option>
+        <option value="design2">تصميم 2</option>
+    </select>
+    <br>
+    <canvas id="canvas"></canvas>
+    <br>
+    <button id="downloadBtn" onclick="downloadImage()">تحميل التهنئة</button>
+    <script>
+        const images = {
+            "design1": "https://i.postimg.cc/FKKhf2QM/Happy-Eid-V3-1.png",
+            "design2": "https://i.postimg.cc/mgLsq0hP/Untitled-design-3.png"
+        };
+
+        let img = new Image();
+        img.crossOrigin = "anonymous";
+        img.src = images["design1"];
+        img.onload = function() { drawImage(); };
+        img.onerror = function() { alert('حدث خطأ في تحميل الصورة، تأكد من صحة الرابط.'); };
+
+        function drawImage() {
+            const canvas = document.getElementById("canvas");
+            const ctx = canvas.getContext("2d");
+            const scaleFactor = 0.5;
+            canvas.width = img.width * scaleFactor;
+            canvas.height = img.height * scaleFactor;
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+        }
+
+        function changeImage() {
+            const selectedDesign = document.getElementById("design").value;
+            img.src = images[selectedDesign];
+            img.onload = function() { drawImage(); };
+        }
+
+        function drawText() {
+            const name = document.getElementById("nameLabel").value;
+            if (name.trim() !== "") {
+                const canvas = document.getElementById("canvas");
+                const ctx = canvas.getContext("2d");
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+                ctx.font = "bold 30px Arial";
+                ctx.fillStyle = "#ffffff";
+                ctx.textAlign = "center";
+                ctx.fillText(name, canvas.width / 2, canvas.height - 30);
+            }
+        }
+
+        function downloadImage() {
+            const canvas = document.getElementById("canvas");
+            if (!canvas || !canvas.getContext) {
+                alert("حدث خطأ: لا يوجد عنصر canvas للتحميل.");
+                return;
+            }
+            const ctx = canvas.getContext("2d");
+            if (!ctx) {
+                alert("حدث خطأ: لا يمكن الحصول على السياق الرسومي للـ canvas.");
+                return;
+            }
+            const link = document.createElement("a");
+            link.download = "eid-greeting.png";
+            link.href = canvas.toDataURL("image/png");
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+    </script>
+</body>
+</html>
