@@ -98,10 +98,10 @@
                 ctx.textBaseline = "middle"; // محاذاة عمودية للنص
                 if (lang === "ar") {
                     ctx.textAlign = "right"; // محاذاة النص لليمين (إذا كانت اللغة عربية)
-                    ctx.fillText(name, canvas.width - 20, canvas.height - 25); // تحريك النص لليسار قليلاً
+                    ctx.fillText(name, canvas.width - 20, canvas.height - 35); // تحريك النص لليسار قليلاً
                 } else {
                     ctx.textAlign = "left"; // محاذاة النص لليسار (إذا كانت اللغة إنجليزية)
-                    ctx.fillText(name, 20, canvas.height - 20); // تحريك النص لليسار قليلاً
+                    ctx.fillText(name, 20, canvas.height - 35); // تحريك النص لليسار قليلاً
                 }
             }
         }
