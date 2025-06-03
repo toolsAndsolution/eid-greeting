@@ -44,10 +44,9 @@
     }
     header img {
       display: block;
-      height: 100px;
+      height: 98px;
       margin: 0 12px;
     }
-    /* زر اللغة */
     .lang-toggle {
       position: absolute;
       top: 16px;
@@ -69,7 +68,7 @@
       background-color: #d93032 !important;
     }
     .container {
-      max-width: 900px;
+      max-width: 1000px;
       margin: 30px auto;
       padding: 20px;
       background-color: #fff;
@@ -81,22 +80,22 @@
     }
     .settings-panel {
       flex: 1 1 320px;
-      min-width: 260px;
-    }
-    .preview-panel {
-      flex: 1 1 340px;
-      min-width: 320px;
+      min-width: 300px;
       display: flex;
       flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-      position: relative;
+      justify-content: center;
     }
     .controls {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 15px;
+      gap: 20px 20px;
       margin-bottom: 20px;
+    }
+    .controls > div {
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
     }
     label {
       font-weight: bold;
@@ -109,23 +108,47 @@
       border: 1px solid #ccc;
       border-radius: 6px;
       font-size: 14px;
+      box-sizing: border-box;
     }
-    .full-width {
-      grid-column: span 2;
+    .preview-panel {
+      flex: 2 1 600px;
+      min-width: 340px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      position: relative;
+      overflow-x: auto;
+    }
+    .canvas-preview-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      overflow-x: auto;
+      /* سماح بالتمرير الأفقي إذا الصورة كبيرة */
+      max-width: 100%;
+      margin: 24px auto 0 auto;
+      background: #f5f5f5;
+      border-radius: 10px;
+      box-sizing: border-box;
     }
     canvas {
       display: block;
-      margin: 20px auto 0 auto;
+      /* لا تضبط الحجم هنا حتى تكون دقة أصلية */
+      box-shadow: 0 4px 14px rgba(0,0,0,0.07);
       border: 2px solid #eee;
       border-radius: 8px;
-      max-width: 100%;
       background: #fdfcfb;
+      margin: 0 auto;
+      max-width: none; /* مهم لعرض الدقة الأصلية */
+      max-height: 50vh; /* لا يتعدى شاشة المستخدم */
     }
     .btn-download-group {
       display: flex;
       justify-content: center;
       width: 100%;
-      margin-top: 20px;
+      margin-top: 24px;
     }
     .btn-download {
       padding: 18px 64px;
@@ -146,13 +169,16 @@
     .btn-download:hover:not(:disabled) {
       background-color: #218838;
     }
-    @media (max-width: 900px) {
+    @media (max-width: 1000px) {
       .container {
         flex-direction: column;
         gap: 8px;
       }
       .settings-panel, .preview-panel {
         min-width: unset;
+      }
+      .controls {
+        grid-template-columns: 1fr;
       }
       .btn-download-group {
         margin-top: 16px;
@@ -162,6 +188,9 @@
         top: 10px;
         font-size: 13px;
         padding: 2px 10px;
+      }
+      .canvas-preview-wrapper {
+        max-width: 98vw;
       }
     }
     [dir="ltr"] .lang-toggle {
@@ -181,34 +210,33 @@
   <div class="container">
     <div class="settings-panel">
       <div class="controls">
+        <!-- الصف الأول: الاسم + التصميم -->
         <div>
-          <label id="labelCategory" for="category">نوع التصميم:</label>
-          <select id="category" onchange="updateImageOptions()"></select>
+          <label id="labelName" for="nameLabel">اكتب اسمك:</label>
+          <input type="text" id="nameLabel" placeholder="اكتب اسمك هنا" />
         </div>
         <div>
           <label id="labelDesign" for="design">اختر التصميم:</label>
           <select id="design" onchange="changeImage()"></select>
         </div>
-        <div class="full-width">
-          <label id="labelName" for="nameLabel">اكتب اسمك:</label>
-          <input type="text" id="nameLabel" placeholder="اكتب اسمك هنا" />
-        </div>
+        <!-- الصف الثاني: حجم الخط + نوع الخط -->
         <div>
           <label id="labelFontSize" for="fontSize">حجم الخط:</label>
-          <input type="number" id="fontSize" value="36" min="10" />
+          <input type="number" id="fontSize" value="28" min="10" />
         </div>
         <div>
           <label id="labelFontFamily" for="fontFamily">نوع الخط:</label>
           <select id="fontFamily"></select>
         </div>
+        <!-- الصف الثالث: اللون + المحاذاة -->
         <div>
           <label id="labelFontColor" for="fontColor">لون الخط:</label>
-          <input type="color" id="fontColor" value="#000000" />
+          <input type="color" id="fontColor" value="#ffffff" />
         </div>
         <div>
           <label id="labelAlign" for="fontAlign">محاذاة النص:</label>
           <select id="fontAlign">
-            <option value="center">وسط</option>
+            <option value="center" selected>وسط</option>
             <option value="right">يمين</option>
             <option value="left">يسار</option>
           </select>
@@ -216,7 +244,9 @@
       </div>
     </div>
     <div class="preview-panel">
-      <canvas id="canvas"></canvas>
+      <div class="canvas-preview-wrapper">
+        <canvas id="canvas"></canvas>
+      </div>
       <div class="btn-download-group">
         <button class="btn-download" onclick="downloadImage()" id="downloadBtn" disabled>تحميل البطاقة</button>
       </div>
@@ -225,8 +255,7 @@
   <script>
     const i18n = {
       ar: {
-        headerTitle: " بطاقة تهنئة بعيد الأضحى المبارك",
-        labelCategory: "نوع التصميم:",
+        headerTitle: "بطاقة تهنئة بالعيد",
         labelDesign: "اختر التصميم:",
         labelName: "اكتب اسمك:",
         placeholderName: "اكتب اسمك هنا",
@@ -237,26 +266,13 @@
         downloadBtn: "تحميل البطاقة",
         langBtn: "English",
         alignOptions: ["وسط", "يمين", "يسار"],
-        categories: [
-          { value: "portrait", text: "تصميم طولي" },
-          { value: "square", text: "تصميم شخصي" }
+        designs: [
+            { name: "تصميم 1", url: "https://i.postimg.cc/ZRrVrcvf/EID-story.jpg" },
+            { name: "تصميم 2", url: "https://i.postimg.cc/qvGZbS8V/eid-2.jpg" },
+            { name: "تصميم 3", url: "https://i.postimg.cc/ZRsHthq2/eid-3.jpg" },
+            { name: "تصميم 4", url: "https://i.postimg.cc/wMS1LwW7/eid-4.jpg" },
+            { name: "تصميم 5", url: "https://i.postimg.cc/sXgsX54q/eid-5.jpg" }
         ],
-        designs: {
-          portrait: [
-            { name: "تصميم طولي 1", url: "https://i.postimg.cc/ZRrVrcvf/EID-story.jpg" },
-            { name: "تصميم طولي 2", url: "https://i.postimg.cc/sXgsX54q/eid-5.jpg" },
-            { name: "تصميم طولي 3", url: "https://i.postimg.cc/wMS1LwW7/eid-4.jpg" },
-            { name: "تصميم طولي 4", url: "https://i.postimg.cc/ZRsHthq2/eid-3.jpg" },
-            { name: "تصميم طولي 5", url: "https://i.postimg.cc/qvGZbS8V/eid-2.jpg" }
-          ],
-          square: [
-            { name: "تصميم شخصي 1", url: "https://images.unsplash.com/photo-1607746882042-944635dfe10e?fit=crop&w=600&h=600" },
-            { name: "تصميم شخصي 2", url: "https://images.unsplash.com/photo-1620641788421-9a0d21ec98c6?fit=crop&w=600&h=600" },
-            { name: "تصميم شخصي 3", url: "https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?fit=crop&w=600&h=600" },
-            { name: "تصميم شخصي 4", url: "https://images.unsplash.com/photo-1612837017391-5c3f884e8a4c?fit=crop&w=600&h=600" },
-            { name: "تصميم شخصي 5", url: "https://images.unsplash.com/photo-1616486093062-e5d3c65ee4c7?fit=crop&w=600&h=600" }
-          ]
-        },
         fontFamilies: [
           { name: "Cairo", value: "Cairo, Arial, sans-serif" },
           { name: "Noto Kufi Arabic", value: "'Noto Kufi Arabic', Arial, sans-serif" },
@@ -267,7 +283,6 @@
       },
       en: {
         headerTitle: "Eid Greeting Card",
-        labelCategory: "Design Type:",
         labelDesign: "Choose Design:",
         labelName: "Enter Your Name:",
         placeholderName: "Enter your name here",
@@ -278,26 +293,13 @@
         downloadBtn: "Download Card",
         langBtn: "العربية",
         alignOptions: ["Center", "Right", "Left"],
-        categories: [
-          { value: "portrait", text: "Portrait Design" },
-          { value: "square", text: "Square Design" }
+        designs: [
+            { name: "Design 1", url: "https://i.postimg.cc/ZRrVrcvf/EID-story.jpg" },
+            { name: "Design 2", url: "https://i.postimg.cc/qvGZbS8V/eid-2.jpg" },
+            { name: "Design 3", url: "https://i.postimg.cc/ZRsHthq2/eid-3.jpg" },
+            { name: "Design 4", url: "https://i.postimg.cc/wMS1LwW7/eid-4.jpg" },
+            { name: "Design 5", url: "https://i.postimg.cc/sXgsX54q/eid-5.jpg" }
         ],
-        designs: {
-          portrait: [
-            { name: "Portrait Design 1", url: "https://images.unsplash.com/photo-1557682224-5b8590cd9ec5?fit=crop&w=600&h=900" },
-            { name: "Portrait Design 2", url: "https://images.unsplash.com/photo-1607082349567-9439e0e3fd4b?fit=crop&w=600&h=900" },
-            { name: "Portrait Design 3", url: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?fit=crop&w=600&h=900" },
-            { name: "Portrait Design 4", url: "https://images.unsplash.com/photo-1622321941649-0d7fd013d48c?fit=crop&w=600&h=900" },
-            { name: "Portrait Design 5", url: "https://images.unsplash.com/photo-1615797316580-f82d9bfc5c1e?fit=crop&w=600&h=900" }
-          ],
-          square: [
-            { name: "Square Design 1", url: "https://images.unsplash.com/photo-1607746882042-944635dfe10e?fit=crop&w=600&h=600" },
-            { name: "Square Design 2", url: "https://images.unsplash.com/photo-1620641788421-9a0d21ec98c6?fit=crop&w=600&h=600" },
-            { name: "Square Design 3", url: "https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?fit=crop&w=600&h=600" },
-            { name: "Square Design 4", url: "https://images.unsplash.com/photo-1612837017391-5c3f884e8a4c?fit=crop&w=600&h=600" },
-            { name: "Square Design 5", url: "https://images.unsplash.com/photo-1616486093062-e5d3c65ee4c7?fit=crop&w=600&h=600" }
-          ]
-        },
         fontFamilies: [
           { name: "Montserrat", value: "Montserrat, Arial, sans-serif" },
           { name: "Roboto", value: "Roboto, Arial, sans-serif" },
@@ -309,15 +311,15 @@
     };
 
     let currentLang = 'ar';
-    let currentCategory = "portrait";
     let img = new window.Image();
     img.crossOrigin = "anonymous";
     let imageLoaded = false;
+    let naturalWidth = 0;
+    let naturalHeight = 0;
 
     function updateTexts() {
       const lang = i18n[currentLang];
       document.getElementById("headerTitle").innerText = lang.headerTitle;
-      document.getElementById("labelCategory").innerText = lang.labelCategory;
       document.getElementById("labelDesign").innerText = lang.labelDesign;
       document.getElementById("labelName").innerText = lang.labelName;
       document.getElementById("nameLabel").placeholder = lang.placeholderName;
@@ -334,7 +336,6 @@
       document.querySelector('.container').style.flexDirection =
         currentLang === 'ar' ? 'row-reverse' : 'row';
 
-      // عكس اتجاه زر اللغة حسب اللغة
       if(currentLang === 'ar') {
         document.getElementById('langBtn').style.left = '24px';
         document.getElementById('langBtn').style.right = 'auto';
@@ -358,25 +359,11 @@
       });
     }
 
-    function updateCategoryOptions() {
+    function updateDesignOptions() {
       const lang = i18n[currentLang];
-      const catSelect = document.getElementById("category");
-      catSelect.innerHTML = "";
-      lang.categories.forEach(cat => {
-        const opt = document.createElement("option");
-        opt.value = cat.value;
-        opt.text = cat.text;
-        catSelect.appendChild(opt);
-      });
-      catSelect.value = currentCategory;
-    }
-
-    function updateImageOptions() {
-      const lang = i18n[currentLang];
-      currentCategory = document.getElementById("category").value;
       const designSelect = document.getElementById("design");
       designSelect.innerHTML = "";
-      lang.designs[currentCategory].forEach((item, index) => {
+      lang.designs.forEach((item, index) => {
         const option = document.createElement("option");
         option.value = index;
         option.text = item.name;
@@ -390,36 +377,38 @@
       const lang = i18n[currentLang];
       imageLoaded = false;
       document.getElementById("downloadBtn").disabled = true;
-      img.src = lang.designs[currentCategory][index].url;
+      img = new window.Image();
+      img.crossOrigin = "anonymous";
+      img.src = lang.designs[index].url.replace(/([&?])fit=[^&]+/, ''); // إزالة fit=crop
       img.onload = function () {
         imageLoaded = true;
-        drawImage();
-        drawText();
+        naturalWidth = img.naturalWidth;
+        naturalHeight = img.naturalHeight;
+        drawPreview();
         document.getElementById("downloadBtn").disabled = false;
       };
     }
 
-    function drawImage() {
+    // رسم المعاينة (canvas) بالدقة الأصلية
+    function drawPreview() {
       const canvas = document.getElementById("canvas");
+      canvas.width = naturalWidth;
+      canvas.height = naturalHeight;
       const ctx = canvas.getContext("2d");
-      const scaleFactor = 0.5;
-      canvas.width = img.width * scaleFactor;
-      canvas.height = img.height * scaleFactor;
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+      ctx.drawImage(img, 0, 0, naturalWidth, naturalHeight);
+
+      // رسم النص فوق المعاينة
+      drawTextOnContext(ctx, naturalWidth, naturalHeight);
     }
 
-    function drawText() {
+    // دالة لرسم النص على سياق محدد
+    function drawTextOnContext(ctx, cWidth, cHeight) {
       const name = document.getElementById("nameLabel").value.trim();
       const fontSize = document.getElementById("fontSize").value;
       const fontFamily = document.getElementById("fontFamily").value;
       const fontColor = document.getElementById("fontColor").value;
       const align = document.getElementById("fontAlign").value;
-
-      const canvas = document.getElementById("canvas");
-      const ctx = canvas.getContext("2d");
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
 
       if (name !== "") {
         ctx.font = `${fontSize}px ${fontFamily}`;
@@ -427,20 +416,21 @@
         ctx.textAlign = align;
         let x;
         if (align === "left") x = 10;
-        else if (align === "center") x = canvas.width / 2;
-        else if (align === "right") x = canvas.width - 10;
-        const y = canvas.height - 30;
+        else if (align === "center") x = cWidth / 2;
+        else if (align === "right") x = cWidth - 10;
+        const y = cHeight - 30;
         ctx.fillText(name, x, y);
       }
     }
 
+    // التحميل بدقة الصورة الأصلية
     function downloadImage() {
-      const canvas = document.getElementById("canvas");
-      if (!imageLoaded || canvas.width === 0 || canvas.height === 0) {
+      if (!imageLoaded || naturalWidth === 0 || naturalHeight === 0) {
         alert(currentLang === "ar" ? "يرجى الانتظار حتى يتم تحميل التصميم والمعاينة بالكامل." : "Please wait until the design and preview are fully loaded.");
         return;
       }
-      drawText();
+      // استخدم نفس الكانفاس لأن المعاينة هي نفس الدقة
+      const canvas = document.getElementById("canvas");
       const link = document.createElement("a");
       link.download = currentLang === "ar" ? "بطاقة_العيد.png" : "eid_greeting.png";
       link.href = canvas.toDataURL("image/png");
@@ -452,22 +442,19 @@
     function toggleLanguage() {
       currentLang = currentLang === 'ar' ? 'en' : 'ar';
       updateTexts();
-      updateCategoryOptions();
-      updateImageOptions();
-      drawText();
+      updateDesignOptions();
+      drawPreview();
     }
 
     window.onload = function () {
       updateTexts();
-      updateCategoryOptions();
-      updateImageOptions();
-      document.getElementById("nameLabel").addEventListener('input', drawText);
-      document.getElementById("fontSize").addEventListener('input', drawText);
-      document.getElementById("fontFamily").addEventListener('change', drawText);
-      document.getElementById("fontColor").addEventListener('input', drawText);
-      document.getElementById("fontAlign").addEventListener('change', drawText);
-      document.getElementById("design").addEventListener('change', drawText);
-      document.getElementById("category").addEventListener('change', drawText);
+      updateDesignOptions();
+      document.getElementById("nameLabel").addEventListener('input', drawPreview);
+      document.getElementById("fontSize").addEventListener('input', drawPreview);
+      document.getElementById("fontFamily").addEventListener('change', drawPreview);
+      document.getElementById("fontColor").addEventListener('input', drawPreview);
+      document.getElementById("fontAlign").addEventListener('change', drawPreview);
+      document.getElementById("design").addEventListener('change', drawPreview);
     };
   </script>
 </body>
