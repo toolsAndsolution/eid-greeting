@@ -1,129 +1,474 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تهنئة عيد الفطر</title>
-    <style>
-        body { text-align: center; font-family: Arial, sans-serif; direction: rtl; background-color: #f8f9fa; }
-        header { margin: 20px 0; }
-        img.logo { max-width: 150px; }
-        canvas { border: 1px solid #ccc; margin-top: 10px; max-width: 80%; height: auto; }
-        input, button, select { margin: 10px; padding: 10px; font-size: 16px; }
-    </style>
-    <script>
-        function changeLanguage(lang) {
-            document.documentElement.lang = lang;
-            if (lang === "en") {
-                document.body.style.direction = "ltr";
-                document.getElementById("title").innerText = "🎉 Eid Mubarak 🎉";
-                document.getElementById("message").innerText = "To T&S family, we present these cards to spread joy and affection among your loved ones. Eid Mubarak, and may you be well every year.";
-                document.getElementById("nameLabel").placeholder = "Enter your name here";
-                document.getElementById("addNameBtn").innerText = "Add Name";
-                document.getElementById("designLabel").innerText = "Choose Design:";
-                document.getElementById("downloadBtn").innerText = "Download Greeting";
-            } else {
-                document.body.style.direction = "rtl";
-                document.getElementById("title").innerText = "🎉 عيدكم مبارك 🎉";
-                document.getElementById("message").innerText = "إلى عائلة T&S الأعزاء، نهديكم هذه البطاقات لتكونوا سببًا في نشر البهجة والمودة بين من تحبون. عيدكم مبارك، وكل عام وأنتم بخير.";
-                document.getElementById("nameLabel").placeholder = "أدخل اسمك هنا";
-                document.getElementById("addNameBtn").innerText = "إضافة الاسم";
-                document.getElementById("designLabel").innerText = "اختر التصميم:";
-                document.getElementById("downloadBtn").innerText = "تحميل التهنئة";
-            }
-        }
-    </script>
+  <meta charset="UTF-8" />
+  <title>بطاقة تهنئة بعيد الأضحى</title>
+  <link href="https://fonts.googleapis.com/css?family=Cairo:400,700|Amiri|Noto+Kufi+Arabic|Montserrat:400,700|Roboto:400,700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #fdfcfb, #e2d1c3);
+      margin: 0;
+      padding: 0;
+      color: #333;
+      min-height: 100vh;
+      box-sizing: border-box;
+      position: relative;
+    }
+    header {
+      background-color: #00AEAD;
+      color: #fff;
+      padding: 20px 0 0 0;
+      font-size: 24px;
+      font-weight: bold;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+    }
+    .logo-title {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex: 1;
+      margin-bottom: 8px;
+    }
+    #headerTitle {
+      margin-top: 12px;
+      color: #fff;
+      font-size: 18px;
+      font-weight: bold;
+      text-align: center;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.10);
+    }
+    header img {
+      display: block;
+      height: 100px;
+      margin: 0 12px;
+    }
+    /* زر اللغة */
+    .lang-toggle {
+      position: absolute;
+      top: 16px;
+      left: 24px;
+      min-width: 36px;
+      min-height: 36px;
+      padding: 3px 16px;
+      font-size: 14px;
+      border-radius: 18px;
+      background-color: #EF484A !important;
+      color: #fff !important;
+      border: none;
+      transition: background 0.3s;
+      z-index: 2;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+      opacity: 0.92;
+    }
+    .lang-toggle:hover {
+      background-color: #d93032 !important;
+    }
+    .container {
+      max-width: 900px;
+      margin: 30px auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: row-reverse;
+      gap: 32px;
+    }
+    .settings-panel {
+      flex: 1 1 320px;
+      min-width: 260px;
+    }
+    .preview-panel {
+      flex: 1 1 340px;
+      min-width: 320px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      position: relative;
+    }
+    .controls {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+    label {
+      font-weight: bold;
+      margin-bottom: 5px;
+      display: block;
+    }
+    select, input[type="text"], input[type="number"], input[type="color"] {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+    .full-width {
+      grid-column: span 2;
+    }
+    canvas {
+      display: block;
+      margin: 20px auto 0 auto;
+      border: 2px solid #eee;
+      border-radius: 8px;
+      max-width: 100%;
+      background: #fdfcfb;
+    }
+    .btn-download-group {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      margin-top: 20px;
+    }
+    .btn-download {
+      padding: 18px 64px;
+      background-color: #EF484A;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 24px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    }
+    .btn-download:disabled {
+      background-color: #aaa;
+      cursor: not-allowed;
+    }
+    .btn-download:hover:not(:disabled) {
+      background-color: #218838;
+    }
+    @media (max-width: 900px) {
+      .container {
+        flex-direction: column;
+        gap: 8px;
+      }
+      .settings-panel, .preview-panel {
+        min-width: unset;
+      }
+      .btn-download-group {
+        margin-top: 16px;
+      }
+      .lang-toggle {
+        left: 10px;
+        top: 10px;
+        font-size: 13px;
+        padding: 2px 10px;
+      }
+    }
+    [dir="ltr"] .lang-toggle {
+      right: 24px;
+      left: auto;
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <img class="logo" src="https://i.postimg.cc/vTxR7sPK/image.png" alt="شعار الشركة">
-        <select style="font-size: 12px; padding: 5px; position: absolute; left: 10px; top: 10px;" onchange="changeLanguage(this.value)">
-            <option value="ar">العربية</option>
-            <option value="en">English</option>
-        </select>
-    </header>
-    <h2 id="title">🎉 عيدكم مبارك 🎉</h2>
-    <p id="message">إلى عائلة T&S الأعزاء، نهديكم هذه البطاقات لتكونوا سببًا في نشر البهجة والمودة بين من تحبون. عيدكم مبارك، وكل عام وأنتم بخير.</p>
-    <div style="display: flex; justify-content: center; align-items: center; gap: 10px;">
-        <input type="text" id="nameLabel" placeholder="أدخل اسمك هنا">
-        <button id="addNameBtn" onclick="drawText()">إضافة الاسم</button>
+  <header>
+    <button class="lang-toggle btn" onclick="toggleLanguage()" id="langBtn">English</button>
+    <div class="logo-title">
+      <img src="https://i.postimg.cc/tJhm422d/T-S-LOGO-1-04.png" alt="Logo" id="logo">
+      <span id="headerTitle"> بطاقة تهنئة بعيد الأضحى </span>
     </div>
-    <label id="designLabel" for="design">اختر التصميم:</label>
-    <select id="design" onchange="changeImage()">
-        <option value="design1">تصميم 1</option>
-        <option value="design2">تصميم 2</option>
-    </select>
-    <br>
-    <canvas id="canvas"></canvas>
-    <br>
-    <button id="downloadBtn" onclick="downloadImage()">تحميل التهنئة</button>
-    <script>
-        const images = {
-            "design1": "https://i.postimg.cc/FKKhf2QM/Happy-Eid-V3-1.png",
-            "design2": "https://i.postimg.cc/mgLsq0hP/Untitled-design-3.png"
-        };
+  </header>
+  <div class="container">
+    <div class="settings-panel">
+      <div class="controls">
+        <div>
+          <label id="labelCategory" for="category">نوع التصميم:</label>
+          <select id="category" onchange="updateImageOptions()"></select>
+        </div>
+        <div>
+          <label id="labelDesign" for="design">اختر التصميم:</label>
+          <select id="design" onchange="changeImage()"></select>
+        </div>
+        <div class="full-width">
+          <label id="labelName" for="nameLabel">اكتب اسمك:</label>
+          <input type="text" id="nameLabel" placeholder="اكتب اسمك هنا" />
+        </div>
+        <div>
+          <label id="labelFontSize" for="fontSize">حجم الخط:</label>
+          <input type="number" id="fontSize" value="36" min="10" />
+        </div>
+        <div>
+          <label id="labelFontFamily" for="fontFamily">نوع الخط:</label>
+          <select id="fontFamily"></select>
+        </div>
+        <div>
+          <label id="labelFontColor" for="fontColor">لون الخط:</label>
+          <input type="color" id="fontColor" value="#000000" />
+        </div>
+        <div>
+          <label id="labelAlign" for="fontAlign">محاذاة النص:</label>
+          <select id="fontAlign">
+            <option value="center">وسط</option>
+            <option value="right">يمين</option>
+            <option value="left">يسار</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="preview-panel">
+      <canvas id="canvas"></canvas>
+      <div class="btn-download-group">
+        <button class="btn-download" onclick="downloadImage()" id="downloadBtn" disabled>تحميل البطاقة</button>
+      </div>
+    </div>
+  </div>
+  <script>
+    const i18n = {
+      ar: {
+        headerTitle: " بطاقة تهنئة بعيد الأضحى المبارك",
+        labelCategory: "نوع التصميم:",
+        labelDesign: "اختر التصميم:",
+        labelName: "اكتب اسمك:",
+        placeholderName: "اكتب اسمك هنا",
+        labelFontSize: "حجم الخط:",
+        labelFontFamily: "نوع الخط:",
+        labelFontColor: "لون الخط:",
+        labelAlign: "محاذاة النص:",
+        downloadBtn: "تحميل البطاقة",
+        langBtn: "English",
+        alignOptions: ["وسط", "يمين", "يسار"],
+        categories: [
+          { value: "portrait", text: "تصميم طولي" },
+          { value: "square", text: "تصميم شخصي" }
+        ],
+        designs: {
+          portrait: [
+            { name: "تصميم طولي 1", url: "https://i.postimg.cc/ZRrVrcvf/EID-story.jpg" },
+            { name: "تصميم طولي 2", url: "https://i.postimg.cc/sXgsX54q/eid-5.jpg" },
+            { name: "تصميم طولي 3", url: "https://i.postimg.cc/wMS1LwW7/eid-4.jpg" },
+            { name: "تصميم طولي 4", url: "https://i.postimg.cc/ZRsHthq2/eid-3.jpg" },
+            { name: "تصميم طولي 5", url: "https://i.postimg.cc/qvGZbS8V/eid-2.jpg" }
+          ],
+          square: [
+            { name: "تصميم شخصي 1", url: "https://images.unsplash.com/photo-1607746882042-944635dfe10e?fit=crop&w=600&h=600" },
+            { name: "تصميم شخصي 2", url: "https://images.unsplash.com/photo-1620641788421-9a0d21ec98c6?fit=crop&w=600&h=600" },
+            { name: "تصميم شخصي 3", url: "https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?fit=crop&w=600&h=600" },
+            { name: "تصميم شخصي 4", url: "https://images.unsplash.com/photo-1612837017391-5c3f884e8a4c?fit=crop&w=600&h=600" },
+            { name: "تصميم شخصي 5", url: "https://images.unsplash.com/photo-1616486093062-e5d3c65ee4c7?fit=crop&w=600&h=600" }
+          ]
+        },
+        fontFamilies: [
+          { name: "Cairo", value: "Cairo, Arial, sans-serif" },
+          { name: "Noto Kufi Arabic", value: "'Noto Kufi Arabic', Arial, sans-serif" },
+          { name: "Amiri", value: "Amiri, serif" },
+          { name: "Tahoma", value: "Tahoma, Geneva, sans-serif" },
+          { name: "Arial", value: "Arial, Helvetica, sans-serif" }
+        ]
+      },
+      en: {
+        headerTitle: "Eid Greeting Card",
+        labelCategory: "Design Type:",
+        labelDesign: "Choose Design:",
+        labelName: "Enter Your Name:",
+        placeholderName: "Enter your name here",
+        labelFontSize: "Font Size:",
+        labelFontFamily: "Font Family:",
+        labelFontColor: "Font Color:",
+        labelAlign: "Text Alignment:",
+        downloadBtn: "Download Card",
+        langBtn: "العربية",
+        alignOptions: ["Center", "Right", "Left"],
+        categories: [
+          { value: "portrait", text: "Portrait Design" },
+          { value: "square", text: "Square Design" }
+        ],
+        designs: {
+          portrait: [
+            { name: "Portrait Design 1", url: "https://images.unsplash.com/photo-1557682224-5b8590cd9ec5?fit=crop&w=600&h=900" },
+            { name: "Portrait Design 2", url: "https://images.unsplash.com/photo-1607082349567-9439e0e3fd4b?fit=crop&w=600&h=900" },
+            { name: "Portrait Design 3", url: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?fit=crop&w=600&h=900" },
+            { name: "Portrait Design 4", url: "https://images.unsplash.com/photo-1622321941649-0d7fd013d48c?fit=crop&w=600&h=900" },
+            { name: "Portrait Design 5", url: "https://images.unsplash.com/photo-1615797316580-f82d9bfc5c1e?fit=crop&w=600&h=900" }
+          ],
+          square: [
+            { name: "Square Design 1", url: "https://images.unsplash.com/photo-1607746882042-944635dfe10e?fit=crop&w=600&h=600" },
+            { name: "Square Design 2", url: "https://images.unsplash.com/photo-1620641788421-9a0d21ec98c6?fit=crop&w=600&h=600" },
+            { name: "Square Design 3", url: "https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?fit=crop&w=600&h=600" },
+            { name: "Square Design 4", url: "https://images.unsplash.com/photo-1612837017391-5c3f884e8a4c?fit=crop&w=600&h=600" },
+            { name: "Square Design 5", url: "https://images.unsplash.com/photo-1616486093062-e5d3c65ee4c7?fit=crop&w=600&h=600" }
+          ]
+        },
+        fontFamilies: [
+          { name: "Montserrat", value: "Montserrat, Arial, sans-serif" },
+          { name: "Roboto", value: "Roboto, Arial, sans-serif" },
+          { name: "Tahoma", value: "Tahoma, Geneva, sans-serif" },
+          { name: "Arial", value: "Arial, Helvetica, sans-serif" },
+          { name: "Courier New", value: "'Courier New', Courier, monospace" }
+        ]
+      }
+    };
 
-        let img = new Image();
-        img.crossOrigin = "anonymous";
-        img.src = images["design1"];
-        img.onload = function() { drawImage(); };
-        img.onerror = function() { alert('حدث خطأ في تحميل الصورة، تأكد من صحة الرابط.'); };
+    let currentLang = 'ar';
+    let currentCategory = "portrait";
+    let img = new window.Image();
+    img.crossOrigin = "anonymous";
+    let imageLoaded = false;
 
-        function drawImage() {
-            const canvas = document.getElementById("canvas");
-            const ctx = canvas.getContext("2d");
-            const scaleFactor = 0.5;
-            canvas.width = img.width * scaleFactor;
-            canvas.height = img.height * scaleFactor;
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-        }
+    function updateTexts() {
+      const lang = i18n[currentLang];
+      document.getElementById("headerTitle").innerText = lang.headerTitle;
+      document.getElementById("labelCategory").innerText = lang.labelCategory;
+      document.getElementById("labelDesign").innerText = lang.labelDesign;
+      document.getElementById("labelName").innerText = lang.labelName;
+      document.getElementById("nameLabel").placeholder = lang.placeholderName;
+      document.getElementById("labelFontSize").innerText = lang.labelFontSize;
+      document.getElementById("labelFontFamily").innerText = lang.labelFontFamily;
+      document.getElementById("labelFontColor").innerText = lang.labelFontColor;
+      document.getElementById("labelAlign").innerText = lang.labelAlign;
+      document.getElementById("downloadBtn").innerText = lang.downloadBtn;
+      document.getElementById("langBtn").innerText = lang.langBtn;
 
-        function changeImage() {
-            const selectedDesign = document.getElementById("design").value;
-            img.src = images[selectedDesign];
-            img.onload = function() { drawImage(); };
-        }
+      document.documentElement.lang = currentLang;
+      document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
 
-        function drawText() {
-            const name = document.getElementById("nameLabel").value;
-            const lang = document.documentElement.lang; // الحصول على اللغة الحالية
-            if (name.trim() !== "") {
-                const canvas = document.getElementById("canvas");
-                const ctx = canvas.getContext("2d");
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-                ctx.font = "bold 30px Arial";
-                ctx.fillStyle = "#ffffff";
-                ctx.textBaseline = "middle"; // محاذاة عمودية للنص
-                if (lang === "ar") {
-                    ctx.textAlign = "right"; // محاذاة النص لليمين (إذا كانت اللغة عربية)
-                    ctx.fillText(name, canvas.width - 20, canvas.height - 35); // تحريك النص لليسار قليلاً
-                } else {
-                    ctx.textAlign = "left"; // محاذاة النص لليسار (إذا كانت اللغة إنجليزية)
-                    ctx.fillText(name, 20, canvas.height - 35); // تحريك النص لليسار قليلاً
-                }
-            }
-        }
+      document.querySelector('.container').style.flexDirection =
+        currentLang === 'ar' ? 'row-reverse' : 'row';
 
-        function downloadImage() {
-            const canvas = document.getElementById("canvas");
-            if (!canvas || !canvas.getContext) {
-                alert("حدث خطأ: لا يوجد عنصر canvas للتحميل.");
-                return;
-            }
-            const ctx = canvas.getContext("2d");
-            if (!ctx) {
-                alert("حدث خطأ: لا يمكن الحصول على السياق الرسومي للـ canvas.");
-                return;
-            }
-            const link = document.createElement("a");
-            link.download = "eid-greeting.png";
-            link.href = canvas.toDataURL("image/png");
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-        }
-    </script>
+      // عكس اتجاه زر اللغة حسب اللغة
+      if(currentLang === 'ar') {
+        document.getElementById('langBtn').style.left = '24px';
+        document.getElementById('langBtn').style.right = 'auto';
+      } else {
+        document.getElementById('langBtn').style.right = '24px';
+        document.getElementById('langBtn').style.left = 'auto';
+      }
+
+      const alignSelect = document.getElementById("fontAlign");
+      alignSelect.options[0].text = lang.alignOptions[0];
+      alignSelect.options[1].text = lang.alignOptions[1];
+      alignSelect.options[2].text = lang.alignOptions[2];
+
+      const fontSelect = document.getElementById("fontFamily");
+      fontSelect.innerHTML = "";
+      lang.fontFamilies.forEach(font => {
+        const opt = document.createElement("option");
+        opt.value = font.value;
+        opt.text = font.name;
+        fontSelect.appendChild(opt);
+      });
+    }
+
+    function updateCategoryOptions() {
+      const lang = i18n[currentLang];
+      const catSelect = document.getElementById("category");
+      catSelect.innerHTML = "";
+      lang.categories.forEach(cat => {
+        const opt = document.createElement("option");
+        opt.value = cat.value;
+        opt.text = cat.text;
+        catSelect.appendChild(opt);
+      });
+      catSelect.value = currentCategory;
+    }
+
+    function updateImageOptions() {
+      const lang = i18n[currentLang];
+      currentCategory = document.getElementById("category").value;
+      const designSelect = document.getElementById("design");
+      designSelect.innerHTML = "";
+      lang.designs[currentCategory].forEach((item, index) => {
+        const option = document.createElement("option");
+        option.value = index;
+        option.text = item.name;
+        designSelect.appendChild(option);
+      });
+      changeImage();
+    }
+
+    function changeImage() {
+      const index = document.getElementById("design").value;
+      const lang = i18n[currentLang];
+      imageLoaded = false;
+      document.getElementById("downloadBtn").disabled = true;
+      img.src = lang.designs[currentCategory][index].url;
+      img.onload = function () {
+        imageLoaded = true;
+        drawImage();
+        drawText();
+        document.getElementById("downloadBtn").disabled = false;
+      };
+    }
+
+    function drawImage() {
+      const canvas = document.getElementById("canvas");
+      const ctx = canvas.getContext("2d");
+      const scaleFactor = 0.5;
+      canvas.width = img.width * scaleFactor;
+      canvas.height = img.height * scaleFactor;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+    }
+
+    function drawText() {
+      const name = document.getElementById("nameLabel").value.trim();
+      const fontSize = document.getElementById("fontSize").value;
+      const fontFamily = document.getElementById("fontFamily").value;
+      const fontColor = document.getElementById("fontColor").value;
+      const align = document.getElementById("fontAlign").value;
+
+      const canvas = document.getElementById("canvas");
+      const ctx = canvas.getContext("2d");
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+
+      if (name !== "") {
+        ctx.font = `${fontSize}px ${fontFamily}`;
+        ctx.fillStyle = fontColor;
+        ctx.textAlign = align;
+        let x;
+        if (align === "left") x = 10;
+        else if (align === "center") x = canvas.width / 2;
+        else if (align === "right") x = canvas.width - 10;
+        const y = canvas.height - 30;
+        ctx.fillText(name, x, y);
+      }
+    }
+
+    function downloadImage() {
+      const canvas = document.getElementById("canvas");
+      if (!imageLoaded || canvas.width === 0 || canvas.height === 0) {
+        alert(currentLang === "ar" ? "يرجى الانتظار حتى يتم تحميل التصميم والمعاينة بالكامل." : "Please wait until the design and preview are fully loaded.");
+        return;
+      }
+      drawText();
+      const link = document.createElement("a");
+      link.download = currentLang === "ar" ? "بطاقة_العيد.png" : "eid_greeting.png";
+      link.href = canvas.toDataURL("image/png");
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+
+    function toggleLanguage() {
+      currentLang = currentLang === 'ar' ? 'en' : 'ar';
+      updateTexts();
+      updateCategoryOptions();
+      updateImageOptions();
+      drawText();
+    }
+
+    window.onload = function () {
+      updateTexts();
+      updateCategoryOptions();
+      updateImageOptions();
+      document.getElementById("nameLabel").addEventListener('input', drawText);
+      document.getElementById("fontSize").addEventListener('input', drawText);
+      document.getElementById("fontFamily").addEventListener('change', drawText);
+      document.getElementById("fontColor").addEventListener('input', drawText);
+      document.getElementById("fontAlign").addEventListener('change', drawText);
+      document.getElementById("design").addEventListener('change', drawText);
+      document.getElementById("category").addEventListener('change', drawText);
+    };
+  </script>
 </body>
 </html>
