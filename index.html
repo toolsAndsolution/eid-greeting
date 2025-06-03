@@ -126,7 +126,6 @@
       align-items: center;
       width: 100%;
       overflow-x: auto;
-      /* سماح بالتمرير الأفقي إذا الصورة كبيرة */
       max-width: 100%;
       margin: 24px auto 0 auto;
       background: #f5f5f5;
@@ -135,14 +134,13 @@
     }
     canvas {
       display: block;
-      /* لا تضبط الحجم هنا حتى تكون دقة أصلية */
       box-shadow: 0 4px 14px rgba(0,0,0,0.07);
       border: 2px solid #eee;
       border-radius: 8px;
       background: #fdfcfb;
       margin: 0 auto;
-      max-width: none; /* مهم لعرض الدقة الأصلية */
-      max-height: 50vh; /* لا يتعدى شاشة المستخدم */
+      max-width: none;
+      max-height: 50vh;
     }
     .btn-download-group {
       display: flex;
@@ -423,17 +421,42 @@
       }
     }
 
-    // التحميل بدقة الصورة الأصلية
+    // التحميل بدقة الصورة الأصلية (حتى لو كان الكانفاس المعروض صغير)
     function downloadImage() {
       if (!imageLoaded || naturalWidth === 0 || naturalHeight === 0) {
         alert(currentLang === "ar" ? "يرجى الانتظار حتى يتم تحميل التصميم والمعاينة بالكامل." : "Please wait until the design and preview are fully loaded.");
         return;
       }
-      // استخدم نفس الكانفاس لأن المعاينة هي نفس الدقة
-      const canvas = document.getElementById("canvas");
+      // إنشاء كانفاس بدقة الصورة الأصلية
+      const downloadCanvas = document.createElement("canvas");
+      downloadCanvas.width = img.naturalWidth;
+      downloadCanvas.height = img.naturalHeight;
+      const ctx = downloadCanvas.getContext("2d");
+      ctx.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight);
+
+      // جلب إعدادات النص وإعادة رسمه بحجم الصورة الأصلي
+      const name = document.getElementById("nameLabel").value.trim();
+      const fontSize = parseInt(document.getElementById("fontSize").value, 10);
+      const fontFamily = document.getElementById("fontFamily").value;
+      const fontColor = document.getElementById("fontColor").value;
+      const align = document.getElementById("fontAlign").value;
+
+      if (name) {
+        ctx.font = `${fontSize}px ${fontFamily}`;
+        ctx.fillStyle = fontColor;
+        ctx.textAlign = align;
+        let x;
+        if (align === "left") x = 10;
+        else if (align === "center") x = downloadCanvas.width / 2;
+        else if (align === "right") x = downloadCanvas.width - 10;
+        const y = downloadCanvas.height - 30;
+        ctx.fillText(name, x, y);
+      }
+
+      // تحميل الصورة بالدقة الأصلية
       const link = document.createElement("a");
       link.download = currentLang === "ar" ? "بطاقة_العيد.png" : "eid_greeting.png";
-      link.href = canvas.toDataURL("image/png");
+      link.href = downloadCanvas.toDataURL("image/png");
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
