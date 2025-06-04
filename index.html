@@ -3,82 +3,215 @@
 <head>
   <meta charset="UTF-8" />
   <title>بطاقة تهنئة بعيد الأضحى</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- خطوط Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Cairo:400,700|Amiri|Noto+Kufi+Arabic|Montserrat:400,700|Roboto:400,700&display=swap" rel="stylesheet">
   <style>
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    :root {
+      --accent: #00AEAD;
+      --main-radius: 14px;
+      --shadow: 0 4px 14px rgba(0,0,0,0.07);
+    }
+    html, body {
+      height: 100%;
+      min-height: 100vh;
+      margin: 0;
+      padding: 0;
       background: linear-gradient(135deg, #fdfcfb, #e2d1c3);
-      margin: 0; padding: 0; color: #333;
-      min-height: 100vh; box-sizing: border-box; position: relative;
+      font-family: 'Cairo', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #222;
+      box-sizing: border-box;
+      overflow-x: hidden;
+    }
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
     }
     header {
-      background-color: #00AEAD; color: #fff; padding: 20px 0 0 0;
-      font-size: 24px; font-weight: bold;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-      display: flex; flex-direction: column; align-items: center; position: relative;
+      background-color: var(--accent);
+      color: #fff;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.13);
+      padding: 0 0 8px 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      border-bottom-left-radius: var(--main-radius);
+      border-bottom-right-radius: var(--main-radius);
     }
-    .logo-title { display: flex; flex-direction: column; align-items: center; flex: 1; margin-bottom: 8px;}
-    #headerTitle { margin-top: 12px; color: #fff; font-size: 18px; font-weight: bold; text-align: center; text-shadow: 0 2px 8px rgba(0,0,0,0.10);}
-    header img { display: block; height: 98px; margin: 0 12px;}
     .lang-toggle {
-      position: absolute; top: 16px; left: 24px;
-      min-width: 36px; min-height: 36px; padding: 3px 16px;
-      font-size: 14px; border-radius: 18px;
-      background-color: #EF484A !important; color: #fff !important;
-      border: none; transition: background 0.3s; z-index: 2; box-shadow: 0 1px 4px rgba(0,0,0,0.07); opacity: 0.92;
+      position: absolute;
+      top: 18px;
+      left: 24px;
+      min-width: 36px;
+      min-height: 36px;
+      padding: 5px 18px;
+      font-size: 15px;
+      border-radius: 18px;
+      background-color: #EF484A !important;
+      color: #fff !important;
+      border: none;
+      transition: background 0.3s;
+      z-index: 2;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.11);
+      opacity: 0.97;
+      font-weight: bold;
+      letter-spacing: 1px;
     }
     .lang-toggle:hover { background-color: #d93032 !important;}
+    .logo-title {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex: 1;
+      margin-top: 10px;
+      margin-bottom: 6px;
+    }
+    #logo {
+      height: 90px;
+      width: auto;
+      max-width: 36vw;
+      object-fit: contain;
+      margin: 0 8px;
+    }
+    #headerTitle {
+      color: #fff;
+      font-size: 22px;
+      font-weight: bold;
+      text-align: center;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.10);
+      margin: 14px 0 0 0;
+    }
+    main {
+      flex: 1 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      min-height: 0;
+    }
     .container {
-      max-width: 1000px; margin: 30px auto; padding: 20px;
-      background-color: #fff; border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      display: flex; flex-direction: row-reverse; gap: 32px;
+      width: 100%;
+      max-width: 1050px;
+      margin: 28px auto 18px auto;
+      padding: 22px 20px;
+      background-color: #fff;
+      border-radius: var(--main-radius);
+      box-shadow: var(--shadow);
+      display: flex;
+      gap: 38px;
+      align-items: flex-start;
+      justify-content: center;
+      min-height: 440px;
     }
-    .settings-panel { flex: 1 1 320px; min-width: 300px; display: flex; flex-direction: column; justify-content: center;}
+    .settings-panel {
+      flex: 1 1 340px;
+      min-width: 220px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
     .controls {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 20px 20px; margin-bottom: 20px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px 20px;
     }
-    .controls > div { min-width: 0; display: flex; flex-direction: column; justify-content: flex-start;}
-    label { font-weight: bold; margin-bottom: 5px; display: block;}
+    .controls > div {
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+    label {
+      font-weight: bold;
+      margin-bottom: 6px;
+      color: #202021;
+      font-size: 1.07em;
+    }
     select, input[type="text"], input[type="number"], input[type="color"] {
-      width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 6px; font-size: 14px; box-sizing: border-box;
+      width: 100%;
+      padding: 9px 8px;
+      border: 1px solid #ccc;
+      border-radius: 7px;
+      font-size: 15px;
+      box-sizing: border-box;
+      margin-bottom: 2px;
+      background: #fbfbfb;
     }
+    input[type="color"] { padding: 1px; }
     .preview-panel {
-      flex: 2 1 600px; min-width: 340px;
-      display: flex; flex-direction: column; align-items: center; justify-content: flex-start;
-      position: relative; overflow-x: auto;
+      flex: 2 1 570px;
+      min-width: 270px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      position: relative;
+      width: 100%;
+      max-width: 640px;
     }
     .canvas-preview-wrapper {
-      display: flex; justify-content: center; align-items: center;
-      width: 100%; overflow-x: auto; max-width: 100%;
-      margin: 24px auto 0 auto; background: #f5f5f5;
-      border-radius: 10px; box-sizing: border-box;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      background: #f5f5f5;
+      border-radius: 12px;
+      box-sizing: border-box;
+      margin: 0 0 20px 0;
+      box-shadow: var(--shadow);
+      min-height: 240px;
+      min-width: 0;
+      overflow-x: auto;
+      padding: 15px 0;
     }
     canvas {
-      display: block; box-shadow: 0 4px 14px rgba(0,0,0,0.07);
-      border: 2px solid #eee; border-radius: 8px;
-      background: #fdfcfb; margin: 0 auto;
-      max-width: none; max-height: 50vh;
+      display: block;
+      margin: 0 auto;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+      border: 2px solid #eee;
+      border-radius: 8px;
+      background: #fdfcfb;
+      width: 100%;
+      max-width: 430px;
+      height: auto;
+      max-height: 60vh;
+      min-width: 0;
     }
-    .btn-download-group { display: flex; justify-content: center; width: 100%; margin-top: 24px;}
+    .btn-download-group { display: flex; justify-content: center; width: 100%;}
     .btn-download {
-      padding: 18px 64px; background-color: #EF484A; color: white;
-      border: none; border-radius: 10px; font-size: 24px; font-weight: bold;
-      cursor: pointer; transition: background 0.3s ease;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+      padding: 15px 36px;
+      background-color: #EF484A;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 20px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      letter-spacing: .7px;
     }
     .btn-download:disabled { background-color: #aaa; cursor: not-allowed;}
     .btn-download:hover:not(:disabled) { background-color: #218838;}
-    @media (max-width: 1000px) {
-      .container { flex-direction: column; gap: 8px;}
-      .settings-panel, .preview-panel { min-width: unset;}
-      .controls { grid-template-columns: 1fr;}
-      .btn-download-group { margin-top: 16px;}
-      .lang-toggle { left: 10px; top: 10px; font-size: 13px; padding: 2px 10px;}
-      .canvas-preview-wrapper { max-width: 98vw;}
+
+    @media (max-width: 900px) {
+      .container { flex-direction: column; gap: 18px; align-items: stretch; padding: 16px 4vw;}
+      .settings-panel, .preview-panel { min-width: unset; }
+      .preview-panel { max-width: 100vw; }
+      canvas { max-width: 92vw; max-height: 45vw;}
+      .canvas-preview-wrapper { padding: 7px 0; min-height: 130px;}
     }
-    [dir="ltr"] .lang-toggle { right: 24px; left: auto;}
+    @media (max-width: 650px) {
+      .container { padding: 7px 0;}
+      .controls { grid-template-columns: 1fr; gap: 12px;}
+      .btn-download { padding: 11px 8vw; font-size: 17px;}
+      #logo { height: 54px;}
+      #headerTitle { font-size: 15px;}
+      .lang-toggle { top: 8px; left: 10px; padding: 4px 11px; font-size: 12px;}
+      canvas { max-width: 99vw; }
+    }
   </style>
 </head>
 <body>
@@ -89,50 +222,52 @@
       <span id="headerTitle"> بطاقة تهنئة بعيد الأضحى </span>
     </div>
   </header>
-  <div class="container">
-    <div class="settings-panel">
-      <div class="controls">
-        <div>
-          <label id="labelName" for="nameLabel">اكتب اسمك:</label>
-          <input type="text" id="nameLabel" placeholder="اكتب اسمك هنا" />
+  <main>
+    <div class="container">
+      <div class="settings-panel">
+        <div class="controls">
+          <div>
+            <label id="labelName" for="nameLabel">اكتب اسمك:</label>
+            <input type="text" id="nameLabel" placeholder="اكتب اسمك هنا" />
+          </div>
+          <div>
+            <label id="labelDesign" for="design">اختر التصميم:</label>
+            <select id="design" onchange="changeImage()"></select>
+          </div>
+          <div>
+            <label id="labelFontSize" for="fontSize">حجم الخط:</label>
+            <input type="number" id="fontSize" value="28" min="10" />
+          </div>
+          <div>
+            <label id="labelFontFamily" for="fontFamily">نوع الخط:</label>
+            <select id="fontFamily"></select>
+          </div>
+          <div>
+            <label id="labelFontColor" for="fontColor">لون الخط:</label>
+            <input type="color" id="fontColor" value="#ffffff" />
+          </div>
+          <div>
+            <label id="labelAlign" for="fontAlign">محاذاة النص:</label>
+            <select id="fontAlign">
+              <option value="center" selected>وسط</option>
+              <option value="right">يمين</option>
+              <option value="left">يسار</option>
+            </select>
+          </div>
         </div>
-        <div>
-          <label id="labelDesign" for="design">اختر التصميم:</label>
-          <select id="design" onchange="changeImage()"></select>
+      </div>
+      <div class="preview-panel">
+        <div class="canvas-preview-wrapper">
+          <canvas id="canvas"></canvas>
         </div>
-        <div>
-          <label id="labelFontSize" for="fontSize">حجم الخط:</label>
-          <input type="number" id="fontSize" value="28" min="10" />
-        </div>
-        <div>
-          <label id="labelFontFamily" for="fontFamily">نوع الخط:</label>
-          <select id="fontFamily"></select>
-        </div>
-        <div>
-          <label id="labelFontColor" for="fontColor">لون الخط:</label>
-          <input type="color" id="fontColor" value="#ffffff" />
-        </div>
-        <div>
-          <label id="labelAlign" for="fontAlign">محاذاة النص:</label>
-          <select id="fontAlign">
-            <option value="center" selected>وسط</option>
-            <option value="right">يمين</option>
-            <option value="left">يسار</option>
-          </select>
+        <div class="btn-download-group">
+          <button class="btn-download" onclick="downloadImage()" id="downloadBtn" disabled>تحميل البطاقة</button>
         </div>
       </div>
     </div>
-    <div class="preview-panel">
-      <div class="canvas-preview-wrapper">
-        <canvas id="canvas"></canvas>
-      </div>
-      <div class="btn-download-group">
-        <button class="btn-download" onclick="downloadImage()" id="downloadBtn" disabled>تحميل البطاقة</button>
-      </div>
-    </div>
-  </div>
+  </main>
   <script>
-    // الترجمة والخيارات كما في السابق...
+    // جميع الخيارات كما بالسابق
     const i18n = {
       ar: {
         headerTitle: "بطاقة تهنئة بالعيد",
@@ -224,13 +359,11 @@
         document.getElementById('langBtn').style.left = 'auto';
       }
 
-      // تحديث محاذاة النص
       const alignSelect = document.getElementById("fontAlign");
       alignSelect.options[0].text = lang.alignOptions[0];
       alignSelect.options[1].text = lang.alignOptions[1];
       alignSelect.options[2].text = lang.alignOptions[2];
 
-      // تحديث الخطوط
       const fontSelect = document.getElementById("fontFamily");
       fontSelect.innerHTML = "";
       lang.fontFamilies.forEach(font => {
@@ -273,8 +406,13 @@
 
     function drawPreview() {
       const canvas = document.getElementById("canvas");
+      // اضبط العرض تلقائياً ليتناسب مع الشاشة
+      const maxW = Math.min(window.innerWidth * 0.9, 440, naturalWidth);
+      const scale = maxW / naturalWidth;
       canvas.width = naturalWidth;
       canvas.height = naturalHeight;
+      canvas.style.width = maxW + 'px';
+      canvas.style.height = (naturalHeight * scale) + 'px';
       const ctx = canvas.getContext("2d");
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       ctx.drawImage(img, 0, 0, naturalWidth, naturalHeight);
@@ -287,20 +425,14 @@
       const fontFamily = document.getElementById("fontFamily").value;
       const fontColor = document.getElementById("fontColor").value;
       const align = document.getElementById("fontAlign").value;
-
       ctx.font = `${fontSize}px ${fontFamily}`;
       ctx.fillStyle = fontColor;
       ctx.textAlign = align;
-
-      // ------- تحكم هنا في بعد النص عن الأطراف -------
       let x;
-      if (align === "left")   x = 60;                 // 60 بكسل من اليسار
-      else if (align === "center") x = cWidth / 2;   // وسط تمامًا
-      else if (align === "right")  x = cWidth - 60;  // 60 بكسل من اليمين
-
-      const y = cHeight - 60; // 60 بكسل من الأسفل، غير الرقم حسب ما تريد
-      // -------------------------------------------------
-
+      if (align === "left")   x = 60;
+      else if (align === "center") x = cWidth / 2;
+      else if (align === "right")  x = cWidth - 60;
+      const y = cHeight - 60;
       if (name !== "") {
         ctx.fillText(name, x, y);
       }
@@ -316,29 +448,20 @@
       downloadCanvas.height = img.naturalHeight;
       const ctx = downloadCanvas.getContext("2d");
       ctx.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight);
-
       const name = document.getElementById("nameLabel").value.trim();
       const fontSize = parseInt(document.getElementById("fontSize").value, 10);
       const fontFamily = document.getElementById("fontFamily").value;
       const fontColor = document.getElementById("fontColor").value;
       const align = document.getElementById("fontAlign").value;
-
       ctx.font = `${fontSize}px ${fontFamily}`;
       ctx.fillStyle = fontColor;
       ctx.textAlign = align;
-
-      // ------- تحكم هنا في بعد النص عن الأطراف -------
       let x;
       if (align === "left")   x = 60;
       else if (align === "center") x = downloadCanvas.width / 2;
       else if (align === "right")  x = downloadCanvas.width - 60;
       const y = downloadCanvas.height - 60;
-      // ------------------------------------------------
-
-      if (name) {
-        ctx.fillText(name, x, y);
-      }
-
+      if (name) ctx.fillText(name, x, y);
       const link = document.createElement("a");
       link.download = currentLang === "ar" ? "بطاقة_العيد.png" : "eid_greeting.png";
       link.href = downloadCanvas.toDataURL("image/png");
@@ -363,6 +486,7 @@
       document.getElementById("fontColor").addEventListener('input', drawPreview);
       document.getElementById("fontAlign").addEventListener('change', drawPreview);
       document.getElementById("design").addEventListener('change', drawPreview);
+      window.addEventListener('resize', drawPreview); // ليتغير حجم المعاينة مع تغيير حجم الشاشة
     };
   </script>
 </body>
