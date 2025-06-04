@@ -92,8 +92,7 @@
       margin-bottom: 2px;
     }
     .controls input[type="text"],
-    .controls select,
-    .controls input[type="color"] {
+    .controls select {
       width: 100%;
       padding: 9px 10px;
       border: 1px solid #c0c3c5;
@@ -106,18 +105,9 @@
       font-family: inherit;
     }
     .controls input[type="text"]:focus,
-    .controls select:focus,
-    .controls input[type="color"]:focus {
+    .controls select:focus {
       border-color: #00AEAD;
       outline: none;
-    }
-    .controls input[type="color"] {
-      padding: 1px;
-      height: 42px;
-      width: 100%;
-      border-radius: 7px;
-      background: #fbfbfb;
-      cursor: pointer;
     }
     .range-inline {
       display: flex;
@@ -135,7 +125,7 @@
       min-width: 40px;
       max-width: 140px;
       margin: 0 6px;
-      accent-color: #842F91;
+      accent-color: #00AEAD;
     }
     .range-inline .range-value {
       width: 54px;
@@ -219,16 +209,17 @@
   <main>
     <div class="container">
       <form class="controls" onsubmit="return false;">
-        <input type="text" id="nameLabel" placeholder="اكتب اسمك هنا" autocomplete="off"/>
         <select id="design"></select>
+        <input type="text" id="nameLabel" placeholder="اكتب اسمك هنا" autocomplete="off"/>
         <select id="fontSize"></select>
         <select id="fontFamily"></select>
-        <input type="color" id="fontColor" />
         <select id="fontAlign">
           <option value="center" selected>وسط</option>
           <option value="right">يمين</option>
           <option value="left">يسار</option>
         </select>
+        <!-- خيار اللون غير ظاهر ولكن موجود في الكود -->
+        <input type="color" id="fontColor" value="#ffffff" style="display:none;" />
         <div class="range-inline">
           <input type="range" id="textPosRange" min="0" max="100" value="90" />
           <span class="range-value" id="textPosValue">أسفل الصورة</span>
@@ -247,22 +238,26 @@
   <script>
     const fontSizes = {
       ar: [
-        { label: "صغير جدا", value: 40 },
-        { label: "صغير", value: 60 },
-        { label: "وسط", value: 85 },
-        { label: "كبير", value: 90 }
+        { label: "صغير", value: 18 },
+        { label: "وسط", value: 28 },
+        { label: "كبير", value: 42 }
       ],
       en: [
-        { label: "Very Small", value: 40 },  
-        { label: "Small", value: 60 },
-        { label: "Medium", value: 85 },
-        { label: "Large", value: 90 }
+        { label: "Small", value: 18 },
+        { label: "Medium", value: 28 },
+        { label: "Large", value: 42 }
       ]
+    };
+
+    // أول صورة مربعة افتراضية
+    const squareImage = {
+      name: "تصميم مربع (افتراضي)", 
+      url: "https://images.unsplash.com/photo-1607746882042-944635dfe10e?fit=crop&w=600&h=600"
     };
 
     const i18n = {
       ar: {
-        headerTitle: "بطاقة تهنئة بعيد الأضحى المبارك",
+        headerTitle: "بطاقة تهنئة بالعيد",
         namePlaceholder: "اكتب اسمك هنا",
         designPlaceholder: "اختر التصميم",
         fontSizePlaceholder: "حجم الخط",
@@ -275,12 +270,12 @@
         alignOptions: ["وسط", "يمين", "يسار"],
         textPosLabels: ["أعلى الصورة","منتصف الصورة","أسفل الصورة"],
         designs: [
-          { name: "تصميم طولي 1", url: "https://i.imgur.com/ncEuRPA.png" },
-          { name: "تصميم طولي 2", url: "https://i.imgur.com/Nn1BUE3.jpeg" },
-          { name: "تصميم طولي 3", url: "https://i.imgur.com/CtXmHp0.jpeg" },
-          { name: "تصميم طولي 4", url: "https://i.imgur.com/CvwnN8v.jpeg" },
-          { name: "تصميم طولي 5", url: "https://i.imgur.com/vPkVXAM.jpeg" },
-          { name: "تصميم مربع 1", url: "https://i.imgur.com/GZ1ut6r.jpeg" }
+          squareImage,
+          { name: "تصميم 2", url: "https://i.postimg.cc/0211jqwL/eid-5.png" },
+          { name: "تصميم 3", url: "https://i.postimg.cc/85Lwnxz6/eid-4.png" },
+          { name: "تصميم 4", url: "https://i.postimg.cc/k47tqHy8/eid-3.png" },
+          { name: "تصميم 5", url: "https://i.postimg.cc/wTny7MV9/eid-2.png" },
+          { name: "تصميم 6", url: "ضع_رابط_الصورة_الجديدة_هنا" }
         ],
         fontFamilies: [
           { name: "Cairo", value: "Cairo, Arial, sans-serif" },
@@ -304,12 +299,12 @@
         alignOptions: ["Center", "Right", "Left"],
         textPosLabels: ["Top","Middle","Bottom"],
         designs: [
-          { name: "Vertical Design 1", url: "https://i.imgur.com/ncEuRPA.png" },
-          { name: "Vertical Design 2", url: "https://i.imgur.com/Nn1BUE3.jpeg" },
-          { name: "Vertical Design 3", url: "https://i.imgur.com/CtXmHp0.jpeg" },
-          { name: "Vertical Design 4", url: "https://i.imgur.com/CvwnN8v.jpeg" },
-          { name: "Vertical Design 5", url: "https://i.imgur.com/vPkVXAM.jpeg" },
-          { name: "Square Design 1", url: "https://i.imgur.com/GZ1ut6r.jpeg" }
+          squareImage,
+          { name: "Design 2", url: "https://i.postimg.cc/0211jqwL/eid-5.png" },
+          { name: "Design 3", url: "https://i.postimg.cc/85Lwnxz6/eid-4.png" },
+          { name: "Design 4", url: "https://i.postimg.cc/k47tqHy8/eid-3.png" },
+          { name: "Design 5", url: "https://i.postimg.cc/wTny7MV9/eid-2.png" },
+          { name: "Design 6", url: "ضع_رابط_الصورة_الجديدة_هنا" }
         ],
         fontFamilies: [
           { name: "Montserrat", value: "Montserrat, Arial, sans-serif" },
@@ -346,10 +341,12 @@
 
     function updateSelectPlaceholder(selectId, placeholder, options) {
       const select = document.getElementById(selectId);
-      select.innerHTML = `<option value="" disabled selected hidden>${placeholder}</option>`;
+      select.innerHTML = `<option value="" disabled hidden>${placeholder}</option>`;
       options.forEach((opt, i) => {
         select.innerHTML += `<option value="${i}">${opt}</option>`;
       });
+      // اختيار أول خيار افتراضي (الصورة الأولى المربعة)
+      if (select.options.length > 1) select.options[1].selected = true;
     }
 
     function updateDesignOptions() {
@@ -359,7 +356,7 @@
       updateSelectPlaceholder("fontFamily", lang.fontFamilyPlaceholder, lang.fontFamilies.map(f => f.name));
       updateSelectPlaceholder("fontAlign", lang.alignPlaceholder, lang.alignOptions);
       document.getElementById("fontColor").value = "#ffffff";
-      drawPreview();
+      changeImage();
     }
 
     function updateTextPosValue() {
@@ -373,8 +370,8 @@
 
     function changeImage() {
       const select = document.getElementById("design");
-      if (!select.value) return;
-      const index = select.value;
+      if (!select.value) select.selectedIndex = 1;
+      const index = select.value || 0;
       const lang = i18n[currentLang];
       imageLoaded = false;
       document.getElementById("downloadBtn").disabled = true;
@@ -393,7 +390,6 @@
     function drawPreview() {
       const canvas = document.getElementById("canvas");
       if(!naturalWidth || !naturalHeight) return;
-      // تصغير مناسب للمعاينة
       const maxW = Math.min(window.innerWidth * 0.95, 320, naturalWidth);
       const maxH = Math.min(window.innerHeight * 0.38, 320, naturalHeight);
       let scale = Math.min(maxW / naturalWidth, maxH / naturalHeight, 1);
@@ -413,6 +409,7 @@
       const fontSizeVal = fontSizeSel.value ? fontSizes[currentLang][parseInt(fontSizeSel.value, 10)].value : 28;
       const fontFamilySel = document.getElementById("fontFamily");
       const fontFamilyVal = fontFamilySel.value ? i18n[currentLang].fontFamilies[parseInt(fontFamilySel.value, 10)].value : i18n[currentLang].fontFamilies[0].value;
+      // اللون موجود لكن غير ظاهر في الواجهة:
       const fontColor = document.getElementById("fontColor").value || "#fff";
       const fontAlignSel = document.getElementById("fontAlign");
       const align = fontAlignSel.value || "center";
@@ -479,13 +476,13 @@
       drawPreview();
     }
 
-    // الأحداث
     window.onload = function () {
       updateTexts();
       updateDesignOptions();
       document.getElementById("nameLabel").addEventListener('input', drawPreview);
       document.getElementById("fontSize").addEventListener('change', drawPreview);
       document.getElementById("fontFamily").addEventListener('change', drawPreview);
+      // اللون موجود لكن غير ظاهر
       document.getElementById("fontColor").addEventListener('input', drawPreview);
       document.getElementById("fontAlign").addEventListener('change', drawPreview);
       document.getElementById("design").addEventListener('change', function(){ changeImage(); drawPreview();});
@@ -494,6 +491,7 @@
         drawPreview();
       });
       window.addEventListener('resize', drawPreview);
+      setTimeout(()=>{ document.getElementById("design").selectedIndex = 1; changeImage(); }, 100);
     };
   </script>
 </body>
