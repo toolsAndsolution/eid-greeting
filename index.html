@@ -131,7 +131,13 @@
       color: #202021;
       font-size: 1.06em;
     }
-    select, input[type="text"], input[type="color"] {
+    /* حجم أصغر ووزن عادي ولون أفتح لعنوان "موضع النص العمودي" */
+    #labelTextPos {
+      font-size: 13px;
+      font-weight: normal;
+      color: #888;
+    }
+    select, input[type="text"], input[type="color"], input[type="range"] {
       width: 100%;
       padding: 8px 8px;
       border: 1px solid #ccc;
@@ -142,6 +148,17 @@
       background: #fbfbfb;
     }
     input[type="color"] { padding: 1px; }
+    input[type="range"] {
+      margin-top: 3px;
+      background: transparent;
+      accent-color: #00AEAD;
+    }
+    .range-value {
+      font-size: 0.93em;
+      margin-top: 2px;
+      color: #555;
+      text-align: left;
+    }
     .preview-panel {
       flex: 2 1 570px;
       min-width: 220px;
@@ -254,6 +271,11 @@
               <option value="left">يسار</option>
             </select>
           </div>
+          <div>
+            <label id="labelTextPos" for="textPosRange">موضع النص العمودي:</label>
+            <input type="range" id="textPosRange" min="0" max="100" value="90" />
+            <div class="range-value" id="textPosValue"></div>
+          </div>
         </div>
       </div>
       <div class="preview-panel">
@@ -283,7 +305,7 @@
 
     const i18n = {
       ar: {
-        headerTitle: "بطاقة تهنئة بالعيد",
+        headerTitle: "1بطاقة تهنئة بالعيد",
         labelDesign: "اختر التصميم:",
         labelName: "اكتب اسمك:",
         placeholderName: "اكتب اسمك هنا",
@@ -291,15 +313,22 @@
         labelFontFamily: "نوع الخط:",
         labelFontColor: "لون الخط:",
         labelAlign: "محاذاة النص:",
+        labelTextPos: "موضع النص العمودي:",
         downloadBtn: "تحميل البطاقة",
         langBtn: "English",
         alignOptions: ["وسط", "يمين", "يسار"],
+        textPosLabels: [
+          "أعلى الصورة",
+          "منتصف الصورة",
+          "أسفل الصورة"
+        ],
         designs: [
-          { name: "تصميم 1", url: "https://i.postimg.cc/sDhbCHHw/EID-story.png" },
+          { name: "تصميم 1", url: "https://i.imgur.com/ncEuRPA.png" },
           { name: "تصميم 2", url: "https://i.postimg.cc/0211jqwL/eid-5.png" },
           { name: "تصميم 3", url: "https://i.postimg.cc/85Lwnxz6/eid-4.png" },
           { name: "تصميم 4", url: "https://i.postimg.cc/k47tqHy8/eid-3.png" },
-          { name: "تصميم 5", url: "https://i.postimg.cc/wTny7MV9/eid-2.png" }
+          { name: "تصميم 5", url: "https://i.postimg.cc/wTny7MV9/eid-2.png" },
+          { name: "تصميم 6", url: "ضع_رابط_الصورة_الجديدة_هنا" }
         ],
         fontFamilies: [
           { name: "Cairo", value: "Cairo, Arial, sans-serif" },
@@ -318,15 +347,22 @@
         labelFontFamily: "Font Family:",
         labelFontColor: "Font Color:",
         labelAlign: "Text Alignment:",
+        labelTextPos: "Text Vertical Position:",
         downloadBtn: "Download Card",
         langBtn: "العربية",
         alignOptions: ["Center", "Right", "Left"],
+        textPosLabels: [
+          "Top",
+          "Middle",
+          "Bottom"
+        ],
         designs: [
           { name: "Design 1", url: "https://i.postimg.cc/sDhbCHHw/EID-story.png" },
           { name: "Design 2", url: "https://i.postimg.cc/0211jqwL/eid-5.png" },
           { name: "Design 3", url: "https://i.postimg.cc/85Lwnxz6/eid-4.png" },
           { name: "Design 4", url: "https://i.postimg.cc/k47tqHy8/eid-3.png" },
-          { name: "Design 5", url: "https://i.postimg.cc/wTny7MV9/eid-2.png" }
+          { name: "Design 5", url: "https://i.postimg.cc/wTny7MV9/eid-2.png" },
+          { name: "Design 6", url: "ضع_رابط_الصورة_الجديدة_هنا" }
         ],
         fontFamilies: [
           { name: "Montserrat", value: "Montserrat, Arial, sans-serif" },
@@ -357,6 +393,7 @@
       document.getElementById("labelAlign").innerText = lang.labelAlign;
       document.getElementById("downloadBtn").innerText = lang.downloadBtn;
       document.getElementById("langBtn").innerText = lang.langBtn;
+      document.getElementById("labelTextPos").innerText = lang.labelTextPos;
 
       document.documentElement.lang = currentLang;
       document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
@@ -384,12 +421,11 @@
         const option = document.createElement("option");
         option.value = opt.value;
         option.text = opt.label;
+        if (idx === 1) option.selected = true; // الوسط افتراضي
         fontSizeSelect.appendChild(option);
       });
-      // افتراضي على وسط (الثاني)
-      fontSizeSelect.selectedIndex = 1;
 
-      // الخطوط
+      // نوع الخط
       const fontSelect = document.getElementById("fontFamily");
       fontSelect.innerHTML = "";
       lang.fontFamilies.forEach(font => {
@@ -398,6 +434,9 @@
         opt.text = font.name;
         fontSelect.appendChild(opt);
       });
+
+      // موضع النص الافتراضي
+      updateTextPosValue();
     }
 
     function updateDesignOptions() {
@@ -411,6 +450,16 @@
         designSelect.appendChild(option);
       });
       changeImage();
+    }
+
+    function updateTextPosValue() {
+      // عرض التسمية أسفل السلايدر
+      const val = document.getElementById('textPosRange').value;
+      let posLabel = '';
+      if (val <= 20) posLabel = i18n[currentLang].textPosLabels[0]; // أعلى
+      else if (val >= 80) posLabel = i18n[currentLang].textPosLabels[2]; // أسفل
+      else posLabel = i18n[currentLang].textPosLabels[1]; // وسط
+      document.getElementById('textPosValue').innerText = posLabel;
     }
 
     function changeImage() {
@@ -433,40 +482,40 @@
     function drawPreview() {
       const canvas = document.getElementById("canvas");
       if(!naturalWidth || !naturalHeight) return;
-
-      // اجعل المعاينة دومًا بأبعاد متناسبة مع الشاشة ونسبة الصورة
+      // معاينة بحجم متناسب فقط
       const maxW = Math.min(window.innerWidth * 0.93, 400, naturalWidth);
       const maxH = Math.min(window.innerHeight * 0.55, 480, naturalHeight);
-
       let scale = Math.min(maxW / naturalWidth, maxH / naturalHeight, 1);
-
       canvas.width = naturalWidth;
       canvas.height = naturalHeight;
       canvas.style.width = (naturalWidth * scale) + "px";
       canvas.style.height = (naturalHeight * scale) + "px";
-
       const ctx = canvas.getContext("2d");
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       ctx.drawImage(img, 0, 0, naturalWidth, naturalHeight);
-
       drawTextOnContext(ctx, naturalWidth, naturalHeight);
     }
 
+    // رسم النص مع التحكم بالموضع الرأسي
     function drawTextOnContext(ctx, cWidth, cHeight) {
       const name = document.getElementById("nameLabel").value.trim();
       const fontSize = parseInt(document.getElementById("fontSize").value, 10);
       const fontFamily = document.getElementById("fontFamily").value;
       const fontColor = document.getElementById("fontColor").value;
       const align = document.getElementById("fontAlign").value;
+      // موضع النص العمودي:
+      const posRange = document.getElementById("textPosRange").value; // من 0 (أعلى) إلى 100 (أسفل)
+      // حساب موضع y من الأعلى للأسفل: 0% = أعلى، 50% = وسط، 100% = أسفل - 40px
+      const padding = 40;
+      const y = padding + ((cHeight - 2 * padding) * (posRange / 100));
       ctx.font = `${fontSize}px ${fontFamily}`;
       ctx.fillStyle = fontColor;
       ctx.textAlign = align;
-      let x;
-      if (align === "left")   x = 60;
-      else if (align === "center") x = cWidth / 2;
-      else if (align === "right")  x = cWidth - 60;
-      const y = cHeight - 60;
       if (name !== "") {
+        let x;
+        if (align === "left")   x = 60;
+        else if (align === "center") x = cWidth / 2;
+        else if (align === "right")  x = cWidth - 60;
         ctx.fillText(name, x, y);
       }
     }
@@ -476,25 +525,32 @@
         alert(currentLang === "ar" ? "يرجى الانتظار حتى يتم تحميل التصميم والمعاينة بالكامل." : "Please wait until the design and preview are fully loaded.");
         return;
       }
+      // نفس دقة الصورة الأصلية
       const downloadCanvas = document.createElement("canvas");
       downloadCanvas.width = img.naturalWidth;
       downloadCanvas.height = img.naturalHeight;
       const ctx = downloadCanvas.getContext("2d");
       ctx.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight);
+
+      // موضع النص بنفس الطريقة
       const name = document.getElementById("nameLabel").value.trim();
       const fontSize = parseInt(document.getElementById("fontSize").value, 10);
       const fontFamily = document.getElementById("fontFamily").value;
       const fontColor = document.getElementById("fontColor").value;
       const align = document.getElementById("fontAlign").value;
+      const posRange = document.getElementById("textPosRange").value;
+      const padding = 40;
+      const y = padding + ((img.naturalHeight - 2 * padding) * (posRange / 100));
       ctx.font = `${fontSize}px ${fontFamily}`;
       ctx.fillStyle = fontColor;
       ctx.textAlign = align;
-      let x;
-      if (align === "left")   x = 60;
-      else if (align === "center") x = downloadCanvas.width / 2;
-      else if (align === "right")  x = downloadCanvas.width - 60;
-      const y = downloadCanvas.height - 60;
-      if (name) ctx.fillText(name, x, y);
+      if (name) {
+        let x;
+        if (align === "left")   x = 60;
+        else if (align === "center") x = img.naturalWidth / 2;
+        else if (align === "right")  x = img.naturalWidth - 60;
+        ctx.fillText(name, x, y);
+      }
       const link = document.createElement("a");
       link.download = currentLang === "ar" ? "بطاقة_العيد.png" : "eid_greeting.png";
       link.href = downloadCanvas.toDataURL("image/png");
@@ -519,6 +575,10 @@
       document.getElementById("fontColor").addEventListener('input', drawPreview);
       document.getElementById("fontAlign").addEventListener('change', drawPreview);
       document.getElementById("design").addEventListener('change', drawPreview);
+      document.getElementById("textPosRange").addEventListener('input', function() {
+        updateTextPosValue();
+        drawPreview();
+      });
       window.addEventListener('resize', drawPreview);
     };
   </script>
