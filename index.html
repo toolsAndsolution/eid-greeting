@@ -2,280 +2,284 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8" />
-  <title>بطاقة تهنئة بعيد الأضحى</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" type="image/png" href="https://i.postimg.cc/tJhm422d/T-S-LOGO-1-04.png">
+  <title>بطاقة تهنئة بعيد الأضحى المبارك</title>
   <link href="https://fonts.googleapis.com/css?family=Cairo:400,700|Amiri|Noto+Kufi+Arabic|Montserrat:400,700|Roboto:400,700&display=swap" rel="stylesheet">
   <style>
-    html, body {
-      font-family: 'Cairo', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: linear-gradient(135deg, #fdfcfb, #e2d1c3);
-      color: #1b242f;
       margin: 0;
       padding: 0;
+      color: #333;
       min-height: 100vh;
       box-sizing: border-box;
-    }
-    body {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
+      position: relative;
     }
     header {
-      background: #00AEAD;
+      background-color: #00AEAD;
       color: #fff;
-      padding: 30px 0 18px 0;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.11);
-      text-align: center;
-      border-bottom-left-radius: 18px;
-      border-bottom-right-radius: 18px;
+      padding: 20px 0 0 0;
+      font-size: 24px;
+      font-weight: bold;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       position: relative;
+    }
+    .logo-title {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex: 1;
+      margin-bottom: 8px;
+    }
+    #headerTitle {
+      margin-top: 12px;
+      color: #fff;
+      font-size: 15px;
+      font-weight: bold;
+      text-align: center;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.10);
+    }
+    header img {
+      display: block;
+      height: 82px;
+      margin: 0 12px;
     }
     .lang-toggle {
       position: absolute;
-      top: 18px;
-      left: 20px;
-      min-width: 38px;
-      min-height: 28px;
-      padding: 3px 13px;
-      font-size: 13px;
-      border-radius: 14px;
-      background: #EF484A !important;
+      top: 16px;
+      left: 24px;
+      min-width: 36px;
+      min-height: 36px;
+      padding: 3px 16px;
+      font-size: 14px;
+      border-radius: 18px;
+      background-color: #EF484A !important;
       color: #fff !important;
       border: none;
-      cursor: pointer;
       transition: background 0.3s;
-      font-weight: bold;
-      opacity: 0.95;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+      z-index: 2;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+      opacity: 0.92;
     }
-    .lang-toggle:hover { background: #c8343d !important; }
-    #logo {
-      height: 54px;
-      margin-bottom: 6px;
-      object-fit: contain;
-    }
-    #headerTitle {
-      font-size: 16px;
-      font-weight: bold;
-      margin: 2px 0 0 0;
-      text-shadow: 0 2px 7px rgba(0,0,0,0.09);
-      color: #fff;
-      letter-spacing: 0.1px;
-    }
-    main {
-      flex: 1 0 auto;
-      display: flex;
-      align-items: flex-start;
-      justify-content: center;
-      width: 100%;
+    .lang-toggle:hover {
+      background-color: #d93032 !important;
     }
     .container {
-      width: 100%;
-      max-width: 900px;
-      margin: 30px auto 20px auto;
-      padding: 14px 2vw 20px 2vw;
-      background: #fff;
-      border-radius: 17px;
-      box-shadow: 0 8px 18px rgba(0,0,0,0.08);
+      max-width: 1000px;
+      margin: 30px auto;
+      padding: 18px;
+      background-color: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
       display: flex;
-      gap: 28px;
-      align-items: flex-start;
       flex-direction: row-reverse;
+      gap: 32px;
     }
-    .controls {
-      width: 100%;
-      max-width: 320px;
+    .settings-panel {
+      flex: 1 1 320px;
+      min-width: 260px;
       display: flex;
       flex-direction: column;
-      gap: 13px;
-      margin-bottom: 2px;
+      justify-content: flex-start;
+      align-items: stretch;
+      gap: 8px;
     }
-    .controls input[type="text"],
-    .controls select {
+    .input-box {
+      margin-bottom: 10px;
       width: 100%;
-      padding: 9px 10px;
-      border: 1px solid #c0c3c5;
-      border-radius: 7px;
+    }
+    input[type="text"], select, input[type="number"], input[type="color"] {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
       font-size: 15px;
       margin-bottom: 0;
+      margin-top: 0;
+      background: #f7f7f7;
       box-sizing: border-box;
-      background: #fbfbfb;
-      transition: border 0.2s;
-      font-family: inherit;
     }
-    .controls input[type="text"]:focus,
-    .controls select:focus {
-      border-color: #00AEAD;
-      outline: none;
+    input[type="color"] {
+      padding: 3px 4px;
+      height: 40px;
+      width: 60px;
+      margin: 0 auto;
+      display: block;
     }
-    .range-inline {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      margin-bottom: 0;
-      width: 100%;
-      background: #f9f9f9;
-      border-radius: 6px;
-      padding: 5px 10px;
-      font-size: 14px;
+    .select-font-size {
+      font-size: 15px;
     }
-    .range-inline input[type="range"] {
-      flex: 1 1 60px;
-      min-width: 40px;
-      max-width: 140px;
-      margin: 0 6px;
-      accent-color: #00AEAD;
-    }
-    .range-inline .range-value {
-      width: 54px;
-      font-size: 12px;
+    /* عنوان سلايدر الموضع */
+    .slider-title {
+      font-size: 13px;
+      margin-bottom: 5px;
+      margin-top: 7px;
+      text-align: center;
       color: #444;
-      text-align: left;
-      flex-shrink: 0;
-      white-space: nowrap;
+      font-weight: bold;
+      letter-spacing: 0.1em;
+    }
+    input[type="range"] {
+      width: 100%;
+      margin: 0;
+      margin-top: 0;
+    }
+    .preview-panel {
+      flex: 2 1 600px;
+      min-width: 320px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      position: relative;
+      overflow-x: auto;
     }
     .canvas-preview-wrapper {
-      width: 350px;
-      background: #f7fafb;
-      border-radius: 12px;
-      box-sizing: border-box;
-      margin: 0 0 0 0;
-      box-shadow: 0 4px 13px rgba(0,0,0,0.05);
       display: flex;
-      align-items: center;
       justify-content: center;
-      min-height: 140px;
-      min-width: 0;
+      align-items: center;
+      width: 100%;
       overflow-x: auto;
-      padding: 12px 0;
+      max-width: 100%;
+      margin: 18px auto 0 auto;
+      background: #f5f5f5;
+      border-radius: 10px;
+      box-sizing: border-box;
     }
     canvas {
       display: block;
-      margin: 0 auto;
-      box-shadow: 0 2px 11px rgba(0,0,0,0.04);
-      border: 1.5px solid #e6e6e6;
-      border-radius: 7px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.07);
+      border: 2px solid #eee;
+      border-radius: 8px;
       background: #fdfcfb;
-      width: 100%;
-      max-width: 320px;
-      height: auto !important;
-      max-height: 42vh;
-      min-width: 0;
-      transition: box-shadow 0.18s;
+      margin: 0 auto;
+      max-width: none;
+      max-height: 48vh;
     }
     .btn-download-group {
       display: flex;
       justify-content: center;
       width: 100%;
-      margin-top: 5px;
+      margin-top: 18px;
     }
     .btn-download {
-      padding: 11px 12vw;
+      padding: 12px 38px;
       background-color: #EF484A;
       color: white;
       border: none;
       border-radius: 10px;
-      font-size: 16px;
+      font-size: 18px;
       font-weight: bold;
       cursor: pointer;
-      transition: background 0.3s;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-      letter-spacing: .5px;
+      transition: background 0.3s ease;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
     }
-    .btn-download:disabled { background-color: #aaa; cursor: not-allowed;}
-    .btn-download:hover:not(:disabled) { background-color: #218838;}
-    @media (max-width: 900px) {
-      .container { flex-direction: column-reverse; align-items: center; gap: 12px;}
-      .canvas-preview-wrapper { width: 100%; max-width: 95vw;}
+    .btn-download:disabled {
+      background-color: #aaa;
+      cursor: not-allowed;
     }
-    @media (max-width: 600px) {
-      #logo { height: 32px;}
-      #headerTitle { font-size: 11px;}
-      .container { max-width: 98vw; padding: 10px 2vw 18px 2vw;}
-      .canvas-preview-wrapper { min-height: 50px; }
-      .btn-download { padding: 8px 8vw; font-size: 13px;}
-      .lang-toggle { top: 7px; left: 7px; padding: 2px 7px; font-size: 11px;}
-      .controls input, .controls select { font-size: 13px;}
+    .btn-download:hover:not(:disabled) {
+      background-color: #218838;
+    }
+    @media (max-width: 800px) {
+      .container {
+        flex-direction: column;
+        gap: 14px;
+      }
+      .settings-panel, .preview-panel {
+        min-width: unset;
+      }
+      .btn-download-group {
+        margin-top: 12px;
+      }
+      .lang-toggle {
+        left: 10px;
+        top: 10px;
+        font-size: 13px;
+        padding: 2px 10px;
+      }
+      .canvas-preview-wrapper {
+        max-width: 98vw;
+      }
+      .preview-panel {
+        min-width: unset;
+      }
+    }
+    [dir="ltr"] .lang-toggle {
+      right: 24px;
+      left: auto;
     }
   </style>
 </head>
 <body>
   <header>
     <button class="lang-toggle btn" onclick="toggleLanguage()" id="langBtn">English</button>
-    <img src="https://i.postimg.cc/tJhm422d/T-S-LOGO-1-04.png" alt="Logo" id="logo">
-    <div id="headerTitle"> بطاقة تهنئة بعيد الأضحى </div>
+    <div class="logo-title">
+      <img src="https://i.postimg.cc/tJhm422d/T-S-LOGO-1-04.png" alt="Logo" id="logo">
+      <span id="headerTitle"> بطاقة تهنئة بعيد الأضحى المبارك </span>
+    </div>
   </header>
-  <main>
-    <div class="container">
-      <form class="controls" onsubmit="return false;">
-        <select id="design"></select>
-        <input type="text" id="nameLabel" placeholder="اكتب اسمك هنا" autocomplete="off"/>
-        <select id="fontSize"></select>
-        <select id="fontFamily"></select>
-        <select id="fontAlign">
-          <option value="center" selected>وسط</option>
-          <option value="right">يمين</option>
-          <option value="left">يسار</option>
+  <div class="container">
+    <div class="settings-panel">
+      <div class="input-box">
+        <select id="design" onchange="changeImage()">
+          <option value="0">اختر التصميم</option>
         </select>
-        <!-- خيار اللون غير ظاهر ولكن موجود في الكود -->
-        <input type="color" id="fontColor" value="#ffffff" style="display:none;" />
-        <div class="range-inline">
-          <input type="range" id="textPosRange" min="0" max="100" value="90" />
-          <span class="range-value" id="textPosValue">أسفل الصورة</span>
-        </div>
-      </form>
-      <div class="preview-panel">
-        <div class="canvas-preview-wrapper">
-          <canvas id="canvas"></canvas>
-        </div>
-        <div class="btn-download-group">
-          <button class="btn-download" onclick="downloadImage()" id="downloadBtn" disabled>تحميل البطاقة</button>
-        </div>
+      </div>
+      <div class="input-box">
+        <input type="text" id="nameLabel" placeholder="اكتب اسمك هنا" />
+      </div>
+      <div class="input-box">
+        <select id="fontSize" class="select-font-size">
+          <option value="42">حجم الخط: صغير</option>
+          <option value="52">حجم الخط: متوسط</option>
+          <option value="62">حجم الخط: كبير</option>
+        </select>
+      </div>
+      <div class="input-box">
+        <select id="fontFamily">
+          <!-- الخطوط ستعبأ تلقائياً -->
+        </select>
+      </div>
+      <div class="input-box">
+        <select id="fontAlign">
+          <option value="center" selected>محاذاة: وسط</option>
+          <option value="right">محاذاة: يمين</option>
+          <option value="left">محاذاة: يسار</option>
+        </select>
+      </div>
+      <div class="input-box" style="display:none">
+        <!-- لون الخط مخفي فقط (يبقى في الكود لمن أراده مستقبلاً) -->
+        <input type="color" id="fontColor" value="#ffffff" />
+      </div>
+      <div class="input-box">
+        <div class="slider-title">موضع النص عمودياً</div>
+        <input type="range" min="20" max="100" value="80" id="textPosRange" />
       </div>
     </div>
-  </main>
+    <div class="preview-panel">
+      <div class="canvas-preview-wrapper">
+        <canvas id="canvas"></canvas>
+      </div>
+      <div class="btn-download-group">
+        <button class="btn-download" onclick="downloadImage()" id="downloadBtn" disabled>تحميل البطاقة</button>
+      </div>
+    </div>
+  </div>
   <script>
-    const fontSizes = {
-      ar: [
-        { label: "صغير", value: 18 },
-        { label: "وسط", value: 28 },
-        { label: "كبير", value: 42 }
-      ],
-      en: [
-        { label: "Small", value: 18 },
-        { label: "Medium", value: 28 },
-        { label: "Large", value: 42 }
-      ]
-    };
-
-    // أول صورة مربعة افتراضية
-    const squareImage = {
-      name: "تصميم مربع (افتراضي)", 
-      url: "https://images.unsplash.com/photo-1607746882042-944635dfe10e?fit=crop&w=600&h=600"
-    };
-
     const i18n = {
       ar: {
-        headerTitle: "بطاقة تهنئة بالعيد",
-        namePlaceholder: "اكتب اسمك هنا",
-        designPlaceholder: "اختر التصميم",
-        fontSizePlaceholder: "حجم الخط",
-        fontFamilyPlaceholder: "نوع الخط",
-        fontColorPlaceholder: "لون الخط",
-        alignPlaceholder: "محاذاة النص",
-        textPosPlaceholder: "موضع النص",
-        downloadBtn: "تحميل البطاقة",
-        langBtn: "English",
-        alignOptions: ["وسط", "يمين", "يسار"],
-        textPosLabels: ["أعلى الصورة","منتصف الصورة","أسفل الصورة"],
+        headerTitle: "بطاقة تهنئة بعيد الأضحى المبارك",
         designs: [
-          squareImage,
-          { name: "تصميم 2", url: "https://i.postimg.cc/0211jqwL/eid-5.png" },
-          { name: "تصميم 3", url: "https://i.postimg.cc/85Lwnxz6/eid-4.png" },
-          { name: "تصميم 4", url: "https://i.postimg.cc/k47tqHy8/eid-3.png" },
-          { name: "تصميم 5", url: "https://i.postimg.cc/wTny7MV9/eid-2.png" },
-          { name: "تصميم 6", url: "ضع_رابط_الصورة_الجديدة_هنا" }
+          { name: "تصميم طولي 1", url: "https://i.imgur.com/ncEuRPA.png" },
+          { name: "تصميم طولي 2", url: "https://i.imgur.com/Nn1BUE3.jpeg" },
+          { name: "تصميم طولي 3", url: "https://i.imgur.com/CtXmHp0.jpeg" },
+          { name: "تصميم طولي 4", url: "https://i.imgur.com/CvwnN8v.jpeg" },
+          { name: "تصميم طولي 5", url: "https://i.imgur.com/vPkVXAM.jpeg" },
+          { name: "تصميم مربع 1", url: "https://i.imgur.com/GZ1ut6r.jpeg" }
         ],
         fontFamilies: [
           { name: "Cairo", value: "Cairo, Arial, sans-serif" },
@@ -287,24 +291,13 @@
       },
       en: {
         headerTitle: "Eid Greeting Card",
-        namePlaceholder: "Enter your name here",
-        designPlaceholder: "Choose Design",
-        fontSizePlaceholder: "Font Size",
-        fontFamilyPlaceholder: "Font Family",
-        fontColorPlaceholder: "Font Color",
-        alignPlaceholder: "Text Alignment",
-        textPosPlaceholder: "Text Position",
-        downloadBtn: "Download Card",
-        langBtn: "العربية",
-        alignOptions: ["Center", "Right", "Left"],
-        textPosLabels: ["Top","Middle","Bottom"],
         designs: [
-          squareImage,
-          { name: "Design 2", url: "https://i.postimg.cc/0211jqwL/eid-5.png" },
-          { name: "Design 3", url: "https://i.postimg.cc/85Lwnxz6/eid-4.png" },
-          { name: "Design 4", url: "https://i.postimg.cc/k47tqHy8/eid-3.png" },
-          { name: "Design 5", url: "https://i.postimg.cc/wTny7MV9/eid-2.png" },
-          { name: "Design 6", url: "ضع_رابط_الصورة_الجديدة_هنا" }
+          { name: "Vertical Design 1", url: "https://i.imgur.com/ncEuRPA.png" },
+          { name: "Vertical Design 2", url: "https://i.imgur.com/Nn1BUE3.jpeg" },
+          { name: "Vertical Design 3", url: "https://i.imgur.com/CtXmHp0.jpeg" },
+          { name: "Vertical Design 4", url: "https://i.imgur.com/CvwnN8v.jpeg" },
+          { name: "Vertical Design 5", url: "https://i.imgur.com/vPkVXAM.jpeg" },
+          { name: "Square Design 1", url: "https://i.imgur.com/GZ1ut6r.jpeg" }
         ],
         fontFamilies: [
           { name: "Montserrat", value: "Montserrat, Arial, sans-serif" },
@@ -326,52 +319,35 @@
     function updateTexts() {
       const lang = i18n[currentLang];
       document.getElementById("headerTitle").innerText = lang.headerTitle;
-      document.getElementById("nameLabel").placeholder = lang.namePlaceholder;
-      document.getElementById("langBtn").innerText = lang.langBtn;
-      document.getElementById("downloadBtn").innerText = lang.downloadBtn;
 
-      // Placeholder for selects (first option as placeholder)
-      updateSelectPlaceholder("design", lang.designPlaceholder, lang.designs.map(d => d.name));
-      updateSelectPlaceholder("fontSize", lang.fontSizePlaceholder, fontSizes[currentLang].map(f => f.label));
-      updateSelectPlaceholder("fontFamily", lang.fontFamilyPlaceholder, lang.fontFamilies.map(f => f.name));
-      updateSelectPlaceholder("fontAlign", lang.alignPlaceholder, lang.alignOptions);
-
-      updateTextPosValue();
-    }
-
-    function updateSelectPlaceholder(selectId, placeholder, options) {
-      const select = document.getElementById(selectId);
-      select.innerHTML = `<option value="" disabled hidden>${placeholder}</option>`;
-      options.forEach((opt, i) => {
-        select.innerHTML += `<option value="${i}">${opt}</option>`;
+      // التصميمات
+      const designSelect = document.getElementById("design");
+      designSelect.innerHTML = `<option value="">اختر التصميم</option>`;
+      lang.designs.forEach((item, index) => {
+        const option = document.createElement("option");
+        option.value = index;
+        option.text = item.name;
+        designSelect.appendChild(option);
       });
-      // اختيار أول خيار افتراضي (الصورة الأولى المربعة)
-      if (select.options.length > 1) select.options[1].selected = true;
-    }
 
-    function updateDesignOptions() {
-      const lang = i18n[currentLang];
-      updateSelectPlaceholder("design", lang.designPlaceholder, lang.designs.map(d => d.name));
-      updateSelectPlaceholder("fontSize", lang.fontSizePlaceholder, fontSizes[currentLang].map(f => f.label));
-      updateSelectPlaceholder("fontFamily", lang.fontFamilyPlaceholder, lang.fontFamilies.map(f => f.name));
-      updateSelectPlaceholder("fontAlign", lang.alignPlaceholder, lang.alignOptions);
-      document.getElementById("fontColor").value = "#ffffff";
-      changeImage();
-    }
-
-    function updateTextPosValue() {
-      const val = document.getElementById('textPosRange').value;
-      let posLabel = '';
-      if (val <= 20) posLabel = i18n[currentLang].textPosLabels[0];
-      else if (val >= 80) posLabel = i18n[currentLang].textPosLabels[2];
-      else posLabel = i18n[currentLang].textPosLabels[1];
-      document.getElementById('textPosValue').innerText = posLabel;
+      // الخطوط
+      const fontSelect = document.getElementById("fontFamily");
+      fontSelect.innerHTML = "";
+      lang.fontFamilies.forEach(font => {
+        const opt = document.createElement("option");
+        opt.value = font.value;
+        opt.text = font.name;
+        fontSelect.appendChild(opt);
+      });
     }
 
     function changeImage() {
-      const select = document.getElementById("design");
-      if (!select.value) select.selectedIndex = 1;
-      const index = select.value || 0;
+      const index = document.getElementById("design").value;
+      if (index === "") {
+        clearCanvas();
+        document.getElementById("downloadBtn").disabled = true;
+        return;
+      }
       const lang = i18n[currentLang];
       imageLoaded = false;
       document.getElementById("downloadBtn").disabled = true;
@@ -387,16 +363,18 @@
       };
     }
 
-    function drawPreview() {
+    function clearCanvas() {
       const canvas = document.getElementById("canvas");
-      if(!naturalWidth || !naturalHeight) return;
-      const maxW = Math.min(window.innerWidth * 0.95, 320, naturalWidth);
-      const maxH = Math.min(window.innerHeight * 0.38, 320, naturalHeight);
-      let scale = Math.min(maxW / naturalWidth, maxH / naturalHeight, 1);
+      const ctx = canvas.getContext("2d");
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
+
+    // رسم المعاينة
+    function drawPreview() {
+      if (!imageLoaded) return;
+      const canvas = document.getElementById("canvas");
       canvas.width = naturalWidth;
       canvas.height = naturalHeight;
-      canvas.style.width = (naturalWidth * scale) + "px";
-      canvas.style.height = (naturalHeight * scale) + "px";
       const ctx = canvas.getContext("2d");
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       ctx.drawImage(img, 0, 0, naturalWidth, naturalHeight);
@@ -405,32 +383,29 @@
 
     function drawTextOnContext(ctx, cWidth, cHeight) {
       const name = document.getElementById("nameLabel").value.trim();
-      const fontSizeSel = document.getElementById("fontSize");
-      const fontSizeVal = fontSizeSel.value ? fontSizes[currentLang][parseInt(fontSizeSel.value, 10)].value : 28;
-      const fontFamilySel = document.getElementById("fontFamily");
-      const fontFamilyVal = fontFamilySel.value ? i18n[currentLang].fontFamilies[parseInt(fontFamilySel.value, 10)].value : i18n[currentLang].fontFamilies[0].value;
-      // اللون موجود لكن غير ظاهر في الواجهة:
-      const fontColor = document.getElementById("fontColor").value || "#fff";
-      const fontAlignSel = document.getElementById("fontAlign");
-      const align = fontAlignSel.value || "center";
+      const fontSize = document.getElementById("fontSize").value;
+      const fontFamily = document.getElementById("fontFamily").value;
+      // لون الخط بقي افتراضياً أبيض
+      const fontColor = "#fff";
+      const align = document.getElementById("fontAlign").value;
       const posRange = document.getElementById("textPosRange").value;
       const padding = 40;
       const y = padding + ((cHeight - 2 * padding) * (posRange / 100));
-      ctx.font = `${fontSizeVal}px ${fontFamilyVal}`;
-      ctx.fillStyle = fontColor;
-      ctx.textAlign = align;
       if (name !== "") {
+        ctx.font = `${fontSize}px ${fontFamily}`;
+        ctx.fillStyle = fontColor;
+        ctx.textAlign = align;
         let x;
-        if (align === "left")   x = 60;
+        if (align === "left") x = 10;
         else if (align === "center") x = cWidth / 2;
-        else if (align === "right")  x = cWidth - 60;
+        else if (align === "right") x = cWidth - 10;
         ctx.fillText(name, x, y);
       }
     }
 
     function downloadImage() {
       if (!imageLoaded || naturalWidth === 0 || naturalHeight === 0) {
-        alert(currentLang === "ar" ? "يرجى الانتظار حتى يتم تحميل التصميم والمعاينة بالكامل." : "Please wait until the design and preview are fully loaded.");
+        alert("يرجى اختيار التصميم وانتظار تحميل المعاينة بالكامل.");
         return;
       }
       const downloadCanvas = document.createElement("canvas");
@@ -439,30 +414,28 @@
       const ctx = downloadCanvas.getContext("2d");
       ctx.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight);
 
-      // نفس منطق رسم النص
+      // إعادة رسم النص
       const name = document.getElementById("nameLabel").value.trim();
-      const fontSizeSel = document.getElementById("fontSize");
-      const fontSizeVal = fontSizeSel.value ? fontSizes[currentLang][parseInt(fontSizeSel.value, 10)].value : 28;
-      const fontFamilySel = document.getElementById("fontFamily");
-      const fontFamilyVal = fontFamilySel.value ? i18n[currentLang].fontFamilies[parseInt(fontFamilySel.value, 10)].value : i18n[currentLang].fontFamilies[0].value;
-      const fontColor = document.getElementById("fontColor").value || "#fff";
-      const fontAlignSel = document.getElementById("fontAlign");
-      const align = fontAlignSel.value || "center";
+      const fontSize = parseInt(document.getElementById("fontSize").value, 10);
+      const fontFamily = document.getElementById("fontFamily").value;
+      const fontColor = "#fff";
+      const align = document.getElementById("fontAlign").value;
       const posRange = document.getElementById("textPosRange").value;
       const padding = 40;
-      const y = padding + ((img.naturalHeight - 2 * padding) * (posRange / 100));
-      ctx.font = `${fontSizeVal}px ${fontFamilyVal}`;
-      ctx.fillStyle = fontColor;
-      ctx.textAlign = align;
+      const y = padding + ((downloadCanvas.height - 2 * padding) * (posRange / 100));
       if (name) {
+        ctx.font = `${fontSize}px ${fontFamily}`;
+        ctx.fillStyle = fontColor;
+        ctx.textAlign = align;
         let x;
-        if (align === "left")   x = 60;
-        else if (align === "center") x = img.naturalWidth / 2;
-        else if (align === "right")  x = img.naturalWidth - 60;
+        if (align === "left") x = 10;
+        else if (align === "center") x = downloadCanvas.width / 2;
+        else if (align === "right") x = downloadCanvas.width - 10;
         ctx.fillText(name, x, y);
       }
+
       const link = document.createElement("a");
-      link.download = currentLang === "ar" ? "بطاقة_العيد.png" : "eid_greeting.png";
+      link.download = "بطاقة_العيد.png";
       link.href = downloadCanvas.toDataURL("image/png");
       document.body.appendChild(link);
       link.click();
@@ -472,26 +445,17 @@
     function toggleLanguage() {
       currentLang = currentLang === 'ar' ? 'en' : 'ar';
       updateTexts();
-      updateDesignOptions();
-      drawPreview();
+      clearCanvas();
     }
 
     window.onload = function () {
       updateTexts();
-      updateDesignOptions();
+      document.getElementById("design").addEventListener('change', changeImage);
       document.getElementById("nameLabel").addEventListener('input', drawPreview);
       document.getElementById("fontSize").addEventListener('change', drawPreview);
       document.getElementById("fontFamily").addEventListener('change', drawPreview);
-      // اللون موجود لكن غير ظاهر
-      document.getElementById("fontColor").addEventListener('input', drawPreview);
       document.getElementById("fontAlign").addEventListener('change', drawPreview);
-      document.getElementById("design").addEventListener('change', function(){ changeImage(); drawPreview();});
-      document.getElementById("textPosRange").addEventListener('input', function() {
-        updateTextPosValue();
-        drawPreview();
-      });
-      window.addEventListener('resize', drawPreview);
-      setTimeout(()=>{ document.getElementById("design").selectedIndex = 1; changeImage(); }, 100);
+      document.getElementById("textPosRange").addEventListener('input', drawPreview);
     };
   </script>
 </body>
