@@ -3,10 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <title>بطاقة تهنئة بعيد الأضحى</title>
-  <!-- Favicon -->
   <link rel="icon" type="image/png" href="https://i.postimg.cc/tJhm422d/T-S-LOGO-1-04.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Cairo:400,700|Amiri|Noto+Kufi+Arabic|Montserrat:400,700|Roboto:400,700&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -131,11 +129,39 @@
       color: #202021;
       font-size: 1.06em;
     }
-    /* حجم أصغر ووزن عادي ولون أفتح لعنوان "موضع النص العمودي" */
-    #labelTextPos {
+    /* موضع النص في سطر واحد وبدون نزول للسطر */
+    .range-inline {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 0;
+      grid-column: 1 / span 2;
+      flex-wrap: nowrap;
+      width: 100%;
+    }
+    .range-inline label {
       font-size: 13px;
-      font-weight: normal;
       color: #888;
+      font-weight: normal;
+      margin-bottom: 0;
+      min-width: 72px;
+      flex-shrink: 0;
+      white-space: nowrap;
+    }
+    .range-inline input[type="range"] {
+      flex: 1 1 90px;
+      min-width: 45px;
+      max-width: 180px;
+      margin: 0 4px;
+    }
+    .range-inline .range-value {
+      width: 62px;
+      font-size: 0.97em;
+      color: #555;
+      text-align: left;
+      margin: 0 3px;
+      flex-shrink: 0;
+      white-space: nowrap;
     }
     select, input[type="text"], input[type="color"], input[type="range"] {
       width: 100%;
@@ -151,13 +177,7 @@
     input[type="range"] {
       margin-top: 3px;
       background: transparent;
-      accent-color: #00AEAD;
-    }
-    .range-value {
-      font-size: 0.93em;
-      margin-top: 2px;
-      color: #555;
-      text-align: left;
+      accent-color: #842F91;
     }
     .preview-panel {
       flex: 2 1 570px;
@@ -228,6 +248,7 @@
       #headerTitle { font-size: 13px;}
       .lang-toggle { top: 8px; left: 10px; padding: 4px 9px; font-size: 12px;}
       canvas { max-width: 97vw; }
+      .range-inline label { min-width: 55px; font-size: 11px;}
     }
   </style>
 </head>
@@ -271,10 +292,11 @@
               <option value="left">يسار</option>
             </select>
           </div>
-          <div>
-            <label id="labelTextPos" for="textPosRange">موضع النص العمودي:</label>
+          <!-- موضع النص العمودي: label + range + value في سطر واحد دائماً -->
+          <div class="range-inline">
+            <label id="labelTextPos" for="textPosRange">موضع النص:</label>
             <input type="range" id="textPosRange" min="0" max="100" value="90" />
-            <div class="range-value" id="textPosValue"></div>
+            <span class="range-value" id="textPosValue">أسفل الصورة</span>
           </div>
         </div>
       </div>
@@ -292,20 +314,21 @@
     // إعدادات الخط (بالعربي والإنجليزي)
     const fontSizes = {
       ar: [
-        { label: "صغير", value: 18 },
-        { label: "وسط", value: 28 },
-        { label: "كبير", value: 42 }
+        { label: "صغير جدا", value: 40 },
+        { label: "صغير", value: 60 },
+        { label: "وسط", value: 85 },
+        { label: "كبير", value: 90 }
       ],
       en: [
-        { label: "Small", value: 18 },
-        { label: "Medium", value: 28 },
-        { label: "Large", value: 42 }
-      ]
+        { label: "Very Small", value: 40 },  
+        { label: "Small", value: 60 },
+        { label: "Medium", value: 85 },
+        { label: "Large", value: 90 }      ]
     };
 
     const i18n = {
       ar: {
-        headerTitle: "1بطاقة تهنئة بالعيد",
+        headerTitle: "بطاقة تهنئة بالعيد",
         labelDesign: "اختر التصميم:",
         labelName: "اكتب اسمك:",
         placeholderName: "اكتب اسمك هنا",
@@ -313,7 +336,7 @@
         labelFontFamily: "نوع الخط:",
         labelFontColor: "لون الخط:",
         labelAlign: "محاذاة النص:",
-        labelTextPos: "موضع النص العمودي:",
+        labelTextPos: "موضع النص:",
         downloadBtn: "تحميل البطاقة",
         langBtn: "English",
         alignOptions: ["وسط", "يمين", "يسار"],
@@ -323,12 +346,12 @@
           "أسفل الصورة"
         ],
         designs: [
-          { name: "تصميم 1", url: "https://i.imgur.com/ncEuRPA.png" },
-          { name: "تصميم 2", url: "https://i.postimg.cc/0211jqwL/eid-5.png" },
-          { name: "تصميم 3", url: "https://i.postimg.cc/85Lwnxz6/eid-4.png" },
-          { name: "تصميم 4", url: "https://i.postimg.cc/k47tqHy8/eid-3.png" },
-          { name: "تصميم 5", url: "https://i.postimg.cc/wTny7MV9/eid-2.png" },
-          { name: "تصميم 6", url: "ضع_رابط_الصورة_الجديدة_هنا" }
+          { name: "تصميم طولي 1", url: "https://i.imgur.com/ncEuRPA.png" },
+          { name: "تصميم طولي 2", url: "https://i.imgur.com/Nn1BUE3.jpeg" },
+          { name: "تصميم طولي 3", url: "https://i.imgur.com/CtXmHp0.jpeg" },
+          { name: "تصميم طولي 4", url: "https://i.imgur.com/CvwnN8v.jpeg" },
+          { name: "تصميم طولي 5", url: "https://i.imgur.com/vPkVXAM.jpeg" },
+          { name: "تصميم مربع 1", url: "https://i.imgur.com/GZ1ut6r.jpeg" }
         ],
         fontFamilies: [
           { name: "Cairo", value: "Cairo, Arial, sans-serif" },
@@ -347,7 +370,7 @@
         labelFontFamily: "Font Family:",
         labelFontColor: "Font Color:",
         labelAlign: "Text Alignment:",
-        labelTextPos: "Text Vertical Position:",
+        labelTextPos: "Text Position:",
         downloadBtn: "Download Card",
         langBtn: "العربية",
         alignOptions: ["Center", "Right", "Left"],
@@ -357,12 +380,12 @@
           "Bottom"
         ],
         designs: [
-          { name: "Design 1", url: "https://i.postimg.cc/sDhbCHHw/EID-story.png" },
-          { name: "Design 2", url: "https://i.postimg.cc/0211jqwL/eid-5.png" },
-          { name: "Design 3", url: "https://i.postimg.cc/85Lwnxz6/eid-4.png" },
-          { name: "Design 4", url: "https://i.postimg.cc/k47tqHy8/eid-3.png" },
-          { name: "Design 5", url: "https://i.postimg.cc/wTny7MV9/eid-2.png" },
-          { name: "Design 6", url: "ضع_رابط_الصورة_الجديدة_هنا" }
+          { name: "Vertical Design 1", url: "https://i.imgur.com/ncEuRPA.png" },
+          { name: "Vertical Design 2", url: "https://i.imgur.com/Nn1BUE3.jpeg" },
+          { name: "Vertical Design 3", url: "https://i.imgur.com/CtXmHp0.jpeg" },
+          { name: "Vertical Design 4", url: "https://i.imgur.com/CvwnN8v.jpeg" },
+          { name: "Vertical Design 5", url: "https://i.imgur.com/vPkVXAM.jpeg" },
+          { name: "Square Design 1", url: "https://i.imgur.com/GZ1ut6r.jpeg" }
         ],
         fontFamilies: [
           { name: "Montserrat", value: "Montserrat, Arial, sans-serif" },
@@ -390,10 +413,10 @@
       document.getElementById("labelFontSize").innerText = lang.labelFontSize;
       document.getElementById("labelFontFamily").innerText = lang.labelFontFamily;
       document.getElementById("labelFontColor").innerText = lang.labelFontColor;
-      document.getElementById("labelAlign").innerText = lang.labelAlign;
       document.getElementById("downloadBtn").innerText = lang.downloadBtn;
       document.getElementById("langBtn").innerText = lang.langBtn;
       document.getElementById("labelTextPos").innerText = lang.labelTextPos;
+      document.getElementById("labelAlign").innerText = lang.labelAlign;
 
       document.documentElement.lang = currentLang;
       document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
@@ -453,7 +476,7 @@
     }
 
     function updateTextPosValue() {
-      // عرض التسمية أسفل السلايدر
+      // عرض التسمية بجانب السلايدر
       const val = document.getElementById('textPosRange').value;
       let posLabel = '';
       if (val <= 20) posLabel = i18n[currentLang].textPosLabels[0]; // أعلى
@@ -505,7 +528,6 @@
       const align = document.getElementById("fontAlign").value;
       // موضع النص العمودي:
       const posRange = document.getElementById("textPosRange").value; // من 0 (أعلى) إلى 100 (أسفل)
-      // حساب موضع y من الأعلى للأسفل: 0% = أعلى، 50% = وسط، 100% = أسفل - 40px
       const padding = 40;
       const y = padding + ((cHeight - 2 * padding) * (posRange / 100));
       ctx.font = `${fontSize}px ${fontFamily}`;
