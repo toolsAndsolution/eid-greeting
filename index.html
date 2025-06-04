@@ -8,193 +8,77 @@
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: linear-gradient(135deg, #fdfcfb, #e2d1c3);
-      margin: 0;
-      padding: 0;
-      color: #333;
-      min-height: 100vh;
-      box-sizing: border-box;
-      position: relative;
+      margin: 0; padding: 0; color: #333;
+      min-height: 100vh; box-sizing: border-box; position: relative;
     }
     header {
-      background-color: #00AEAD;
-      color: #fff;
-      padding: 20px 0 0 0;
-      font-size: 24px;
-      font-weight: bold;
+      background-color: #00AEAD; color: #fff; padding: 20px 0 0 0;
+      font-size: 24px; font-weight: bold;
       box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      position: relative;
+      display: flex; flex-direction: column; align-items: center; position: relative;
     }
-    .logo-title {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      flex: 1;
-      margin-bottom: 8px;
-    }
-    #headerTitle {
-      margin-top: 12px;
-      color: #fff;
-      font-size: 18px;
-      font-weight: bold;
-      text-align: center;
-      text-shadow: 0 2px 8px rgba(0,0,0,0.10);
-    }
-    header img {
-      display: block;
-      height: 98px;
-      margin: 0 12px;
-    }
+    .logo-title { display: flex; flex-direction: column; align-items: center; flex: 1; margin-bottom: 8px;}
+    #headerTitle { margin-top: 12px; color: #fff; font-size: 18px; font-weight: bold; text-align: center; text-shadow: 0 2px 8px rgba(0,0,0,0.10);}
+    header img { display: block; height: 98px; margin: 0 12px;}
     .lang-toggle {
-      position: absolute;
-      top: 16px;
-      left: 24px;
-      min-width: 36px;
-      min-height: 36px;
-      padding: 3px 16px;
-      font-size: 14px;
-      border-radius: 18px;
-      background-color: #EF484A !important;
-      color: #fff !important;
-      border: none;
-      transition: background 0.3s;
-      z-index: 2;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.07);
-      opacity: 0.92;
+      position: absolute; top: 16px; left: 24px;
+      min-width: 36px; min-height: 36px; padding: 3px 16px;
+      font-size: 14px; border-radius: 18px;
+      background-color: #EF484A !important; color: #fff !important;
+      border: none; transition: background 0.3s; z-index: 2; box-shadow: 0 1px 4px rgba(0,0,0,0.07); opacity: 0.92;
     }
-    .lang-toggle:hover {
-      background-color: #d93032 !important;
-    }
+    .lang-toggle:hover { background-color: #d93032 !important;}
     .container {
-      max-width: 1000px;
-      margin: 30px auto;
-      padding: 20px;
-      background-color: #fff;
-      border-radius: 12px;
+      max-width: 1000px; margin: 30px auto; padding: 20px;
+      background-color: #fff; border-radius: 12px;
       box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      display: flex;
-      flex-direction: row-reverse;
-      gap: 32px;
+      display: flex; flex-direction: row-reverse; gap: 32px;
     }
-    .settings-panel {
-      flex: 1 1 320px;
-      min-width: 300px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
+    .settings-panel { flex: 1 1 320px; min-width: 300px; display: flex; flex-direction: column; justify-content: center;}
     .controls {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px 20px;
-      margin-bottom: 20px;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 20px 20px; margin-bottom: 20px;
     }
-    .controls > div {
-      min-width: 0;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-    }
-    label {
-      font-weight: bold;
-      margin-bottom: 5px;
-      display: block;
-    }
+    .controls > div { min-width: 0; display: flex; flex-direction: column; justify-content: flex-start;}
+    label { font-weight: bold; margin-bottom: 5px; display: block;}
     select, input[type="text"], input[type="number"], input[type="color"] {
-      width: 100%;
-      padding: 8px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      font-size: 14px;
-      box-sizing: border-box;
+      width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 6px; font-size: 14px; box-sizing: border-box;
     }
     .preview-panel {
-      flex: 2 1 600px;
-      min-width: 340px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-      position: relative;
-      overflow-x: auto;
+      flex: 2 1 600px; min-width: 340px;
+      display: flex; flex-direction: column; align-items: center; justify-content: flex-start;
+      position: relative; overflow-x: auto;
     }
     .canvas-preview-wrapper {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 100%;
-      overflow-x: auto;
-      max-width: 100%;
-      margin: 24px auto 0 auto;
-      background: #f5f5f5;
-      border-radius: 10px;
-      box-sizing: border-box;
+      display: flex; justify-content: center; align-items: center;
+      width: 100%; overflow-x: auto; max-width: 100%;
+      margin: 24px auto 0 auto; background: #f5f5f5;
+      border-radius: 10px; box-sizing: border-box;
     }
     canvas {
-      display: block;
-      box-shadow: 0 4px 14px rgba(0,0,0,0.07);
-      border: 2px solid #eee;
-      border-radius: 8px;
-      background: #fdfcfb;
-      margin: 0 auto;
-      max-width: none;
-      max-height: 50vh;
+      display: block; box-shadow: 0 4px 14px rgba(0,0,0,0.07);
+      border: 2px solid #eee; border-radius: 8px;
+      background: #fdfcfb; margin: 0 auto;
+      max-width: none; max-height: 50vh;
     }
-    .btn-download-group {
-      display: flex;
-      justify-content: center;
-      width: 100%;
-      margin-top: 24px;
-    }
+    .btn-download-group { display: flex; justify-content: center; width: 100%; margin-top: 24px;}
     .btn-download {
-      padding: 18px 64px;
-      background-color: #EF484A;
-      color: white;
-      border: none;
-      border-radius: 10px;
-      font-size: 24px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: background 0.3s ease;
+      padding: 18px 64px; background-color: #EF484A; color: white;
+      border: none; border-radius: 10px; font-size: 24px; font-weight: bold;
+      cursor: pointer; transition: background 0.3s ease;
       box-shadow: 0 2px 8px rgba(0,0,0,0.07);
     }
-    .btn-download:disabled {
-      background-color: #aaa;
-      cursor: not-allowed;
-    }
-    .btn-download:hover:not(:disabled) {
-      background-color: #218838;
-    }
+    .btn-download:disabled { background-color: #aaa; cursor: not-allowed;}
+    .btn-download:hover:not(:disabled) { background-color: #218838;}
     @media (max-width: 1000px) {
-      .container {
-        flex-direction: column;
-        gap: 8px;
-      }
-      .settings-panel, .preview-panel {
-        min-width: unset;
-      }
-      .controls {
-        grid-template-columns: 1fr;
-      }
-      .btn-download-group {
-        margin-top: 16px;
-      }
-      .lang-toggle {
-        left: 10px;
-        top: 10px;
-        font-size: 13px;
-        padding: 2px 10px;
-      }
-      .canvas-preview-wrapper {
-        max-width: 98vw;
-      }
+      .container { flex-direction: column; gap: 8px;}
+      .settings-panel, .preview-panel { min-width: unset;}
+      .controls { grid-template-columns: 1fr;}
+      .btn-download-group { margin-top: 16px;}
+      .lang-toggle { left: 10px; top: 10px; font-size: 13px; padding: 2px 10px;}
+      .canvas-preview-wrapper { max-width: 98vw;}
     }
-    [dir="ltr"] .lang-toggle {
-      right: 24px;
-      left: auto;
-    }
+    [dir="ltr"] .lang-toggle { right: 24px; left: auto;}
   </style>
 </head>
 <body>
@@ -208,7 +92,6 @@
   <div class="container">
     <div class="settings-panel">
       <div class="controls">
-        <!-- الصف الأول: الاسم + التصميم -->
         <div>
           <label id="labelName" for="nameLabel">اكتب اسمك:</label>
           <input type="text" id="nameLabel" placeholder="اكتب اسمك هنا" />
@@ -217,7 +100,6 @@
           <label id="labelDesign" for="design">اختر التصميم:</label>
           <select id="design" onchange="changeImage()"></select>
         </div>
-        <!-- الصف الثاني: حجم الخط + نوع الخط -->
         <div>
           <label id="labelFontSize" for="fontSize">حجم الخط:</label>
           <input type="number" id="fontSize" value="28" min="10" />
@@ -226,7 +108,6 @@
           <label id="labelFontFamily" for="fontFamily">نوع الخط:</label>
           <select id="fontFamily"></select>
         </div>
-        <!-- الصف الثالث: اللون + المحاذاة -->
         <div>
           <label id="labelFontColor" for="fontColor">لون الخط:</label>
           <input type="color" id="fontColor" value="#ffffff" />
@@ -251,9 +132,10 @@
     </div>
   </div>
   <script>
+    // الترجمة والخيارات كما في السابق...
     const i18n = {
       ar: {
-        headerTitle: "بطاقة تهنئة بعيد الأضحى المبارك",
+        headerTitle: "بطاقة تهنئة بالعيد",
         labelDesign: "اختر التصميم:",
         labelName: "اكتب اسمك:",
         placeholderName: "اكتب اسمك هنا",
@@ -265,11 +147,11 @@
         langBtn: "English",
         alignOptions: ["وسط", "يمين", "يسار"],
         designs: [
-            { name: "تصميم 1", url: "https://i.postimg.cc/sDhbCHHw/EID-story.png" },
-            { name: "تصميم 2", url: "https://i.postimg.cc/0211jqwL/eid-5.png" },
-            { name: "تصميم 3", url: "https://i.postimg.cc/85Lwnxz6/eid-4.png" },
-            { name: "تصميم 4", url: "https://i.postimg.cc/k47tqHy8/eid-3.png" },
-            { name: "تصميم 5", url: "https://i.postimg.cc/wTny7MV9/eid-2.png" }
+          { name: "تصميم 1", url: "https://i.postimg.cc/sDhbCHHw/EID-story.png" },
+          { name: "تصميم 2", url: "https://i.postimg.cc/0211jqwL/eid-5.png" },
+          { name: "تصميم 3", url: "https://i.postimg.cc/85Lwnxz6/eid-4.png" },
+          { name: "تصميم 4", url: "https://i.postimg.cc/k47tqHy8/eid-3.png" },
+          { name: "تصميم 5", url: "https://i.postimg.cc/wTny7MV9/eid-2.png" }
         ],
         fontFamilies: [
           { name: "Cairo", value: "Cairo, Arial, sans-serif" },
@@ -292,11 +174,11 @@
         langBtn: "العربية",
         alignOptions: ["Center", "Right", "Left"],
         designs: [
-            { name: "Design 1", url: "https://i.postimg.cc/sDhbCHHw/EID-story.png" },
-            { name: "Design 2", url: "https://i.postimg.cc/0211jqwL/eid-5.png" },
-            { name: "Design 3", url: "https://i.postimg.cc/85Lwnxz6/eid-4.png" },
-            { name: "Design 4", url: "https://i.postimg.cc/k47tqHy8/eid-3.png" },
-            { name: "Design 5", url: "https://i.postimg.cc/wTny7MV9/eid-2.png" }
+          { name: "Design 1", url: "https://i.postimg.cc/sDhbCHHw/EID-story.png" },
+          { name: "Design 2", url: "https://i.postimg.cc/0211jqwL/eid-5.png" },
+          { name: "Design 3", url: "https://i.postimg.cc/85Lwnxz6/eid-4.png" },
+          { name: "Design 4", url: "https://i.postimg.cc/k47tqHy8/eid-3.png" },
+          { name: "Design 5", url: "https://i.postimg.cc/wTny7MV9/eid-2.png" }
         ],
         fontFamilies: [
           { name: "Montserrat", value: "Montserrat, Arial, sans-serif" },
@@ -342,11 +224,13 @@
         document.getElementById('langBtn').style.left = 'auto';
       }
 
+      // تحديث محاذاة النص
       const alignSelect = document.getElementById("fontAlign");
       alignSelect.options[0].text = lang.alignOptions[0];
       alignSelect.options[1].text = lang.alignOptions[1];
       alignSelect.options[2].text = lang.alignOptions[2];
 
+      // تحديث الخطوط
       const fontSelect = document.getElementById("fontFamily");
       fontSelect.innerHTML = "";
       lang.fontFamilies.forEach(font => {
@@ -377,7 +261,7 @@
       document.getElementById("downloadBtn").disabled = true;
       img = new window.Image();
       img.crossOrigin = "anonymous";
-      img.src = lang.designs[index].url.replace(/([&?])fit=[^&]+/, ''); // إزالة fit=crop
+      img.src = lang.designs[index].url.replace(/([&?])fit=[^&]+/, '');
       img.onload = function () {
         imageLoaded = true;
         naturalWidth = img.naturalWidth;
@@ -387,7 +271,6 @@
       };
     }
 
-    // رسم المعاينة (canvas) بالدقة الأصلية
     function drawPreview() {
       const canvas = document.getElementById("canvas");
       canvas.width = naturalWidth;
@@ -395,65 +278,67 @@
       const ctx = canvas.getContext("2d");
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       ctx.drawImage(img, 0, 0, naturalWidth, naturalHeight);
-
-      // رسم النص فوق المعاينة
       drawTextOnContext(ctx, naturalWidth, naturalHeight);
     }
 
-    // دالة لرسم النص على سياق محدد
     function drawTextOnContext(ctx, cWidth, cHeight) {
-      const name = document.getElementById("nameLabel").value.trim();
-      const fontSize = document.getElementById("fontSize").value;
-      const fontFamily = document.getElementById("fontFamily").value;
-      const fontColor = document.getElementById("fontColor").value;
-      const align = document.getElementById("fontAlign").value;
-
-      if (name !== "") {
-        ctx.font = `${fontSize}px ${fontFamily}`;
-        ctx.fillStyle = fontColor;
-        ctx.textAlign = align;
-        let x;
-        if (align === "left") x = 10;
-        else if (align === "center") x = cWidth / 2;
-        else if (align === "right") x = cWidth - 10;
-        const y = cHeight - 30;
-        ctx.fillText(name, x, y);
-      }
-    }
-
-    // التحميل بدقة الصورة الأصلية (حتى لو كان الكانفاس المعروض صغير)
-    function downloadImage() {
-      if (!imageLoaded || naturalWidth === 0 || naturalHeight === 0) {
-        alert(currentLang === "ar" ? "يرجى الانتظار حتى يتم تحميل التصميم والمعاينة بالكامل." : "Please wait until the design and preview are fully loaded.");
-        return;
-      }
-      // إنشاء كانفاس بدقة الصورة الأصلية
-      const downloadCanvas = document.createElement("canvas");
-      downloadCanvas.width = img.naturalWidth;
-      downloadCanvas.height = img.naturalHeight;
-      const ctx = downloadCanvas.getContext("2d");
-      ctx.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight);
-
-      // جلب إعدادات النص وإعادة رسمه بحجم الصورة الأصلي
       const name = document.getElementById("nameLabel").value.trim();
       const fontSize = parseInt(document.getElementById("fontSize").value, 10);
       const fontFamily = document.getElementById("fontFamily").value;
       const fontColor = document.getElementById("fontColor").value;
       const align = document.getElementById("fontAlign").value;
 
+      ctx.font = `${fontSize}px ${fontFamily}`;
+      ctx.fillStyle = fontColor;
+      ctx.textAlign = align;
+
+      // ------- تحكم هنا في بعد النص عن الأطراف -------
+      let x;
+      if (align === "left")   x = 60;                 // 60 بكسل من اليسار
+      else if (align === "center") x = cWidth / 2;   // وسط تمامًا
+      else if (align === "right")  x = cWidth - 60;  // 60 بكسل من اليمين
+
+      const y = cHeight - 60; // 60 بكسل من الأسفل، غير الرقم حسب ما تريد
+      // -------------------------------------------------
+
+      if (name !== "") {
+        ctx.fillText(name, x, y);
+      }
+    }
+
+    function downloadImage() {
+      if (!imageLoaded || naturalWidth === 0 || naturalHeight === 0) {
+        alert(currentLang === "ar" ? "يرجى الانتظار حتى يتم تحميل التصميم والمعاينة بالكامل." : "Please wait until the design and preview are fully loaded.");
+        return;
+      }
+      const downloadCanvas = document.createElement("canvas");
+      downloadCanvas.width = img.naturalWidth;
+      downloadCanvas.height = img.naturalHeight;
+      const ctx = downloadCanvas.getContext("2d");
+      ctx.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight);
+
+      const name = document.getElementById("nameLabel").value.trim();
+      const fontSize = parseInt(document.getElementById("fontSize").value, 10);
+      const fontFamily = document.getElementById("fontFamily").value;
+      const fontColor = document.getElementById("fontColor").value;
+      const align = document.getElementById("fontAlign").value;
+
+      ctx.font = `${fontSize}px ${fontFamily}`;
+      ctx.fillStyle = fontColor;
+      ctx.textAlign = align;
+
+      // ------- تحكم هنا في بعد النص عن الأطراف -------
+      let x;
+      if (align === "left")   x = 60;
+      else if (align === "center") x = downloadCanvas.width / 2;
+      else if (align === "right")  x = downloadCanvas.width - 60;
+      const y = downloadCanvas.height - 60;
+      // ------------------------------------------------
+
       if (name) {
-        ctx.font = `${fontSize}px ${fontFamily}`;
-        ctx.fillStyle = fontColor;
-        ctx.textAlign = align;
-        let x;
-        if (align === "left") x = 10;
-        else if (align === "center") x = downloadCanvas.width / 2;
-        else if (align === "right") x = downloadCanvas.width - 10;
-        const y = downloadCanvas.height - 30;
         ctx.fillText(name, x, y);
       }
 
-      // تحميل الصورة بالدقة الأصلية
       const link = document.createElement("a");
       link.download = currentLang === "ar" ? "بطاقة_العيد.png" : "eid_greeting.png";
       link.href = downloadCanvas.toDataURL("image/png");
