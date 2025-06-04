@@ -4,13 +4,12 @@
   <meta charset="UTF-8" />
   <title>بطاقة تهنئة بعيد الأضحى</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- خطوط Google Fonts -->
+  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Cairo:400,700|Amiri|Noto+Kufi+Arabic|Montserrat:400,700|Roboto:400,700&display=swap" rel="stylesheet">
   <style>
     :root {
       --accent: #00AEAD;
       --main-radius: 14px;
-      --shadow: 0 4px 14px rgba(0,0,0,0.07);
     }
     html, body {
       height: 100%;
@@ -98,7 +97,7 @@
       padding: 22px 20px;
       background-color: #fff;
       border-radius: var(--main-radius);
-      box-shadow: var(--shadow);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
       display: flex;
       gap: 38px;
       align-items: flex-start;
@@ -160,7 +159,7 @@
       border-radius: 12px;
       box-sizing: border-box;
       margin: 0 0 20px 0;
-      box-shadow: var(--shadow);
+      box-shadow: 0 4px 14px rgba(0,0,0,0.08);
       min-height: 240px;
       min-width: 0;
       overflow-x: auto;
@@ -175,9 +174,10 @@
       background: #fdfcfb;
       width: 100%;
       max-width: 430px;
-      height: auto;
+      height: auto !important;
       max-height: 60vh;
       min-width: 0;
+      aspect-ratio: attr(width) / attr(height);
     }
     .btn-download-group { display: flex; justify-content: center; width: 100%;}
     .btn-download {
@@ -195,12 +195,10 @@
     }
     .btn-download:disabled { background-color: #aaa; cursor: not-allowed;}
     .btn-download:hover:not(:disabled) { background-color: #218838;}
-
     @media (max-width: 900px) {
       .container { flex-direction: column; gap: 18px; align-items: stretch; padding: 16px 4vw;}
       .settings-panel, .preview-panel { min-width: unset; }
       .preview-panel { max-width: 100vw; }
-      canvas { max-width: 92vw; max-height: 45vw;}
       .canvas-preview-wrapper { padding: 7px 0; min-height: 130px;}
     }
     @media (max-width: 650px) {
@@ -267,10 +265,10 @@
     </div>
   </main>
   <script>
-    // جميع الخيارات كما بالسابق
+    // خيارات اللغة والتصاميم والخطوط كما هو
     const i18n = {
       ar: {
-        headerTitle: "بطاقة تهنئة بالعيد",
+        headerTitle: "بطاقة تهنئة بعيد الأضحى المبارك",
         labelDesign: "اختر التصميم:",
         labelName: "اكتب اسمك:",
         placeholderName: "اكتب اسمك هنا",
@@ -404,18 +402,24 @@
       };
     }
 
+    // حساب الأبعاد المتناسبة مع نافذة المعاينة دائماً
     function drawPreview() {
       const canvas = document.getElementById("canvas");
-      // اضبط العرض تلقائياً ليتناسب مع الشاشة
-      const maxW = Math.min(window.innerWidth * 0.9, 440, naturalWidth);
-      const scale = maxW / naturalWidth;
+      const maxW = Math.min(window.innerWidth * 0.92, 430, naturalWidth);
+      const maxH = Math.min(window.innerHeight * 0.57, 600, naturalHeight);
+
+      // حساب نسبة التصغير للحفاظ على نسبة الأبعاد
+      let scale = Math.min(maxW / naturalWidth, maxH / naturalHeight, 1);
+
       canvas.width = naturalWidth;
       canvas.height = naturalHeight;
-      canvas.style.width = maxW + 'px';
-      canvas.style.height = (naturalHeight * scale) + 'px';
+      canvas.style.width = (naturalWidth * scale) + "px";
+      canvas.style.height = (naturalHeight * scale) + "px";
+
       const ctx = canvas.getContext("2d");
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       ctx.drawImage(img, 0, 0, naturalWidth, naturalHeight);
+
       drawTextOnContext(ctx, naturalWidth, naturalHeight);
     }
 
@@ -486,7 +490,7 @@
       document.getElementById("fontColor").addEventListener('input', drawPreview);
       document.getElementById("fontAlign").addEventListener('change', drawPreview);
       document.getElementById("design").addEventListener('change', drawPreview);
-      window.addEventListener('resize', drawPreview); // ليتغير حجم المعاينة مع تغيير حجم الشاشة
+      window.addEventListener('resize', drawPreview);
     };
   </script>
 </body>
