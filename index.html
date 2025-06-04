@@ -3,224 +3,190 @@
 <head>
   <meta charset="UTF-8" />
   <title>بطاقة تهنئة بعيد الأضحى</title>
-  <link rel="icon" type="image/png" href="https://i.postimg.cc/tJhm422d/T-S-LOGO-1-04.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="https://i.postimg.cc/tJhm422d/T-S-LOGO-1-04.png">
   <link href="https://fonts.googleapis.com/css?family=Cairo:400,700|Amiri|Noto+Kufi+Arabic|Montserrat:400,700|Roboto:400,700&display=swap" rel="stylesheet">
   <style>
     html, body {
       font-family: 'Cairo', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      font-size: 14px;
-      color: #222;
+      background: linear-gradient(135deg, #fdfcfb, #e2d1c3);
+      color: #1b242f;
       margin: 0;
       padding: 0;
-      background: linear-gradient(135deg, #fdfcfb, #e2d1c3);
       min-height: 100vh;
       box-sizing: border-box;
-      overflow-x: hidden;
     }
     body {
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
-      min-height: 100vh;
     }
     header {
-      background-color: #00AEAD;
+      background: #00AEAD;
       color: #fff;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.13);
-      padding: 0 0 8px 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      padding: 30px 0 18px 0;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.11);
+      text-align: center;
+      border-bottom-left-radius: 18px;
+      border-bottom-right-radius: 18px;
       position: relative;
-      border-bottom-left-radius: 14px;
-      border-bottom-right-radius: 14px;
     }
     .lang-toggle {
       position: absolute;
-      top: 14px;
-      left: 16px;
-      min-width: 30px;
-      min-height: 30px;
-      padding: 3px 10px;
-      font-size: 12px;
+      top: 18px;
+      left: 20px;
+      min-width: 38px;
+      min-height: 28px;
+      padding: 3px 13px;
+      font-size: 13px;
       border-radius: 14px;
-      background-color: #EF484A !important;
+      background: #EF484A !important;
       color: #fff !important;
       border: none;
+      cursor: pointer;
       transition: background 0.3s;
-      z-index: 2;
       font-weight: bold;
-      letter-spacing: 1px;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.10);
-      opacity: 0.97;
+      opacity: 0.95;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
     }
-    .lang-toggle:hover { background-color: #d93032 !important;}
-    .logo-title {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      flex: 1;
-      margin-top: 10px;
-      margin-bottom: 6px;
-    }
+    .lang-toggle:hover { background: #c8343d !important; }
     #logo {
-      height: 46px;
-      width: auto;
-      max-width: 26vw;
+      height: 54px;
+      margin-bottom: 6px;
       object-fit: contain;
-      margin: 0 8px;
     }
     #headerTitle {
-      color: #fff;
-      font-size: 14px;
+      font-size: 16px;
       font-weight: bold;
-      text-align: center;
-      text-shadow: 0 2px 8px rgba(0,0,0,0.10);
-      margin: 7px 0 0 0;
-      letter-spacing: 0.2px;
+      margin: 2px 0 0 0;
+      text-shadow: 0 2px 7px rgba(0,0,0,0.09);
+      color: #fff;
+      letter-spacing: 0.1px;
     }
     main {
       flex: 1 0 auto;
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       justify-content: center;
       width: 100%;
-      min-height: 0;
     }
     .container {
       width: 100%;
       max-width: 900px;
-      margin: 22px auto 18px auto;
-      padding: 10px 8px;
-      background-color: #fff;
-      border-radius: 14px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+      margin: 30px auto 20px auto;
+      padding: 14px 2vw 20px 2vw;
+      background: #fff;
+      border-radius: 17px;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.08);
       display: flex;
-      gap: 20px;
+      gap: 28px;
       align-items: flex-start;
-      justify-content: center;
-      min-height: 400px;
-    }
-    .settings-panel {
-      flex: 1 1 320px;
-      min-width: 160px;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
+      flex-direction: row-reverse;
     }
     .controls {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px 11px;
-    }
-    .controls > div {
-      min-width: 0;
+      width: 100%;
+      max-width: 320px;
       display: flex;
       flex-direction: column;
-      justify-content: flex-start;
+      gap: 13px;
+      margin-bottom: 2px;
     }
-    label {
-      font-weight: bold;
-      margin-bottom: 3px;
-      color: #222;
-      font-size: 13px;
+    .controls input[type="text"],
+    .controls select,
+    .controls input[type="color"] {
+      width: 100%;
+      padding: 9px 10px;
+      border: 1px solid #c0c3c5;
+      border-radius: 7px;
+      font-size: 15px;
+      margin-bottom: 0;
+      box-sizing: border-box;
+      background: #fbfbfb;
+      transition: border 0.2s;
+      font-family: inherit;
+    }
+    .controls input[type="text"]:focus,
+    .controls select:focus,
+    .controls input[type="color"]:focus {
+      border-color: #00AEAD;
+      outline: none;
+    }
+    .controls input[type="color"] {
+      padding: 1px;
+      height: 42px;
+      width: 100%;
+      border-radius: 7px;
+      background: #fbfbfb;
+      cursor: pointer;
     }
     .range-inline {
       display: flex;
       align-items: center;
-      gap: 7px;
+      gap: 8px;
       margin-bottom: 0;
-      grid-column: 1 / span 2;
-      flex-wrap: nowrap;
       width: 100%;
-    }
-    .range-inline label {
-      font-size: 12px;
-      color: #888;
-      font-weight: normal;
-      margin-bottom: 0;
-      min-width: 56px;
-      flex-shrink: 0;
-      white-space: nowrap;
+      background: #f9f9f9;
+      border-radius: 6px;
+      padding: 5px 10px;
+      font-size: 14px;
     }
     .range-inline input[type="range"] {
-      flex: 1 1 80px;
+      flex: 1 1 60px;
       min-width: 40px;
-      max-width: 150px;
-      margin: 0 3px;
+      max-width: 140px;
+      margin: 0 6px;
+      accent-color: #00AEAD;
     }
     .range-inline .range-value {
-      width: 49px;
-      font-size: 0.95em;
-      color: #555;
+      width: 54px;
+      font-size: 12px;
+      color: #444;
       text-align: left;
-      margin: 0 2px;
       flex-shrink: 0;
       white-space: nowrap;
     }
-    select, input[type="text"], input[type="color"], input[type="range"] {
-      width: 100%;
-      padding: 6px 7px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      font-size: 13px;
-      box-sizing: border-box;
-      margin-bottom: 2px;
-      background: #fbfbfb;
-    }
-    input[type="color"] { padding: 1px; }
-    input[type="range"] {
-      margin-top: 2px;
-      background: transparent;
-      accent-color: #00AEAD;
-    }
-    .preview-panel {
-      flex: 2 1 440px;
-      min-width: 150px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-      position: relative;
-      width: 100%;
-      max-width: 450px;
-    }
     .canvas-preview-wrapper {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 100%;
-      background: #f5f5f5;
+      width: 350px;
+      background: #f7fafb;
       border-radius: 12px;
       box-sizing: border-box;
-      margin: 0 0 10px 0;
-      box-shadow: 0 4px 14px rgba(0,0,0,0.06);
-      min-height: 90px;
+      margin: 0 0 0 0;
+      box-shadow: 0 4px 13px rgba(0,0,0,0.05);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 140px;
       min-width: 0;
       overflow-x: auto;
-      padding: 8px 0;
+      padding: 12px 0;
     }
     canvas {
       display: block;
       margin: 0 auto;
-      box-shadow: 0 4px 14px rgba(0,0,0,0.07);
-      border: 2px solid #eee;
-      border-radius: 8px;
+      box-shadow: 0 2px 11px rgba(0,0,0,0.04);
+      border: 1.5px solid #e6e6e6;
+      border-radius: 7px;
       background: #fdfcfb;
       width: 100%;
-      max-width: 340px;
+      max-width: 320px;
       height: auto !important;
-      max-height: 38vh;
+      max-height: 42vh;
       min-width: 0;
+      transition: box-shadow 0.18s;
     }
-    .btn-download-group { display: flex; justify-content: center; width: 100%;}
+    .btn-download-group {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      margin-top: 5px;
+    }
     .btn-download {
-      padding: 8px 12vw;
+      padding: 11px 12vw;
       background-color: #EF484A;
       color: white;
       border: none;
       border-radius: 10px;
-      font-size: 14px;
+      font-size: 16px;
       font-weight: bold;
       cursor: pointer;
       transition: background 0.3s;
@@ -230,70 +196,44 @@
     .btn-download:disabled { background-color: #aaa; cursor: not-allowed;}
     .btn-download:hover:not(:disabled) { background-color: #218838;}
     @media (max-width: 900px) {
-      .container { flex-direction: column; gap: 8px; align-items: stretch; padding: 7px 1vw;}
-      .settings-panel, .preview-panel { min-width: unset; }
-      .preview-panel { max-width: 100vw; }
-      .canvas-preview-wrapper { padding: 4px 0; min-height: 60px;}
+      .container { flex-direction: column-reverse; align-items: center; gap: 12px;}
+      .canvas-preview-wrapper { width: 100%; max-width: 95vw;}
     }
-    @media (max-width: 650px) {
-      .container { padding: 3px 0;}
-      .controls { grid-template-columns: 1fr !important; gap: 7px 0;}
-      .btn-download { padding: 7px 7vw; font-size: 13px;}
+    @media (max-width: 600px) {
       #logo { height: 32px;}
       #headerTitle { font-size: 11px;}
-      .lang-toggle { top: 6px; left: 6px; padding: 3px 7px; font-size: 11px;}
-      canvas { max-width: 97vw; }
-      .range-inline label { min-width: 40px; font-size: 10px;}
+      .container { max-width: 98vw; padding: 10px 2vw 18px 2vw;}
+      .canvas-preview-wrapper { min-height: 50px; }
+      .btn-download { padding: 8px 8vw; font-size: 13px;}
+      .lang-toggle { top: 7px; left: 7px; padding: 2px 7px; font-size: 11px;}
+      .controls input, .controls select { font-size: 13px;}
     }
   </style>
 </head>
 <body>
   <header>
     <button class="lang-toggle btn" onclick="toggleLanguage()" id="langBtn">English</button>
-    <div class="logo-title">
-      <img src="https://i.postimg.cc/tJhm422d/T-S-LOGO-1-04.png" alt="Logo" id="logo">
-      <span id="headerTitle"> بطاقة تهنئة بعيد الأضحى </span>
-    </div>
+    <img src="https://i.postimg.cc/tJhm422d/T-S-LOGO-1-04.png" alt="Logo" id="logo">
+    <div id="headerTitle"> بطاقة تهنئة بعيد الأضحى </div>
   </header>
   <main>
     <div class="container">
-      <div class="settings-panel">
-        <div class="controls">
-          <div>
-            <label id="labelName" for="nameLabel">اكتب اسمك:</label>
-            <input type="text" id="nameLabel" placeholder="اكتب اسمك هنا" />
-          </div>
-          <div>
-            <label id="labelDesign" for="design">اختر التصميم:</label>
-            <select id="design" onchange="changeImage()"></select>
-          </div>
-          <div>
-            <label id="labelFontSize" for="fontSize">حجم الخط:</label>
-            <select id="fontSize"></select>
-          </div>
-          <div>
-            <label id="labelFontFamily" for="fontFamily">نوع الخط:</label>
-            <select id="fontFamily"></select>
-          </div>
-          <div>
-            <label id="labelFontColor" for="fontColor">لون الخط:</label>
-            <input type="color" id="fontColor" value="#ffffff" />
-          </div>
-          <div>
-            <label id="labelAlign" for="fontAlign">محاذاة النص:</label>
-            <select id="fontAlign">
-              <option value="center" selected>وسط</option>
-              <option value="right">يمين</option>
-              <option value="left">يسار</option>
-            </select>
-          </div>
-          <div class="range-inline">
-            <label id="labelTextPos" for="textPosRange">موضع النص:</label>
-            <input type="range" id="textPosRange" min="0" max="100" value="90" />
-            <span class="range-value" id="textPosValue">أسفل الصورة</span>
-          </div>
+      <form class="controls" onsubmit="return false;">
+        <input type="text" id="nameLabel" placeholder="اكتب اسمك هنا" autocomplete="off"/>
+        <select id="design"></select>
+        <select id="fontSize"></select>
+        <select id="fontFamily"></select>
+        <input type="color" id="fontColor" />
+        <select id="fontAlign">
+          <option value="center" selected>وسط</option>
+          <option value="right">يمين</option>
+          <option value="left">يسار</option>
+        </select>
+        <div class="range-inline">
+          <input type="range" id="textPosRange" min="0" max="100" value="90" />
+          <span class="range-value" id="textPosValue">أسفل الصورة</span>
         </div>
-      </div>
+      </form>
       <div class="preview-panel">
         <div class="canvas-preview-wrapper">
           <canvas id="canvas"></canvas>
@@ -321,22 +261,17 @@
     const i18n = {
       ar: {
         headerTitle: "بطاقة تهنئة بالعيد",
-        labelDesign: "اختر التصميم:",
-        labelName: "اكتب اسمك:",
-        placeholderName: "اكتب اسمك هنا",
-        labelFontSize: "حجم الخط:",
-        labelFontFamily: "نوع الخط:",
-        labelFontColor: "لون الخط:",
-        labelAlign: "محاذاة النص:",
-        labelTextPos: "موضع النص:",
+        namePlaceholder: "اكتب اسمك هنا",
+        designPlaceholder: "اختر التصميم",
+        fontSizePlaceholder: "حجم الخط",
+        fontFamilyPlaceholder: "نوع الخط",
+        fontColorPlaceholder: "لون الخط",
+        alignPlaceholder: "محاذاة النص",
+        textPosPlaceholder: "موضع النص",
         downloadBtn: "تحميل البطاقة",
         langBtn: "English",
         alignOptions: ["وسط", "يمين", "يسار"],
-        textPosLabels: [
-          "أعلى الصورة",
-          "منتصف الصورة",
-          "أسفل الصورة"
-        ],
+        textPosLabels: ["أعلى الصورة","منتصف الصورة","أسفل الصورة"],
         designs: [
           { name: "تصميم 1", url: "https://i.postimg.cc/sDhbCHHw/EID-story.png" },
           { name: "تصميم 2", url: "https://i.postimg.cc/0211jqwL/eid-5.png" },
@@ -355,22 +290,17 @@
       },
       en: {
         headerTitle: "Eid Greeting Card",
-        labelDesign: "Choose Design:",
-        labelName: "Enter Your Name:",
-        placeholderName: "Enter your name here",
-        labelFontSize: "Font Size:",
-        labelFontFamily: "Font Family:",
-        labelFontColor: "Font Color:",
-        labelAlign: "Text Alignment:",
-        labelTextPos: "Text Position:",
+        namePlaceholder: "Enter your name here",
+        designPlaceholder: "Choose Design",
+        fontSizePlaceholder: "Font Size",
+        fontFamilyPlaceholder: "Font Family",
+        fontColorPlaceholder: "Font Color",
+        alignPlaceholder: "Text Alignment",
+        textPosPlaceholder: "Text Position",
         downloadBtn: "Download Card",
         langBtn: "العربية",
         alignOptions: ["Center", "Right", "Left"],
-        textPosLabels: [
-          "Top",
-          "Middle",
-          "Bottom"
-        ],
+        textPosLabels: ["Top","Middle","Bottom"],
         designs: [
           { name: "Design 1", url: "https://i.postimg.cc/sDhbCHHw/EID-story.png" },
           { name: "Design 2", url: "https://i.postimg.cc/0211jqwL/eid-5.png" },
@@ -399,69 +329,35 @@
     function updateTexts() {
       const lang = i18n[currentLang];
       document.getElementById("headerTitle").innerText = lang.headerTitle;
-      document.getElementById("labelDesign").innerText = lang.labelDesign;
-      document.getElementById("labelName").innerText = lang.labelName;
-      document.getElementById("nameLabel").placeholder = lang.placeholderName;
-      document.getElementById("labelFontSize").innerText = lang.labelFontSize;
-      document.getElementById("labelFontFamily").innerText = lang.labelFontFamily;
-      document.getElementById("labelFontColor").innerText = lang.labelFontColor;
-      document.getElementById("downloadBtn").innerText = lang.downloadBtn;
+      document.getElementById("nameLabel").placeholder = lang.namePlaceholder;
       document.getElementById("langBtn").innerText = lang.langBtn;
-      document.getElementById("labelTextPos").innerText = lang.labelTextPos;
-      document.getElementById("labelAlign").innerText = lang.labelAlign;
+      document.getElementById("downloadBtn").innerText = lang.downloadBtn;
 
-      document.documentElement.lang = currentLang;
-      document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
-
-      document.querySelector('.container').style.flexDirection =
-        currentLang === 'ar' ? 'row-reverse' : 'row';
-
-      if(currentLang === 'ar') {
-        document.getElementById('langBtn').style.left = '16px';
-        document.getElementById('langBtn').style.right = 'auto';
-      } else {
-        document.getElementById('langBtn').style.right = '16px';
-        document.getElementById('langBtn').style.left = 'auto';
-      }
-
-      const alignSelect = document.getElementById("fontAlign");
-      alignSelect.options[0].text = lang.alignOptions[0];
-      alignSelect.options[1].text = lang.alignOptions[1];
-      alignSelect.options[2].text = lang.alignOptions[2];
-
-      const fontSizeSelect = document.getElementById("fontSize");
-      fontSizeSelect.innerHTML = "";
-      fontSizes[currentLang].forEach((opt, idx) => {
-        const option = document.createElement("option");
-        option.value = opt.value;
-        option.text = opt.label;
-        if (idx === 1) option.selected = true;
-        fontSizeSelect.appendChild(option);
-      });
-
-      const fontSelect = document.getElementById("fontFamily");
-      fontSelect.innerHTML = "";
-      lang.fontFamilies.forEach(font => {
-        const opt = document.createElement("option");
-        opt.value = font.value;
-        opt.text = font.name;
-        fontSelect.appendChild(opt);
-      });
+      // Placeholder for selects (first option as placeholder)
+      updateSelectPlaceholder("design", lang.designPlaceholder, lang.designs.map(d => d.name));
+      updateSelectPlaceholder("fontSize", lang.fontSizePlaceholder, fontSizes[currentLang].map(f => f.label));
+      updateSelectPlaceholder("fontFamily", lang.fontFamilyPlaceholder, lang.fontFamilies.map(f => f.name));
+      updateSelectPlaceholder("fontAlign", lang.alignPlaceholder, lang.alignOptions);
 
       updateTextPosValue();
     }
 
+    function updateSelectPlaceholder(selectId, placeholder, options) {
+      const select = document.getElementById(selectId);
+      select.innerHTML = `<option value="" disabled selected hidden>${placeholder}</option>`;
+      options.forEach((opt, i) => {
+        select.innerHTML += `<option value="${i}">${opt}</option>`;
+      });
+    }
+
     function updateDesignOptions() {
       const lang = i18n[currentLang];
-      const designSelect = document.getElementById("design");
-      designSelect.innerHTML = "";
-      lang.designs.forEach((item, index) => {
-        const option = document.createElement("option");
-        option.value = index;
-        option.text = item.name;
-        designSelect.appendChild(option);
-      });
-      changeImage();
+      updateSelectPlaceholder("design", lang.designPlaceholder, lang.designs.map(d => d.name));
+      updateSelectPlaceholder("fontSize", lang.fontSizePlaceholder, fontSizes[currentLang].map(f => f.label));
+      updateSelectPlaceholder("fontFamily", lang.fontFamilyPlaceholder, lang.fontFamilies.map(f => f.name));
+      updateSelectPlaceholder("fontAlign", lang.alignPlaceholder, lang.alignOptions);
+      document.getElementById("fontColor").value = "#ffffff";
+      drawPreview();
     }
 
     function updateTextPosValue() {
@@ -474,7 +370,9 @@
     }
 
     function changeImage() {
-      const index = document.getElementById("design").value;
+      const select = document.getElementById("design");
+      if (!select.value) return;
+      const index = select.value;
       const lang = i18n[currentLang];
       imageLoaded = false;
       document.getElementById("downloadBtn").disabled = true;
@@ -493,8 +391,8 @@
     function drawPreview() {
       const canvas = document.getElementById("canvas");
       if(!naturalWidth || !naturalHeight) return;
-      // عرض مناسب للمعاينة
-      const maxW = Math.min(window.innerWidth * 0.93, 340, naturalWidth);
+      // تصغير مناسب للمعاينة
+      const maxW = Math.min(window.innerWidth * 0.95, 320, naturalWidth);
       const maxH = Math.min(window.innerHeight * 0.38, 320, naturalHeight);
       let scale = Math.min(maxW / naturalWidth, maxH / naturalHeight, 1);
       canvas.width = naturalWidth;
@@ -509,14 +407,17 @@
 
     function drawTextOnContext(ctx, cWidth, cHeight) {
       const name = document.getElementById("nameLabel").value.trim();
-      const fontSize = parseInt(document.getElementById("fontSize").value, 10);
-      const fontFamily = document.getElementById("fontFamily").value;
-      const fontColor = document.getElementById("fontColor").value;
-      const align = document.getElementById("fontAlign").value;
+      const fontSizeSel = document.getElementById("fontSize");
+      const fontSizeVal = fontSizeSel.value ? fontSizes[currentLang][parseInt(fontSizeSel.value, 10)].value : 28;
+      const fontFamilySel = document.getElementById("fontFamily");
+      const fontFamilyVal = fontFamilySel.value ? i18n[currentLang].fontFamilies[parseInt(fontFamilySel.value, 10)].value : i18n[currentLang].fontFamilies[0].value;
+      const fontColor = document.getElementById("fontColor").value || "#fff";
+      const fontAlignSel = document.getElementById("fontAlign");
+      const align = fontAlignSel.value || "center";
       const posRange = document.getElementById("textPosRange").value;
       const padding = 40;
       const y = padding + ((cHeight - 2 * padding) * (posRange / 100));
-      ctx.font = `${fontSize}px ${fontFamily}`;
+      ctx.font = `${fontSizeVal}px ${fontFamilyVal}`;
       ctx.fillStyle = fontColor;
       ctx.textAlign = align;
       if (name !== "") {
@@ -539,15 +440,19 @@
       const ctx = downloadCanvas.getContext("2d");
       ctx.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight);
 
+      // نفس منطق رسم النص
       const name = document.getElementById("nameLabel").value.trim();
-      const fontSize = parseInt(document.getElementById("fontSize").value, 10);
-      const fontFamily = document.getElementById("fontFamily").value;
-      const fontColor = document.getElementById("fontColor").value;
-      const align = document.getElementById("fontAlign").value;
+      const fontSizeSel = document.getElementById("fontSize");
+      const fontSizeVal = fontSizeSel.value ? fontSizes[currentLang][parseInt(fontSizeSel.value, 10)].value : 28;
+      const fontFamilySel = document.getElementById("fontFamily");
+      const fontFamilyVal = fontFamilySel.value ? i18n[currentLang].fontFamilies[parseInt(fontFamilySel.value, 10)].value : i18n[currentLang].fontFamilies[0].value;
+      const fontColor = document.getElementById("fontColor").value || "#fff";
+      const fontAlignSel = document.getElementById("fontAlign");
+      const align = fontAlignSel.value || "center";
       const posRange = document.getElementById("textPosRange").value;
       const padding = 40;
       const y = padding + ((img.naturalHeight - 2 * padding) * (posRange / 100));
-      ctx.font = `${fontSize}px ${fontFamily}`;
+      ctx.font = `${fontSizeVal}px ${fontFamilyVal}`;
       ctx.fillStyle = fontColor;
       ctx.textAlign = align;
       if (name) {
@@ -572,6 +477,7 @@
       drawPreview();
     }
 
+    // الأحداث
     window.onload = function () {
       updateTexts();
       updateDesignOptions();
@@ -580,7 +486,7 @@
       document.getElementById("fontFamily").addEventListener('change', drawPreview);
       document.getElementById("fontColor").addEventListener('input', drawPreview);
       document.getElementById("fontAlign").addEventListener('change', drawPreview);
-      document.getElementById("design").addEventListener('change', drawPreview);
+      document.getElementById("design").addEventListener('change', function(){ changeImage(); drawPreview();});
       document.getElementById("textPosRange").addEventListener('input', function() {
         updateTextPosValue();
         drawPreview();
