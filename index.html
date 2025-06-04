@@ -7,18 +7,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://fonts.googleapis.com/css?family=Cairo:400,700|Amiri|Noto+Kufi+Arabic|Montserrat:400,700|Roboto:400,700&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --accent: #00AEAD;
-      --main-radius: 14px;
-    }
     html, body {
-      height: 100%;
-      min-height: 100vh;
+      font-family: 'Cairo', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-size: 14px;
+      color: #222;
       margin: 0;
       padding: 0;
       background: linear-gradient(135deg, #fdfcfb, #e2d1c3);
-      font-family: 'Cairo', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      color: #222;
+      min-height: 100vh;
       box-sizing: border-box;
       overflow-x: hidden;
     }
@@ -28,7 +24,7 @@
       min-height: 100vh;
     }
     header {
-      background-color: var(--accent);
+      background-color: #00AEAD;
       color: #fff;
       box-shadow: 0 2px 6px rgba(0,0,0,0.13);
       padding: 0 0 8px 0;
@@ -36,27 +32,27 @@
       flex-direction: column;
       align-items: center;
       position: relative;
-      border-bottom-left-radius: var(--main-radius);
-      border-bottom-right-radius: var(--main-radius);
+      border-bottom-left-radius: 14px;
+      border-bottom-right-radius: 14px;
     }
     .lang-toggle {
       position: absolute;
-      top: 16px;
-      left: 20px;
-      min-width: 36px;
-      min-height: 32px;
-      padding: 3px 12px;
-      font-size: 14px;
-      border-radius: 16px;
+      top: 14px;
+      left: 16px;
+      min-width: 30px;
+      min-height: 30px;
+      padding: 3px 10px;
+      font-size: 12px;
+      border-radius: 14px;
       background-color: #EF484A !important;
       color: #fff !important;
       border: none;
       transition: background 0.3s;
       z-index: 2;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.10);
-      opacity: 0.97;
       font-weight: bold;
       letter-spacing: 1px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.10);
+      opacity: 0.97;
     }
     .lang-toggle:hover { background-color: #d93032 !important;}
     .logo-title {
@@ -68,19 +64,19 @@
       margin-bottom: 6px;
     }
     #logo {
-      height: 68px;
+      height: 46px;
       width: auto;
-      max-width: 36vw;
+      max-width: 26vw;
       object-fit: contain;
       margin: 0 8px;
     }
     #headerTitle {
       color: #fff;
-      font-size: 20px;
+      font-size: 14px;
       font-weight: bold;
       text-align: center;
       text-shadow: 0 2px 8px rgba(0,0,0,0.10);
-      margin: 10px 0 0 0;
+      margin: 7px 0 0 0;
       letter-spacing: 0.2px;
     }
     main {
@@ -93,21 +89,21 @@
     }
     .container {
       width: 100%;
-      max-width: 1050px;
+      max-width: 900px;
       margin: 22px auto 18px auto;
-      padding: 14px 12px;
+      padding: 10px 8px;
       background-color: #fff;
-      border-radius: var(--main-radius);
+      border-radius: 14px;
       box-shadow: 0 4px 10px rgba(0,0,0,0.08);
       display: flex;
-      gap: 28px;
+      gap: 20px;
       align-items: flex-start;
       justify-content: center;
-      min-height: 430px;
+      min-height: 400px;
     }
     .settings-panel {
-      flex: 1 1 350px;
-      min-width: 220px;
+      flex: 1 1 320px;
+      min-width: 160px;
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
@@ -115,7 +111,7 @@
     .controls {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 17px 15px;
+      gap: 10px 11px;
     }
     .controls > div {
       min-width: 0;
@@ -125,70 +121,69 @@
     }
     label {
       font-weight: bold;
-      margin-bottom: 4px;
-      color: #202021;
-      font-size: 1.06em;
+      margin-bottom: 3px;
+      color: #222;
+      font-size: 13px;
     }
-    /* موضع النص في سطر واحد وبدون نزول للسطر */
     .range-inline {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 7px;
       margin-bottom: 0;
       grid-column: 1 / span 2;
       flex-wrap: nowrap;
       width: 100%;
     }
     .range-inline label {
-      font-size: 13px;
+      font-size: 12px;
       color: #888;
       font-weight: normal;
       margin-bottom: 0;
-      min-width: 72px;
+      min-width: 56px;
       flex-shrink: 0;
       white-space: nowrap;
     }
     .range-inline input[type="range"] {
-      flex: 1 1 90px;
-      min-width: 45px;
-      max-width: 180px;
-      margin: 0 4px;
+      flex: 1 1 80px;
+      min-width: 40px;
+      max-width: 150px;
+      margin: 0 3px;
     }
     .range-inline .range-value {
-      width: 62px;
-      font-size: 0.97em;
+      width: 49px;
+      font-size: 0.95em;
       color: #555;
       text-align: left;
-      margin: 0 3px;
+      margin: 0 2px;
       flex-shrink: 0;
       white-space: nowrap;
     }
     select, input[type="text"], input[type="color"], input[type="range"] {
       width: 100%;
-      padding: 8px 8px;
+      padding: 6px 7px;
       border: 1px solid #ccc;
       border-radius: 6px;
-      font-size: 15px;
+      font-size: 13px;
       box-sizing: border-box;
       margin-bottom: 2px;
       background: #fbfbfb;
     }
     input[type="color"] { padding: 1px; }
     input[type="range"] {
-      margin-top: 3px;
+      margin-top: 2px;
       background: transparent;
-      accent-color: #842F91;
+      accent-color: #00AEAD;
     }
     .preview-panel {
-      flex: 2 1 570px;
-      min-width: 220px;
+      flex: 2 1 440px;
+      min-width: 150px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: flex-start;
       position: relative;
       width: 100%;
-      max-width: 640px;
+      max-width: 450px;
     }
     .canvas-preview-wrapper {
       display: flex;
@@ -198,12 +193,12 @@
       background: #f5f5f5;
       border-radius: 12px;
       box-sizing: border-box;
-      margin: 0 0 14px 0;
+      margin: 0 0 10px 0;
       box-shadow: 0 4px 14px rgba(0,0,0,0.06);
-      min-height: 160px;
+      min-height: 90px;
       min-width: 0;
       overflow-x: auto;
-      padding: 10px 0;
+      padding: 8px 0;
     }
     canvas {
       display: block;
@@ -213,42 +208,42 @@
       border-radius: 8px;
       background: #fdfcfb;
       width: 100%;
-      max-width: 400px;
+      max-width: 340px;
       height: auto !important;
-      max-height: 52vh;
+      max-height: 38vh;
       min-width: 0;
     }
     .btn-download-group { display: flex; justify-content: center; width: 100%;}
     .btn-download {
-      padding: 13px 22px;
+      padding: 8px 12vw;
       background-color: #EF484A;
       color: white;
       border: none;
       border-radius: 10px;
-      font-size: 17px;
+      font-size: 14px;
       font-weight: bold;
       cursor: pointer;
       transition: background 0.3s;
       box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-      letter-spacing: .7px;
+      letter-spacing: .5px;
     }
     .btn-download:disabled { background-color: #aaa; cursor: not-allowed;}
     .btn-download:hover:not(:disabled) { background-color: #218838;}
     @media (max-width: 900px) {
-      .container { flex-direction: column; gap: 13px; align-items: stretch; padding: 11px 2vw;}
+      .container { flex-direction: column; gap: 8px; align-items: stretch; padding: 7px 1vw;}
       .settings-panel, .preview-panel { min-width: unset; }
       .preview-panel { max-width: 100vw; }
-      .canvas-preview-wrapper { padding: 7px 0; min-height: 110px;}
+      .canvas-preview-wrapper { padding: 4px 0; min-height: 60px;}
     }
     @media (max-width: 650px) {
-      .container { padding: 6px 0;}
-      .controls { grid-template-columns: 1fr; gap: 9px;}
-      .btn-download { padding: 10px 8vw; font-size: 15px;}
-      #logo { height: 40px;}
-      #headerTitle { font-size: 13px;}
-      .lang-toggle { top: 8px; left: 10px; padding: 4px 9px; font-size: 12px;}
+      .container { padding: 3px 0;}
+      .controls { grid-template-columns: 1fr; gap: 8px;}
+      .btn-download { padding: 7px 7vw; font-size: 13px;}
+      #logo { height: 32px;}
+      #headerTitle { font-size: 11px;}
+      .lang-toggle { top: 6px; left: 6px; padding: 3px 7px; font-size: 11px;}
       canvas { max-width: 97vw; }
-      .range-inline label { min-width: 55px; font-size: 11px;}
+      .range-inline label { min-width: 40px; font-size: 10px;}
     }
   </style>
 </head>
@@ -292,7 +287,6 @@
               <option value="left">يسار</option>
             </select>
           </div>
-          <!-- موضع النص العمودي: label + range + value في سطر واحد دائماً -->
           <div class="range-inline">
             <label id="labelTextPos" for="textPosRange">موضع النص:</label>
             <input type="range" id="textPosRange" min="0" max="100" value="90" />
@@ -311,19 +305,17 @@
     </div>
   </main>
   <script>
-    // إعدادات الخط (بالعربي والإنجليزي)
     const fontSizes = {
       ar: [
-        { label: "صغير جدا", value: 40 },
-        { label: "صغير", value: 60 },
-        { label: "وسط", value: 85 },
-        { label: "كبير", value: 90 }
+        { label: "صغير", value: 18 },
+        { label: "وسط", value: 28 },
+        { label: "كبير", value: 42 }
       ],
       en: [
-        { label: "Very Small", value: 40 },  
-        { label: "Small", value: 60 },
-        { label: "Medium", value: 85 },
-        { label: "Large", value: 90 }      ]
+        { label: "Small", value: 18 },
+        { label: "Medium", value: 28 },
+        { label: "Large", value: 42 }
+      ]
     };
 
     const i18n = {
@@ -346,12 +338,12 @@
           "أسفل الصورة"
         ],
         designs: [
-          { name: "تصميم طولي 1", url: "https://i.imgur.com/ncEuRPA.png" },
-          { name: "تصميم طولي 2", url: "https://i.imgur.com/Nn1BUE3.jpeg" },
-          { name: "تصميم طولي 3", url: "https://i.imgur.com/CtXmHp0.jpeg" },
-          { name: "تصميم طولي 4", url: "https://i.imgur.com/CvwnN8v.jpeg" },
-          { name: "تصميم طولي 5", url: "https://i.imgur.com/vPkVXAM.jpeg" },
-          { name: "تصميم مربع 1", url: "https://i.imgur.com/GZ1ut6r.jpeg" }
+          { name: "تصميم 1", url: "https://i.postimg.cc/sDhbCHHw/EID-story.png" },
+          { name: "تصميم 2", url: "https://i.postimg.cc/0211jqwL/eid-5.png" },
+          { name: "تصميم 3", url: "https://i.postimg.cc/85Lwnxz6/eid-4.png" },
+          { name: "تصميم 4", url: "https://i.postimg.cc/k47tqHy8/eid-3.png" },
+          { name: "تصميم 5", url: "https://i.postimg.cc/wTny7MV9/eid-2.png" },
+          { name: "تصميم 6", url: "ضع_رابط_الصورة_الجديدة_هنا" }
         ],
         fontFamilies: [
           { name: "Cairo", value: "Cairo, Arial, sans-serif" },
@@ -380,12 +372,12 @@
           "Bottom"
         ],
         designs: [
-          { name: "Vertical Design 1", url: "https://i.imgur.com/ncEuRPA.png" },
-          { name: "Vertical Design 2", url: "https://i.imgur.com/Nn1BUE3.jpeg" },
-          { name: "Vertical Design 3", url: "https://i.imgur.com/CtXmHp0.jpeg" },
-          { name: "Vertical Design 4", url: "https://i.imgur.com/CvwnN8v.jpeg" },
-          { name: "Vertical Design 5", url: "https://i.imgur.com/vPkVXAM.jpeg" },
-          { name: "Square Design 1", url: "https://i.imgur.com/GZ1ut6r.jpeg" }
+          { name: "Design 1", url: "https://i.postimg.cc/sDhbCHHw/EID-story.png" },
+          { name: "Design 2", url: "https://i.postimg.cc/0211jqwL/eid-5.png" },
+          { name: "Design 3", url: "https://i.postimg.cc/85Lwnxz6/eid-4.png" },
+          { name: "Design 4", url: "https://i.postimg.cc/k47tqHy8/eid-3.png" },
+          { name: "Design 5", url: "https://i.postimg.cc/wTny7MV9/eid-2.png" },
+          { name: "Design 6", url: "ضع_رابط_الصورة_الجديدة_هنا" }
         ],
         fontFamilies: [
           { name: "Montserrat", value: "Montserrat, Arial, sans-serif" },
@@ -425,10 +417,10 @@
         currentLang === 'ar' ? 'row-reverse' : 'row';
 
       if(currentLang === 'ar') {
-        document.getElementById('langBtn').style.left = '20px';
+        document.getElementById('langBtn').style.left = '16px';
         document.getElementById('langBtn').style.right = 'auto';
       } else {
-        document.getElementById('langBtn').style.right = '20px';
+        document.getElementById('langBtn').style.right = '16px';
         document.getElementById('langBtn').style.left = 'auto';
       }
 
@@ -437,18 +429,16 @@
       alignSelect.options[1].text = lang.alignOptions[1];
       alignSelect.options[2].text = lang.alignOptions[2];
 
-      // حجم الخط
       const fontSizeSelect = document.getElementById("fontSize");
       fontSizeSelect.innerHTML = "";
       fontSizes[currentLang].forEach((opt, idx) => {
         const option = document.createElement("option");
         option.value = opt.value;
         option.text = opt.label;
-        if (idx === 1) option.selected = true; // الوسط افتراضي
+        if (idx === 1) option.selected = true;
         fontSizeSelect.appendChild(option);
       });
 
-      // نوع الخط
       const fontSelect = document.getElementById("fontFamily");
       fontSelect.innerHTML = "";
       lang.fontFamilies.forEach(font => {
@@ -458,7 +448,6 @@
         fontSelect.appendChild(opt);
       });
 
-      // موضع النص الافتراضي
       updateTextPosValue();
     }
 
@@ -476,12 +465,11 @@
     }
 
     function updateTextPosValue() {
-      // عرض التسمية بجانب السلايدر
       const val = document.getElementById('textPosRange').value;
       let posLabel = '';
-      if (val <= 20) posLabel = i18n[currentLang].textPosLabels[0]; // أعلى
-      else if (val >= 80) posLabel = i18n[currentLang].textPosLabels[2]; // أسفل
-      else posLabel = i18n[currentLang].textPosLabels[1]; // وسط
+      if (val <= 20) posLabel = i18n[currentLang].textPosLabels[0];
+      else if (val >= 80) posLabel = i18n[currentLang].textPosLabels[2];
+      else posLabel = i18n[currentLang].textPosLabels[1];
       document.getElementById('textPosValue').innerText = posLabel;
     }
 
@@ -505,9 +493,9 @@
     function drawPreview() {
       const canvas = document.getElementById("canvas");
       if(!naturalWidth || !naturalHeight) return;
-      // معاينة بحجم متناسب فقط
-      const maxW = Math.min(window.innerWidth * 0.93, 400, naturalWidth);
-      const maxH = Math.min(window.innerHeight * 0.55, 480, naturalHeight);
+      // عرض مناسب للمعاينة
+      const maxW = Math.min(window.innerWidth * 0.93, 340, naturalWidth);
+      const maxH = Math.min(window.innerHeight * 0.38, 320, naturalHeight);
       let scale = Math.min(maxW / naturalWidth, maxH / naturalHeight, 1);
       canvas.width = naturalWidth;
       canvas.height = naturalHeight;
@@ -519,15 +507,13 @@
       drawTextOnContext(ctx, naturalWidth, naturalHeight);
     }
 
-    // رسم النص مع التحكم بالموضع الرأسي
     function drawTextOnContext(ctx, cWidth, cHeight) {
       const name = document.getElementById("nameLabel").value.trim();
       const fontSize = parseInt(document.getElementById("fontSize").value, 10);
       const fontFamily = document.getElementById("fontFamily").value;
       const fontColor = document.getElementById("fontColor").value;
       const align = document.getElementById("fontAlign").value;
-      // موضع النص العمودي:
-      const posRange = document.getElementById("textPosRange").value; // من 0 (أعلى) إلى 100 (أسفل)
+      const posRange = document.getElementById("textPosRange").value;
       const padding = 40;
       const y = padding + ((cHeight - 2 * padding) * (posRange / 100));
       ctx.font = `${fontSize}px ${fontFamily}`;
@@ -547,14 +533,12 @@
         alert(currentLang === "ar" ? "يرجى الانتظار حتى يتم تحميل التصميم والمعاينة بالكامل." : "Please wait until the design and preview are fully loaded.");
         return;
       }
-      // نفس دقة الصورة الأصلية
       const downloadCanvas = document.createElement("canvas");
       downloadCanvas.width = img.naturalWidth;
       downloadCanvas.height = img.naturalHeight;
       const ctx = downloadCanvas.getContext("2d");
       ctx.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight);
 
-      // موضع النص بنفس الطريقة
       const name = document.getElementById("nameLabel").value.trim();
       const fontSize = parseInt(document.getElementById("fontSize").value, 10);
       const fontFamily = document.getElementById("fontFamily").value;
