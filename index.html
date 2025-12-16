@@ -1,657 +1,3040 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+
+<html data-theme="dark" dir="rtl" lang="ar">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>سياسة اللباس وإرشادات التواصل | Dress Code & Professional Guidelines</title>
-  <style>
-    :root{
-      --bg:#f6f7fb;
-      --card:#ffffff;
-      --ink:#0B1326; /* T&S dark blue */
-      --muted:#6b7280;
-      --primary:#3B1745; /* T&S purple */
-      --accent:#00B4B0;  /* T&S turquoise */
-      --border:#e5e7eb;
-      --radius:14px;
-      --shadow: 0 10px 24px rgba(2,6,23,.06),0 2px 8px rgba(2,6,23,.04);
+<meta charset="utf-8"/>
+<title>T&amp;S Brand Hub</title>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="dark" name="color-scheme"/>
+<link href="assets/icons/ts-favicon.svg" rel="icon" type="image/svg+xml"/>
+<style>
+    @font-face {
+      font-family: "Baloo_Bhaijaan";
+      src:
+        url("assets/fonts/Baloo_Bhaijaan_EN_AR.woff2") format("woff2"),
+        url("assets/fonts/Baloo_Bhaijaan_EN_AR.ttf") format("truetype");
+      font-display: swap;
     }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Tahoma,Arial,"Noto Sans",sans-serif;}
-    .wrap{max-width:1100px;margin:32px auto;padding:0 16px}
-    header.hero{background:linear-gradient(135deg,rgba(59,23,69,.97),rgba(11,19,38,.94));border-radius:var(--radius);padding:28px 24px;color:#fff;box-shadow:var(--shadow)}
-    .hero-top{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
-    .logo{display:flex;align-items:center;gap:10px}
-    .logo img{height:48px;width:auto;display:block}
-    .hero-titles{flex:1;min-width:240px}
-    .hero h1{margin:0 0 6px;font-size:24px}
-    .hero p{margin:0;opacity:.9}
 
-    .toolbar{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
-    .toolbar .group{display:flex;gap:8px;align-items:center;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);padding:8px 10px;border-radius:999px}
-    .btn{appearance:none;border:1px solid var(--border);background:var(--card);padding:8px 12px;border-radius:10px;cursor:pointer;color:var(--ink);font-weight:600}
-    .btn[aria-pressed="true"], .btn.primary{background:var(--accent);border-color:transparent;color:#fff}
-    .btn.alt{background:#fff;border-color:#d1d5db}
-    .btn.sm{padding:6px 10px;font-size:12px}
+    :root {
+      --primary-1: #0a0f21;
+      --primary-2: #3b1745;
+      --primary-3: #0a0f21;
+      --accent-1: #05adad;
+      --accent-2: #f0474a;
+      --accent-3: #113d8f;
+      --accent-4: #f0474a;
+      --text-primary: #f5f5ff;
+      --text-secondary: #c0c4d6;
+      --glass-bg: rgba(10, 15, 33, 0.78);
+      --glass-border: rgba(255, 255, 255, 0.06);
+      --radius-lg: 20px;
+      --radius-pill: 999px;
+      --transition-fast: 0.18s ease-out;
+      --transition-med: 0.25s ease-out;
+      --font-scale: 1;
+    }
 
-    .toc{margin-top:12px;display:flex;flex-wrap:wrap;gap:8px}
-    .toc a{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border:1px solid var(--border);background:#fff;border-radius:999px;font-size:13px;color:var(--ink);text-decoration:none}
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      min-height: 100vh;
+      margin: 0;
+      font-family: "Baloo_Bhaijaan", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text-primary);
+      background:
+        radial-gradient(circle at top left, rgba(140, 64, 255, 0.4), transparent 55%),
+        radial-gradient(circle at bottom right, rgba(5, 173, 173, 0.35), transparent 55%),
+        linear-gradient(145deg, #050710, #050917, #02030a);
+      display: flex;
+      justify-content: center;
+    }
+    body.lang-ar { direction: rtl; text-align: right; }
+    body.lang-en { direction: ltr; text-align: left; }
 
-    .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px;margin-top:18px}
-    .card{grid-column:span 12;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px}
-    .card h2{margin:0 0 6px;font-size:20px}
-    .card p.lead{margin:0 0 12px;color:var(--muted)}
+    .page-wrapper { width: 100%; max-width: 1200px; padding: 24px 16px 32px; }
+    @media (min-width: 768px) { .page-wrapper { padding: 32px 24px 40px; } }
 
-    .two{grid-column:span 12}
-    @media(min-width:900px){.two{grid-column:span 6}}
+    .glass-card {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-lg);
+      box-shadow: 0 16px 32px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.02);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
 
-    .split{display:grid;grid-template-columns:1fr;gap:12px}
-    @media(min-width:700px){.split{grid-template-columns:1fr 1fr}}
+    .main-header { display: flex; flex-direction: column; gap: 20px; margin-bottom: 18px; }
+    .header-top { display: flex; flex-wrap: wrap; gap: 14px; padding: 12px 16px; align-items: center; }
+    .logo-box {
+      width: 60px; height: 60px; border-radius: 18px;
+      background: radial-gradient(circle at 10% 0%, rgba(140, 64, 255, 0.6), transparent 55%), rgba(10, 15, 33, 0.92);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; box-shadow: 0 15px 30px rgba(0, 0, 0, 0.7);
+      cursor: pointer;
+    }
+    .logo-box img { max-width: 70%; max-height: 70%; display: block; }
+    .header-text { flex: 1 1 220px; display: flex; flex-direction: column; gap: 4px; }
+    .hub-tag {
+      display: inline-flex; align-items: center; gap: 5px; border-radius: var(--radius-pill);
+      padding: 1px 10px; font-size: calc(11px * var(--font-scale)); letter-spacing: 0.05em; text-transform: uppercase;
+      background: linear-gradient(120deg, rgba(140, 64, 255, 0.4), rgba(5, 173, 173, 0.3));
+      color: #ffffff; border: 1px solid rgba(255, 255, 255, 0.22); max-width: 180px; white-space: nowrap;
+    }
+    .hub-tag-dot { width: 6px; height: 6px; border-radius: 50%; background: #3bffca; box-shadow: 0 0 12px rgba(59, 255, 202, 0.8); }
+    .header-title { font-size: calc(21px * var(--font-scale)); font-weight: 700; line-height: 1.35; }
+    @media (min-width: 768px) { .header-title { font-size: calc(23px * var(--font-scale)); } }
+    .header-subtitle { font-size: calc(15px * var(--font-scale)); color: var(--text-secondary); max-width: 560px; }
+    .header-subtitle strong { font-weight: 600; color: #ffffff; }
+    .header-lang-nav { display: flex; flex-direction: column; gap: 10px; margin-top: 6px; width: 100%; }
+    @media (min-width: 768px) { .header-lang-nav { flex-direction: row; align-items: center; justify-content: space-between; } }
 
-    .pill{display:inline-flex;align-items:center;gap:8px;background:#f1f5f9;border:1px solid var(--border);color:#111827;padding:6px 10px;border-radius:999px;font-size:12px;font-weight:700}
+    .lang-toggle {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 4px 6px 4px 4px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: linear-gradient(120deg, rgba(13, 41, 92, 0.9), rgba(17, 61, 143, 0.9));
+      align-self: flex-end;
+    }
+    body.lang-en .lang-toggle { align-self: flex-start; }
+    @media (min-width: 768px) { .lang-toggle { align-self: auto; } }
+    .lang-label { font-size: calc(13px * var(--font-scale)); color: var(--text-secondary); white-space: nowrap; padding-inline: 4px; }
+    .lang-pill {
+      border-radius: var(--radius-pill); border: none; padding: 4px 10px;
+      font-size: calc(13px * var(--font-scale)); font-weight: 600; cursor: pointer;
+      background: transparent; color: #e0e2ff;
+      transition: background var(--transition-fast), color var(--transition-fast), transform 0.1s ease-out;
+    }
+    .lang-pill.active { background: #f5f5ff; color: #0a0f21; box-shadow: 0 0 0 1px rgba(10, 15, 33, 0.8), 0 8px 18px rgba(0, 0, 0, 0.7); }
+    .lang-pill:active { transform: translateY(1px); }
 
-    .list{margin:10px 0 0;padding:0;list-style:none}
-    .list li{display:flex;gap:10px;align-items:flex-start;padding:8px 0;border-top:1px dashed var(--border)}
-    .list li:first-child{border-top:0}
-    .list .dot{flex:0 0 10px;height:10px;border-radius:50%;margin-top:6px;background:var(--accent)}
+    .font-size-control {
+      display: inline-flex; align-items: center; gap: 6px; padding: 4px 8px;
+      border-radius: var(--radius-pill); border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(10, 15, 33, 0.85); font-size: calc(13px * var(--font-scale));
+    }
+    .font-size-btn {
+      min-width: 28px; height: 24px; border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      background: rgba(13, 41, 92, 0.95); color: #ffffff;
+      font-family: inherit; font-size: calc(13px * var(--font-scale));
+      cursor: pointer; display: inline-flex; align-items: center; justify-content: center; padding: 0 6px;
+      transition: background 0.15s ease-out, transform 0.08s ease-out, box-shadow 0.15s ease-out;
+    }
+    .font-size-btn:hover { background: rgba(17, 61, 143, 1); box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6); }
+    .font-size-btn:active { transform: translateY(1px); box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6); }
 
-    .hint{color:var(--muted);font-size:13px}
+    /* QUICK NAV */
+    .quick-nav { padding: 10px 10px; }
+    .quick-nav-title { font-size: calc(13px * var(--font-scale)); color: var(--text-secondary); margin-inline: 4px; margin-bottom: 6px; }
+    .chip-row { display: flex; flex-wrap: nowrap; gap: 6px; overflow-x: auto; padding-bottom: 4px; scrollbar-width: thin; }
+    .chip-row::-webkit-scrollbar { height: 4px; }
+    .chip-row::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.22); border-radius: 999px; }
+    .chip { flex-shrink: 0; display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; font-size: calc(13px * var(--font-scale)); border-radius: var(--radius-pill); border: 1px solid rgba(255, 255, 255, 0.08); background: rgba(17, 61, 143, 0.25); color: var(--text-secondary); text-decoration: none; transition: background var(--transition-fast), color var(--transition-fast), transform 0.1s ease-out, border-color var(--transition-fast); }
+    .chip-dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(5, 173, 173, 0.95); box-shadow: 0 0 8px rgba(5, 173, 173, 0.9); }
+    .chip:hover { background: rgba(15, 56, 110, 0.7); color: #ffffff; border-color: rgba(255, 255, 255, 0.35); }
 
-    .flow{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
-    .flow .step{display:flex;align-items:center;gap:8px;background:#f8fafc;border:1px solid var(--border);border-radius:10px;padding:8px 10px}
-    .flow .arrow{opacity:.6}
+    /* GRID LAYOUT */
+    .content-grid { display: grid; grid-template-columns: 1fr; gap: 18px; margin-top: 12px; margin-bottom: 18px; }
+    @media (min-width: 960px) { .content-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .card-span-2 { grid-column: 1 / -1; } }
 
-    /* GALLERIES (stable flex layout) */
-    .gallery{margin-top:12px;display:flex;flex-wrap:wrap;gap:12px}
-    .gallery figure{margin:0;background:#fff;border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow);overflow:hidden;max-width:220px}
-    .gallery img{display:block;width:100%;height:150px;object-fit:cover;cursor:zoom-in}
-    .gallery figcaption{padding:8px 10px;font-size:12px;color:var(--muted)}
+    /* CARDS */
+    .card { padding: 16px 16px 14px; }
+    @media (min-width: 768px) { .card { padding: 18px 18px 16px; } }
+    .card-header { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 8px; }
+    .card-title { font-size: calc(16px * var(--font-scale)); font-weight: 600; display: flex; flex-wrap: wrap; gap: 4px; align-items: baseline; }
+    .card-kicker { font-size: calc(13px * var(--font-scale)); color: var(--accent-1); text-transform: uppercase; letter-spacing: 0.08em; }
+    .card-body { font-size: calc(14px * var(--font-scale)); color: var(--text-secondary); display: flex; flex-direction: column; gap: 8px; }
+    .card-body p { line-height: 1.6; }
 
-    /* Comm section: gallery left, content right */
-    .comm-top{display:flex;gap:16px;align-items:flex-start;flex-wrap:wrap}
-    .comm-gallery{flex:0 0 260px;display:flex;flex-direction:column;gap:12px}
-    .comm-gallery img{width:100%;height:auto;border-radius:var(--radius);border:1px solid var(--border);box-shadow:var(--shadow);object-fit:cover}
-    .comm-body{flex:1;min-width:320px}
+    /* Keep bullets inside boxes */
+    .usage-list, .checklist-column {
+      padding: 14px 18px;
+      border-radius: 12px;
+      border: none;
+      background: rgba(10, 15, 33, 0.9);
+      list-style-position: inside;
+    }
+    .usage-list li,
+    .checklist-column li {
+      margin-block: 4px;
+    }
 
-    /* Lightbox */
-    .lightbox{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;align-items:center;justify-content:center;z-index:1000}
-    .lightbox.open{display:flex}
-    .lightbox img{max-width:90vw;max-height:90vh;border-radius:12px;box-shadow:var(--shadow);background:#fff}
+    .badge-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+    .badge { font-size: calc(12px * var(--font-scale)); padding: 3px 8px; border-radius: var(--radius-pill); border: 1px solid rgba(255, 255, 255, 0.12); background: radial-gradient(circle at 0 0, rgba(140, 64, 255, 0.45), transparent 60%), rgba(10, 15, 33, 0.9); color: #ffffff; white-space: nowrap; }
+    .badge-muted { background: rgba(10, 15, 33, 0.8); color: var(--text-secondary); }
 
-    footer{margin:24px 0;color:var(--muted);font-size:13px}
+    .btn-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 6px; }
+    .btn {
+      position: relative; display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+      border-radius: 999px; font-size: calc(13px * var(--font-scale)); padding: 6px 12px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      background: linear-gradient(135deg, rgba(140, 64, 255, 0.9), rgba(17, 61, 143, 0.95));
+      color: #ffffff; text-decoration: none; cursor: pointer;
+      transition: box-shadow var(--transition-med), transform 0.1s ease-out, background var(--transition-med), border-color var(--transition-med);
+      white-space: nowrap;
+    }
+    .btn span.icon { font-size: calc(15px * var(--font-scale)); opacity: 0.9; }
+    .btn:hover { box-shadow: 0 10px 28px rgba(0, 0, 0, 0.7); transform: translateY(0); }
+    .btn:active { transform: translateY(0); box-shadow: 0 6px 18px rgba(0, 0, 0, 0.7); }
+    .btn-ghost,
+    .btn-outline-accent {
+      background: linear-gradient(135deg, rgba(140, 64, 255, 0.9), rgba(17, 61, 143, 0.95));
+      border-color: rgba(255, 255, 255, 0.18);
+      color: #ffffff;
+    }
+    .btn-ghost:hover,
+    .btn-outline-accent:hover {
+      box-shadow: 0 0 0 1px rgba(140, 64, 255, 0.45), 0 0 18px rgba(11, 17, 40, 0.85);
+      transform: translateY(-1px);
+    }
 
-    .print{position:fixed;inset-inline-end:16px;bottom:16px}
+    ul { padding-inline-start: 18px; }
+    body.lang-ar ul { padding-inline-start: 0; padding-inline-end: 18px; }
+    li { margin-bottom: 4px; line-height: 1.6; }
+    .two-column-list { display: grid; grid-template-columns: 1fr; gap: 8px; }
+    @media (min-width: 640px) { .two-column-list { grid-template-columns: 1fr 1fr; } }
+    .usage-two-column { gap: 12px; }
+    .usage-col { display: flex; flex-direction: column; gap: 6px; }
+    .usage-list { margin-top: 2px; width: 100%; }
+    .list-label { font-size: calc(13px * var(--font-scale)); font-weight: 600; color: #ffffff; margin-bottom: 2px; }
+    .muted { color: var(--text-secondary); font-size: calc(13px * var(--font-scale)); }
 
-    /* language helpers */
-    [data-lang="ar"]{direction:rtl}
-    [data-lang="en"]{direction:ltr}
+    /* Checklist grid two columns */
+    .checklist-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-top: 12px; }
 
-    .tag{display:inline-block;border:1px solid var(--border);background:#fff;border-radius:8px;padding:4px 8px;font-size:12px;color:#muted}
-    .kbd{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;font-size:12px;background:#0b1326; color:#fff; padding:2px 6px; border-radius:6px}
+    /* Palette */
+    .palette-toggle-wrapper { margin-top: 4px; margin-bottom: 8px; }
+    .palette-panel { margin-top: 8px; border-radius: 16px; border: 1px dashed rgba(255, 255, 255, 0.18); background: rgba(1, 4, 18, 0.92); padding: 10px 10px 8px; display: none; }
+    .palette-panel.open { display: block; }
+    .palette-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin-top: 6px; }
+    .palette-item { border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.08); padding: 8px; background: linear-gradient(135deg, rgba(10, 15, 33, 0.9), rgba(17, 61, 143, 0.8)); display: flex; flex-direction: column; gap: 4px; font-size: calc(13px * var(--font-scale)); }
+    .swatch { height: 42px; border-radius: 9px; border: 1px solid rgba(255, 255, 255, 0.25); box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.3); }
+    .palette-name { font-weight: 600; color: #ffffff; margin-top: 6px; }
+    .palette-desc { font-size: calc(12px * var(--font-scale)); color: var(--text-secondary); }
+    .palette-hex-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-top: 2px; }
+    .palette-hex { font-family: "Baloo_Bhaijaan", system-ui, sans-serif; font-size: calc(13px * var(--font-scale)); color: var(--text-secondary); }
+    .copy-btn { border-radius: 999px; border: none; padding: 4px 9px; font-size: calc(13px * var(--font-scale)); cursor: pointer; background: rgba(5, 173, 173, 0.14); color: #dbfeff; display: inline-flex; align-items: center; gap: 4px; transition: background var(--transition-fast), transform 0.08s ease-out; }
+    .copy-btn span.icon { font-size: calc(14px * var(--font-scale)); }
 
-    .noscript{background:#fff3cd;border:1px solid #ffe49c;color:#7a5b00;padding:10px 12px;border-radius:10px;margin-top:10px}
+    /* Asset grid */
+    .asset-grid { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 6px; }
+    .asset-tile, .asset-tile-group {
+      flex: 1 1 150px; min-width: 150px; max-width: 100%;
+      display: flex; align-items: center; gap: 8px; padding: 8px 9px;
+      border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.14);
+      background: rgba(255,255,255,.06) !important;
+      cursor: pointer; text-align: start;
+      transition: transform 0.1s ease-out, box-shadow var(--transition-med), border-color var(--transition-fast), background var(--transition-fast);
+    }
+    .asset-tile:hover, .asset-tile-group:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 12px 26px rgba(0, 0, 0, 0.82);
+      border-color: rgba(5, 173, 173, 0.8);
+      background: radial-gradient(circle at 0 0, rgba(5, 173, 173, 0.35), transparent 55%), rgba(10, 15, 33, 0.98);
+    }
+    .asset-icon { width: 32px; height: 32px; border-radius: 10px; background: rgba(0, 0, 0, 0.42); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 17px; }
+    .asset-text { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+    .asset-title { font-size: calc(14px * var(--font-scale)); font-weight: 600; color: #ffffff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .asset-meta { font-size: calc(12px * var(--font-scale)); color: var(--text-secondary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
-    /* Hide the View toggle group but keep logic intact */
-    .toolbar .group[aria-label="View"]{display:none}
-  </style>
+    /* PREVIEW MODAL */
+    .preview-overlay {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      background: rgba(0, 0, 0, 0.78);
+      z-index: 1000;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease-out;
+    }
+
+    .preview-overlay.visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .preview-dialog {
+      width: min(96vw, 840px);
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      background: rgba(7, 10, 24, 0.98);
+      border-radius: 18px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow:
+        0 28px 60px rgba(0, 0, 0, 0.9),
+        0 0 0 1px rgba(5, 173, 173, 0.16);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      padding: 14px 16px 12px;
+    }
+
+    .preview-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    .preview-title-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .preview-title {
+      font-size: calc(16px * var(--font-scale));
+      font-weight: 600;
+      color: #ffffff;
+    }
+
+    .preview-sub {
+      font-size: calc(13px * var(--font-scale));
+      color: var(--text-secondary);
+    }
+
+    .preview-close-btn {
+      width: 28px;
+      height: 28px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      background: rgba(10, 15, 33, 0.95);
+      color: #ffffff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: calc(15px * var(--font-scale));
+      transition: background var(--transition-fast), transform 0.1s ease-out,
+        box-shadow var(--transition-fast);
+      flex-shrink: 0;
+    }
+
+    .preview-body {
+      flex: 1;
+      min-height: 220px;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: #050713;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .preview-body.preview-body--group {
+      align-items: center;
+      justify-content: center;
+      padding: 20px 16px;
+      overflow-y: auto;
+    }
+
+    .preview-group-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 12px;
+      width: 100%;
+    }
+
+    .preview-group-item {
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      background: radial-gradient(circle at 0 0, rgba(140, 64, 255, 0.4), transparent 55%),
+        rgba(10, 15, 33, 0.98);
+      padding: 12px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: calc(14px * var(--font-scale));
+    }
+
+    .preview-group-title {
+      font-weight: 600;
+      color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .preview-group-desc {
+      font-size: calc(13px * var(--font-scale));
+      color: var(--text-secondary);
+    }
+
+    .preview-group-buttons {
+      margin-top: 8px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+
+    .preview-body img {
+      max-width: 100%;
+      max-height: 100%;
+      display: block;
+    }
+
+    .preview-body iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      background: #050713;
+    }
+
+    .preview-actions {
+      margin-top: 8px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: flex-end;
+      align-items: center;
+    }
+
+    .preview-hint {
+      font-size: calc(12px * var(--font-scale));
+      color: var(--text-secondary);
+      margin-top: 4px;
+    }
+
+    /* Slider */
+    .slider-wrap { display: flex; flex-direction: column; gap: 12px; width: 100%; }
+    .slider-viewport {
+      width: 100%;
+      min-height: 260px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      background: #0a0f21;
+    }
+    .slider-viewport img { max-width: 100%; max-height: 420px; display: block; }
+    .slider-controls { display: flex; gap: 8px; justify-content: center; }
+    .slider-bullets { display: flex; gap: 6px; justify-content: center; }
+    .slider-bullets button { width: 10px; height: 10px; border-radius: 50%; border: none; background: rgba(255, 255, 255, 0.25); cursor: pointer; }
+    .slider-bullets button.active { background: var(--accent-1); }
+
+    /* LANGUAGE HANDLING */
+    .tr-ar { display: inline; }
+    .tr-en { display: none !important; }
+    body.lang-en .tr-ar { display: none !important; }
+    body.lang-en .tr-en { display: inline !important; }
+
+    /* FOOTER */
+    .site-footer {
+      padding: 12px 16px 10px;
+      font-size: calc(13px * var(--font-scale));
+      color: var(--text-secondary);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .footer-main {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      width: 100%;
+      text-align: center;
+    }
+    .footer-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+    }
+    body.lang-ar .footer-main {
+      direction: rtl;
+    }
+    .footer-dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.4);
+    }
+
+    /* Voice block boxes */
+    .voice-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 12px;
+      margin-top: 10px;
+    }
+    @media (min-width: 720px) {
+      .voice-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+    .voice-block {
+      background: rgba(10, 15, 33, 0.95);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 14px;
+      padding: 12px 14px;
+    }
+
+/* ============================================================
+   Glass Vibe Overlay (aligned with brand-hub-glass look)
+   Keeps ALL original content + JS behavior intact.
+   ============================================================ */
+:root{
+  --ts-ink:#0A0F21;
+  --ts-navy:#0D295C;
+  --ts-plum:#3B1745;
+  --ts-teal:#05ADAD;
+  --ts-blue:#113D8F;
+  --ts-violet:#8C40FF;
+  --ts-red:#F0474A;
+
+  --stroke: rgba(255,255,255,.12);
+  --stroke-2: rgba(255,255,255,.18);
+
+  --text-primary: rgba(232, 245, 255, .92);
+  --text-secondary: rgba(205, 226, 255, .72);
+  --text-tertiary: rgba(190, 214, 255, .56);
+
+  --glass-bg: rgba(255,255,255,.06);
+  --glass-bg-2: rgba(255,255,255,.08);
+  --glass-border: var(--stroke);
+
+  --radius-lg: 22px;
+  --radius-md: 18px;
+  --radius-sm: 14px;
+
+  --shadow: 0 18px 60px rgba(0,0,0,.35);
+  --shadow-soft: 0 10px 30px rgba(0,0,0,.22);
+
+  --blur: 18px;
+  --container: 1180px;
+
+  /* Re-bind legacy tokens used in Brand-hub */
+  --primary-1: var(--ts-ink);
+  --primary-2: var(--ts-plum);
+  --primary-3: var(--ts-ink);
+  --accent-1: var(--ts-teal);
+  --accent-2: var(--ts-red);
+  --accent-3: var(--ts-blue);
+  --accent-4: var(--ts-red);
+}
+
+/* Background */
+html, body{
+  background:
+    radial-gradient(1100px 750px at 18% 12%, rgba(5,173,173,.18) 0%, rgba(5,173,173,0) 60%),
+    radial-gradient(900px 650px at 78% 12%, rgba(140,64,255,.16) 0%, rgba(140,64,255,0) 62%),
+    radial-gradient(900px 650px at 60% 92%, rgba(240,71,74,.10) 0%, rgba(240,71,74,0) 60%),
+    linear-gradient(180deg, rgba(10,15,33,1) 0%, rgba(8,12,28,1) 55%, rgba(6,9,22,1) 100%) !important;
+  color: var(--text-primary) !important;
+}
+
+/* Layout container */
+.page-wrapper{
+  width: min(var(--container), calc(100% - 32px)) !important;
+  margin: 0 auto !important;
+}
+
+/* Header: sticky + premium blur */
+.main-header{
+  position: sticky;
+  top: 12px;
+  z-index: 60;
+  margin-top: 14px;
+}
+.main-header::before{
+  content:"";
+  position:absolute;
+  inset: -14px -14px auto -14px;
+  height: calc(100% + 24px);
+  z-index:-1;
+  pointer-events:none;
+  background: linear-gradient(180deg, rgba(0,0,0,.22), rgba(0,0,0,0));
+  border-radius: calc(var(--radius-lg) + 10px);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+/* Glass cards */
+.glass-card{
+  background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.05)) !important;
+  border: 1px solid var(--stroke) !important;
+  box-shadow: var(--shadow-soft) !important;
+  border-radius: var(--radius-lg) !important;
+  backdrop-filter: blur(var(--blur)) saturate(130%) !important;
+  -webkit-backdrop-filter: blur(var(--blur)) saturate(130%) !important;
+}
+.card{
+  border-radius: var(--radius-lg) !important;
+}
+.card:hover{
+  transform: translateY(-2px) !important;
+  border-color: var(--stroke-2) !important;
+  box-shadow: 0 18px 48px rgba(0,0,0,.28) !important;
+}
+
+/* Typography & hierarchy */
+.header-title{
+  letter-spacing: .2px !important;
+}
+.card-kicker{
+  color: var(--ts-teal) !important;
+  font-weight: 800 !important;
+}
+.card-title{
+  color: var(--text-primary) !important;
+}
+.muted, .header-subtitle, .palette-desc, .palette-name + .palette-desc{
+  color: var(--text-secondary) !important;
+}
+
+/* Chips / quick nav */
+.chip{
+  border: 1px solid var(--stroke) !important;
+  background: rgba(255,255,255,.05) !important;
+  box-shadow: 0 10px 26px rgba(0,0,0,.12) !important;
+}
+.chip:hover{
+  background: rgba(255,255,255,.08) !important;
+  border-color: var(--stroke-2) !important;
+}
+
+/* Buttons */
+.btn{
+  border: 1px solid var(--stroke) !important;
+  background: rgba(255,255,255,.06) !important;
+  color: var(--text-primary) !important;
+  border-radius: 14px !important;
+  box-shadow: 0 10px 26px rgba(0,0,0,.12) !important;
+  transition: transform .18s ease, background .18s ease, border-color .18s ease, box-shadow .18s ease !important;
+}
+.btn:hover{
+  transform: translateY(-1px) !important;
+  background: rgba(255,255,255,.08) !important;
+  border-color: var(--stroke-2) !important;
+}
+.btn:active{transform: translateY(0) !important;}
+.btn:focus{
+  outline: none !important;
+  box-shadow: 0 0 0 4px rgba(5,173,173,.22), 0 10px 26px rgba(0,0,0,.18) !important;
+}
+.btn-ghost{
+  background: transparent !important;
+  box-shadow: none !important;
+}
+.copy-btn{
+  border: 1px solid var(--stroke) !important;
+  background: rgba(255,255,255,.06) !important;
+  color: var(--text-primary) !important;
+  border-radius: 12px !important;
+}
+.copy-btn:hover{
+  background: rgba(255,255,255,.08) !important;
+  border-color: var(--stroke-2) !important;
+}
+
+/* Palette swatches & code */
+.palette-hex{
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !important;
+  color: var(--text-primary) !important;
+}
+
+/* Overlay dialogs */
+.preview-overlay .preview-dialog{
+  background: rgba(0,0,0,.35) !important;
+  border: 1px solid var(--stroke) !important;
+  box-shadow: 0 18px 60px rgba(0,0,0,.35) !important;
+  backdrop-filter: blur(16px) saturate(130%) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(130%) !important;
+}
+.preview-close-btn{
+  border-color: var(--stroke) !important;
+}
+
+/* Subtle separators */
+hr, .divider, .card-header{
+  border-color: rgba(255,255,255,.08) !important;
+}
+
+/* Reduce overly-bright whites while keeping readability */
+code{
+  background: rgba(255,255,255,.06) !important;
+  border: 1px solid rgba(255,255,255,.10) !important;
+  color: rgba(232,245,255,.92) !important;
+}
+
+/* Print keeps original print rules (if any) + improves contrast */
+@media print{
+  .main-header::before{display:none !important;}
+  html, body{background:#fff !important; color:#111 !important;}
+  .glass-card{background:#fff !important; color:#111 !important; box-shadow:none !important; border:1px solid rgba(0,0,0,.12) !important;}
+  .chip, .btn, .copy-btn{display:none !important;}
+}
+
+
+
+/* ========== Icon system (aligned with Glass UI) ========== */
+.icon{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width: 18px;
+  height: 18px;
+  color: rgba(5,173,173,.92);
+  opacity: 1;
+}
+.icon svg{ width:18px; height:18px; }
+
+.asset-icon{
+  background: linear-gradient(135deg, rgba(5,173,173,.18), rgba(140,64,255,.10));
+  border: 1px solid rgba(255,255,255,.14);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.10);
+  color: rgba(255,255,255,.92);
+}
+.asset-icon svg{ width:18px; height:18px; opacity: .98; }
+.asset-icon svg.is-dot{ stroke: none; }
+.asset-icon svg.is-dot circle{ fill: currentColor; }
+
+    /* ===============================
+       Icon color harmony (fix "shouting" icons)
+       =============================== */
+    .btn, .pill, .seg-btn, .chip-btn, .download-btn, .asset-btn{
+      color: rgba(255,255,255,.86);
+    }
+    .btn .icon, .btn .btn-ic, .btn svg, .pill svg, .seg-btn svg, .chip-btn svg, .download-btn svg, .asset-btn svg{
+      color: rgba(255,255,255,.82);
+    }
+    .btn svg, .pill svg, .seg-btn svg, .chip-btn svg, .download-btn svg, .asset-btn svg{
+      width: 18px;
+      height: 18px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      opacity: .92;
+      transition: color .18s ease, opacity .18s ease, transform .18s ease;
+    }
+    /* Small icon square / trailing icon containers */
+    .btn .ic, .btn .icon-box, .btn .btn-icon, .btn .icon-wrap, .btn .mini-ic{
+      color: rgba(255,255,255,.82);
+      border-color: rgba(255,255,255,.16);
+      background: rgba(255,255,255,.05);
+    }
+    /* Hover: gentle teal, not neon */
+    .btn:hover svg, .pill:hover svg, .seg-btn:hover svg, .chip-btn:hover svg, .download-btn:hover svg, .asset-btn:hover svg{
+      color: rgba(5,173,173,.90);
+      opacity: 1;
+      transform: translateY(-.5px);
+    }
+    /* Active/selected states keep readable */
+    .btn.primary svg, .btn.primary .ic, .btn.primary .btn-icon, .btn.primary .icon-wrap{
+      color: rgba(255,255,255,.92);
+      opacity: .95;
+    }
+
+
+    .btn svg [fill="currentColor"],
+    .pill svg [fill="currentColor"],
+    .seg-btn svg [fill="currentColor"],
+    .chip-btn svg [fill="currentColor"],
+    .download-btn svg [fill="currentColor"],
+    .asset-btn svg [fill="currentColor"]{
+      fill: none;
+    }
+
+
+    /* ===============================
+       Unified button styling (match "Icon Pack (ZIP)" button)
+       =============================== */
+    /* Treat these as buttons visually */
+    .asset-tile, .asset-tile-group,
+    .copy-btn, .font-size-btn, .lang-pill,
+    .preview-close-btn,
+    a.asset-tile, a.asset-tile-group {
+      border: 1px solid var(--stroke) !important;
+      background: rgba(255,255,255,.06) !important;
+      color: var(--text-primary) !important;
+      border-radius: 14px !important;
+      box-shadow: 0 10px 26px rgba(0,0,0,.12) !important;
+      transition: transform .18s ease, background .18s ease, border-color .18s ease, box-shadow .18s ease !important;
+      backdrop-filter: blur(14px) !important;
+      -webkit-backdrop-filter: blur(14px) !important;
+    }
+
+    /* Make "ghost" buttons look the same (per request) */
+    .btn-ghost{
+      border: 1px solid var(--stroke) !important;
+      background: rgba(255,255,255,.06) !important;
+      box-shadow: 0 10px 26px rgba(0,0,0,.12) !important;
+    }
+
+    .asset-tile:hover, .asset-tile-group:hover,
+    .copy-btn:hover, .font-size-btn:hover, .lang-pill:hover,
+    .preview-close-btn:hover,
+    a.asset-tile:hover, a.asset-tile-group:hover {
+      transform: translateY(-1px) !important;
+      border-color: rgba(5,173,173,.55) !important;
+      background: rgba(255,255,255,.08) !important;
+      box-shadow: 0 14px 34px rgba(0,0,0,.18) !important;
+    }
+
+    .asset-tile:active, .asset-tile-group:active,
+    .copy-btn:active, .font-size-btn:active, .lang-pill:active,
+    .preview-close-btn:active,
+    a.asset-tile:active, a.asset-tile-group:active {
+      transform: translateY(0) scale(.99) !important;
+    }
+
+    /* Ensure consistent inner icon box look */
+    .asset-icon{
+      background: rgba(255,255,255,.05) !important;
+      border: 1px solid rgba(255,255,255,.16) !important;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.10) !important;
+      color: rgba(255,255,255,.82) !important;
+    }
+    .asset-tile:hover .asset-icon,
+    .asset-tile-group:hover .asset-icon{
+      border-color: rgba(5,173,173,.35) !important;
+      color: rgba(5,173,173,.90) !important;
+    }
+
+    /* Align spacing so they read like pill buttons */
+    .asset-grid { gap: 10px !important; }
+    .asset-tile, .asset-tile-group{
+      padding: 10px 12px !important;
+      min-height: 44px !important;
+    }
+    .asset-text .muted, .asset-meta .muted { opacity: .78 !important; }
+
+
+    /* =========================================================
+       Requested refinements (Glassy Palette + Gradient Suggestions + Glassy Controls + Glassy Modals)
+       ========================================================= */
+
+    /* Make palette toggle row accommodate 2 buttons nicely */
+    .palette-toggle-wrapper{
+      display:flex !important;
+      flex-wrap:wrap;
+      gap: 10px;
+      align-items:center;
+    }
+
+    /* Palette panel + items = true glass (remove any "black box" feeling) */
+    .palette-panel{
+      border: 1px solid rgba(255,255,255,.12) !important;
+      background:
+        radial-gradient(820px 260px at 12% 0%, rgba(140,64,255,.12), transparent 60%),
+        radial-gradient(820px 260px at 86% 0%, rgba(5,173,173,.10), transparent 62%),
+        rgba(255,255,255,.045) !important;
+      box-shadow: 0 18px 44px rgba(0,0,0,.22) !important;
+      backdrop-filter: blur(18px) saturate(120%) !important;
+      -webkit-backdrop-filter: blur(18px) saturate(120%) !important;
+      padding: 12px !important;
+    }
+    .palette-grid{ gap: 12px !important; }
+    .palette-item{
+      border: 1px solid rgba(255,255,255,.12) !important;
+      background: linear-gradient(135deg, rgba(255,255,255,.06), rgba(255,255,255,.03)) !important;
+      box-shadow: 0 14px 30px rgba(0,0,0,.16) !important;
+      border-radius: 16px !important;
+      padding: 12px !important;
+      backdrop-filter: blur(14px) !important;
+      -webkit-backdrop-filter: blur(14px) !important;
+      transition: transform .18s ease, border-color .18s ease, background .18s ease;
+    }
+    .palette-item:hover{ transform: translateY(-1px); border-color: rgba(5,173,173,.42) !important; background: rgba(255,255,255,.07) !important; }
+    .palette-item .swatch{
+      height: 44px !important;
+      border-radius: 12px !important;
+      border: 1px solid rgba(255,255,255,.18) !important;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.10) !important;
+      overflow:hidden;
+      position:relative;
+    }
+    .palette-item .swatch:after{
+      content:"";
+      position:absolute; inset:0;
+      background: radial-gradient(520px 120px at 20% 0%, rgba(255,255,255,.16), transparent 55%);
+      pointer-events:none;
+    }
+    .palette-name{ font-weight: 920 !important; letter-spacing: .2px; margin-top: 6px !important; }
+    .palette-hex-row{ margin-top: 8px !important; gap: 10px !important; align-items:center !important; }
+    .palette-hex{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !important;
+      background: rgba(255,255,255,.06) !important;
+      border: 1px solid rgba(255,255,255,.12) !important;
+      padding: 6px 10px !important;
+      border-radius: 999px !important;
+      color: rgba(255,255,255,.88) !important;
+    }
+
+    /* Buttons in palette panel */
+    .copy-btn{
+      border: 1px solid rgba(255,255,255,.14) !important;
+      background: rgba(255,255,255,.06) !important;
+      border-radius: 999px !important;
+      box-shadow: 0 10px 26px rgba(0,0,0,.10) !important;
+      backdrop-filter: blur(14px) !important;
+      -webkit-backdrop-filter: blur(14px) !important;
+      transition: transform .18s ease, border-color .18s ease, background .18s ease;
+    }
+    .copy-btn:hover{ transform: translateY(-1px); border-color: rgba(5,173,173,.45) !important; background: rgba(255,255,255,.08) !important; }
+
+    /* Language control = glass */
+    .lang-toggle{
+      border: 1px solid rgba(255,255,255,.12) !important;
+      background:
+        radial-gradient(520px 160px at 20% 0%, rgba(140,64,255,.10), transparent 60%),
+        radial-gradient(520px 160px at 80% 0%, rgba(5,173,173,.09), transparent 60%),
+        rgba(255,255,255,.05) !important;
+      box-shadow: 0 16px 34px rgba(0,0,0,.18) !important;
+      backdrop-filter: blur(16px) saturate(120%) !important;
+      -webkit-backdrop-filter: blur(16px) saturate(120%) !important;
+      padding: 6px 8px 6px 6px !important;
+      gap: 8px !important;
+      border-radius: 999px !important;
+    }
+    .lang-pill{
+      border: 1px solid rgba(255,255,255,.14) !important;
+      background: rgba(255,255,255,.04) !important;
+      color: rgba(255,255,255,.86) !important;
+      padding: 6px 12px !important;
+      font-weight: 800 !important;
+      border-radius: 999px !important;
+      transition: transform .18s ease, border-color .18s ease, background .18s ease;
+    }
+    .lang-pill:hover{ transform: translateY(-1px); border-color: rgba(5,173,173,.45) !important; }
+    .lang-pill.active{
+      border-color: rgba(5,173,173,.55) !important;
+      background: rgba(5,173,173,.14) !important;
+      color: rgba(255,255,255,.94) !important;
+    }
+
+    /* Font size control = glass */
+    .font-size-control{
+      border: 1px solid rgba(255,255,255,.12) !important;
+      background:
+        radial-gradient(520px 160px at 20% 0%, rgba(140,64,255,.10), transparent 60%),
+        radial-gradient(520px 160px at 80% 0%, rgba(5,173,173,.09), transparent 60%),
+        rgba(255,255,255,.05) !important;
+      box-shadow: 0 16px 34px rgba(0,0,0,.18) !important;
+      backdrop-filter: blur(16px) saturate(120%) !important;
+      -webkit-backdrop-filter: blur(16px) saturate(120%) !important;
+      padding: 8px 10px !important;
+      border-radius: 999px !important;
+    }
+    .font-size-btn{
+      border: 1px solid rgba(255,255,255,.14) !important;
+      background: rgba(255,255,255,.05) !important;
+      color: rgba(255,255,255,.88) !important;
+      height: 28px !important;
+      min-width: 34px !important;
+      border-radius: 999px !important;
+      box-shadow: 0 10px 26px rgba(0,0,0,.10) !important;
+      transition: transform .18s ease, border-color .18s ease, background .18s ease;
+    }
+    .font-size-btn:hover{ transform: translateY(-1px); border-color: rgba(5,173,173,.45) !important; background: rgba(255,255,255,.08) !important; }
+
+    /* Icons: inherit button color by default (avoid "shouty teal") */
+    .icon{ color: rgba(255,255,255,.82) !important; }
+    .btn:hover .icon{ color: rgba(5,173,173,.90) !important; }
+    .btn svg{ stroke: currentColor !important; fill: none !important; }
+
+    /* Gradients modal: use the same glass dialog */
+    #gradients-overlay.preview-overlay{ background: rgba(0,0,0,.62) !important; backdrop-filter: blur(8px) !important; -webkit-backdrop-filter: blur(8px) !important; }
+    #gradients-overlay .preview-dialog{
+      background:
+        radial-gradient(900px 320px at 20% 0%, rgba(140,64,255,.14), transparent 60%),
+        radial-gradient(900px 320px at 85% 0%, rgba(5,173,173,.12), transparent 60%),
+        rgba(255,255,255,.045) !important;
+      border: 1px solid rgba(255,255,255,.12) !important;
+      box-shadow: 0 28px 70px rgba(0,0,0,.55) !important;
+      backdrop-filter: blur(20px) saturate(120%) !important;
+      -webkit-backdrop-filter: blur(20px) saturate(120%) !important;
+    }
+
+    .gradient-card{
+      border: 1px solid rgba(255,255,255,.12);
+      background: linear-gradient(135deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border-radius: 16px;
+      box-shadow: 0 16px 34px rgba(0,0,0,.18);
+      overflow:hidden;
+    }
+    .gradient-preview{
+      height: 54px;
+      border-bottom: 1px solid rgba(255,255,255,.10);
+      position: relative;
+    }
+    .gradient-preview:after{
+      content:"";
+      position:absolute; inset:0;
+      background: radial-gradient(520px 120px at 20% 0%, rgba(255,255,255,.14), transparent 60%);
+      pointer-events:none;
+    }
+    .gradient-meta{
+      padding: 10px 12px;
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    .gradient-name{ font-weight: 920; font-size: 13px; color: rgba(255,255,255,.90); }
+    .gradient-css{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 11px;
+      color: rgba(255,255,255,.72);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 48ch;
+      direction:ltr;
+      unicode-bidi:isolate;
+    }
+
+
+    /* ===============================
+       Modal download buttons: match site button style
+       =============================== */
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap: 10px;
+      padding: 10px 14px;
+      min-height: 42px;
+      border-radius: 14px;
+      font-weight: 850;
+      letter-spacing: .15px;
+    }
+    .btn.btn-mini{ min-height: 36px; padding: 8px 12px; border-radius: 12px; }
+    .btn-ic{
+      width: 30px;
+      height: 30px;
+      display:grid;
+      place-items:center;
+      border-radius: 10px;
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.14);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.10);
+      color: rgba(255,255,255,.86);
+      flex: 0 0 auto;
+    }
+    .btn-ic svg{
+      width: 18px;
+      height: 18px;
+      stroke: currentColor;
+      fill: none;
+      opacity: .95;
+    }
+    .btn:hover .btn-ic{
+      border-color: rgba(5,173,173,.45);
+      color: rgba(5,173,173,.92);
+    }
+    /* Ensure buttons inside modals don't look "different" */
+    .preview-dialog .btn, .preview-dialog .btn-ghost{
+      border: 1px solid rgba(255,255,255,.14) !important;
+      background: rgba(255,255,255,.06) !important;
+      box-shadow: 0 12px 28px rgba(0,0,0,.14) !important;
+      backdrop-filter: blur(16px) !important;
+      -webkit-backdrop-filter: blur(16px) !important;
+    }
+    .preview-dialog .btn:hover, .preview-dialog .btn-ghost:hover{
+      border-color: rgba(5,173,173,.45) !important;
+      background: rgba(255,255,255,.08) !important;
+      transform: translateY(-1px);
+    }
+    .preview-dialog .btn:active, .preview-dialog .btn-ghost:active{
+      transform: translateY(0) scale(.99);
+    }
+
+
+    /* ===============================
+       Modal boxes: make inner cards glassy (remove purple-heavy look)
+       =============================== */
+    .preview-dialog{
+      background:
+        radial-gradient(1000px 360px at 20% 0%, rgba(140,64,255,.14), transparent 62%),
+        radial-gradient(1000px 360px at 86% 0%, rgba(5,173,173,.12), transparent 62%),
+        rgba(255,255,255,.045) !important;
+      border: 1px solid rgba(255,255,255,.12) !important;
+      box-shadow: 0 28px 70px rgba(0,0,0,.55) !important;
+      backdrop-filter: blur(20px) saturate(120%) !important;
+      -webkit-backdrop-filter: blur(20px) saturate(120%) !important;
+    }
+
+    .preview-group-item{
+      border: 1px solid rgba(255,255,255,.12) !important;
+      background:
+        radial-gradient(560px 220px at 18% 0%, rgba(140,64,255,.12), transparent 60%),
+        radial-gradient(560px 220px at 86% 0%, rgba(5,173,173,.10), transparent 62%),
+        linear-gradient(135deg, rgba(255,255,255,.06), rgba(255,255,255,.03)) !important;
+      box-shadow: 0 16px 34px rgba(0,0,0,.18) !important;
+      backdrop-filter: blur(16px) saturate(120%) !important;
+      -webkit-backdrop-filter: blur(16px) saturate(120%) !important;
+    }
+
+    .preview-body{
+      background:
+        radial-gradient(700px 240px at 20% 0%, rgba(140,64,255,.12), transparent 60%),
+        radial-gradient(700px 240px at 85% 0%, rgba(5,173,173,.10), transparent 60%),
+        rgba(10,15,33,.60) !important;
+      border: 1px solid rgba(255,255,255,.12) !important;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.10) !important;
+    }
+
+    /* Keep the preview area clean and consistent */
+    .preview-body img{
+      border-radius: 12px;
+      box-shadow: 0 18px 44px rgba(0,0,0,.35);
+    }
+
+
+    /* ===============================
+       Palette inline note (fills empty area without changing card size)
+       =============================== */
+    article#colors{ position: relative; }
+    #colors .palette-note{
+      position: absolute;
+      inset-inline: 16px;
+      bottom: 18px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.035);
+      border-radius: 16px;
+      padding: 12px 14px;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.08);
+      backdrop-filter: blur(14px) saturate(120%);
+      -webkit-backdrop-filter: blur(14px) saturate(120%);
+    }
+    #colors .palette-note-title{
+      font-weight: 920;
+      font-size: calc(13px * var(--font-scale));
+      color: rgba(255,255,255,.92);
+      margin-bottom: 6px;
+      letter-spacing: .2px;
+    }
+    #colors .palette-note-text{
+      font-size: calc(12px * var(--font-scale));
+      color: rgba(255,255,255,.78);
+      line-height: 1.55;
+    }
+    #colors .palette-note .mono{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-weight: 850;
+      padding: 2px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.05);
+      color: rgba(255,255,255,.90);
+      display: inline-block;
+      transform: translateY(-1px);
+      margin-inline: 4px;
+    }
+    #colors .ltr{ direction:ltr; unicode-bidi:isolate; }
+
+
+    /* ===============================
+       Fix overlap: reserve space for palette-note
+       =============================== */
+    #colors .palette-toggle-wrapper{
+      margin-bottom: 96px !important; /* creates breathing room for the absolute note */
+      gap: 10px !important;
+    }
+    #colors .palette-note{
+      bottom: 14px !important;
+      padding: 10px 12px !important;
+    }
+    #colors .palette-note-text{
+      line-height: 1.5 !important;
+    }
+    #colors .palette-note .mono{
+      margin-inline: 3px !important;
+      padding: 2px 7px !important;
+    }
+    @media (max-width: 560px){
+      #colors .palette-toggle-wrapper{ margin-bottom: 112px !important; }
+    }
+
+
+    /* ===============================
+       Remove inner text block backgrounds (keep main card glass)
+       =============================== */
+    .checklist-column,
+    .usage-list{
+      background: transparent !important;
+      border: none !important;
+      box-shadow: none !important;
+      padding: 0 !important;
+    }
+
+    /* Keep bullets readable without the inner box */
+    .checklist-column ul,
+    .usage-list ul{
+      margin: 0 !important;
+      padding-inline-start: 18px !important;
+    }
+
+    /* If the section uses these wrappers, ensure they stay spaced */
+    .checklist-grid,
+    .usage-grid{
+      gap: 16px !important;
+    }
+
+</style>
 </head>
-<body>
-  <div class="wrap" id="app" data-lang="ar">
-    <header class="hero">
-      <div class="hero-top">
-        <div class="logo">
-          <img src="https://i.postimg.cc/pLDHYR3S/T-S-Light.png" alt="T&S Logo">
+<body class="lang-ar">
+<div class="page-wrapper">
+<!-- HEADER -->
+<header class="main-header">
+<div class="header-top glass-card">
+<button class="logo-box asset-group-trigger" data-asset-group="logos" type="button">
+<img alt="T&amp;S Logo" src="assets/logos/ts-logo-mark.svg"/>
+</button>
+<div class="header-text">
+<div class="hub-tag">
+<span class="hub-tag-dot"></span>
+<span>T&amp;S Brand Hub</span>
+</div>
+<h1 class="header-title">
+<span class="tr-ar">دليل الهوية البصرية لموظفي T&amp;S</span>
+<span class="tr-en">T&amp;S Brand Guidelines for Employees</span>
+</h1>
+<p class="header-subtitle">
+<span class="tr-ar">
+              هذا المركز هو المرجع الموحد
+              <strong>للشعار، الألوان، الخطوط، والقوالب الرسمية</strong>
+              لجميع موظفي T&amp;S.
+            </span>
+<span class="tr-en">
+              This hub is the single source of truth for
+              <strong>logos, colors, typography, and branded templates</strong>
+              used across T&amp;S.
+            </span>
+</p>
+<div class="header-lang-nav">
+<div class="font-size-control">
+<span class="font-size-control-label tr-ar">حجم النص</span>
+<span class="font-size-control-label tr-en">Text size</span>
+<button class="font-size-btn" onclick="adjustFontScale(-0.1)" type="button">A-</button>
+<button class="font-size-btn" onclick="resetFontScale()" type="button">A</button>
+<button class="font-size-btn" onclick="adjustFontScale(0.1)" type="button">A+</button>
+</div>
+<div aria-label="Language toggle" class="lang-toggle">
+<span class="lang-label tr-ar">Language</span>
+<span class="lang-label tr-en">اللغه</span>
+<button class="lang-pill active" data-lang="ar" type="button">
+                AR
+              </button>
+<button class="lang-pill" data-lang="en" type="button">
+                EN
+              </button>
+</div>
+</div>
+</div>
+</div>
+<!-- QUICK NAV -->
+<nav aria-label="Quick navigation" class="quick-nav glass-card">
+<div class="quick-nav-title">
+<span class="tr-ar">انتقل بسرعة إلى:</span>
+<span class="tr-en">Jump to section:</span>
+</div>
+<div class="chip-row">
+<a class="chip" href="#logos">
+<span class="chip-dot"></span>
+<span class="tr-ar">الشعار &amp; استخداماته</span>
+<span class="tr-en">Logo &amp; Usage</span>
+</a>
+<a class="chip" href="#colors">
+<span class="chip-dot"></span>
+<span class="tr-ar">لوحة الألوان</span>
+<span class="tr-en">Color Palette</span>
+</a>
+<a class="chip" href="#templates">
+<span class="chip-dot"></span>
+<span class="tr-ar">القوالب الرسمية</span>
+<span class="tr-en">Branded Templates</span>
+</a>
+<a class="chip" href="#files">
+<span class="chip-dot"></span>
+<span class="tr-ar">ملفات الهوية</span>
+<span class="tr-en">Brand Assets</span>
+</a>
+<a class="chip" href="#social">
+<span class="chip-dot"></span>
+<span class="tr-ar">أمثلة التصاميم</span>
+<span class="tr-en">Design Examples</span>
+</a>
+<a class="chip" href="#voice">
+<span class="chip-dot"></span>
+<span class="tr-ar">نبرة الكتابة</span>
+<span class="tr-en">Brand Voice</span>
+</a>
+<a class="chip" href="#contact">
+<span class="chip-dot"></span>
+<span class="tr-ar">للاستفسارات</span>
+<span class="tr-en">Contact</span>
+</a>
+</div>
+</nav>
+</header>
+<!-- MAIN CONTENT -->
+<main class="content-grid">
+<!-- Row 1: Logo + Colors -->
+<article class="card glass-card" id="logos">
+<header class="card-header">
+<div>
+<div class="card-kicker tr-ar">الشعار الرسمي</div>
+<div class="card-kicker tr-en">Primary Logo</div>
+<h2 class="card-title">
+<span class="tr-ar">الشعار &amp; الاستخدامات الأساسية</span>
+<span class="tr-en">Logo &amp; Core Usage</span>
+</h2>
+</div>
+</header>
+<div class="card-body">
+<p>
+<span class="tr-ar">
+              يُستخدم الشعار الرسمي لـ T&amp;S كما هو، بدون أي تعديل على
+              <strong>الألوان، النِسَب، أو العناصر</strong>. يجب المحافظة على
+              مساحة عزل (Clear Space) حول الشعار، وتجنب وضعه فوق خلفيات تُضعف
+              الوضوح أو تقلل التباين.
+            </span>
+<span class="tr-en">
+              Always use the official T&amp;S logo as provided, with
+              <strong>no changes to colors, proportions, or structure</strong>.
+              Keep a clear space around the logo and avoid placing it on
+              cluttered or low-contrast backgrounds that reduce legibility.
+            </span>
+</p>
+<div class="asset-grid">
+<button class="asset-tile asset-group-trigger" data-asset-group="logoLight" type="button">
+<div aria-hidden="true" class="asset-icon"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4 12H2M22 12h-2M5 5l1.4 1.4M17.6 17.6 19 19M19 5l-1.4 1.4M6.4 17.6 5 19"></path></svg></div>
+<div class="asset-text">
+<div class="asset-title tr-ar">الشعار الفاتح</div>
+<div class="asset-title tr-en">Light Logo</div>
+<div class="asset-meta tr-ar">للاستخدام على الخلفيات الداكنة / البنفسجية.</div>
+<div class="asset-meta tr-en">Use on dark / purple backgrounds.</div>
+</div>
+</button>
+<button class="asset-tile asset-group-trigger" data-asset-group="logoDark" type="button">
+<div aria-hidden="true" class="asset-icon"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24"><path d="M21 14.5A8 8 0 1 1 9.5 3a6.5 6.5 0 0 0 11.5 11.5z"></path></svg></div>
+<div class="asset-text">
+<div class="asset-title tr-ar">الشعار الغامق</div>
+<div class="asset-title tr-en">Dark Logo</div>
+<div class="asset-meta tr-ar">للاستخدام على الخلفيات البيضاء أو الفاتحة.</div>
+<div class="asset-meta tr-en">Use on white or light backgrounds.</div>
+</div>
+</button>
+<button class="asset-tile asset-group-trigger" data-asset-group="faviconLight" type="button">
+<div aria-hidden="true" class="asset-icon"><svg aria-hidden="true" class="is-dot" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24"><circle cx="12" cy="12" r="7"></circle></svg></div>
+<div class="asset-text">
+<div class="asset-title tr-ar">فيف أيكون (لايت)</div>
+<div class="asset-title tr-en">Favicon (Light)</div>
+<div class="asset-meta tr-ar">SVG / PNG</div>
+<div class="asset-meta tr-en">SVG / PNG</div>
+</div>
+</button>
+<button class="asset-tile asset-group-trigger" data-asset-group="faviconDark" type="button">
+<div aria-hidden="true" class="asset-icon"><svg aria-hidden="true" class="is-dot" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24"><circle cx="12" cy="12" r="7"></circle></svg></div>
+<div class="asset-text">
+<div class="asset-title tr-ar">فيف أيكون (دارك)</div>
+<div class="asset-title tr-en">Favicon (Dark)</div>
+<div class="asset-meta tr-ar">SVG / PNG</div>
+<div class="asset-meta tr-en">SVG / PNG</div>
+</div>
+</button>
+</div>
+</div>
+</article>
+<article class="card glass-card" id="colors">
+<header class="card-header">
+<div>
+<div class="card-kicker tr-ar">الألوان المعتمدة</div>
+<div class="card-kicker tr-en">Official Colors</div>
+<h2 class="card-title">
+<span class="tr-ar">لوحة الألوان – Color Palette</span>
+<span class="tr-en">Color Palette – Brand Core</span>
+</h2>
+</div>
+</header>
+<div class="card-body">
+<p>
+<span class="tr-ar">
+              تعتمد الهوية على مجموعة ألوان داكنة وحديثة، مع لمسات
+              <strong>Accent</strong> لإبراز العناصر المهمة. استخدم هذه
+              الأكواد كما هي في جميع التصاميم.
+            </span>
+<span class="tr-en">
+              The identity uses a modern dark palette with vibrant
+              <strong>accent colors</strong> to highlight key elements. Always
+              use these exact HEX values in your designs.
+            </span>
+</p>
+<div class="palette-toggle-wrapper">
+<button class="btn btn-ghost" id="palette-toggle" type="button">
+<span aria-hidden="true" class="icon"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24"><path d="M12 3c-4.97 0-9 3.58-9 8 0 3.31 2.69 6 6 6h2.25c.97 0 1.75.78 1.75 1.75 0 .83-.67 1.5-1.5 1.5H10a1 1 0 0 0 0 2h2.5c2.49 0 4.5-2.01 4.5-4.5 0-1.93-1.57-3.5-3.5-3.5H9c-2.21 0-4-1.79-4-4 0-3.31 3.13-6 7-6 3.87 0 7 2.24 7 5 0 1.93-1.57 3.5-3.5 3.5H15a1 1 0 1 0 0 2h.5c3.04 0 5.5-2.46 5.5-5.5 0-3.87-4.03-7-9-7z"></path><circle cx="7.5" cy="10" r="1"></circle><circle cx="11" cy="8.5" r="1"></circle><circle cx="14.5" cy="10" r="1"></circle></svg></span>
+<span class="tr-ar">
+<span class="text-when-closed">عرض لوحة الألوان</span>
+<span class="text-when-open" style="display: none;">
+                  إخفاء لوحة الألوان
+                </span>
+</span>
+<span class="tr-en">
+<span class="text-when-closed">Show Color Palette</span>
+<span class="text-when-open" style="display: none;">
+                  Hide Color Palette
+                </span>
+</span>
+</button>
+<button class="btn btn-ghost" id="gradients-toggle" type="button">
+  <span aria-hidden="true" class="icon">
+    <svg aria-hidden="true" fill="none" viewBox="0 0 24 24">
+      <path d="M4 17c3-6 5-10 8-10s5 4 8 10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <path d="M5 17h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <path d="M8 14a2 2 0 1 0 0 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <path d="M16 14a2 2 0 1 1 0 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="tr-ar">اقتراحات تدرجات</span>
+  <span class="tr-en">Gradient Suggestions</span>
+</button>
+</div>
+<div class="palette-note" id="palette-note">
+  <div class="palette-note-title">
+    <span class="tr-ar">ملاحظة استخدام سريعة</span>
+    <span class="tr-en">Quick Usage Note</span>
+  </div>
+  <div class="palette-note-text">
+    <span class="tr-ar">لأفضل تباين: استخدم النصوص الأساسية باللون <span class="mono ltr">#F5F5FF</span>، والنصوص الثانوية باللون <span class="mono ltr">#C0C4D6</span>. اترك لون <span class="mono ltr">#05ADAD</span> للروابط والـ CTA فقط.</span>
+    <span class="tr-en">For best contrast: use <span class="mono ltr">#F5F5FF</span> for primary text and <span class="mono ltr">#C0C4D6</span> for secondary text. Reserve <span class="mono ltr">#05ADAD</span> for links and CTAs.</span>
+  </div>
+</div>
+<div class="palette-panel" id="palette-panel">
+<div class="palette-grid">
+<div class="palette-item">
+<div class="swatch" style="background:#0A0F21;"></div>
+<div class="palette-name">Primary</div>
+<div class="palette-desc tr-ar">لون أساسي للصفحة</div>
+<div class="palette-desc tr-en">Primary page color</div>
+<div class="palette-hex-row">
+<span class="palette-hex">#0A0F21</span>
+<button class="copy-btn" data-hex="#0A0F21" type="button">
+<span aria-hidden="true" class="icon"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24"><path d="M9 3h6l1 2h3v16H5V5h3z"></path><path d="M9 3v4h6V3"></path><path d="M8 11h8M8 15h8"></path></svg></span>
+<span class="copy-label tr-ar">نسخ</span>
+<span class="copy-label tr-en">Copy</span>
+</button>
+</div>
+</div>
+<div class="palette-item">
+<div class="swatch" style="background:#3B1745;"></div>
+<div class="palette-name">Second Primary</div>
+<div class="palette-desc tr-ar">لون أساسي داعم</div>
+<div class="palette-desc tr-en">Supporting primary</div>
+<div class="palette-hex-row">
+<span class="palette-hex">#3B1745</span>
+<button class="copy-btn" data-hex="#3B1745" type="button">
+<span aria-hidden="true" class="icon"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24"><path d="M9 3h6l1 2h3v16H5V5h3z"></path><path d="M9 3v4h6V3"></path><path d="M8 11h8M8 15h8"></path></svg></span>
+<span class="copy-label tr-ar">نسخ</span>
+<span class="copy-label tr-en">Copy</span>
+</button>
+</div>
+</div>
+<div class="palette-item">
+<div class="swatch" style="background:#05ADAD;"></div>
+<div class="palette-name">Secondary 1</div>
+<div class="palette-desc tr-ar">إبراز وروابط</div>
+<div class="palette-desc tr-en">Highlights/links</div>
+<div class="palette-hex-row">
+<span class="palette-hex">#05ADAD</span>
+<button class="copy-btn" data-hex="#05ADAD" type="button">
+<span aria-hidden="true" class="icon"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24"><path d="M9 3h6l1 2h3v16H5V5h3z"></path><path d="M9 3v4h6V3"></path><path d="M8 11h8M8 15h8"></path></svg></span>
+<span class="copy-label tr-ar">نسخ</span>
+<span class="copy-label tr-en">Copy</span>
+</button>
+</div>
+</div>
+<div class="palette-item">
+<div class="swatch" style="background:#F0474A;"></div>
+<div class="palette-name">Secondary 2</div>
+<div class="palette-desc tr-ar">تنبيهات</div>
+<div class="palette-desc tr-en">Alerts</div>
+<div class="palette-hex-row">
+<span class="palette-hex">#F0474A</span>
+<button class="copy-btn" data-hex="#F0474A" type="button">
+<span aria-hidden="true" class="icon"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24"><path d="M9 3h6l1 2h3v16H5V5h3z"></path><path d="M9 3v4h6V3"></path><path d="M8 11h8M8 15h8"></path></svg></span>
+<span class="copy-label tr-ar">نسخ</span>
+<span class="copy-label tr-en">Copy</span>
+</button>
+</div>
+</div>
+<div class="palette-item">
+<div class="swatch" style="background:#113D8F;"></div>
+<div class="palette-name">Secondary 3</div>
+<div class="palette-desc tr-ar">معلومات وروابط ثانوية</div>
+<div class="palette-desc tr-en">Info / secondary links</div>
+<div class="palette-hex-row">
+<span class="palette-hex">#113D8F</span>
+<button class="copy-btn" data-hex="#113D8F" type="button">
+<span aria-hidden="true" class="icon"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24"><path d="M9 3h6l1 2h3v16H5V5h3z"></path><path d="M9 3v4h6V3"></path><path d="M8 11h8M8 15h8"></path></svg></span>
+<span class="copy-label tr-ar">نسخ</span>
+<span class="copy-label tr-en">Copy</span>
+</button>
+</div>
+</div>
+</div>
+<p class="muted" style="margin-top: 10px;">
+<span class="tr-ar">
+                تذكير: النصوص الأساسية بلون <code>#F5F5FF</code> والثانوية بلون <code>#C0C4D6</code>.
+              </span>
+<span class="tr-en">
+                Reminder: primary text uses <code>#F5F5FF</code> and secondary text uses <code>#C0C4D6</code>.
+              </span>
+</p>
+</div>
+</div>
+</article>
+<!-- Row 2: Usage + Typography -->
+<article class="card glass-card">
+<header class="card-header">
+<div>
+<div class="card-kicker tr-ar">الاستخدامات</div>
+<div class="card-kicker tr-en">Usage Rules</div>
+<h2 class="card-title">
+<span class="tr-ar">الاستخدامات المسموحة والممنوعة</span>
+<span class="tr-en">Allowed &amp; Forbidden Usage</span>
+</h2>
+</div>
+</header>
+<div class="card-body">
+<div class="two-column-list usage-two-column">
+<div class="usage-col">
+<div class="list-label">
+<span class="tr-ar">مسموح ✅</span>
+<span class="tr-en">Allowed ✅</span>
+</div>
+<ul class="usage-list">
+<li>
+<span class="tr-ar">
+                    استخدام الشعار بألوانه الأصلية فقط وعلى خلفيات ذات تباين عالٍ لضمان وضوحه.
+                  </span>
+<span class="tr-en">
+                    Use the logo only in its official colors on backgrounds with strong contrast.
+                  </span>
+</li>
+<li>
+<span class="tr-ar">
+                    احترام مساحة العزل حول الشعار وعدم إلصاق أي عناصر أخرى به أو بالقرب منه.
+                  </span>
+<span class="tr-en">
+                    Always keep sufficient clear space around the logo with no other elements touching it.
+                  </span>
+</li>
+<li>
+<span class="tr-ar">
+                    استخدام النسخة الأحادية اللون عند الحاجة لطباعة محدودة الألوان أو مواد منخفضة الجودة.
+                  </span>
+<span class="tr-en">
+                    Use the monochrome version when printing with limited colors or on lower-quality materials.
+                  </span>
+</li>
+<li>
+<span class="tr-ar">
+                    التأكد من وضوح الشعار عند تصغيره، خاصة في العروض التقديمية والمستندات والتواقيع.
+                  </span>
+<span class="tr-en">
+                    Ensure the logo stays clear and readable at small sizes, especially in decks, documents, and signatures.
+                  </span>
+</li>
+<li>
+<span class="tr-ar">
+                    استخدام نسخ الشعار المعتمدة فقط من هذا الدليل أو من مركز الملفات الرسمي للشركة.
+                  </span>
+<span class="tr-en">
+                    Only use approved logo files from this hub or the official asset library.
+                  </span>
+</li>
+</ul>
+</div>
+<div class="usage-col">
+<div class="list-label">
+<span class="tr-ar">ممنوع 🚫</span>
+<span class="tr-en">Not Allowed 🚫</span>
+</div>
+<ul class="usage-list">
+<li>
+<span class="tr-ar">
+                    تغيير ألوان الشعار أو إضافة تأثيرات (ظلال قوية، توهج، أنماط) غير معتمدة في الهوية الرسمية.
+                  </span>
+<span class="tr-en">
+                    Changing logo colors or adding unapproved effects such as heavy glow, strong shadows, or patterns.
+                  </span>
+</li>
+<li>
+<span class="tr-ar">
+                    تمديد الشعار أفقيًا أو عموديًا أو تشويهه بأي شكل يغيّر نسبه الأصلية.
+                  </span>
+<span class="tr-en">
+                    Stretching, squashing, or otherwise distorting the logo proportions.
+                  </span>
+</li>
+<li>
+<span class="tr-ar">
+                    استخدام الشعار داخل جُمل أو نصوص كجزء من الكتابة أو استبدال حروف به.
+                  </span>
+<span class="tr-en">
+                    Using the logo as part of a sentence or replacing letters with the logo mark.
+                  </span>
+</li>
+<li>
+<span class="tr-ar">
+                    تدوير الشعار أو قلبه أو وضعه بزوايا غير منطقية داخل التصاميم.
+                  </span>
+<span class="tr-en">
+                    Rotating or flipping the logo at unusual angles in layouts.
+                  </span>
+</li>
+<li>
+<span class="tr-ar">
+                    قص الشعار أو إخفاء جزء منه داخل إطارات أو خلف عناصر أخرى في التصميم.
+                  </span>
+<span class="tr-en">
+                    Cropping the logo or hiding parts of it behind frames or overlapping elements.
+                  </span>
+</li>
+</ul>
+</div>
+</div>
+<div class="asset-grid">
+<button class="asset-tile" data-download-src="assets/logos/ts-logo-usage-guide.pdf" data-preview-src="assets/logos/ts-logo-usage-guide.pdf" data-preview-type="pdf" data-title-ar="دليل استخدامات الشعار (PDF)" data-title-en="Logo Usage Guide (PDF)" type="button">
+<div aria-hidden="true" class="asset-icon"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24"><path d="M4 6a3 3 0 0 1 3-3h12v16H7a3 3 0 0 0-3 3z"></path><path d="M19 3v16H7a3 3 0 0 0-3 3"></path><path d="M8 7h7"></path></svg></div>
+<div class="asset-text">
+<div class="asset-title tr-ar">دليل استخدامات الشعار (PDF)</div>
+<div class="asset-title tr-en">Logo Usage Guide (PDF)</div>
+<div class="asset-meta tr-ar">شرح تفصيلي للاستخدامات المسموحة والممنوعة.</div>
+<div class="asset-meta tr-en">Detailed explanations of allowed and forbidden logo usage.</div>
+</div>
+</button>
+</div>
+</div>
+</article>
+<article class="card glass-card">
+<header class="card-header">
+<div>
+<div class="card-kicker tr-ar">الخطوط</div>
+<div class="card-kicker tr-en">Typography</div>
+<h2 class="card-title">
+<span class="tr-ar">الخطوط – Typography</span>
+<span class="tr-en">Typography &amp; Brand Fonts</span>
+</h2>
+</div>
+</header>
+<div class="card-body">
+<p>
+<span class="tr-ar">
+              الخط الرسمي الوحيد للهوية هو
+              <strong>Baloo_Bhaijaan (EN_AR)</strong>، ويُستخدم في
+              <strong>جميع</strong> مواد T&amp;S: العروض التقديمية، المستندات،
+              التصاميم التسويقية، والبنرات الرقمية والمطبوعة. التزم به دائمًا لضمان اتساق الهوية وعدم ظهور فراغات أو تفاوت في الملفات المشتركة.
+            </span>
+<span class="tr-en">
+              The only official T&amp;S font is
+              <strong>Baloo_Bhaijaan (EN_AR)</strong>. It is used across
+              <strong>all</strong> T&amp;S materials: decks, documents, marketing
+              creatives, and digital/print banners. Stick to it to keep layouts consistent and avoid gaps or mismatches when sharing files.
+            </span>
+</p>
+<div class="two-column-list" style="margin-top: 6px;">
+<div>
+<div class="list-label tr-ar">كيف أستخدم Baloo_Bhaijaan؟</div>
+<div class="list-label tr-en">How to use Baloo_Bhaijaan</div>
+<ul>
+<li class="tr-ar">
+                  استخدم وزنًا أوضح (Semi-Bold / Bold) للعناوين الرئيسية في الشرائح والتصاميم.
+                </li>
+<li class="tr-en">
+                  Use a stronger weight (Semi-Bold / Bold) for main titles and
+                  headlines in slides and designs.
+                </li>
+<li class="tr-ar">
+                  استخدم وزنًا أخف (Regular / Medium) للنصوص الشارحة والنقاط.
+                </li>
+<li class="tr-en">
+                  Use lighter weights (Regular / Medium) for body copy and bullets.
+                </li>
+<li class="tr-ar">
+                  في التصاميم الثنائية اللغة، استخدم نفس الخط للعربي والإنجليزي
+                  مع الحفاظ على RTL وLTR.
+                </li>
+<li class="tr-en">
+                  In bilingual layouts, use the same font for Arabic and English
+                  with proper RTL / LTR direction.
+                </li>
+</ul>
+</div>
+<div>
+<div class="list-label tr-ar">نصائح للقراءة المريحة</div>
+<div class="list-label tr-en">Readability tips</div>
+<ul>
+<li class="tr-ar">
+                  خفف النص في كل شريحة إلى <strong>٣–٥ نقاط</strong> قدر الإمكان.
+                </li>
+<li class="tr-en">
+                  Keep each slide to around <strong>3–5 bullets</strong>.
+                </li>
+<li class="tr-ar">
+                  استخدم مسافة سطرية مريحة وتجنب تلاصق الأسطر.
+                </li>
+<li class="tr-en">
+                  Use comfortable line spacing; avoid cramped text.
+                </li>
+<li class="tr-ar">
+                  احرص أن حجم النص لا يقل عن مستوى مريح للقراءة (مثلاً ١٢–١٤pt في المستندات).
+                </li>
+<li class="tr-en">
+                  Keep font sizes readable (around 12–14pt minimum in docs).
+                </li>
+</ul>
+</div>
+</div>
+<div style="margin-top: 10px;">
+<div class="list-label tr-ar">إرشادات سريعة</div>
+<div class="list-label tr-en">Quick guidelines</div>
+<ul>
+<li class="tr-ar">
+                لا تضف خطوطاً جديدة في ملفات T&amp;S؛ استخدم
+                <strong>Baloo_Bhaijaan</strong> فقط في المواد الرسمية.
+              </li>
+<li class="tr-en">
+                Don’t introduce extra fonts in T&amp;S files; use
+                <strong>Baloo_Bhaijaan</strong> only for official materials.
+              </li>
+<li class="tr-ar">
+                استخدم أوزان مختلفة لنفس الخط لخلق هرمية بصرية بدل تغيير الخط.
+              </li>
+<li class="tr-en">
+                Use different weights of the same font to create hierarchy
+                instead of changing fonts.
+              </li>
+</ul>
+</div>
+<div class="btn-row" style="margin-top: 10px;">
+<a class="btn" download="" href="assets/fonts/Baloo_Bhaijaan(EN_AR).zip">
+<span aria-hidden="true" class="icon"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24"><path d="M12 3v10"></path><path d="M8 9l4 4 4-4"></path><path d="M4 17v3h16v-3"></path></svg></span>
+<span class="tr-ar">تحميل حزمة الخط الرسمية (ZIP)</span>
+<span class="tr-en">Download official font pack (ZIP)</span>
+</a>
+</div>
+<p class="muted">
+<span class="tr-ar">
+              يُفضَّل تثبيت الخط على جهازك قبل العمل على قوالب T&amp;S لضمان ظهور
+              الملفات بنفس الشكل عند مشاركتها مع الزملاء.
+            </span>
+<span class="tr-en">
+              Install the font locally before working on T&amp;S templates to
+              ensure layouts look the same when shared with colleagues.
+            </span>
+</p>
+</div>
+</article>
+<!-- Row 3: Templates + Email Signature -->
+<article class="card glass-card" id="templates">
+<header class="card-header">
+<div>
+<div class="card-kicker tr-ar">القوالب الرسمية</div>
+<div class="card-kicker tr-en">Branded Templates</div>
+<h2 class="card-title">
+<span class="tr-ar">القوالب الجاهزة – Branded Templates</span>
+<span class="tr-en">Ready-to-use Branded Templates</span>
+</h2>
+</div>
+</header>
+<div class="card-body">
+<p>
+<span class="tr-ar">
+              تم إعداد حزمة قوالب رسمية للاستخدام اليومي في
+              <strong>العروض التقديمية، المراسلات، التواقيع البريدية، ومحتوى
+                السوشال ميديا</strong>.
+            </span>
+<span class="tr-en">
+              A full set of official templates is available for
+              <strong>presentations, documents, email signatures, and social
+                media</strong>.
+            </span>
+</p>
+<div class="asset-grid">
+<button class="asset-tile-group asset-group-trigger" data-asset-group="pptTemplates" type="button">
+<div aria-hidden="true" class="asset-icon"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24"><rect height="12" rx="2" width="14" x="3" y="6"></rect><path d="M17 10l4-2v8l-4-2z"></path></svg></div>
+<div class="asset-text">
+<div class="asset-title tr-ar">قوالب العروض التقديمية (PowerPoint)</div>
+<div class="asset-title tr-en">Presentation Templates (PowerPoint)</div>
+<div class="asset-meta tr-ar">عرض جميع القوالب الرسمية للعروض</div>
+<div class="asset-meta tr-en">View all official deck templates</div>
+</div>
+</button>
+<button class="asset-tile-group asset-group-trigger" data-asset-group="wordTemplates" type="button">
+<div aria-hidden="true" class="asset-icon"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24"><path d="M14 2H7a3 3 0 0 0-3 3v14a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V8z"></path><path d="M14 2v6h6"></path><path d="M8 13h8M8 17h8"></path></svg></div>
+<div class="asset-text">
+<div class="asset-title tr-ar">قوالب الورق الرسمي (Word)</div>
+<div class="asset-title tr-en">Letterhead &amp; Docs (Word)</div>
+<div class="asset-meta tr-ar">عرض جميع قوالب المستندات الرسمية</div>
+<div class="asset-meta tr-en">View all official document templates</div>
+</div>
+</button>
+</div>
+</div>
+</article>
+<!-- صندوق توقيع البريد مع نص أطول -->
+<article class="card glass-card" id="email-signature">
+<header class="card-header">
+<div>
+<div class="card-kicker tr-ar">توقيع البريد</div>
+<div class="card-kicker tr-en">Email Signature</div>
+<h2 class="card-title">
+<span class="tr-ar">منشئ توقيع البريد</span>
+<span class="tr-en">Email Signature Generator</span>
+</h2>
+</div>
+</header>
+<div class="card-body">
+<p>
+<span class="tr-ar">
+              أنشئ توقيع بريد احترافي متناسق مع هوية T&amp;S، ثم حمّله جاهزاً. تأكد من تحديث بياناتك (الاسم، المسمى، الهاتف) قبل التصدير للحفاظ على دقة التواصل.
+            </span>
+<span class="tr-en">
+              Build a professional email signature aligned with T&amp;S, then download it. Update your details (name, title, phone) before export to keep communications accurate.
+            </span>
+</p>
+<div class="asset-grid">
+<button class="asset-tile" onclick="window.open('https://toolsandsolution.github.io/ts-email-signature/', '_blank')" type="button">
+<div aria-hidden="true" class="asset-icon"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24"><path d="M4 6h16v12H4z"></path><path d="M4 7l8 6 8-6"></path></svg></div>
+<div class="asset-text">
+<div class="asset-title tr-ar">إنشاء توقيع البريد</div>
+<div class="asset-title tr-en">Email Signature generator</div>
+<div class="asset-meta tr-ar">معاينة بصرية + تحميل</div>
+<div class="asset-meta tr-en">Visual preview + download</div>
+</div>
+</button>
+</div>
+</div>
+</article>
+<!-- Row 4: Extra assets + Brand Book -->
+<article class="card glass-card" id="files">
+<header class="card-header">
+<div>
+<div class="card-kicker tr-ar">ملفات الهوية</div>
+<div class="card-kicker tr-en">Brand Assets</div>
+<h2 class="card-title">
+<span class="tr-ar">ملفات إضافية – Extra Assets</span>
+<span class="tr-en">Additional Brand Assets</span>
+</h2>
+</div>
+</header>
+<div class="card-body">
+<p>
+<span class="tr-ar">
+              تشمل هذه الحزم <strong>أيقونات، صور رسمية، خلفيات، وMockups</strong>
+              يمكن استخدامها في العروض، السوشال، وتقارير العملاء.
+            </span>
+<span class="tr-en">
+              These packages include official <strong>icons, photography, backgrounds, and mockups</strong>
+              for presentations, social media, and client reports.
+            </span>
+</p>
+<div class="btn-row">
+<a class="btn" download="" href="assets/icons/ts-icon-pack.zip">
+<span aria-hidden="true" class="icon"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24"><path d="M12 3v10"></path><path d="M8 9l4 4 4-4"></path><path d="M4 17v3h16v-3"></path></svg></span>
+<span class="tr-ar">حزمة الأيقونات (ZIP)</span>
+<span class="tr-en">Icon Pack (ZIP)</span>
+</a>
+<a class="btn btn-ghost" download="" href="assets/photos/ts-official-photos-kit.zip">
+<span aria-hidden="true" class="icon"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24"><path d="M12 3v10"></path><path d="M8 9l4 4 4-4"></path><path d="M4 17v3h16v-3"></path></svg></span>
+<span class="tr-ar">مجموعة الصور الرسمية (ZIP)</span>
+<span class="tr-en">Official Photos Kit (ZIP)</span>
+</a>
+</div>
+<div class="asset-grid">
+<button class="asset-tile" data-download-src="assets/company-profile/ts-company-profile.pdf" data-preview-src="assets/company-profile/ts-company-profile.pdf" data-preview-type="pdf" data-title-ar="البروفايل التعريفي للشركة – PDF" data-title-en="T&amp;S Company Profile – PDF" type="button">
+<div aria-hidden="true" class="asset-icon"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24"><path d="M4 6a3 3 0 0 1 3-3h12v16H7a3 3 0 0 0-3 3z"></path><path d="M19 3v16H7a3 3 0 0 0-3 3"></path><path d="M8 7h7"></path></svg></div>
+<div class="asset-text">
+<div class="asset-title tr-ar">البروفايل الرسمي للشركة (PDF)</div>
+<div class="asset-title tr-en">Official Company Profile (PDF)</div>
+<div class="asset-meta tr-ar">معاينة كاملة + تحميل</div>
+<div class="asset-meta tr-en">Full preview + download</div>
+</div>
+</button>
+</div>
+</div>
+</article>
+<article class="card glass-card">
+<header class="card-header">
+<div>
+<div class="card-kicker tr-ar">دليل الهوية</div>
+<div class="card-kicker tr-en">Brand Book</div>
+<h2 class="card-title">
+<span class="tr-ar">دليل الهوية البصرية – Brand Book</span>
+<span class="tr-en">Visual Identity Brand Book</span>
+</h2>
+</div>
+</header>
+<div class="card-body">
+<p>
+<span class="tr-ar">
+              يجمع هذا الدليل العناصر الأساسية للهوية: الشعارات، الألوان، الخطوط، وأمثلة تطبيقية مختصرة، مع إرشادات عملية لضمان الاتساق في كل قناة. استخدمه كمرجع سريع أثناء إعداد العروض والمواد التسويقية لضمان مظهر موحّد واحترافي.
+            </span>
+<span class="tr-en">
+              This book consolidates core identity elements—logos, colors, typography, and concise applications—plus practical guidance to keep every channel consistent. Use it as a quick reference when preparing decks and marketing materials to maintain a unified, professional look.
+            </span>
+</p>
+<div class="asset-grid">
+<button class="asset-tile" data-download-src="assets/brand-book/ts-brand-book.pdf" data-preview-src="assets/brand-book/ts-brand-book.pdf" data-preview-type="pdf" data-title-ar="دليل الهوية البصرية – Brand Book" data-title-en="Visual Identity Brand Book" type="button">
+<div aria-hidden="true" class="asset-icon"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24"><path d="M4 6a3 3 0 0 1 3-3h12v16H7a3 3 0 0 0-3 3z"></path><path d="M19 3v16H7a3 3 0 0 0-3 3"></path><path d="M8 7h7"></path></svg></div>
+<div class="asset-text">
+<div class="asset-title tr-ar">دليل الهوية (PDF)</div>
+<div class="asset-title tr-en">Brand Book (PDF)</div>
+<div class="asset-meta tr-ar">معاينة الصفحات + تحميل</div>
+<div class="asset-meta tr-en">Preview pages + download</div>
+</div>
+</button>
+</div>
+</div>
+</article>
+<!-- Row 5: Social examples + Voice -->
+<article class="card glass-card" id="social">
+<header class="card-header">
+<div>
+<div class="card-kicker tr-ar">أمثلة التصاميم</div>
+<div class="card-kicker tr-en">Design Examples</div>
+<h2 class="card-title">
+<span class="tr-ar">أمثلة التصاميم – Social &amp; Events</span>
+<span class="tr-en">Design Examples – Social &amp; Events</span>
+</h2>
+</div>
+</header>
+<div class="card-body">
+<p>
+<span class="tr-ar">
+              تحتوي هذه الأمثلة على بوستات سوشال ميديا، رول أب، وبنرات معارض
+              تُظهر كيفية تطبيق الهوية البصرية.
+            </span>
+<span class="tr-en">
+              These examples showcase social media posts, roll-ups, and event
+              banners that demonstrate how to apply the visual identity.
+            </span>
+</p>
+<p>
+<span class="tr-ar">
+            مقاسات مقترحة:
+            <strong>Instagram</strong> (¹:¹ &amp; ⁴:⁵)،
+            <strong>LinkedIn</strong> (١٢٠٠×١٢٠٠ و١٢٠٠×٦٢٨)،
+            <strong>Roll-up</strong> (٨٥×٢٠٠ سم أو حسب المتطلبات).
+          </span>
+<span class="tr-en">
+            Recommended sizes:
+            <strong>Instagram</strong> (1:1 &amp; 4:5),
+            <strong>LinkedIn</strong> (1200×1200 &amp; 1200×628),
+            <strong>Roll-up</strong> (85×200 cm or as required).
+          </span>
+</p>
+<div class="asset-grid">
+<button class="asset-tile design-trigger" data-design="social" type="button">
+<div aria-hidden="true" class="asset-icon"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24"><path d="M8 2h8a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z"></path><path d="M10 19h4"></path></svg></div>
+<div class="asset-text">
+<div class="asset-title tr-ar">سوشال ميديا</div>
+<div class="asset-title tr-en">Social Media</div>
+</div>
+</button>
+<button class="asset-tile design-trigger" data-design="gallery" type="button">
+<div aria-hidden="true" class="asset-icon"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24"><rect height="14" rx="2" width="16" x="4" y="5"></rect><path d="M8 13l2-2 3 3 2-2 3 3"></path><circle cx="9" cy="9" r="1"></circle></svg></div>
+<div class="asset-text">
+<div class="asset-title tr-ar">معارض</div>
+<div class="asset-title tr-en">Gallery</div>
+</div>
+</button>
+<button class="asset-tile design-trigger" data-design="rollup" type="button">
+<div aria-hidden="true" class="asset-icon"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24"><path d="M6 2h12v20l-2-1-2 1-2-1-2 1-2-1-2 1z"></path><path d="M8 7h8M8 11h8M8 15h6"></path></svg></div>
+<div class="asset-text">
+<div class="asset-title tr-ar">رول أب</div>
+<div class="asset-title tr-en">Roll-up</div>
+</div>
+</button>
+<button class="asset-tile design-trigger" data-design="official" type="button">
+<div aria-hidden="true" class="asset-icon"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24"><path d="M4 7h4l2-2h4l2 2h4v12H4z"></path><circle cx="12" cy="13" r="3"></circle></svg></div>
+<div class="asset-text">
+<div class="asset-title tr-ar">مجموعة الصور الرسمية</div>
+<div class="asset-title tr-en">Official Image Collection</div>
+</div>
+</button>
+</div>
+</div>
+</article>
+<article class="card glass-card" id="voice">
+<header class="card-header">
+<div>
+<div class="card-kicker tr-ar">نبرة الكتابة</div>
+<div class="card-kicker tr-en">Voice &amp; Tone</div>
+<h2 class="card-title">
+<span class="tr-ar">نبرة وهوية الكتابة – Brand Voice</span>
+<span class="tr-en">Brand Voice &amp; Tone</span>
+</h2>
+</div>
+</header>
+<div class="card-body">
+<p>
+<span class="tr-ar">
+              نبرة T&amp;S مهنية، بسيطة، قريبة، وقائمة على القيمة. نكتب
+              بأسلوب واضح بدون مبالغة تسويقية.
+            </span>
+<span class="tr-en">
+              The T&amp;S voice is professional, simple, approachable, and
+              value-driven, with clear language and no hype.
+            </span>
+</p>
+<div class="voice-grid">
+<div class="voice-block good" style="border-color: rgba(5, 173, 173, 0.7); background: rgba(5, 173, 173, 0.05);">
+<div class="voice-label good tr-ar">صياغة مفضلة ✅</div>
+<div class="voice-label good tr-en">Preferred Style ✅</div>
+<p class="tr-ar">
+                "نساعد الجهات على بناء حلول رقمية عملية، قابلة للتطبيق، وتضيف
+                قيمة حقيقية لفِرَق العمل."
+              </p>
+<p class="tr-en">
+                "We help organizations build practical digital solutions that
+                teams can actually use and benefit from."
+              </p>
+</div>
+<div class="voice-block bad" style="border-color: rgba(240, 71, 74, 0.8); background: rgba(240, 71, 74, 0.05);">
+<div class="voice-label bad tr-ar">غير مفضل ❌</div>
+<div class="voice-label bad tr-en">Not Recommended ❌</div>
+<p class="tr-ar">
+                "نقدّم أفضل وأقوى الحلول الرقمية على الإطلاق لنعيد تعريف
+                المستقبل بالكامل."
+              </p>
+<p class="tr-en">
+                "We deliver the most powerful digital solutions ever that
+                completely redefine the future."
+              </p>
+</div>
+</div>
+<p class="muted">
+<span class="tr-ar">
+              في حال الشك في الصياغة، يُفضّل مشاركة النص مع فريق التسويق
+              للمراجعة قبل النشر.
+            </span>
+<span class="tr-en">
+              When in doubt, share your copy with the Marketing team for a
+              quick review before publishing.
+            </span>
+</p>
+</div>
+</article>
+<!-- Row 6: Brand checklist full width -->
+<article class="card glass-card card-span-2" id="contact">
+<header class="card-header">
+<div>
+<div class="card-kicker tr-ar">قبل إرسال أي تصميم</div>
+<div class="card-kicker tr-en">Before You Share Any Design</div>
+<h2 class="card-title">
+<span class="tr-ar">قائمة التحقق السريعة – Brand Checklist</span>
+<span class="tr-en">Quick Brand Checklist</span>
+</h2>
+</div>
+</header>
+<div class="card-body">
+<p>
+<span class="tr-ar">
+              تأكد من النقاط التالية قبل إرسال أي عرض، بوست، أو ملف للعميل أو للنشر الداخلي.
+            </span>
+<span class="tr-en">
+              Make sure you review the following points before sending any deck, post, or file to clients or for internal publishing.
+            </span>
+</p>
+<div class="checklist-grid">
+<ul class="checklist-column">
+<li>
+<span class="tr-ar">استخدمت نسخة الشعار الصحيحة (فاتح أو داكن) بما يناسب الخلفية.</span>
+<span class="tr-en">You used the correct logo version (light or dark) for the background.</span>
+</li>
+<li>
+<span class="tr-ar">الألوان المستخدمة من لوحة الألوان المعتمدة فقط.</span>
+<span class="tr-en">All colors are taken from the approved color palette.</span>
+</li>
+<li>
+<span class="tr-ar">تم استخدام خط Baloo_Bhaijaan (EN_AR) في العناوين والنصوص الأساسية.</span>
+<span class="tr-en">Baloo_Bhaijaan (EN_AR) is used for main titles and key text.</span>
+</li>
+</ul>
+<ul class="checklist-column">
+<li>
+<span class="tr-ar">دقة الصور والملفات مناسبة للطباعة أو العرض على الشاشات.</span>
+<span class="tr-en">Image and file resolution is suitable for print or screen.</span>
+</li>
+<li>
+<span class="tr-ar">تمت مراجعة الأرقام، أسماء العملاء، والشعارات بدقة.</span>
+<span class="tr-en">All numbers, client names, and logos were double-checked.</span>
+</li>
+<li>
+<span class="tr-ar">التصميم يعكس نبرة وهوية T&amp;S بدون إضافات شخصية غير متسقة.</span>
+<span class="tr-en">The design reflects T&amp;S tone and identity without off-brand personal tweaks.</span>
+</li>
+</ul>
+</div>
+<p class="muted">
+<span class="tr-ar">
+              في الحالات الخاصة أو الاستثناءات، يمكن التنسيق مع فريق العلامة التجارية لاعتماد الحل الأنسب.
+            </span>
+<span class="tr-en">
+              For special or exceptional cases, you can still coordinate with the Brand team to find the best solution.
+            </span>
+</p>
+</div>
+</article>
+</main>
+<footer class="site-footer glass-card">
+<div class="footer-main">
+<div class="footer-row">
+<span class="tr-ar">آخر تحديث للهوية: 07 / 12 / 2025</span>
+<span class="tr-en">Last brand update: 07 / 12 / 2025</span>
+<span class="tr-ar">هذه الصفحة للاستخدام الداخلي لموظفي T&amp;S فقط.</span>
+<span class="tr-en">This page is for internal use by T&amp;S employees only.</span>
+</div>
+<div class="footer-row">
+<span class="tr-ar">صُنع بــ❤️ في T&amp;S</span>
+<span class="tr-en">Made with ❤️ at T&amp;S</span>
+</div>
+</div>
+</footer>
+</div>
+<!-- ASSET PREVIEW MODAL -->
+<div aria-hidden="true" class="preview-overlay" id="asset-preview-overlay">
+<div aria-modal="true" class="preview-dialog" role="dialog">
+<div class="preview-header">
+<div class="preview-title-wrap">
+<div class="preview-title">
+<span class="tr-ar" id="asset-preview-title-ar"></span>
+<span class="tr-en" id="asset-preview-title-en"></span>
+</div>
+<div class="preview-sub">
+<span class="tr-ar">معاينة بصرية للملف قبل التحميل.</span>
+<span class="tr-en">Visual preview of the asset before downloading.</span>
+</div>
+</div>
+<button aria-label="Close preview" class="preview-close-btn" id="asset-preview-close" type="button">
+          ×
+        </button>
+</div>
+<div class="preview-body" id="asset-preview-content">
+</div>
+<div class="preview-actions">
+<p class="preview-hint">
+<span class="tr-ar">
+            يمكنك تحميل الملف مباشرة أو فتحه في تبويب جديد لمعاينته بالحجم الكامل.
+          </span>
+<span class="tr-en">
+            You can download the file directly or open it in a new tab for full-size viewing.
+          </span>
+</p>
+<div class="btn-row">
+<a class="btn btn-ghost" href="#" id="asset-preview-open-link" rel="noopener" target="_blank">
+<span aria-hidden="true" class="icon"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24"><path d="M14 3h7v7"></path><path d="M21 3l-9 9"></path><path d="M10 7H7a4 4 0 0 0-4 4v6a4 4 0 0 0 4 4h6a4 4 0 0 0 4-4v-3"></path></svg></span>
+<span class="tr-ar">فتح في تبويب جديد</span>
+<span class="tr-en">Open in new tab</span>
+</a>
+<a class="btn" download="" href="#" id="asset-preview-download-link">
+<span aria-hidden="true" class="icon"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24"><path d="M12 3v10"></path><path d="M8 9l4 4 4-4"></path><path d="M4 17v3h16v-3"></path></svg></span>
+<span class="tr-ar">تحميل الملف</span>
+<span class="tr-en">Download file</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+<!-- DESIGN EXAMPLE MODAL -->
+<div aria-hidden="true" class="preview-overlay" id="design-overlay">
+<div class="preview-dialog">
+<div class="preview-header" style="display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:8px;">
+<div class="preview-title-wrap">
+<div class="preview-title" id="design-title-ar"></div>
+<div class="preview-title tr-en" id="design-title-en"></div>
+</div>
+<button class="btn-ghost" id="design-close" style="width:32px;height:32px;display:flex;align-items:center;justify-content:center;" type="button">×</button>
+</div>
+<div class="preview-body preview-body--group">
+<div class="slider-wrap">
+<div class="slider-viewport">
+<img alt="preview" id="design-slider-image" src=""/>
+</div>
+<div class="slider-controls">
+<button class="btn btn-ghost" id="slide-prev">◀</button>
+<button class="btn btn-ghost" id="slide-next">▶</button>
+</div>
+<div class="slider-bullets" id="slider-bullets"></div>
+<div class="btn-row" style="justify-content:flex-end;">
+<a class="btn" download="" id="design-download">
+<span aria-hidden="true" class="icon"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24"><path d="M12 3v10"></path><path d="M8 9l4 4 4-4"></path><path d="M4 17v3h16v-3"></path></svg></span>
+<span class="tr-ar">تحميل الصورة الحالية</span>
+<span class="tr-en">Download current</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script>
+    (function () {
+      const htmlEl = document.documentElement;
+      const bodyEl = document.body;
+      const langButtons = document.querySelectorAll(".lang-pill");
+      const paletteToggle = document.getElementById("palette-toggle");
+      const palettePanel = document.getElementById("palette-panel");
+      const paletteNote = document.getElementById("palette-note");
+      const copyButtons = document.querySelectorAll(".copy-btn");
+
+      const assetTiles = document.querySelectorAll(".asset-tile");
+      const overlay = document.getElementById("asset-preview-overlay");
+      const overlayContent = document.getElementById("asset-preview-content");
+      const overlayTitleAr = document.getElementById("asset-preview-title-ar");
+      const overlayTitleEn = document.getElementById("asset-preview-title-en");
+      const overlayCloseBtn = document.getElementById("asset-preview-close");
+      const overlayOpenLink = document.getElementById("asset-preview-open-link");
+      const overlayDownloadLink = document.getElementById("asset-preview-download-link");
+      const overlayHint = document.querySelector(".preview-hint");
+
+      const assetGroupTriggers = document.querySelectorAll("[data-asset-group]");
+
+      const assetGroups = {
+        logos: {
+          titleAr: "ملفات الشعار الرسمي",
+          titleEn: "Official Logo Assets",
+          items: [
+            {
+              titleAr: "شعار فاتح – خلفيات داكنة",
+              titleEn: "Light logo – for dark backgrounds",
+              descAr: "يستخدم على الخلفيات الداكنة أو البنفسجية / الزرقاء.",
+              descEn: "Use on dark, purple, or blue backgrounds.",
+              previewImg: "https://raw.githubusercontent.com/toolsAndsolution/ts-brand-hub/refs/heads/main/assets/logos/ts-logo-light.png",
+              downloads: [
+                {
+                  href: "https://raw.githubusercontent.com/toolsAndsolution/ts-brand-hub/refs/heads/main/assets/logos/ts-logo-light.svg",
+                  labelAr: "تحميل SVG",
+                  labelEn: "Download SVG"
+                },
+                {
+                  href: "https://raw.githubusercontent.com/toolsAndsolution/ts-brand-hub/refs/heads/main/assets/logos/ts-logo-light.png",
+                  labelAr: "تحميل PNG",
+                  labelEn: "Download PNG"
+                }
+              ]
+            },
+            {
+              titleAr: "شعار داكن – خلفيات فاتحة",
+              titleEn: "Dark logo – for light backgrounds",
+              descAr: "يستخدم على الخلفيات البيضاء أو الفاتحة.",
+              descEn: "Use on white or light backgrounds.",
+              previewImg: "https://raw.githubusercontent.com/toolsAndsolution/ts-brand-hub/refs/heads/main/assets/logos/ts-logo-dark.png",
+              downloads: [
+                {
+                  href: "https://raw.githubusercontent.com/toolsAndsolution/ts-brand-hub/refs/heads/main/assets/logos/ts-logo-dark.svg",
+                  labelAr: "تحميل SVG",
+                  labelEn: "Download SVG"
+                },
+                {
+                  href: "https://raw.githubusercontent.com/toolsAndsolution/ts-brand-hub/refs/heads/main/assets/logos/ts-logo-dark.png",
+                  labelAr: "تحميل PNG",
+                  labelEn: "Download PNG"
+                }
+              ]
+            }
+          ]
+        },
+        logoLight: {
+          titleAr: "الشعار الفاتح",
+          titleEn: "Light Logo",
+          items: [
+            {
+              titleAr: "الشعار الفاتح",
+              titleEn: "Light Logo",
+              previewImg: "https://raw.githubusercontent.com/toolsAndsolution/ts-brand-hub/refs/heads/main/assets/logos/ts-logo-light.png",
+              downloads: [
+                {
+                  href: "https://raw.githubusercontent.com/toolsAndsolution/ts-brand-hub/refs/heads/main/assets/logos/ts-logo-light.svg",
+                  labelAr: "تحميل SVG",
+                  labelEn: "Download SVG"
+                },
+                {
+                  href: "https://raw.githubusercontent.com/toolsAndsolution/ts-brand-hub/refs/heads/main/assets/logos/ts-logo-light.png",
+                  labelAr: "تحميل PNG",
+                  labelEn: "Download PNG"
+                }
+              ]
+            }
+          ]
+        },
+        logoDark: {
+          titleAr: "الشعار الغامق",
+          titleEn: "Dark Logo",
+          items: [
+            {
+              titleAr: "الشعار الغامق",
+              titleEn: "Dark Logo",
+              previewImg: "https://raw.githubusercontent.com/toolsAndsolution/ts-brand-hub/refs/heads/main/assets/logos/ts-logo-dark.png",
+              downloads: [
+                {
+                  href: "https://raw.githubusercontent.com/toolsAndsolution/ts-brand-hub/refs/heads/main/assets/logos/ts-logo-dark.svg",
+                  labelAr: "تحميل SVG",
+                  labelEn: "Download SVG"
+                },
+                {
+                  href: "https://raw.githubusercontent.com/toolsAndsolution/ts-brand-hub/refs/heads/main/assets/logos/ts-logo-dark.png",
+                  labelAr: "تحميل PNG",
+                  labelEn: "Download PNG"
+                }
+              ]
+            }
+          ]
+        },
+        faviconLight: {
+          titleAr: "فيف أيكون (لايت)",
+          titleEn: "Favicon (Light)",
+          items: [
+            {
+              titleAr: "فيف أيكون لايت",
+              titleEn: "Favicon Light",
+              previewImg: "https://raw.githubusercontent.com/toolsAndsolution/ts-brand-hub/refs/heads/main/assets/icons/ts-favicon.png",
+              downloads: [
+                { href: "https://raw.githubusercontent.com/toolsAndsolution/ts-brand-hub/refs/heads/main/assets/icons/ts-favicon.svg", labelAr: "تحميل SVG", labelEn: "Download SVG" },
+                { href: "https://raw.githubusercontent.com/toolsAndsolution/ts-brand-hub/refs/heads/main/assets/icons/ts-favicon.png", labelAr: "تحميل PNG", labelEn: "Download PNG" }
+              ]
+            }
+          ]
+        },
+        faviconDark: {
+          titleAr: "فيف أيكون (دارك)",
+          titleEn: "Favicon (Dark)",
+          items: [
+            {
+              titleAr: "فيف أيكون دارك",
+              titleEn: "Favicon Dark",
+              previewImg: "https://raw.githubusercontent.com/toolsAndsolution/ts-brand-hub/refs/heads/main/assets/icons/ts-favicon-dark.png",
+              downloads: [
+                { href: "https://raw.githubusercontent.com/toolsAndsolution/ts-brand-hub/refs/heads/main/assets/icons/ts-favicon-dark.svg", labelAr: "تحميل SVG", labelEn: "Download SVG" },
+                { href: "https://raw.githubusercontent.com/toolsAndsolution/ts-brand-hub/refs/heads/main/assets/icons/ts-favicon-dark.png", labelAr: "تحميل PNG", labelEn: "Download PNG" }
+              ]
+            }
+          ]
+        },
+        wordTemplates: {
+          titleAr: "قوالب الورق الرسمي والمستندات (Word)",
+          titleEn: "Official Word Letterhead & Documents",
+          items: [
+            {
+              id: "word-ar",
+              titleAr: "ورق رسمي – عربي",
+              titleEn: "Letterhead – Arabic",
+              descAr: "للمراسلات الرسمية باللغة العربية.",
+              descEn: "For Arabic formal correspondence.",
+              downloads: [
+                {
+                  href: "assets/templates/word-letterhead-ar.docx",
+                  labelAr: "تحميل .docx",
+                  labelEn: "Download .docx"
+                }
+              ]
+            },
+            {
+              id: "word-en",
+              titleAr: "ورق رسمي – إنجليزي",
+              titleEn: "Letterhead – English",
+              descAr: "للمراسلات الرسمية باللغة الإنجليزية.",
+              descEn: "For English formal correspondence.",
+              downloads: [
+                {
+                  href: "assets/templates/word-letterhead-en.docx",
+                  labelAr: "تحميل .docx",
+                  labelEn: "Download .docx"
+                }
+              ]
+            },
+            {
+              id: "word-bilingual",
+              titleAr: "ورق رسمي – ثنائي اللغة",
+              titleEn: "Letterhead – Bilingual",
+              descAr: "يوحد الهوية في مراسلات ثنائية اللغة.",
+              descEn: "Unified layout for bilingual letters.",
+              downloads: [
+                {
+                  href: "assets/templates/word-letterhead-bilingual.docx",
+                  labelAr: "تحميل .docx",
+                  labelEn: "Download .docx"
+                }
+              ]
+            },
+            {
+              id: "word-report",
+              titleAr: "قالب تقرير / مذكرة",
+              titleEn: "Report / Memo Template",
+              descAr: "للتقارير والمذكرات الداخلية.",
+              descEn: "For internal reports and memos.",
+              downloads: [
+                {
+                  href: "assets/templates/word-report-template.docx",
+                  labelAr: "تحميل .docx",
+                  labelEn: "Download .docx"
+                }
+              ]
+            }
+          ]
+        },
+        pptTemplates: {
+          titleAr: "قوالب العروض التقديمية (PowerPoint)",
+          titleEn: "Presentation Templates (PowerPoint)",
+          items: [
+            {
+              id: "ppt-main",
+              titleAr: "قالب العروض الرئيسي",
+              titleEn: "Main Presentation Template",
+              descAr: "للاستخدام العام في جميع العروض.",
+              descEn: "General-purpose deck for most presentations.",
+              downloads: [
+                {
+                  href: "assets/templates/ts-ppt-main-template.pptx",
+                  labelAr: "تحميل .pptx",
+                  labelEn: "Download .pptx"
+                }
+              ]
+            },
+            {
+              id: "ppt-verticals",
+              titleAr: "قالب العروض – حلول / قطاعات",
+              titleEn: "Solutions / Verticals Template",
+              descAr: "لعروض المتاجر، الحلول، والقطاعات المختلفة.",
+              descEn: "For solutions, verticals, and offering-specific decks.",
+              downloads: [
+                {
+                  href: "assets/templates/ts-ppt-verticals-template.pptx",
+                  labelAr: "تحميل .pptx",
+                  labelEn: "Download .pptx"
+                }
+              ]
+            }
+          ]
+        }
+      };
+
+      let defaultHintAr = "";
+      let defaultHintEn = "";
+      if (overlayHint) {
+        const arEl = overlayHint.querySelector(".tr-ar");
+        const enEl = overlayHint.querySelector(".tr-en");
+        defaultHintAr = arEl ? arEl.textContent : "";
+        defaultHintEn = enEl ? enEl.textContent : "";
+      }
+
+
+      function setLanguage(lang) {
+        if (lang === "en") {
+          htmlEl.setAttribute("lang", "en");
+          htmlEl.setAttribute("dir", "ltr");
+          bodyEl.classList.remove("lang-ar");
+          bodyEl.classList.add("lang-en");
+        } else {
+          htmlEl.setAttribute("lang", "ar");
+          htmlEl.setAttribute("dir", "rtl");
+          bodyEl.classList.remove("lang-en");
+          bodyEl.classList.add("lang-ar");
+        }
+
+        langButtons.forEach((btn) => {
+          btn.classList.toggle("active", btn.dataset.lang === lang);
+        });
+
+        resetCopyButtonsLabels();
+      }
+
+      function togglePalettePanel() {
+        if (!palettePanel || !paletteToggle) return;
+        const isOpen = palettePanel.classList.toggle("open");
+        
+        if (paletteNote) paletteNote.style.display = isOpen ? "none" : ""; 
+const arClosed = paletteToggle.querySelector(".tr-ar .text-when-closed");
+        const arOpen = paletteToggle.querySelector(".tr-ar .text-when-open");
+        const enClosed = paletteToggle.querySelector(".tr-en .text-when-closed");
+        const enOpen = paletteToggle.querySelector(".tr-en .text-when-open");
+
+        if (arClosed && arOpen && enClosed && enOpen) {
+          if (isOpen) {
+            arClosed.style.display = "none";
+            enClosed.style.display = "none";
+            arOpen.style.display = "inline";
+            enOpen.style.display = "inline";
+          } else {
+            arClosed.style.display = "inline";
+            enClosed.style.display = "inline";
+            arOpen.style.display = "none";
+            enOpen.style.display = "none";
+          }
+        }
+      }
+
+      function resetCopyButtonsLabels() {
+        const isAr = bodyEl.classList.contains("lang-ar");
+        copyButtons.forEach((btn) => {
+          const arLabel = btn.querySelector(".copy-label.tr-ar");
+          const enLabel = btn.querySelector(".copy-label.tr-en");
+          if (!arLabel || !enLabel) return;
+
+          if (btn.classList.contains("copied")) {
+            arLabel.textContent = isAr ? "تم النسخ" : "نسخ";
+            enLabel.textContent = isAr ? "Copied" : "Copied!";
+          } else {
+            arLabel.textContent = "نسخ";
+            enLabel.textContent = "Copy";
+          }
+        });
+      }
+
+      function handleCopyClick(event) {
+        const btn = event.currentTarget;
+        const hex = btn.dataset.hex;
+        if (!hex) return;
+
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(hex).then(
+            () => showCopiedState(btn),
+            () => showCopiedState(btn)
+          );
+        } else {
+          const textarea = document.createElement("textarea");
+          textarea.value = hex;
+          textarea.style.position = "fixed";
+          textarea.style.opacity = "0";
+          document.body.appendChild(textarea);
+          textarea.select();
+          try {
+            document.execCommand("copy");
+          } catch (e) {}
+          document.body.removeChild(textarea);
+          showCopiedState(btn);
+        }
+      }
+
+      function showCopiedState(btn) {
+        const isAr = bodyEl.classList.contains("lang-ar");
+        const arLabel = btn.querySelector(".copy-label.tr-ar");
+        const enLabel = btn.querySelector(".copy-label.tr-en");
+        if (arLabel && enLabel) {
+          arLabel.textContent = isAr ? "تم النسخ" : "نسخ";
+          enLabel.textContent = isAr ? "Copied" : "Copied!";
+        }
+        btn.classList.add("copied");
+        setTimeout(() => {
+          btn.classList.remove("copied");
+          resetCopyButtonsLabels();
+        }, 1600);
+      }
+
+      function openAssetPreview(tile) {
+        if (!overlay || !overlayContent || !overlayTitleAr || !overlayTitleEn) return;
+
+        const type = tile.dataset.previewType || "image";
+        const src = tile.dataset.previewSrc;
+        const downloadSrc = tile.dataset.downloadSrc || src;
+        const titleAr = tile.dataset.titleAr || "";
+        const titleEn = tile.dataset.titleEn || "";
+
+        if (!src) return;
+
+        overlayTitleAr.textContent = titleAr;
+        overlayTitleEn.textContent = titleEn;
+
+        overlayContent.classList.remove("preview-body--group");
+        overlayContent.innerHTML = "";
+        if (type === "pdf") {
+          const iframe = document.createElement("iframe");
+          iframe.src = src;
+          iframe.title = titleEn || titleAr || "Preview";
+          overlayContent.appendChild(iframe);
+        } else {
+          const img = document.createElement("img");
+          img.src = src;
+          img.alt = titleEn || titleAr || "Asset preview";
+          overlayContent.appendChild(img);
+        }
+
+        if (overlayHint && defaultHintAr && defaultHintEn) {
+          const arEl = overlayHint.querySelector(".tr-ar");
+          const enEl = overlayHint.querySelector(".tr-en");
+          if (arEl) arEl.textContent = defaultHintAr;
+          if (enEl) enEl.textContent = defaultHintEn;
+        }
+
+        if (overlayOpenLink) {
+          overlayOpenLink.href = src;
+          overlayOpenLink.style.display = "";
+        }
+        if (overlayDownloadLink) {
+          overlayDownloadLink.href = downloadSrc;
+          overlayDownloadLink.style.display = "";
+        }
+
+        overlay.classList.add("visible");
+        overlay.setAttribute("aria-hidden", "false");
+      }
+
+      function openAssetGroup(groupId) {
+        if (!overlay || !overlayContent || !overlayTitleAr || !overlayTitleEn) return;
+        const config = assetGroups[groupId];
+        if (!config) return;
+
+        overlayTitleAr.textContent = config.titleAr || "";
+        overlayTitleEn.textContent = config.titleEn || "";
+
+        if (!overlayContent) return;
+        overlayContent.innerHTML = "";
+        overlayContent.classList.add("preview-body--group");
+
+        const grid = document.createElement("div");
+        grid.className = "preview-group-grid";
+
+        config.items.forEach((item) => {
+          const card = document.createElement("div");
+          card.className = "preview-group-item";
+
+          const titleRow = document.createElement("div");
+          titleRow.className = "preview-group-title";
+          titleRow.innerHTML = `
+            <span class="tr-ar">${item.titleAr || ""}</span>
+            <span class="tr-en">${item.titleEn || ""}</span>
+          `;
+          card.appendChild(titleRow);
+
+          if (item.descAr || item.descEn) {
+            const desc = document.createElement("div");
+            desc.className = "preview-group-desc";
+            desc.innerHTML = `
+              <span class="tr-ar">${item.descAr || ""}</span>
+              <span class="tr-en">${item.descEn || ""}</span>
+            `;
+            card.appendChild(desc);
+          }
+
+          if (item.previewImg) {
+            const imgWrap = document.createElement("div");
+            imgWrap.style.display = "flex";
+            imgWrap.style.justifyContent = "center";
+            imgWrap.style.background = "#050713";
+            imgWrap.style.border = "1px solid rgba(255,255,255,0.1)";
+            imgWrap.style.borderRadius = "10px";
+            imgWrap.style.padding = "10px";
+            const img = document.createElement("img");
+            img.src = item.previewImg;
+            img.alt = item.titleEn || item.titleAr || "preview";
+            img.style.maxWidth = "100%";
+            imgWrap.appendChild(img);
+            card.appendChild(imgWrap);
+          }
+
+          if (item.downloads && item.downloads.length) {
+            const buttons = document.createElement("div");
+            buttons.className = "preview-group-buttons";
+            item.downloads.forEach((dl, index) => {
+              const link = document.createElement("a");
+              link.href = dl.href;
+              link.setAttribute("download", "");
+              link.className = index === 0 ? "btn" : "btn btn-ghost";
+              link.innerHTML = `
+                <span class="btn-ic" aria-hidden="true">
+  <svg viewBox="0 0 24 24" fill="none">
+    <path d="M12 3v10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    <path d="M8 11l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M4 19h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+  </svg>
+</span>
+                <span class="tr-ar">${dl.labelAr || ""}</span>
+                <span class="tr-en">${dl.labelEn || ""}</span>
+              `;
+              buttons.appendChild(link);
+            });
+            card.appendChild(buttons);
+          }
+
+          grid.appendChild(card);
+        });
+
+        overlayContent.appendChild(grid);
+
+        if (overlayHint) {
+          const arEl = overlayHint.querySelector(".tr-ar");
+          const enEl = overlayHint.querySelector(".tr-en");
+          if (arEl) arEl.textContent = "اختر أحد الملفات أدناه لتحميله.";
+          if (enEl) enEl.textContent = "Select one of the assets below to download.";
+        }
+
+        if (overlayOpenLink) {
+          overlayOpenLink.style.display = "none";
+        }
+        if (overlayDownloadLink) {
+          overlayDownloadLink.style.display = "none";
+        }
+
+        overlay.classList.add("visible");
+        overlay.setAttribute("aria-hidden", "false");
+      }
+
+      function closeAssetPreview() {
+        if (!overlay) return;
+        overlay.classList.remove("visible");
+        overlay.setAttribute("aria-hidden", "true");
+        if (overlayContent) {
+          overlayContent.classList.remove("preview-body--group");
+          overlayContent.innerHTML = "";
+        }
+        if (overlayHint && defaultHintAr && defaultHintEn) {
+          const arEl = overlayHint.querySelector(".tr-ar");
+          const enEl = overlayHint.querySelector(".tr-en");
+          if (arEl) arEl.textContent = defaultHintAr;
+          if (enEl) enEl.textContent = defaultHintEn;
+        }
+        if (overlayOpenLink) {
+          overlayOpenLink.style.display = "";
+        }
+        if (overlayDownloadLink) {
+          overlayDownloadLink.style.display = "";
+        }
+      }
+
+      langButtons.forEach((btn) => {
+        btn.addEventListener("click", () => setLanguage(btn.dataset.lang || "ar"));
+      });
+
+      if (paletteToggle && palettePanel) {
+        paletteToggle.addEventListener("click", togglePalettePanel);
+      if (paletteNote && palettePanel && palettePanel.classList.contains("open")) paletteNote.style.display = "none";
+
+      }
+
+      copyButtons.forEach((btn) => {
+        btn.addEventListener("click", handleCopyClick);
+      });
+
+      assetTiles.forEach((tile) => {
+        tile.addEventListener("click", () => {
+          const groupId = tile.getAttribute("data-asset-group");
+          if (groupId) {
+            openAssetGroup(groupId);
+          } else {
+            openAssetPreview(tile);
+          }
+        });
+      });
+
+      assetGroupTriggers.forEach((trigger) => {
+        trigger.addEventListener("click", () => {
+          const groupId = trigger.getAttribute("data-asset-group");
+          if (groupId) {
+            openAssetGroup(groupId);
+          }
+        });
+      });
+
+      if (overlayCloseBtn) {
+        overlayCloseBtn.addEventListener("click", closeAssetPreview);
+      }
+
+      if (overlay) {
+        overlay.addEventListener("click", (event) => {
+          if (event.target === overlay) {
+            closeAssetPreview();
+          }
+        });
+      }
+
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") {
+          if (overlay && overlay.classList.contains("visible")) {
+            closeAssetPreview();
+          }
+        }
+      });
+
+      setLanguage("ar");
+    })();
+  </script>
+<script>
+    // سلايدر أمثلة التصميم (بدون رفع/ZIP)
+    (function() {
+      const designOverlay = document.getElementById("design-overlay");
+      const designClose = document.getElementById("design-close");
+      const designTitleAr = document.getElementById("design-title-ar");
+      const designTitleEn = document.getElementById("design-title-en");
+      const designImage = document.getElementById("design-slider-image");
+      const bullets = document.getElementById("slider-bullets");
+      const btnPrev = document.getElementById("slide-prev");
+      const btnNext = document.getElementById("slide-next");
+      const downloadBtn = document.getElementById("design-download");
+      const triggers = document.querySelectorAll(".design-trigger");
+
+      const presets = {
+        social: { ar:"أمثلة سوشال ميديا", en:"Social Media Examples", images:["assets/social/example1.png","assets/social/example2.png","assets/social/example3.png"] },
+        gallery:{ ar:"أمثلة المعارض", en:"Gallery Examples", images:["assets/gallery/example1.png","assets/gallery/example2.png"] },
+        rollup: { ar:"أمثلة رول أب", en:"Roll-up Examples", images:["assets/events/rollup1.png","assets/events/rollup2.png"] },
+        official:{ ar:"مجموعة الصور الرسمية", en:"Official Image Collection", images:["assets/photos/T&S (2).png","assets/photos/T&S (1).png","assets/photos/T&S (3).png",
+             "assets/photos/T&S (4).png","assets/photos/T&S (5).png","assets/photos/T&S (6).png","assets/photos/T&S (7).png"] }
+      };
+
+      let currentImages = [];
+      let currentIndex = 0;
+
+      function renderSlider() {
+        if (!currentImages.length) return;
+        designImage.src = currentImages[currentIndex];
+        downloadBtn.href = currentImages[currentIndex];
+        bullets.innerHTML = "";
+        currentImages.forEach((_, idx) => {
+          const b = document.createElement("button");
+          b.classList.toggle("active", idx === currentIndex);
+          b.addEventListener("click", () => {
+            currentIndex = idx;
+            renderSlider();
+          });
+          bullets.appendChild(b);
+        });
+      }
+
+      function openDesign(key) {
+        const config = presets[key];
+        if (!config) return;
+        currentImages = [...config.images];
+        currentIndex = 0;
+        designTitleAr.textContent = config.ar;
+        designTitleEn.textContent = config.en;
+        renderSlider();
+        designOverlay.classList.add("visible");
+        designOverlay.setAttribute("aria-hidden","false");
+      }
+
+      function closeDesign() {
+        designOverlay.classList.remove("visible");
+        designOverlay.setAttribute("aria-hidden","true");
+      }
+
+      btnPrev.addEventListener("click", () => {
+        if (!currentImages.length) return;
+        currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length;
+        renderSlider();
+      });
+      btnNext.addEventListener("click", () => {
+        if (!currentImages.length) return;
+        currentIndex = (currentIndex + 1) % currentImages.length;
+        renderSlider();
+      });
+
+      designClose.addEventListener("click", closeDesign);
+      designOverlay.addEventListener("click", (e) => { if (e.target === designOverlay) closeDesign(); });
+      document.addEventListener("keydown", (e) => { if (e.key === "Escape" && designOverlay.classList.contains("visible")) closeDesign(); });
+
+      triggers.forEach((btn) => btn.addEventListener("click", () => openDesign(btn.dataset.design)));
+    })();
+  </script>
+<script>
+    // Font size control
+    (function() {
+      var scale = 1.0;
+      var minScale = 0.9;
+      var maxScale = 1.3;
+      var root = document.documentElement;
+
+      function applyScale() {
+        root.style.setProperty('--font-scale', scale.toString());
+      }
+
+      window.adjustFontScale = function(delta) {
+        var next = scale + delta;
+        if (next < minScale) next = minScale;
+        if (next > maxScale) next = maxScale;
+        scale = Math.round(next * 100) / 100;
+        applyScale();
+      };
+
+      window.resetFontScale = function() {
+        scale = 1.0;
+        applyScale();
+      };
+    })();
+  </script>
+<!-- BRAND GRADIENTS MODAL -->
+<div class="preview-overlay" id="gradients-overlay" aria-hidden="true" role="dialog" aria-modal="true">
+  <div class="preview-dialog" role="document" tabindex="-1">
+    <div class="preview-header">
+      <div class="preview-title-wrap">
+        <div class="preview-title">
+          <span class="tr-ar">اقتراحات تدرجات الهوية</span>
+          <span class="tr-en">Brand Gradient Suggestions</span>
         </div>
-        <div class="hero-titles">
-          <h1 id="hero-title">سياسة اللباس وإرشادات التواصل والسلوك المهني</h1>
-          <p id="hero-sub">مرجع موحّد لسياسة اللباس، آداب التواصل، والتسلسل الإداري مع العملاء</p>
+        <div class="preview-sub">
+          <span class="tr-ar">تدرجات جاهزة مبنية على ألوان T&amp;S — انسخ CSS مباشرة أو حمّل ملف JSON.</span>
+          <span class="tr-en">Ready-to-use gradients built from T&amp;S colors — copy CSS or download JSON.</span>
         </div>
       </div>
-      <div class="toolbar" role="group" aria-label="Page controls">
-        <div class="group" aria-label="Language">
-          <button class="btn alt" id="btn-ar" aria-pressed="true">العربية</button>
-          <button class="btn alt" id="btn-en" aria-pressed="false">English</button>
-        </div>
-        <div class="group" aria-label="View">
-          <button class="btn primary" id="btn-general" aria-pressed="false">نظرة عامة</button>
-          <button class="btn" id="btn-detailed" aria-pressed="true">تفاصيل موسّعة</button>
-        </div>
-        <div class="group" aria-label="Export">
-          <button class="btn" id="btn-export">⬇️ PDF</button>
-          <button class="btn print" id="btn-print">🖨️ طباعة</button>
-        </div>
+
+      <div style="display:flex; gap:10px; align-items:center">
+        <button class="btn btn-ghost btn-mini" id="gradients-download-json" type="button" aria-label="Download gradients JSON">
+          <span aria-hidden="true" class="icon" style="margin-inline-end:8px">
+            <svg aria-hidden="true" fill="none" viewBox="0 0 24 24">
+              <path d="M12 3v10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <path d="M8 11l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M4 19h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </span>
+          <span class="tr-ar">تحميل JSON</span>
+          <span class="tr-en">Download JSON</span>
+        </button>
+
+        <button aria-label="Close gradients" class="preview-close-btn" id="gradients-close" type="button">×</button>
       </div>
-      <nav class="toc" id="toc">
-        <a href="#sec-dress" id="toc-dress">👔 سياسة اللباس</a>
-        <a href="#sec-comm" id="toc-comm">💬 إرشادات التواصل</a>
-        <a href="#sec-loa" id="toc-loa">🗂️ التسلسل الإداري</a>
-        <a href="#sec-notes" id="toc-notes">📝 ملاحظات</a>
-      </nav>
-      <noscript class="noscript">هذه الصفحة تستخدم جافاسكربت لعرض المحتوى. في حال تعطيل جافاسكربت ستظهر النسخة العربية الثابتة أدناه.</noscript>
-    </header>
-
-    <main class="grid" id="content">
-      <!-- Dress Code card -->
-      <section class="card two" id="sec-dress" data-section="dress">
-        <h2 id="dress-title">سياسة اللباس</h2>
-        <p class="lead" id="dress-lead">اختر الفئة للاطلاع على المتطلبات المحددة.</p>
-        <div class="split">
-          <div class="box">
-            <span class="pill" id="pill-site">مواقع العملاء</span>
-            <button class="btn sm" id="tgl-site" data-toggle-gallery="#site-examples" aria-pressed="false">إظهار الصور</button>
-            <ul class="list" id="site-req"></ul>
-            <div class="gallery" id="site-examples"></div>
-          </div>
-          <div class="box">
-            <span class="pill" id="pill-office">المكتب</span>
-            <button class="btn sm" id="tgl-office" data-toggle-gallery="#office-examples" aria-pressed="false">إظهار الصور</button>
-            <ul class="list" id="office-req"></ul>
-            <div class="gallery" id="office-examples"></div>
-          </div>
-        </div>
-        <div class="split">
-          <div class="box">
-            <span class="pill" id="pill-male">الرجال</span>
-            <button class="btn sm" id="tgl-male" data-toggle-gallery="#male-examples" aria-pressed="false">إظهار الصور</button>
-            <ul class="list" id="male-req"></ul>
-            <div class="gallery" id="male-examples"></div>
-          </div>
-          <div class="box">
-            <span class="pill" id="pill-female">النساء</span>
-            <button class="btn sm" id="tgl-female" data-toggle-gallery="#female-examples" aria-pressed="false">إظهار الصور</button>
-            <ul class="list" id="female-req"></ul>
-            <div class="gallery" id="female-examples"></div>
-          </div>
-        </div>
-        <p class="hint" id="gallery-hint">استبدل الصور بأمثلة معتمدة وفق هوية الشركة (PNG/JPG 1200×900 كحد أدنى).</p>
-      </section>
-
-      <!-- Professional Communication -->
-      <section class="card two" id="sec-comm" data-section="comm">
-        <h2 id="comm-title">إرشادات التواصل والسلوك المهني</h2>
-        <div class="comm-top">
-          <div class="comm-gallery" id="comm-gallery"></div>
-          <div class="comm-body">
-            <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:6px">
-              <span class="pill">الصور</span>
-              <button class="btn sm" id="tgl-comm" data-toggle-gallery="#comm-gallery" aria-pressed="false">إظهار الصور</button>
-            </div>
-            <p class="lead" id="comm-lead">إرشادات عامة وسيناريوهات عملية للاجتماعات والمتابعة.</p>
-            <div id="comm-general">
-              <ul class="list" id="comm-general-list"></ul>
-            </div>
-            <div id="comm-detailed" style="display:none">
-              <div class="split">
-                <div>
-                  <span class="pill" id="pill-intro">التعريف بالنفس</span>
-                  <ul class="list" id="intro-list"></ul>
-                </div>
-                <div>
-                  <span class="pill" id="pill-meeting">آداب الاجتماع</span>
-                  <ul class="list" id="meeting-list"></ul>
-                </div>
-              </div>
-              <div class="split">
-                <div>
-                  <span class="pill" id="pill-follow">المتابعة البريدية</span>
-                  <ul class="list" id="followup-list"></ul>
-                </div>
-                <div>
-                  <span class="pill" id="pill-esc">السرية والتصعيد</span>
-                  <ul class="list" id="escalation-list"></ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Line of Authority -->
-      <section class="card two" id="sec-loa" data-section="loa">
-        <h2 id="loa-title">التسلسل الإداري مع العملاء</h2>
-        <p class="lead" id="loa-lead">يمكن اعتماد هيكل عام أو مواءمته مع هيكل مشروع محدد.</p>
-        <div class="flow" id="loa-general"></div>
-        <p class="hint" id="loa-hint">للتخصيص، استبدل العناوين حسب هيكل مشروعك أو أضف مستويات إضافية مثل <span class="kbd">Service Owner</span> أو <span class="kbd">Client Sponsor</span>.</p>
-      </section>
-
-      <!-- Notes / Disclaimers -->
-      <section class="card two" id="sec-notes" data-section="notes">
-        <h2 id="notes-title">ملاحظات</h2>
-        <ul class="list" id="notes"></ul>
-      </section>
-    </main>
-
-    <!-- Lightbox overlay -->
-    <div class="lightbox" id="lightbox" aria-hidden="true">
-      <img src="" alt="preview" id="lightbox-img" />
     </div>
 
-    <footer>
-      © <span id="year"></span> HR • For inquiries: HR Dept. • هذه الصفحة قابلة للطباعة والحفظ PDF.
-    </footer>
+    <div class="preview-content preview-body--group" id="gradients-content"></div>
   </div>
-
-  <script>
+</div>
+<script>
     (function(){
-      function $(sel){ return document.querySelector(sel); }
-      function byId(id){ return document.getElementById(id); }
-      function setSafeText(id, value){ var el = byId(id); if(el){ el.textContent = value; } }
+      const gradientsToggle = document.getElementById("gradients-toggle");
+      const gradientsOverlay = document.getElementById("gradients-overlay");
+      const gradientsClose = document.getElementById("gradients-close");
+      const gradientsContent = document.getElementById("gradients-content");
+      const gradientsDownload = document.getElementById("gradients-download-json");
 
-      var app = byId('app');
-      var btnAr = byId('btn-ar');
-      var btnEn = byId('btn-en');
-      var btnGeneral = byId('btn-general');
-      var btnDetailed = byId('btn-detailed');
-      var btnExport = byId('btn-export');
-      var yearEl = byId('year');
-      var lightbox = byId('lightbox');
-      var lightboxImg = byId('lightbox-img');
+      if (!gradientsToggle || !gradientsOverlay || !gradientsClose || !gradientsContent) return;
 
-      // GALLERY STATE (default hidden)
-      var galleryState = {
-        '#site-examples': false,
-        '#office-examples': false,
-        '#male-examples': false,
-        '#female-examples': false,
-        '#comm-gallery': false
-      };
+      let lastFocus = null;
 
-      // I18N DATA
-      var i18n = {
-        ar: {
-          heroTitle:'سياسة اللباس وإرشادات التواصل والسلوك المهني',
-          heroSub:'مرجع موحّد لسياسة اللباس، آداب التواصل، والتسلسل الإداري مع العملاء',
-          dressTitle:'سياسة اللباس',
-          dressLead:'اختر الفئة للاطلاع على المتطلبات المحددة.',
-          site:'مواقع العملاء', office:'المكتب', male:'الرجال', female:'النساء',
-          commTitle:'إرشادات التواصل والسلوك المهني',
-          commLead:'إرشادات عامة وسيناريوهات عملية للاجتماعات والمتابعة.',
-          intro:'التعريف بالنفس', meeting:'آداب الاجتماع', follow:'المتابعة البريدية', esc:'السرية والتصعيد',
-          loaTitle:'التسلسل الإداري مع العملاء',
-          loaLead:'يمكن اعتماد هيكل عام أو مواءمته مع هيكل مشروع محدد.',
-          loaHint:'للتخصيص، استبدل العناوين حسب هيكل مشروعك أو أضف مستويات إضافية مثل Service Owner أو Client Sponsor.',
-          notesTitle:'ملاحظات',
-          galleryHint:'استبدل الصور بأمثلة معتمدة وفق هوية الشركة (PNG/JPG 1200×900 كحد أدنى).',
-          toc:{dress:'👔 سياسة اللباس', comm:'💬 إرشادات التواصل', loa:'🗂️ التسلسل الإداري', notes:'📝 ملاحظات'},
-          toggle:{show:'إظهار الصور', hide:'إخفاء الصور'} ,
-          lists: {
-            siteReq:[
-              'التزام مظهر رسمي ومحتشم يعكس صورة الشركة.',
-              'للرجال: ثوب وشماغ/بدلة رسمية مع حذاء رسمي نظيف.',
-              'للنساء: عباية أو بدلة مهنية محتشمة وملائمة للبيئة.',
-              'بطاقة التعريف/تصاريح الموقع متاحة عند الطلب.',
-              'الالتزام بمتطلبات السلامة PPE إن وُجدت (خوذة، أحذية سلامة...).'
-            ],
-            officeReq:[
-              'ملابس عمل مهنية أنيقة (Business Casual) كحد أدنى.',
-              'تجنب الشعارات الصارخة أو الملابس الرياضية.',
-              'حفاظ على نظافة المظهر والعناية الشخصية.',
-              'التزام بسياسات الزوار والاجتماعات داخل المكتب.',
-              'حذاء مغلق ومناسب للبيئة المكتبية.'
-            ],
-            maleReq:[
-              'خيارات مقترحة: بدلة رسمية / ثوب رسمي مرتب.',
-              'ربطة عنق للاجتماعات التنفيذية/العروض الرسمية.',
-              'حذاء رسمي مصقول، جوارب داكنة.',
-              'تجنب العطور النفّاذة والإكسسوارات الزائدة.'
-            ],
-            femaleReq:[
-              'خيارات مقترحة: بدلة مهنية محتشمة / عباية أنيقة.',
-              'ألوان حيادية، قصات غير لافتة، أكمام مناسبة.',
-              'حذاء مغلق مريح بكعب مناسب.',
-              'تجنب الإكسسوارات أو العطور اللافتة.'
-            ],
-            commGeneral:[
-              'استخدم نبرة احترافية وحيادية في كل تواصل.',
-              'ابدأ بتحية رسمية واختم بشكر ومعلومات اتصال.',
-              'احترم سرية معلومات العميل وجميع الوثائق.',
-              'استمع بفاعلية ودوّن النقاط والالتزامات.',
-              'أكد نقاط العمل والمهل بعد كل اجتماع.'
-            ],
-            intro:[
-              'عرّف بنفسك: الاسم، الدور، الشركة، ثم الغرض بإيجاز.',
-              'مثال: «أهلاً، أنا — من فريق … يشرفني لقاؤكم لمناقشة …».',
-              'قدّم بطاقة العمل عند الحاجة وأكد قنوات التواصل.'
-            ],
-            meeting:[
-              'التزم بجدول الأعمال ووقت البداية والنهاية.',
-              'وزّع الأدوار: من يقود، من يدوّن، من يتابع.',
-              'اختتم بتلخيص القرارات والمسؤوليات والآجال.'
-            ],
-            followup:[
-              'أرسل بريد متابعة خلال 24 ساعة يتضمن النقاط المتفق عليها.',
-              'ضع موضوعاً واضحاً ومرجع الاجتماع/رقم التذكرة.',
-              'حدّد المسؤول وموعد التسليم لكل بند عمل.'
-            ],
-            escalation:[
-              'في حال تعثّر نقطة ما، صنّف المخاطر وشارك الأدلة.',
-              'ارفع لقائد الفريق ثم مدير المشروع حسب التسلسل.',
-              'احفظ السجلات في نظام إدارة الوثائق/التذاكر.'
-            ],
-            loa:['المستشار','قائد الفريق','مدير المشروع','مدير الحساب'],
-            notes:[
-              'هذه الصفحة مرجع عام؛ تُقدَّم الاستثناءات بموافقة الموارد البشرية.',
-              'في المواقع عالية الحساسية، تُطبّق متطلبات العميل أولاً.',
-              'يمكن تكييف التسلسل الإداري وفق هيكل كل مشروع.'
-            ]
-          }
-        },
-        en: {
-          heroTitle:'Dress Code & Professional Communication Guidelines',
-          heroSub:'A unified reference for dress code, communication etiquette, and client line of authority',
-          dressTitle:'Dress Code',
-          dressLead:'Select a category to view its specific requirements.',
-          site:'Client Sites', office:'Office', male:'Males', female:'Females',
-          commTitle:'Professional Communication & Behavior',
-          commLead:'General tips and practical scenarios for meetings and follow-ups.',
-          intro:'Self-Introduction', meeting:'Meeting Etiquette', follow:'Follow-up Email', esc:'Confidentiality & Escalation',
-          loaTitle:'Line of Authority with Clients',
-          loaLead:'Use the general flow or map it to your project org chart.',
-          loaHint:'Customize titles based on your project org chart; add levels such as Service Owner or Client Sponsor when needed.',
-          notesTitle:'Notes',
-          galleryHint:'Replace images with approved examples per brand (PNG/JPG at least 1200×900).',
-          toc:{dress:'👔 Dress Code', comm:'💬 Communication', loa:'🗂️ Line of Authority', notes:'📝 Notes'},
-          toggle:{show:'Show images', hide:'Hide images'},
-          lists: {
-            siteReq:[
-              'Maintain a formal and modest appearance reflecting the company image.',
-              'Males: thobe & shemagh or business suit with polished formal shoes.',
-              'Females: abaya or modest professional suit appropriate to the site.',
-              'Carry ID badges/site permits and present when requested.',
-              'Follow site safety PPE requirements (helmet, safety shoes, etc.).'
-            ],
-            officeReq:[
-              'Business-casual minimum; neat, professional attire.',
-              'Avoid flashy logos or sportswear.',
-              'Maintain personal hygiene and a tidy appearance.',
-              'Follow internal visitor/meeting protocols.',
-              'Closed-toe, office-appropriate footwear.'
-            ],
-            maleReq:[
-              'Recommended: business suit / tidy thobe.',
-              'Tie for executive meetings or formal presentations.',
-              'Polished formal shoes; dark socks.',
-              'Avoid overpowering fragrances and excessive accessories.'
-            ],
-            femaleReq:[
-              'Recommended: modest professional suit / elegant abaya.',
-              'Neutral colors, conservative cuts, appropriate sleeves.',
-              'Closed-toe comfortable shoes with appropriate heel.',
-              'Avoid distracting accessories or strong perfumes.'
-            ],
-            commGeneral:[
-              'Use a professional, neutral tone across channels.',
-              'Open with a formal greeting; close with thanks & contacts.',
-              'Respect client confidentiality and data privacy.',
-              'Practice active listening and note action items.',
-              'Confirm decisions and deadlines after each meeting.'
-            ],
-            intro:[
-              'Introduce: name, role, company, then the purpose briefly.',
-              'Example: “Hello, I’m — from … glad to meet to discuss …”.',
-              'Share a business card if needed and confirm channels.'
-            ],
-            meeting:[
-              'Stick to the agenda and scheduled timing.',
-              'Assign roles: facilitator, scribe, owner for follow-ups.',
-              'Close with a recap of decisions, owners, and due dates.'
-            ],
-            followup:[
-              'Send a follow-up email within 24h with agreed points.',
-              'Use a clear subject and reference meeting/ticket.',
-              'Specify an owner and deadline for each action item.'
-            ],
-            escalation:[
-              'If blocked, classify risk and share evidence.',
-              'Escalate to Team Lead then Project Manager as needed.',
-              'Archive records in the DMS/ticketing system.'
-            ],
-            loa:['Consultant','Team Lead','Project Manager','Account Manager'],
-            notes:[
-              'This page is a general reference; exceptions require HR approval.',
-              'For high-sensitivity sites, client requirements take precedence.',
-              'The Line of Authority can be tailored per project org chart.'
-            ]
-          }
-        }
-      };
+      const gradients = [
+        { id:"teal_navy", ar:"تيال → كحلي (CTA)", en:"Teal → Navy (CTA)", css:"linear-gradient(135deg, rgba(5,173,173,.28), rgba(13,41,92,.62))" },
+        { id:"violet_navy", ar:"بنفسجي → كحلي (Hero)", en:"Violet → Navy (Hero)", css:"linear-gradient(135deg, rgba(140,64,255,.24), rgba(13,41,92,.62))" },
+        { id:"plum_ink", ar:"برقوقي → حبر (Premium)", en:"Plum → Ink (Premium)", css:"linear-gradient(135deg, rgba(59,23,69,.48), rgba(10,15,33,.88))" },
+        { id:"teal_violet", ar:"تيال → بنفسجي (Highlight)", en:"Teal → Violet (Highlight)", css:"linear-gradient(135deg, rgba(5,173,173,.26), rgba(140,64,255,.22))" },
+        { id:"blue_ink", ar:"أزرق → حبر (Depth)", en:"Blue → Ink (Depth)", css:"linear-gradient(135deg, rgba(17,61,143,.34), rgba(10,15,33,.88))" },
+        { id:"red_plum", ar:"أحمر → برقوقي (Alert)", en:"Red → Plum (Alert)", css:"linear-gradient(135deg, rgba(240,71,74,.28), rgba(59,23,69,.62))" }
+      ];
 
-      function fill(selector, items){
-        var ul = $(selector);
-        if(!ul){ return; }
-        ul.innerHTML = '';
-        for(var i=0;i<items.length;i++){
-          var txt = items[i];
-          var li = document.createElement('li');
-          var dot = document.createElement('span');
-          dot.className = 'dot';
-          var p = document.createElement('div');
-          p.textContent = txt;
-          li.appendChild(dot);
-          li.appendChild(p);
-          ul.appendChild(li);
-        }
+      function isAr(){
+        return document.body.classList.contains("lang-ar") || document.documentElement.getAttribute("dir")==="rtl";
       }
 
-      function fillGallery(selector, items){
-        var box = $(selector);
-        if(!box){ return; }
-        box.innerHTML = '';
-        for(var i=0;i<items.length;i++){
-          var fig = document.createElement('figure');
-          var img = document.createElement('img');
-          img.setAttribute('src', items[i].src);
-          img.setAttribute('alt', 'example');
-          var cap = document.createElement('figcaption');
-          cap.textContent = items[i].caption || '';
-          fig.appendChild(img);
-          fig.appendChild(cap);
-          box.appendChild(fig);
-        }
-      }
+      function build(){
+        gradientsContent.innerHTML = "";
+        gradientsContent.classList.add("preview-body--group");
 
-      function bindLightboxTo(selector){
-        var root = $(selector);
-        if(!root || !lightbox || !lightboxImg){ return; }
-        var imgs = root.getElementsByTagName('img');
-        for(var i=0;i<imgs.length;i++){
-          imgs[i].addEventListener('click', function(ev){
-            lightboxImg.src = ev.target.src;
-            lightbox.className = 'lightbox open';
-            lightbox.setAttribute('aria-hidden','false');
+        gradients.forEach(g=>{
+          const card = document.createElement("div");
+          card.className = "gradient-card";
+
+          const prev = document.createElement("div");
+          prev.className = "gradient-preview";
+          prev.style.background = g.css;
+
+          const meta = document.createElement("div");
+          meta.className = "gradient-meta";
+
+          const left = document.createElement("div");
+          left.style.minWidth = "0";
+          const name = document.createElement("div");
+          name.className = "gradient-name";
+          name.textContent = isAr() ? g.ar : g.en;
+
+          const code = document.createElement("div");
+          code.className = "gradient-css";
+          code.title = g.css;
+          code.textContent = g.css;
+
+          left.appendChild(name);
+          left.appendChild(code);
+
+          const actions = document.createElement("div");
+          actions.style.display = "flex";
+          actions.style.gap = "10px";
+          actions.style.alignItems = "center";
+
+          const copy = document.createElement("button");
+          copy.type = "button";
+          copy.className = "copy-btn";
+          copy.setAttribute("aria-label", "Copy CSS");
+          copy.style.padding = "8px 10px";
+          copy.innerHTML = '<span class="copy-label tr-ar">نسخ CSS</span><span class="copy-label tr-en">Copy CSS</span>';
+
+          copy.addEventListener("click", ()=>{
+            try{
+              navigator.clipboard.writeText(g.css);
+            }catch(_){}
+            // Use existing toast if available
+            if (typeof window.showToast === "function"){
+              window.showToast(isAr() ? "تم نسخ التدرج." : "Gradient copied.");
+            } else {
+              // fallback: quick visual feedback
+              copy.style.borderColor = "rgba(5,173,173,.55)";
+              setTimeout(()=>{ copy.style.borderColor = "rgba(255,255,255,.14)"; }, 700);
+            }
           });
-        }
-      }
 
-      function applyGalleryVisibility(){
-        for(var key in galleryState){
-          if(!galleryState.hasOwnProperty(key)) continue;
-          var el = $(key);
-          if(!el) continue;
-          el.style.display = galleryState[key] ? '' : 'none';
-        }
-      }
+          actions.appendChild(copy);
+          meta.appendChild(left);
+          meta.appendChild(actions);
 
-      function syncToggleLabels(language){
-        var t = i18n[language];
-        var toggles = document.querySelectorAll('[data-toggle-gallery]');
-        for(var i=0;i<toggles.length;i++){
-          var btn = toggles[i];
-          var targetSel = btn.getAttribute('data-toggle-gallery');
-          var isOn = galleryState[targetSel] === true; // default false
-          btn.setAttribute('aria-pressed', isOn.toString());
-          btn.textContent = isOn ? t.toggle.hide : t.toggle.show;
-        }
-      }
-
-      function attachToggleHandlers(){
-        var toggles = document.querySelectorAll('[data-toggle-gallery]');
-        for(var i=0;i<toggles.length;i++){
-          (function(btn){
-            btn.onclick = function(){
-              var targetSel = btn.getAttribute('data-toggle-gallery');
-              var target = $(targetSel);
-              var current = galleryState[targetSel] === true; // default hidden
-              var next = !current;
-              galleryState[targetSel] = next;
-              if(target){ target.style.display = next ? '' : 'none'; }
-              var lang = document.documentElement.getAttribute('lang') || 'ar';
-              var t = i18n[lang];
-              btn.setAttribute('aria-pressed', next.toString());
-              btn.textContent = next ? t.toggle.hide : t.toggle.show;
-            };
-          })(toggles[i]);
-        }
-      }
-
-      function render(language){
-        var t = i18n[language];
-        if(!t){ return; }
-
-        if(app){ app.setAttribute('data-lang', language); }
-        document.documentElement.setAttribute('lang', language);
-        document.documentElement.setAttribute('dir', language === 'ar' ? 'rtl' : 'ltr');
-
-        setSafeText('hero-title', t.heroTitle);
-        setSafeText('hero-sub', t.heroSub);
-        setSafeText('dress-title', t.dressTitle);
-        setSafeText('dress-lead', t.dressLead);
-        setSafeText('pill-site', t.site);
-        setSafeText('pill-office', t.office);
-        setSafeText('pill-male', t.male);
-        setSafeText('pill-female', t.female);
-        setSafeText('comm-title', t.commTitle);
-        setSafeText('comm-lead', t.commLead);
-        setSafeText('pill-intro', t.intro);
-        setSafeText('pill-meeting', t.meeting);
-        setSafeText('pill-follow', t.follow);
-        setSafeText('pill-esc', t.esc);
-        setSafeText('loa-title', t.loaTitle);
-        setSafeText('loa-lead', t.loaLead);
-        setSafeText('loa-hint', t.loaHint);
-        setSafeText('notes-title', t.notesTitle);
-        setSafeText('gallery-hint', t.galleryHint);
-
-        // TOC labels
-        var td = byId('toc-dress'), tc = byId('toc-comm'), tl = byId('toc-loa'), tn = byId('toc-notes');
-        if(td){ td.textContent = t.toc.dress; }
-        if(tc){ tc.textContent = t.toc.comm; }
-        if(tl){ tl.textContent = t.toc.loa; }
-        if(tn){ tn.textContent = t.toc.notes; }
-
-        // Lists
-        fill('#site-req', t.lists.siteReq);
-        fill('#office-req', t.lists.officeReq);
-        fill('#male-req', t.lists.maleReq);
-        fill('#female-req', t.lists.femaleReq);
-        fill('#comm-general-list', t.lists.commGeneral);
-        fill('#intro-list', t.lists.intro);
-        fill('#meeting-list', t.lists.meeting);
-        fill('#followup-list', t.lists.followup);
-        fill('#escalation-list', t.lists.escalation);
-
-        // Galleries (your assets)
-        fillGallery('#site-examples', [
-          {src:'https://i.postimg.cc/pXMR6sKb/rjal-thwb.png', caption: language==='ar'?'زي رجالي (ثوب) – مواقع العملاء':'Male (Thobe) – Client Site'},
-          {src:'https://i.postimg.cc/Nf8BqRx0/nsaʾ-ʿbaʾh.png', caption: language==='ar'?'زي نسائي (عباءة) – مواقع العملاء':'Female (Abaya) – Client Site'},
-          {src:'https://i.postimg.cc/QxZhyf1f/rjal-bdlh-rsmyt.png', caption: language==='ar'?'بدلة رجالية رسمية – مواقع العملاء':'Male Suit – Client Site'},
-          {src:'https://i.postimg.cc/RV145wTr/nsaʾ-bdlh-rsmyt.png', caption: language==='ar'?'بدلة نسائية رسمية – مواقع العملاء':'Female Suit – Client Site'}
-        ]);
-        fillGallery('#office-examples', [
-          {src:'https://i.postimg.cc/QxZhyf1f/rjal-bdlh-rsmyt.png', caption: language==='ar'?'بدلة رجالية رسمية – المكتب':'Male Suit – Office'},
-          {src:'https://i.postimg.cc/Nf8BqRx0/nsaʾ-ʿbaʾh.png', caption: language==='ar'?'بدلة نسائية رسمية – المكتب':'Female Suit – Office'},
-          {src:'https://i.postimg.cc/pXMR6sKb/rjal-thwb.png', caption: language==='ar'?'زي رجالي (ثوب) – المكتب':'Male (Thobe) – Office'},
-          {src:'https://i.postimg.cc/Nf8BqRx0/nsaʾ-ʿbaʾh.png', caption: language==='ar'?'زي نسائي (عباءة) – المكتب':'Female (Abaya) – Office'}
-        ]);
-        fillGallery('#male-examples', [
-          {src:'https://i.postimg.cc/QxZhyf1f/rjal-bdlh-rsmyt.png', caption: language==='ar'?'بدلة رجالية رسمية':'Male Suit'},
-          {src:'https://i.postimg.cc/pXMR6sKb/rjal-thwb.png', caption: language==='ar'?'ثوب رجالي رسمي':'Male Thobe'}
-        ]);
-        fillGallery('#female-examples', [
-          {src:'https://i.postimg.cc/RV145wTr/nsaʾ-bdlh-rsmyt.png', caption: language==='ar'?'بدلة نسائية رسمية':'Female Suit'},
-          {src:'https://i.postimg.cc/Nf8BqRx0/nsaʾ-ʿbaʾh.png', caption: language==='ar'?'عباءة نسائية أنيقة':'Elegant Abaya'}
-        ]);
-        fillGallery('#comm-gallery', [
-          {src:'https://i.postimg.cc/QxZhyf1f/rjal-bdlh-rsmyt.png', caption: language==='ar'?'اجتماع – نموذج مظهر رسمي':'Meeting – Formal Look'},
-          {src:'https://i.postimg.cc/RV145wTr/nsaʾ-bdlh-rsmyt.png', caption: language==='ar'?'اجتماع – نموذج مظهر رسمي نسائي':'Meeting – Female Formal'}
-        ]);
-
-        // Bind lightbox
-        bindLightboxTo('#comm-gallery');
-        bindLightboxTo('#site-examples');
-        bindLightboxTo('#office-examples');
-        bindLightboxTo('#male-examples');
-        bindLightboxTo('#female-examples');
-
-        // Apply gallery visibility (defaults hidden)
-        applyGalleryVisibility();
-        // Sync toggle button labels
-        syncToggleLabels(language);
-
-        // Buttons labels
-        var bPrint = byId('btn-print');
-        if(btnAr){ btnAr.setAttribute('aria-pressed', (language==='ar').toString()); }
-        if(btnEn){ btnEn.setAttribute('aria-pressed', (language==='en').toString()); }
-        if(btnGeneral){ btnGeneral.textContent = (language==='ar') ? 'نظرة عامة' : 'General'; }
-        if(btnDetailed){ btnDetailed.textContent = (language==='ar') ? 'تفاصيل موسّعة' : 'Detailed'; }
-        if(bPrint){ bPrint.textContent = (language==='ar') ? '🖨️ طباعة' : '🖨️ Print'; }
-        if(btnExport){ btnExport.textContent = (language==='ar') ? '⬇️ PDF' : '⬇️ PDF'; }
-
-        // Force Detailed view ON (keep controls hidden via CSS)
-        var elGeneral = byId('comm-general');
-        var elDetailed = byId('comm-detailed');
-        if(elGeneral){ elGeneral.style.display = 'none'; }
-        if(elDetailed){ elDetailed.style.display = 'block'; }
-      }
-
-      // Toggle detail (kept for safety, but we force detailed on render)
-      function toggleDetail(detailed){
-        var elGeneral = byId('comm-general');
-        var elDetailed = byId('comm-detailed');
-        if(elGeneral){ elGeneral.style.display = detailed ? 'none' : 'block'; }
-        if(elDetailed){ elDetailed.style.display = detailed ? 'block' : 'none'; }
-        if(btnGeneral){ btnGeneral.setAttribute('aria-pressed', (!detailed).toString()); }
-        if(btnDetailed){ btnDetailed.setAttribute('aria-pressed', (detailed).toString()); }
-      }
-
-      // Handlers
-      if(btnAr){ btnAr.addEventListener('click', function(){ render('ar'); }); }
-      if(btnEn){ btnEn.addEventListener('click', function(){ render('en'); }); }
-      // keep listeners but initial state is detailed
-      if(btnGeneral){ btnGeneral.addEventListener('click', function(){ toggleDetail(false); }); }
-      if(btnDetailed){ btnDetailed.addEventListener('click', function(){ toggleDetail(true); }); }
-      var bPrint = byId('btn-print');
-      if(bPrint){ bPrint.addEventListener('click', function(){ window.print(); }); }
-      if(btnExport){ btnExport.addEventListener('click', function(){ window.print(); }); }
-
-      // Attach gallery toggle handlers once
-      attachToggleHandlers();
-
-      // Lightbox interactions
-      (function(){
-        if(!lightbox || !lightboxImg) return;
-        document.addEventListener('click', function(e){
-          var t = e.target;
-          if(t && t.tagName === 'IMG' && t.closest('.gallery')){
-            lightboxImg.src = t.src; lightbox.className='lightbox open'; lightbox.setAttribute('aria-hidden','false');
-          }
-          if(t === lightbox){ lightbox.className='lightbox'; lightbox.setAttribute('aria-hidden','true'); lightboxImg.removeAttribute('src'); }
+          card.appendChild(prev);
+          card.appendChild(meta);
+          gradientsContent.appendChild(card);
         });
-        document.addEventListener('keydown', function(e){ if(e.key==='Escape'){ lightbox.className='lightbox'; lightbox.setAttribute('aria-hidden','true'); lightboxImg.removeAttribute('src'); }});
-      })();
+      }
 
-      // Init
-      if(yearEl){ yearEl.textContent = new Date().getFullYear(); }
-      render('ar');
+      function open(){
+        lastFocus = document.activeElement;
+        build();
+        gradientsOverlay.classList.add("visible");
+        gradientsOverlay.setAttribute("aria-hidden", "false");
+        gradientsClose.focus();
+      }
 
-      // Smoke tests
-      try{
-        console.assert(byId('hero-title').textContent.length>0, 'Hero title present');
-        console.assert(getComputedStyle(byId('site-examples')).display==='none', 'Galleries hidden by default');
-        console.assert(getComputedStyle(byId('comm-detailed')).display==='block', 'Detailed view visible');
-        console.log('[TESTS OK] Layout stable, galleries hidden, detailed forced.');
-      }catch(e){ console.warn('[TEST WARNING]', e); }
+      function close(){
+        gradientsOverlay.classList.remove("visible");
+        gradientsOverlay.setAttribute("aria-hidden", "true");
+        if (lastFocus && typeof lastFocus.focus === "function") lastFocus.focus();
+      }
+
+      gradientsToggle.addEventListener("click", open);
+      gradientsClose.addEventListener("click", close);
+
+      gradientsOverlay.addEventListener("click", (e)=>{
+        if (e.target === gradientsOverlay) close();
+      });
+
+      document.addEventListener("keydown", (e)=>{
+        if (e.key === "Escape" && gradientsOverlay.classList.contains("visible")){
+          close();
+        }
+      });
+
+      if (gradientsDownload){
+        gradientsDownload.addEventListener("click", ()=>{
+          const payload = gradients.map(g=>({ id:g.id, name_ar:g.ar, name_en:g.en, css:g.css }));
+          const blob = new Blob([JSON.stringify(payload, null, 2)], {type:"application/json"});
+          const a = document.createElement("a");
+          a.href = URL.createObjectURL(blob);
+          a.download = "ts-brand-gradients.json";
+          document.body.appendChild(a);
+          a.click();
+          setTimeout(()=>{ URL.revokeObjectURL(a.href); a.remove(); }, 0);
+          if (typeof window.showToast === "function"){
+            window.showToast(isAr() ? "بدأ تحميل ملف التدرجات." : "Gradients JSON download started.");
+          }
+        });
+      }
     })();
   </script>
 </body>
