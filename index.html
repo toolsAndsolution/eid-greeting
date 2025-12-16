@@ -1187,6 +1187,346 @@ code{
       gap: 16px !important;
     }
 
+
+    /* ===============================
+       Header subtitle: force clean 2-line rhythm
+       =============================== */
+    .header-subtitle{
+      max-width: 920px;
+      margin: 10px auto 0;
+      line-height: 1.6;
+    }
+    .header-subtitle br{ content:""; }
+
+
+    /* ===============================
+       Palette display: use modal like gradients (hide inline panel)
+       =============================== */
+    .palette-panel{ display:none !important; }
+
+
+    /* ===============================
+       Palette modal layout (same rhythm as gradients)
+       =============================== */
+    #palette-overlay .preview-content{
+      padding: 14px 16px 18px !important;
+    }
+    .palette-modal-grid{
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+    @media (max-width: 960px){
+      .palette-modal-grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 540px){
+      .palette-modal-grid{ grid-template-columns: 1fr; }
+    }
+
+    .palette-modal-item{
+      border: 1px solid rgba(255,255,255,.12);
+      background:
+        radial-gradient(520px 180px at 20% 0%, rgba(140,64,255,.10), transparent 60%),
+        radial-gradient(520px 180px at 85% 0%, rgba(5,173,173,.08), transparent 62%),
+        linear-gradient(135deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border-radius: 16px;
+      box-shadow: 0 16px 34px rgba(0,0,0,.18);
+      padding: 12px;
+      backdrop-filter: blur(16px) saturate(120%);
+      -webkit-backdrop-filter: blur(16px) saturate(120%);
+      transition: transform .18s ease, border-color .18s ease, background .18s ease;
+      overflow: hidden;
+    }
+    .palette-modal-item:hover{
+      transform: translateY(-1px);
+      border-color: rgba(5,173,173,.42);
+      background: rgba(255,255,255,.07);
+    }
+    .palette-modal-swatch{
+      height: 56px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.18);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.10);
+      position: relative;
+      overflow: hidden;
+    }
+    .palette-modal-swatch:after{
+      content:"";
+      position:absolute; inset:0;
+      background: radial-gradient(520px 120px at 20% 0%, rgba(255,255,255,.18), transparent 60%);
+      pointer-events:none;
+    }
+    .palette-modal-meta{
+      margin-top: 10px;
+      display:flex;
+      align-items:flex-start;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    .palette-modal-name{
+      font-weight: 920;
+      font-size: calc(13px * var(--font-scale));
+      color: rgba(255,255,255,.92);
+      line-height: 1.2;
+    }
+    .palette-modal-desc{
+      margin-top: 6px;
+      font-size: calc(12px * var(--font-scale));
+      color: rgba(255,255,255,.74);
+      line-height: 1.45;
+    }
+    .palette-modal-code{
+      margin-top: 10px;
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    .palette-modal-hex{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-weight: 850;
+      font-size: calc(12px * var(--font-scale));
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      color: rgba(255,255,255,.90);
+      direction:ltr;
+      unicode-bidi:isolate;
+      white-space: nowrap;
+    }
+
+
+    /* ===============================
+       Palette note: keep visible (palette is now modal)
+       =============================== */
+    #colors .palette-note{ display: block !important; }
+
+
+    /* ===============================
+       Disable sticky/moving header (requested)
+       =============================== */
+    .main-header{
+      position: static !important;
+      top: auto !important;
+      z-index: auto !important;
+    }
+
+
+    /* ===============================
+       Toast notifications (copied/download)
+       =============================== */
+    .toast-stack{
+      position: fixed;
+      inset-inline-end: 18px;
+      bottom: 18px;
+      display: grid;
+      gap: 10px;
+      z-index: 9999;
+      pointer-events: none;
+    }
+    .toast{
+      pointer-events: none;
+      border: 1px solid rgba(255,255,255,.12);
+      background:
+        radial-gradient(520px 160px at 20% 0%, rgba(140,64,255,.12), transparent 60%),
+        radial-gradient(520px 160px at 80% 0%, rgba(5,173,173,.10), transparent 62%),
+        rgba(255,255,255,.055);
+      box-shadow: 0 18px 44px rgba(0,0,0,.28);
+      backdrop-filter: blur(18px) saturate(120%);
+      -webkit-backdrop-filter: blur(18px) saturate(120%);
+      border-radius: 14px;
+      padding: 10px 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 220px;
+      max-width: min(360px, calc(100vw - 36px));
+      transform: translateY(10px);
+      opacity: 0;
+      transition: transform .22s ease, opacity .22s ease;
+    }
+    .toast.show{ transform: translateY(0); opacity: 1; }
+    .toast-ic{
+      width: 30px; height: 30px;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.05);
+      display: grid; place-items: center;
+      color: rgba(5,173,173,.92);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.10);
+      flex: 0 0 auto;
+    }
+    .toast-ic svg{ width: 18px; height: 18px; stroke: currentColor; fill:none; }
+    .toast-msg{
+      font-weight: 820;
+      font-size: calc(12.5px * var(--font-scale));
+      color: rgba(255,255,255,.92);
+      line-height: 1.35;
+    }
+    @media (max-width: 560px){
+      .toast-stack{ inset-inline: 14px; bottom: 14px; }
+      .toast{ min-width: 0; width: 100%; }
+    }
+
+
+    /* ===============================
+       Make language + font-size controls more compact (requested)
+       =============================== */
+    .lang-toggle{
+      padding: 4px 6px 4px 4px !important;
+      gap: 6px !important;
+      border-radius: 999px !important;
+      transform: translateY(-1px);
+    }
+    .lang-pill{
+      padding: 5px 10px !important;
+      font-size: calc(12px * var(--font-scale)) !important;
+      line-height: 1 !important;
+    }
+    .lang-label{
+      font-size: calc(12px * var(--font-scale)) !important;
+      opacity: .72;
+    }
+
+    .font-size-control{
+      padding: 6px 8px !important;
+      border-radius: 999px !important;
+      gap: 6px !important;
+      transform: translateY(-1px);
+    }
+    .font-size-btn{
+      height: 26px !important;
+      min-width: 30px !important;
+      font-size: calc(12px * var(--font-scale)) !important;
+      padding: 0 8px !important;
+      border-radius: 999px !important;
+    }
+    .font-size-label{
+      font-size: calc(12px * var(--font-scale)) !important;
+      opacity: .78;
+      margin-inline-start: 6px !important;
+    }
+
+    @media (max-width: 560px){
+      .lang-pill{ padding: 5px 9px !important; }
+      .font-size-btn{ min-width: 28px !important; }
+    }
+
+
+    /* ===============================
+       Header declutter: tighter controls + remove redundant labels
+       =============================== */
+    .header-top{
+      gap: 16px !important;
+      padding: 16px 18px !important;
+    }
+    .hub-tag{
+      display: inline-flex !important;
+      padding: 6px 10px !important;
+      border-radius: 999px !important;
+      font-size: calc(12px * var(--font-scale)) !important;
+      opacity: .92;
+      margin-bottom: 10px !important;
+    }
+    .header-lang-nav{
+      width: auto !important;
+      margin-top: 12px !important;
+      display: flex !important;
+      flex-wrap: wrap !important;
+      justify-content: flex-start !important;
+      gap: 10px !important;
+    }
+    body.lang-en .header-lang-nav{ justify-content: flex-start !important; }
+    body.lang-ar .header-lang-nav{ justify-content: flex-start !important; }
+
+    /* Remove the extra text labels (makes header less busy) */
+    .main-header .lang-label,
+    .main-header .font-size-control-label{
+      display: none !important;
+    }
+
+    /* Make both controls compact, aligned, and consistent */
+    .main-header .lang-toggle{
+      padding: 4px 6px !important;
+      gap: 6px !important;
+      border-radius: 999px !important;
+      background: rgba(255,255,255,.05) !important;
+      border: 1px solid rgba(255,255,255,.12) !important;
+      box-shadow: 0 12px 28px rgba(0,0,0,.14) !important;
+      backdrop-filter: blur(16px) saturate(120%) !important;
+      -webkit-backdrop-filter: blur(16px) saturate(120%) !important;
+    }
+    .main-header .lang-pill{
+      padding: 5px 10px !important;
+      font-size: calc(12px * var(--font-scale)) !important;
+      border-radius: 999px !important;
+    }
+
+    .main-header .font-size-control{
+      padding: 6px 8px !important;
+      gap: 6px !important;
+      border-radius: 999px !important;
+      background: rgba(255,255,255,.05) !important;
+      border: 1px solid rgba(255,255,255,.12) !important;
+      box-shadow: 0 12px 28px rgba(0,0,0,.14) !important;
+      backdrop-filter: blur(16px) saturate(120%) !important;
+      -webkit-backdrop-filter: blur(16px) saturate(120%) !important;
+    }
+    .main-header .font-size-btn{
+      height: 26px !important;
+      min-width: 30px !important;
+      font-size: calc(12px * var(--font-scale)) !important;
+      padding: 0 8px !important;
+      border-radius: 999px !important;
+    }
+
+    /* On desktop: keep controls on one clean line */
+    @media (min-width: 768px){
+      .header-lang-nav{
+        flex-direction: row !important;
+        align-items: center !important;
+      }
+    }
+
+
+    /* ===============================
+       Header controls: move to LEFT and stack vertically
+       =============================== */
+    .header-top{ position: relative !important; }
+    .header-lang-nav{
+      position: absolute !important;
+      left: 18px !important;
+      right: auto !important;
+      top: 16px !important;
+      margin: 0 !important;
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: flex-start !important;
+      justify-content: flex-start !important;
+      gap: 10px !important;
+      width: auto !important;
+      z-index: 2 !important;
+    }
+    /* Reserve breathing room so controls don't collide with the title area */
+    .header-top{
+      padding-left: 190px !important;
+    }
+    @media (max-width: 720px){
+      .header-top{ padding-left: 18px !important; }
+      .header-lang-nav{
+        position: static !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        gap: 10px !important;
+        margin-top: 10px !important;
+      }
+    }
+
+
+    /* Toast must be above modals */
+    .toast-stack{ z-index: 20000 !important; }
+
 </style>
 </head>
 <body class="lang-ar">
@@ -1204,18 +1544,7 @@ code{
 </div>
 <h1 class="header-title">
 <span class="tr-ar">دليل الهوية البصرية لموظفي T&amp;S</span>
-<span class="tr-en">T&amp;S Brand Guidelines for Employees</span>
-</h1>
-<p class="header-subtitle">
-<span class="tr-ar">
-              هذا المركز هو المرجع الموحد
-              <strong>للشعار، الألوان، الخطوط، والقوالب الرسمية</strong>
-              لجميع موظفي T&amp;S.
-            </span>
-<span class="tr-en">
-              This hub is the single source of truth for
-              <strong>logos, colors, typography, and branded templates</strong>
-              used across T&amp;S.
+<span class="tr-en">This hub is the single source of truth for <strong>logos, colors, typography, and branded templates</strong><br>used across T&amp;S.
             </span>
 </p>
 <div class="header-lang-nav">
@@ -1227,8 +1556,8 @@ code{
 <button class="font-size-btn" onclick="adjustFontScale(0.1)" type="button">A+</button>
 </div>
 <div aria-label="Language toggle" class="lang-toggle">
-<span class="lang-label tr-ar">Language</span>
-<span class="lang-label tr-en">اللغه</span>
+<span class="lang-label tr-ar">اللغة</span>
+<span class="lang-label tr-en">Language</span>
 <button class="lang-pill active" data-lang="ar" type="button">
                 AR
               </button>
@@ -1383,13 +1712,13 @@ code{
 <span class="tr-ar">
 <span class="text-when-closed">عرض لوحة الألوان</span>
 <span class="text-when-open" style="display: none;">
-                  إخفاء لوحة الألوان
+                  عرض لوحة الألوان
                 </span>
 </span>
 <span class="tr-en">
 <span class="text-when-closed">Show Color Palette</span>
 <span class="text-when-open" style="display: none;">
-                  Hide Color Palette
+                  Show Color Palette
                 </span>
 </span>
 </button>
@@ -2460,8 +2789,6 @@ code{
       function togglePalettePanel() {
         if (!palettePanel || !paletteToggle) return;
         const isOpen = palettePanel.classList.toggle("open");
-        
-        if (paletteNote) paletteNote.style.display = isOpen ? "none" : ""; 
 const arClosed = paletteToggle.querySelector(".tr-ar .text-when-closed");
         const arOpen = paletteToggle.querySelector(".tr-ar .text-when-open");
         const enClosed = paletteToggle.querySelector(".tr-en .text-when-closed");
@@ -2715,8 +3042,6 @@ const arClosed = paletteToggle.querySelector(".tr-ar .text-when-closed");
 
       if (paletteToggle && palettePanel) {
         paletteToggle.addEventListener("click", togglePalettePanel);
-      if (paletteNote && palettePanel && palettePanel.classList.contains("open")) paletteNote.style.display = "none";
-
       }
 
       copyButtons.forEach((btn) => {
@@ -3037,5 +3362,175 @@ const arClosed = paletteToggle.querySelector(".tr-ar .text-when-closed");
       }
     })();
   </script>
+<!-- COLOR PALETTE MODAL -->
+<div class="preview-overlay" id="palette-overlay" aria-hidden="true" role="dialog" aria-modal="true">
+  <div class="preview-dialog" role="document" tabindex="-1">
+    <div class="preview-header">
+      <div class="preview-title-wrap">
+        <div class="preview-title">
+          <span class="tr-ar">لوحة ألوان الهوية</span>
+          <span class="tr-en">Brand Color Palette</span>
+        </div>
+        <div class="preview-sub">
+          <span class="tr-ar">انسخ أكواد الألوان مباشرة. استخدم الألوان الأساسية للهيكل، واحتفظ بالـ Accent للروابط والـ CTA.</span>
+          <span class="tr-en">Copy color codes instantly. Use primary colors for structure, and reserve accents for links and CTAs.</span>
+        </div>
+      </div>
+
+      <div style="display:flex; gap:10px; align-items:center">
+        <button class="btn btn-ghost btn-mini" id="palette-download-json" type="button" aria-label="Download palette JSON">
+          <span aria-hidden="true" class="btn-ic">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M12 3v10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <path d="M8 11l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M4 19h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </span>
+          <span class="tr-ar">تحميل JSON</span>
+          <span class="tr-en">Download JSON</span>
+        </button>
+
+        <button aria-label="Close palette" class="preview-close-btn" id="palette-close" type="button">×</button>
+      </div>
+    </div>
+
+    <div class="preview-content" id="palette-modal-content"></div>
+  </div>
+</div>
+<script>
+    (function(){
+      const paletteToggle = document.getElementById("palette-toggle");
+      const paletteOverlay = document.getElementById("palette-overlay");
+      const paletteClose = document.getElementById("palette-close");
+      const paletteContent = document.getElementById("palette-modal-content");
+      const paletteDownload = document.getElementById("palette-download-json");
+
+      if (!paletteToggle || !paletteOverlay || !paletteClose || !paletteContent) return;
+
+      let lastFocus = null;
+
+      const palette = [
+        { key:"ts-ink",    hex:"#0A0F21", ar:"Primary", en:"Primary", arDesc:"لون أساسي للصفحة", enDesc:"Primary page color" },
+        { key:"ts-navy",   hex:"#0D295C", ar:"Secondary 3", en:"Secondary 3", arDesc:"معلومات وروابط ثانوية", enDesc:"Secondary info & links" },
+        { key:"ts-plum",   hex:"#3B1745", ar:"Second Primary", en:"Second Primary", arDesc:"لون أساسي داعم", enDesc:"Support primary tone" },
+        { key:"ts-teal",   hex:"#05ADAD", ar:"Secondary 1", en:"Secondary 1", arDesc:"إبراز وروابط", enDesc:"Highlight & links" },
+        { key:"ts-blue",   hex:"#113D8F", ar:"Secondary 4", en:"Secondary 4", arDesc:"عمق إضافي", enDesc:"Extra depth" },
+        { key:"ts-violet", hex:"#8C40FF", ar:"Accent", en:"Accent", arDesc:"لمسات مميزة", enDesc:"Accent touches" },
+        { key:"ts-red",    hex:"#F0474A", ar:"Alert", en:"Alert", arDesc:"تنبيهات فقط", enDesc:"Alerts only" },
+        { key:"text-primary", hex:"#F5F5FF", ar:"النص الأساسي", en:"Primary text", arDesc:"لنصوص الواجهة", enDesc:"For UI text" },
+        { key:"text-secondary", hex:"#C0C4D6", ar:"النص الثانوي", en:"Secondary text", arDesc:"لوصف/إرشادات", enDesc:"For supporting copy" }
+      ];
+
+      function isAr(){
+        return document.body.classList.contains("lang-ar") || document.documentElement.getAttribute("dir")==="rtl";
+      }
+
+      function toast(msg){
+        if (typeof window.showToast === "function") window.showToast(msg);
+      }
+
+      function copyText(text){
+        try{ navigator.clipboard.writeText(text); }catch(_){}
+      }
+
+      function build(){
+        paletteContent.innerHTML = "";
+        const grid = document.createElement("div");
+        grid.className = "palette-modal-grid";
+
+        palette.forEach(c=>{
+          const item = document.createElement("div");
+          item.className = "palette-modal-item";
+
+          const sw = document.createElement("div");
+          sw.className = "palette-modal-swatch";
+          sw.style.background = c.hex;
+
+          const meta = document.createElement("div");
+          meta.className = "palette-modal-meta";
+
+          const left = document.createElement("div");
+          left.style.minWidth = "0";
+
+          const name = document.createElement("div");
+          name.className = "palette-modal-name";
+          name.textContent = isAr() ? c.ar : c.en;
+
+          const desc = document.createElement("div");
+          desc.className = "palette-modal-desc";
+          desc.textContent = isAr() ? c.arDesc : c.enDesc;
+
+          left.appendChild(name);
+          left.appendChild(desc);
+
+          const codeRow = document.createElement("div");
+          codeRow.className = "palette-modal-code";
+
+          const hex = document.createElement("div");
+          hex.className = "palette-modal-hex";
+          hex.textContent = c.hex;
+
+          const copyBtn = document.createElement("button");
+          copyBtn.type = "button";
+          copyBtn.className = "copy-btn";
+          copyBtn.style.padding = "8px 10px";
+          copyBtn.innerHTML = '<span class="copy-label tr-ar">نسخ</span><span class="copy-label tr-en">Copy</span>';
+
+          copyBtn.addEventListener("click", ()=>{
+            copyText(c.hex);
+            toast(isAr() ? "تم نسخ اللون." : "Color copied.");
+          });
+
+          codeRow.appendChild(hex);
+          codeRow.appendChild(copyBtn);
+
+          item.appendChild(sw);
+          item.appendChild(meta);
+          item.appendChild(codeRow);
+          grid.appendChild(item);
+        });
+
+        paletteContent.appendChild(grid);
+      }
+
+      function open(){
+        lastFocus = document.activeElement;
+        build();
+        paletteOverlay.classList.add("visible");
+        paletteOverlay.setAttribute("aria-hidden", "false");
+        paletteClose.focus();
+      }
+
+      function close(){
+        paletteOverlay.classList.remove("visible");
+        paletteOverlay.setAttribute("aria-hidden", "true");
+        if (lastFocus && typeof lastFocus.focus === "function") lastFocus.focus();
+      }
+
+      paletteToggle.addEventListener("click", (e)=>{
+        e.preventDefault();
+        open();
+      });
+      paletteClose.addEventListener("click", close);
+      paletteOverlay.addEventListener("click", (e)=>{ if (e.target === paletteOverlay) close(); });
+      document.addEventListener("keydown", (e)=>{ if (e.key==="Escape" && paletteOverlay.classList.contains("visible")) close(); });
+
+      if (paletteDownload){
+        paletteDownload.addEventListener("click", ()=>{
+          const payload = palette.map(c=>({ key:c.key, hex:c.hex, name_ar:c.ar, name_en:c.en }));
+          const blob = new Blob([JSON.stringify(payload, null, 2)], {type:"application/json"});
+          const a = document.createElement("a");
+          a.href = URL.createObjectURL(blob);
+          a.download = "ts-brand-palette.json";
+          document.body.appendChild(a);
+          a.click();
+          setTimeout(()=>{ URL.revokeObjectURL(a.href); a.remove(); }, 0);
+          toast(isAr() ? "بدأ تحميل ملف الألوان." : "Palette JSON download started.");
+        });
+      }
+    })();
+  </script>
+<!-- TOAST -->
+<div class="toast-stack" id="toast-stack" aria-live="polite" aria-atomic="true"></div>
 </body>
 </html>
