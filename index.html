@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html data-theme="dark" dir="rtl" lang="ar">
+<html data-theme="dark" lang="ar" dir="rtl">
 <head>
 <meta charset="utf-8"/>
 <title>T&amp;S Brand Hub</title>
@@ -8,6 +8,7 @@
 <meta content="dark" name="color-scheme"/>
 <link href="assets/icons/ts-favicon.svg" rel="icon" type="image/svg+xml"/>
 <style>
+
     @font-face {
       font-family: "Baloo_Bhaijaan";
       src:
@@ -1527,53 +1528,1458 @@ code{
     /* Toast must be above modals */
     .toast-stack{ z-index: 20000 !important; }
 
+
+    /* ===============================
+       Header layout: prevent EN clutter (controls pinned left, logo pinned right)
+       =============================== */
+    .header-top{ position: relative; }
+    .header-top .logo-box{
+      position: absolute;
+      top: 16px;
+      inset-inline-end: 16px;
+      inset-inline-start: auto;
+      z-index: 2;
+    }
+    .header-top .header-lang-nav{
+      position: absolute;
+      top: 16px;
+      inset-inline-start: 16px;
+      inset-inline-end: auto;
+      width: auto !important;
+      margin: 0 !important;
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: flex-start !important;
+      justify-content: flex-start !important;
+      gap: 10px !important;
+      z-index: 2;
+    }
+    .header-top .header-text{
+      width: 100%;
+      padding-top: 42px;
+      padding-inline-start: 190px;
+      padding-inline-end: 96px;
+    }
+    .header-title{
+      max-width: 920px;
+    }
+    body.lang-en .header-title{
+      max-width: 860px;
+      font-size: calc(20px * var(--font-scale));
+      line-height: 1.3;
+    }
+    body.lang-en .header-subtitle{
+      max-width: 820px;
+    }
+
+    @media (max-width: 820px){
+      .header-top .header-text{
+        padding-inline-start: 18px;
+        padding-inline-end: 18px;
+        padding-top: 76px;
+      }
+      .header-top .header-lang-nav{
+        flex-direction: row !important;
+        align-items: center !important;
+      }
+    }
+    @media (max-width: 560px){
+      .header-top{ padding-top: 12px; }
+      .header-top .logo-box{ position: static; }
+      .header-top .header-lang-nav{ position: static; flex-direction: row !important; width: 100% !important; }
+      .header-top .header-text{ padding-top: 0; }
+    }
+
+
+    /* ===============================
+       Header layout overhaul (fix overlap in AR/EN)
+       =============================== */
+    .header-grid{
+      display: grid;
+      grid-template-columns: 170px 1fr 78px;
+      gap: 16px;
+      align-items: start;
+    }
+    .header-controls{ grid-column: 1; }
+    .header-logo{ grid-column: 3; justify-self: end; }
+    .header-text{ grid-column: 2; }
+
+    .header-controls .header-lang-nav{
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 10px !important;
+      align-items: flex-start !important;
+      justify-content: flex-start !important;
+    }
+
+    /* Neutralize any legacy absolute positioning */
+    .header-controls .header-lang-nav,
+    .header-logo .logo-box{
+      position: static !important;
+      inset: auto !important;
+      top: auto !important;
+      left: auto !important;
+      right: auto !important;
+      margin: 0 !important;
+    }
+
+    /* Keep header tidy */
+    .hub-tag{ margin-bottom: 10px !important; }
+    .header-title{ margin: 0 0 8px 0 !important; }
+    .header-subtitle{ margin: 0 !important; max-width: 920px; }
+
+    body.lang-en .header-title{
+      max-width: 920px;
+      font-size: calc(20px * var(--font-scale));
+      line-height: 1.3;
+    }
+    body.lang-en .header-subtitle{ max-width: 860px; }
+
+    /* Responsive: stack nicely */
+    @media (max-width: 900px){
+      .header-grid{
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+      .header-logo{ justify-self: end; }
+      .header-controls .header-lang-nav{
+        flex-direction: row !important;
+        flex-wrap: wrap;
+      }
+    }
+
+
+    /* ===============================
+       Header simplification + moved controls
+       =============================== */
+    .header-simple{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .header-simple .header-text{
+      flex: 1 1 auto;
+      min-width: 0;
+    }
+    .header-simple .header-logo{ flex: 0 0 auto; }
+
+    /* Utility bar layout */
+    .utility-wrap{
+      max-width: var(--wrap, 1200px);
+      margin: 12px auto 0;
+      padding: 0 16px;
+    }
+    .utility-bar{
+      padding: 14px 14px;
+    }
+    .utility-controls .header-lang-nav{
+      display: flex !important;
+      flex-direction: row !important;
+      flex-wrap: wrap;
+      gap: 10px !important;
+      align-items: center !important;
+      justify-content: flex-start !important;
+    }
+    .utility-subtitle .header-subtitle{
+      margin: 10px 0 0 !important;
+      max-width: 980px;
+      opacity: .95;
+    }
+    .utility-subtitle .header-subtitle span{
+      display: inline;
+    }
+
+    /* Remove any legacy header grid rules that cause overlap */
+    .header-grid, .header-controls, .header-logo, .header-text{
+      position: static;
+    }
+
+
+    /* ===============================
+       Display settings dropdown (replaces header controls)
+       =============================== */
+    .display-settings{ position: relative; display: inline-flex; }
+    .display-settings-btn{
+      padding: 9px 12px !important;
+      border-radius: 999px !important;
+      gap: 10px !important;
+    }
+    .display-settings-btn .btn-ic{
+      width: 34px; height: 34px;
+      border-radius: 12px;
+      display: grid; place-items: center;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.05);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.10);
+    }
+    .display-settings-btn .btn-ic svg{ width: 18px; height: 18px; stroke: currentColor; }
+
+    .display-menu{
+      position: absolute;
+      top: calc(100% + 10px);
+      inset-inline-start: 0;
+      min-width: 260px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.12);
+      background:
+        radial-gradient(520px 180px at 20% 0%, rgba(140,64,255,.14), transparent 60%),
+        radial-gradient(520px 180px at 85% 0%, rgba(5,173,173,.10), transparent 62%),
+        rgba(255,255,255,.05);
+      box-shadow: 0 22px 60px rgba(0,0,0,.30);
+      backdrop-filter: blur(18px) saturate(120%);
+      -webkit-backdrop-filter: blur(18px) saturate(120%);
+      padding: 12px;
+      display: none;
+      z-index: 12000;
+    }
+    .display-settings.open .display-menu{ display: block; }
+
+    .display-group{ padding: 8px 8px; }
+    .display-group-title{
+      font-weight: 920;
+      font-size: calc(12.5px * var(--font-scale));
+      color: rgba(255,255,255,.92);
+      margin-bottom: 10px;
+      opacity: .92;
+    }
+    .display-row{ display:flex; gap: 8px; align-items:center; }
+    .chip-btn{
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.05);
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-weight: 900;
+      font-size: calc(12px * var(--font-scale));
+      color: rgba(255,255,255,.90);
+      cursor: pointer;
+      transition: transform .16s ease, border-color .16s ease, background .16s ease;
+    }
+    .chip-btn:hover{ transform: translateY(-1px); border-color: rgba(5,173,173,.45); background: rgba(255,255,255,.07); }
+    .chip-btn.active{
+      border-color: rgba(5,173,173,.65);
+      background: rgba(5,173,173,.12);
+      color: rgba(255,255,255,.95);
+    }
+    .display-divider{
+      height: 1px;
+      background: rgba(255,255,255,.10);
+      margin: 6px 6px;
+    }
+
+    @media (max-width: 560px){
+      .display-menu{
+        min-width: min(320px, calc(100vw - 40px));
+      }
+    }
+
+
+    /* ===============================
+       Gradients modal: more spacing + mobile-friendly
+       =============================== */
+    .gradient-grid{ gap: 14px !important; }
+    .gradient-card{ padding: 14px !important; border-radius: 18px !important; }
+    .gradient-preview{ height: 74px !important; border-radius: 16px !important; }
+    .gradient-actions{ gap: 10px !important; margin-top: 12px !important; }
+
+    @media (max-width: 560px){
+      .preview-dialog{ width: min(96vw, 560px) !important; }
+      .gradient-grid{ grid-template-columns: 1fr !important; gap: 12px !important; }
+      .gradient-preview{ height: 86px !important; }
+      .gradient-actions{ flex-wrap: wrap; }
+    }
+
+
+    /* Hide legacy header controls if any remain */
+    .header-lang-nav.legacy-hide{ display:none !important; }
+
+
+    /* ===============================
+       Header: minimal (logo + title + tag) + display button positioned by language
+       =============================== */
+    .header-top{ overflow: visible !important; padding: 22px 22px !important; margin-bottom: 18px !important; }
+    .header-brand{ display:flex; justify-content: center; }
+    .brand-cluster{
+      display:flex;
+      align-items:center;
+      gap: 14px;
+      max-width: 980px;
+      width: 100%;
+      justify-content: center;
+    }
+    .brand-text{ min-width: 0; }
+    .brand-text .hub-tag{ margin: 0 0 10px 0 !important; }
+    .brand-text .header-title{ margin: 0 !important; }
+    /* AR: logo right + title next to it */
+    body.lang-ar .brand-cluster{ flex-direction: row-reverse; justify-content: flex-end; }
+    body.lang-ar .brand-text{ text-align: right; }
+    /* EN: logo left + title next to it */
+    body.lang-en .brand-cluster{ flex-direction: row; justify-content: flex-start; }
+    body.lang-en .brand-text{ text-align: left; }
+
+    /* Display settings button placement */
+    .display-settings{ position: absolute; top: 16px; z-index: 14000; }
+    body.lang-ar .display-settings{ left: 18px; right: auto; }
+    body.lang-en .display-settings{ right: 18px; left: auto; }
+
+    /* Prevent menu clipping + make it overlay the page */
+    .display-menu{ position: fixed !important; display: none; }
+    .display-settings.open .display-menu{ display:block; }
+
+    /* Utility spacing under header */
+    .utility-wrap{ margin-top: 18px !important; }
+    main{ padding-top: 14px !important; }
+
+    @media (max-width: 720px){
+      .header-top{ padding: 18px 16px !important; }
+      .brand-cluster{ justify-content: center !important; }
+      body.lang-ar .brand-cluster, body.lang-en .brand-cluster{ justify-content: center !important; }
+      .display-settings{ position: static; margin-bottom: 10px; }
+      body.lang-ar .display-settings, body.lang-en .display-settings{ left:auto; right:auto; }
+    }
+
+
+    /* ===============================
+       Utility area spacing (prevent cards looking nested/overlapped)
+       =============================== */
+    .utility-wrap{
+      display: grid !important;
+      gap: 14px !important;
+      margin-top: 22px !important; /* extra breathing room under header */
+    }
+    .utility-bar,
+    .quick-nav{
+      margin: 0 !important;
+    }
+
+
+    /* ===============================
+       Header alignment: logo-right in RTL, logo-left in LTR (robust)
+       =============================== */
+    .header-top{ position: relative !important; }
+    .header-brand{ display:flex; width:100%; }
+    .brand-cluster{
+      display:flex;
+      align-items:center;
+      gap: 14px;
+      width: 100%;
+      max-width: 980px;
+    }
+    .brand-text{ min-width: 0; }
+    .brand-text .hub-tag{ margin: 0 0 10px 0 !important; }
+    .brand-text .header-title{ margin: 0 !important; }
+
+    html[dir="rtl"] .header-brand{ justify-content: flex-end; }
+    html[dir="rtl"] .brand-cluster{ flex-direction: row-reverse; justify-content: flex-end; }
+    html[dir="rtl"] .brand-text{ text-align: right; }
+
+    html[dir="ltr"] .header-brand{ justify-content: flex-start; }
+    html[dir="ltr"] .brand-cluster{ flex-direction: row; justify-content: flex-start; }
+    html[dir="ltr"] .brand-text{ text-align: left; }
+
+    /* Give the settings button room so it never overlaps the brand cluster */
+    .header-top{ padding-top: 24px !important; }
+
+    @media (max-width: 720px){
+      .brand-cluster{ justify-content: center !important; }
+      html[dir="rtl"] .header-brand, html[dir="ltr"] .header-brand{ justify-content: center !important; }
+      html[dir="rtl"] .brand-text, html[dir="ltr"] .brand-text{ text-align: center !important; }
+    }
+
+
+    /* Display settings placement + open state */
+    .display-settings{ position:absolute; top: 16px; z-index: 15000; }
+    html[dir="rtl"] .display-settings{ left: 18px; right: auto; }
+    html[dir="ltr"] .display-settings{ right: 18px; left: auto; }
+
+    .display-settings.open .display-settings-btn{
+      background: rgba(0,0,0,.32) !important;
+      border-color: rgba(5,173,173,.38) !important;
+      box-shadow: 0 22px 60px rgba(0,0,0,.38), inset 0 1px 0 rgba(255,255,255,.10) !important;
+    }
+    .display-settings.open .display-settings-btn .btn-ic{
+      background: rgba(0,0,0,.22) !important;
+      border-color: rgba(5,173,173,.42) !important;
+    }
+
+
+    /* ===============================
+       Header grid: reserve space for settings so it never overlaps logo/title
+       =============================== */
+    .header-top{
+      display: grid !important;
+      grid-template-columns: auto 1fr auto !important;
+      align-items: center !important;
+      gap: 14px !important;
+    }
+    .header-top .display-settings{ position: static !important; }
+    .header-top .header-brand{ grid-column: 2; }
+    .header-top .header-brand{ display:flex; width:100%; }
+    .header-top .header-logo{ display:none; } /* safety if legacy exists */
+
+    html[dir="rtl"] .header-top .display-settings{ grid-column: 1; justify-self: start; }
+    html[dir="ltr"] .header-top .display-settings{ grid-column: 3; justify-self: end; }
+
+    html[dir="rtl"] .header-top .header-brand{ justify-content: flex-end; }
+    html[dir="ltr"] .header-top .header-brand{ justify-content: flex-start; }
+
+    .brand-cluster{ max-width: 980px; width: 100%; }
+
+    /* Stronger open state for clarity */
+    .display-settings.open .display-settings-btn{
+      background: rgba(0,0,0,.46) !important;
+      border-color: rgba(5,173,173,.50) !important;
+      box-shadow: 0 24px 70px rgba(0,0,0,.46), inset 0 1px 0 rgba(255,255,255,.12) !important;
+    }
+
+    /* Menu positioning relative to viewport (but anchored to button rect in JS) */
+    .display-menu{
+      position: fixed !important;
+      z-index: 20000 !important;
+    }
+
+    @media (max-width: 720px){
+      .header-top{
+        grid-template-columns: 1fr !important;
+        justify-items: center;
+      }
+      .header-top .display-settings{ justify-self: center !important; }
+      html[dir="rtl"] .header-top .header-brand,
+      html[dir="ltr"] .header-top .header-brand{ justify-content: center !important; }
+      .brand-cluster{ justify-content: center !important; }
+    }
+
+
+    /* ===============================
+       Swap: logo in corner, settings next to title (AR/EN)
+       =============================== */
+    .header-top{
+      display: grid !important;
+      grid-template-columns: auto 1fr auto !important;
+      align-items: center !important;
+      gap: 14px !important;
+    }
+    .corner-logo{ grid-column: 1; justify-self: start; }
+    html[dir="rtl"] .corner-logo{ grid-column: 1; justify-self: start; }
+    html[dir="ltr"] .corner-logo{ grid-column: 3; justify-self: end; }
+
+    .header-brand{ grid-column: 2; width: 100%; }
+    .brand-cluster{
+      justify-content: center;
+    }
+    /* Settings now lives in brand-cluster */
+    .brand-cluster .display-settings{
+      position: static !important;
+      z-index: 1;
+    }
+    html[dir="rtl"] .brand-cluster{ flex-direction: row-reverse; justify-content: flex-end; }
+    html[dir="ltr"] .brand-cluster{ flex-direction: row; justify-content: flex-start; }
+
+    /* Make settings button slightly smaller inside the title line */
+    .brand-cluster .display-settings-btn{
+      padding: 8px 10px !important;
+    }
+    .brand-cluster .display-settings-btn .btn-ic{
+      width: 30px; height: 30px;
+      border-radius: 11px;
+    }
+
+    @media (max-width: 720px){
+      .header-top{
+        grid-template-columns: 1fr !important;
+        justify-items: center;
+      }
+      .corner-logo{ grid-column: 1 !important; justify-self: center !important; margin-bottom: 8px; }
+      .header-brand{ grid-column: 1 !important; }
+      .brand-cluster{ justify-content: center !important; flex-wrap: wrap; }
+    }
+
+
+    /* ===============================
+       Header tidy layout (swapped positions, aligned)
+       =============================== */
+    .header-top{
+      position: relative !important;
+      display:flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      padding: 20px 22px !important;
+      gap: 14px !important;
+    }
+
+    /* Corner control: opposite side depending on dir */
+    .corner-control{
+      position: absolute;
+      top: 16px;
+      z-index: 16000;
+    }
+    html[dir="rtl"] .corner-control{ left: 18px; right: auto; }
+    html[dir="ltr"] .corner-control{ right: 18px; left: auto; }
+
+    /* Brand cluster: logo next to title (dir-aware) */
+    .header-brand{ width: 100%; max-width: 980px; }
+    .brand-cluster{
+      display:flex;
+      align-items: center;
+      gap: 14px;
+      width: 100%;
+    }
+    html[dir="rtl"] .brand-cluster{ flex-direction: row-reverse; justify-content: flex-end; }
+    html[dir="ltr"] .brand-cluster{ flex-direction: row; justify-content: flex-start; }
+
+    .brand-text{ min-width: 0; }
+    html[dir="rtl"] .brand-text{ text-align: right; }
+    html[dir="ltr"] .brand-text{ text-align: left; }
+
+    .brand-text .hub-tag{ margin: 0 0 10px 0 !important; }
+    .brand-text .header-title{ margin: 0 !important; }
+
+    /* Display button compact, clear open state */
+    .corner-control .display-settings{ position: static !important; }
+    .corner-control .display-settings-btn{ padding: 9px 12px !important; }
+    .corner-control .display-settings.open .display-settings-btn{
+      background: rgba(0,0,0,.50) !important;
+      border-color: rgba(5,173,173,.55) !important;
+    }
+
+    /* Responsive */
+    @media (max-width: 720px){
+      .header-top{ padding: 18px 16px !important; }
+      .corner-control{ position: static; align-self: flex-start; }
+      html[dir="rtl"] .corner-control, html[dir="ltr"] .corner-control{ left:auto; right:auto; }
+      .brand-cluster{ justify-content: center !important; flex-direction: column; text-align: center; }
+      .brand-text{ text-align: center !important; }
+    }
+
+
+    /* ===============================
+       Reserve corner space for settings (no overlap with logo/title)
+       =============================== */
+    html[dir="rtl"] .header-top{ padding-left: 120px !important; }
+    html[dir="ltr"] .header-top{ padding-right: 120px !important; }
+
+    .corner-control{ z-index: 22000 !important; }
+
+    @media (max-width: 720px){
+      html[dir="rtl"] .header-top,
+      html[dir="ltr"] .header-top{ padding-left: 16px !important; padding-right: 16px !important; }
+    }
+
+
+    /* ===============================
+       Fix brand alignment: logo next to title (RTL logo on right, LTR logo on left)
+       =============================== */
+    .logo-box{ position: static !important; inset:auto !important; margin: 0 !important; }
+
+    /* Ensure header content aligns away from the corner control */
+    .header-top{
+      justify-content: flex-start !important; /* override centering that causes overlap */
+    }
+    .header-brand{
+      display: flex !important;
+      width: 100% !important;
+      max-width: 980px !important;
+      margin: 0 auto !important;
+    }
+
+    html[dir="rtl"] .header-brand{ justify-content: flex-end !important; }
+    html[dir="ltr"] .header-brand{ justify-content: flex-start !important; }
+
+    html[dir="rtl"] .brand-cluster{
+      flex-direction: row-reverse !important; /* makes logo appear on the right */
+      justify-content: flex-end !important;
+    }
+    html[dir="ltr"] .brand-cluster{
+      flex-direction: row !important; /* makes logo appear on the left */
+      justify-content: flex-start !important;
+    }
+
+    /* Keep text alignment consistent */
+    html[dir="rtl"] .brand-text{ text-align: right !important; }
+    html[dir="ltr"] .brand-text{ text-align: left !important; }
+
+    @media (max-width: 720px){
+      .header-top{ justify-content: center !important; }
+      .header-brand{ justify-content: center !important; }
+      .brand-cluster{ justify-content: center !important; }
+    }
+
+
+    /* ===============================
+       RTL: place logo on the RIGHT of the title (logo-first on the right edge)
+       =============================== */
+    html[dir="rtl"] .brand-cluster{
+      direction: rtl !important;
+      flex-direction: row !important;
+      justify-content: flex-end !important;
+    }
+    html[dir="rtl"] .brand-cluster .logo-box{ order: 0 !important; }
+    html[dir="rtl"] .brand-cluster .brand-text{ order: 1 !important; }
+
+    /* LTR stays logo-left */
+    html[dir="ltr"] .brand-cluster{
+      direction: ltr !important;
+      flex-direction: row !important;
+      justify-content: flex-start !important;
+    }
+
+
+    /* ===============================
+       RTL: move brand cluster to the RIGHT edge of the header
+       =============================== */
+    html[dir="rtl"] .header-top{ justify-content: flex-end !important; }
+    html[dir="rtl"] .header-brand{
+      margin-left: 0 !important;
+      margin-right: 0 !important;
+      max-width: 100% !important;
+      justify-content: flex-end !important;
+    }
+    html[dir="rtl"] .brand-cluster{
+      width: auto !important;
+      max-width: 100% !important;
+      justify-content: flex-end !important;
+    }
+    /* Keep some space from settings button area on the left */
+    html[dir="rtl"] .header-brand{ padding-left: 120px !important; }
+    @media (max-width: 720px){
+      html[dir="rtl"] .header-brand{ padding-left: 0 !important; }
+    }
+
+
+    /* ===============================
+       FINAL RTL HEADER OVERRIDES: snap brand to right edge + logo on right of title
+       =============================== */
+    html[dir="rtl"] .header-top{
+      justify-content: flex-end !important;
+    }
+    html[dir="rtl"] .header-brand{
+      width: 100% !important;
+      max-width: 100% !important;
+      margin: 0 !important;
+      padding-left: 132px !important; /* keep clear of settings on the left */
+      justify-content: flex-end !important;
+    }
+    html[dir="rtl"] .brand-cluster{
+      width: 100% !important;
+      max-width: 100% !important;
+      justify-content: flex-end !important;
+      flex-direction: row !important;
+      direction: rtl !important;
+      gap: 14px !important;
+    }
+    html[dir="rtl"] .brand-cluster .logo-box{ order: 0 !important; }
+    html[dir="rtl"] .brand-cluster .brand-text{ order: 1 !important; }
+
+    /* Ensure EN stays clean */
+    html[dir="ltr"] .header-top{ justify-content: flex-start !important; }
+    html[dir="ltr"] .header-brand{
+      width: 100% !important;
+      max-width: 100% !important;
+      margin: 0 !important;
+      padding-right: 132px !important; /* clear of settings on the right */
+      justify-content: flex-start !important;
+    }
+    html[dir="ltr"] .brand-cluster{
+      width: 100% !important;
+      justify-content: flex-start !important;
+      flex-direction: row !important;
+      direction: ltr !important;
+    }
+
+    @media (max-width: 720px){
+      html[dir="rtl"] .header-brand{ padding-left: 0 !important; }
+      html[dir="ltr"] .header-brand{ padding-right: 0 !important; }
+      html[dir="rtl"] .brand-cluster,
+      html[dir="ltr"] .brand-cluster{
+        justify-content: center !important;
+        width: 100% !important;
+      }
+    }
+
+
+    /* ===============================
+       FIX: Snap header content to edge using CSS Grid (RTL right / LTR left)
+       =============================== */
+    .header-top{
+      display: grid !important;
+      align-items: center !important;
+      gap: 14px !important;
+      justify-content: stretch !important;
+    }
+
+    /* RTL layout: [settings on left] [brand on right] */
+    html[dir="rtl"] .header-top{
+      grid-template-columns: auto 1fr !important;
+    }
+    html[dir="rtl"] .corner-control{
+      grid-column: 1 !important;
+      position: static !important;
+      justify-self: start !important;
+      align-self: center !important;
+    }
+    html[dir="rtl"] .header-brand{
+      grid-column: 2 !important;
+      justify-self: end !important;
+      width: auto !important;
+      max-width: none !important;
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+    html[dir="rtl"] .brand-cluster{
+      width: auto !important;
+      justify-content: flex-end !important;
+    }
+
+    /* LTR layout: [brand on left] [settings on right] */
+    html[dir="ltr"] .header-top{
+      grid-template-columns: 1fr auto !important;
+    }
+    html[dir="ltr"] .corner-control{
+      grid-column: 2 !important;
+      position: static !important;
+      justify-self: end !important;
+      align-self: center !important;
+    }
+    html[dir="ltr"] .header-brand{
+      grid-column: 1 !important;
+      justify-self: start !important;
+      width: auto !important;
+      max-width: none !important;
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+    html[dir="ltr"] .brand-cluster{
+      width: auto !important;
+      justify-content: flex-start !important;
+    }
+
+    /* Keep some breathing room from edges */
+    .header-top{ padding: 20px 22px !important; }
+
+    /* Mobile: stack neatly */
+    @media (max-width: 720px){
+      .header-top{
+        grid-template-columns: 1fr !important;
+        justify-items: center !important;
+      }
+      .corner-control{ justify-self: center !important; }
+      .header-brand{ justify-self: center !important; }
+      .brand-cluster{ justify-content: center !important; }
+    }
+
+
+    /* ===============================
+       FINAL HEADER LAYOUT: RTL brand to RIGHT edge, settings to LEFT (and vice-versa for EN)
+       =============================== */
+    .header-top{
+      display: grid !important;
+      align-items: center !important;
+      gap: 14px !important;
+      justify-items: stretch !important;
+    }
+
+    /* Arabic (RTL): [settings | spacer | brand] */
+    html[dir="rtl"] .header-top{
+      grid-template-columns: auto 1fr auto !important;
+    }
+    html[dir="rtl"] .corner-control{
+      grid-column: 1 !important;
+      position: static !important;
+      justify-self: start !important;
+    }
+    html[dir="rtl"] .header-brand{
+      grid-column: 3 !important;
+      justify-self: end !important;
+      width: auto !important;
+      max-width: none !important;
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+
+    /* English (LTR): [brand | spacer | settings] */
+    html[dir="ltr"] .header-top{
+      grid-template-columns: auto 1fr auto !important;
+    }
+    html[dir="ltr"] .header-brand{
+      grid-column: 1 !important;
+      justify-self: start !important;
+      width: auto !important;
+      max-width: none !important;
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+    html[dir="ltr"] .corner-control{
+      grid-column: 3 !important;
+      position: static !important;
+      justify-self: end !important;
+    }
+
+    /* Brand cluster hugs content so it won't appear centered */
+    .brand-cluster{
+      display: inline-flex !important;
+      width: fit-content !important;
+      max-width: none !important;
+      justify-content: flex-start !important;
+    }
+    html[dir="rtl"] .brand-cluster{
+      direction: rtl !important;
+      flex-direction: row !important; /* logo on the right side visually */
+      justify-content: flex-end !important;
+    }
+    html[dir="ltr"] .brand-cluster{
+      direction: ltr !important;
+      flex-direction: row !important;
+      justify-content: flex-start !important;
+    }
+
+    /* Text alignment */
+    html[dir="rtl"] .brand-text{ text-align: right !important; }
+    html[dir="ltr"] .brand-text{ text-align: left !important; }
+
+    /* Mobile: stack and center */
+    @media (max-width: 720px){
+      .header-top{
+        grid-template-columns: 1fr !important;
+        justify-items: center !important;
+      }
+      .corner-control{ grid-column: 1 !important; justify-self: center !important; }
+      .header-brand{ grid-column: 1 !important; justify-self: center !important; }
+      .brand-cluster{ width: auto !important; justify-content: center !important; }
+      .brand-text{ text-align: center !important; }
+    }
+
+
+    /* ===============================
+       Safety: header layout follows language classes (prevents RTL/LTR mismatch)
+       =============================== */
+    body.lang-ar .header-top{ grid-template-columns: auto 1fr auto !important; }
+    body.lang-ar .corner-control{ grid-column: 1 !important; justify-self: start !important; }
+    body.lang-ar .header-brand{ grid-column: 3 !important; justify-self: end !important; }
+    body.lang-ar .brand-cluster{ direction: rtl !important; justify-content: flex-end !important; }
+
+    body.lang-en .header-top{ grid-template-columns: auto 1fr auto !important; }
+    body.lang-en .header-brand{ grid-column: 1 !important; justify-self: start !important; }
+    body.lang-en .corner-control{ grid-column: 3 !important; justify-self: end !important; }
+    body.lang-en .brand-cluster{ direction: ltr !important; justify-content: flex-start !important; }
+
+
+    
+    /* ===============================
+       SWAPPED PER REQUEST:
+       - English page uses AR layout: brand RIGHT, settings LEFT
+       - Arabic page uses EN layout: brand LEFT, settings RIGHT
+       =============================== */
+
+    /* Arabic page (lang-ar): brand LEFT, settings RIGHT */
+    body.lang-ar .header-top{
+      grid-template-columns: auto 1fr auto !important; /* brand | spacer | settings */
+    }
+    body.lang-ar .header-brand{
+      grid-column: 1 !important;
+      justify-self: start !important;
+    }
+    body.lang-ar .corner-control{
+      grid-column: 3 !important;
+      justify-self: end !important;
+    }
+    body.lang-ar .brand-cluster{
+      justify-content: flex-start !important;
+    }
+
+    /* English page (lang-en): brand RIGHT, settings LEFT */
+    body.lang-en .header-top{
+      grid-template-columns: auto 1fr auto !important; /* settings | spacer | brand */
+    }
+    body.lang-en .corner-control{
+      grid-column: 1 !important;
+      justify-self: start !important;
+    }
+    body.lang-en .header-brand{
+      grid-column: 3 !important;
+      justify-self: end !important;
+    }
+    body.lang-en .brand-cluster{
+      justify-content: flex-end !important;
+    }
+    body.lang-en .header-top{
+      grid-template-columns: auto 1fr auto !important; /* brand | spacer | settings */
+    }
+    body.lang-en .header-brand{
+      grid-column: 1 !important;
+      justify-self: start !important;
+    }
+    body.lang-en .corner-control{
+      grid-column: 3 !important;
+      justify-self: end !important;
+    }
+
+
+    /* ===============================
+       Header height tuning (reduce vertical space)
+       =============================== */
+    .main-header{ margin-bottom: 16px !important; }
+    .header-top{
+      padding: 14px 18px !important;
+      min-height: 88px !important;
+      align-items: center !important;
+    }
+    .brand-text .hub-tag{ margin: 0 0 6px 0 !important; }
+    .brand-text .header-title{ line-height: 1.1 !important; }
+
+    /* tighten logo box a bit */
+    .logo-box{
+      transform: none !important;
+      width: 52px !important;
+      height: 52px !important;
+      border-radius: 16px !important;
+    }
+
+    /* keep settings compact */
+    .corner-control .display-settings-btn{
+      padding: 8px 10px !important;
+    }
+
+    @media (max-width: 720px){
+      .header-top{
+        padding: 14px 14px !important;
+        min-height: auto !important;
+      }
+      .logo-box{ width: 48px !important; height: 48px !important; }
+    }
+
+
+    /* ===============================
+       Header compact: make header height match logo/settings height
+       =============================== */
+    .header-top{
+      min-height: 72px !important;
+      padding: 10px 16px !important;
+    }
+    .brand-text .hub-tag{
+      font-size: 12px !important;
+      padding: 6px 12px !important;
+      margin-bottom: 4px !important;
+    }
+    .brand-text .header-title{
+      font-size: clamp(18px, 2.2vw, 26px) !important;
+    }
+    .logo-box{
+      width: 48px !important;
+      height: 48px !important;
+      border-radius: 15px !important;
+    }
+    .corner-control .display-settings-btn{
+      padding: 8px 10px !important;
+      border-radius: 16px !important;
+    }
+    .corner-control .display-settings-btn .btn-ic{
+      width: 30px !important;
+      height: 30px !important;
+      border-radius: 12px !important;
+    }
+    /* Prevent subtitle/nav utility area from visually attaching to header */
+    .utility-wrap{ margin-top: 14px !important; }
+
+    @media (max-width: 720px){
+      .header-top{
+        min-height: auto !important;
+        padding: 12px 12px !important;
+      }
+      .brand-text .hub-tag{ margin-bottom: 6px !important; }
+    }
+
+
+    
+    /* Arabic: left side */
+    body.lang-en /* English: right side */
+
+    .display-dock .corner-control{
+      position: static !important;
+      top: auto !important;
+      left: auto !important;
+      right: auto !important;
+      z-index: 12000 !important;
+    }
+    .display-dock .display-menu{
+      position: absolute !important; /* anchor near button */
+      z-index: 20000 !important;
+    }
+
+    /* ensure header isn't reserving space for settings anymore */
+    html[dir="rtl"] .header-top{ padding-left: 16px !important; }
+    html[dir="ltr"] .header-top{ padding-right: 16px !important; }
+
+
+
+    /* ===============================
+       Compact site navbar (settings lives here)
+       =============================== */
+    .site-nav{
+      margin: 12px 0 14px;
+      padding: 10px 12px;
+      border-radius: 18px;
+    }
+    .nav-inner{
+      display:flex;
+      align-items:center;
+      justify-content:flex-start;
+      gap: 10px;
+      min-height: 44px;
+    }
+    body.lang-en .nav-inner{ justify-content:flex-end; }
+    body.lang-ar .nav-inner{ justify-content:flex-start; }
+
+    /* Ensure the settings wrap behaves inside nav */
+    .site-nav .corner-control{ position: static !important; }
+    .site-nav .display-settings{ position: relative; }
+
+    /* Dropdown: fixed to viewport + high z-index (prevents "hang" / clipping) */
+    .display-menu{
+      position: fixed !important;
+      z-index: 30000 !important;
+    }
+
+    @media (max-width: 720px){
+      .site-nav{ padding: 10px 10px; border-radius: 16px; }
+      .nav-inner{ justify-content: center; }
+      body.lang-en .nav-inner, body.lang-ar .nav-inner{ justify-content: center; }
+    }
+
+
+    /* ===============================
+       Top controls navbar (icons only) - above header
+       =============================== */
+    .top-controls{
+      margin: 10px 0 14px;
+      padding: 8px 10px;
+      border-radius: 18px;
+    }
+    .top-controls-inner{
+      display:flex;
+      align-items:center;
+      gap: 8px;
+      min-height: 40px;
+      justify-content: flex-start;
+    }
+    body.lang-en .top-controls-inner{ justify-content: flex-end; }
+
+    .icon-btn{
+      width: 40px;
+      height: 40px;
+      display:grid;
+      place-items:center;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.05);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.10);
+      color: rgba(255,255,255,.92);
+      cursor: pointer;
+      transition: transform .16s ease, border-color .16s ease, background .16s ease;
+    }
+    .icon-btn:hover{
+      transform: translateY(-1px);
+      border-color: rgba(5,173,173,.45);
+      background: rgba(255,255,255,.07);
+    }
+    .icon-btn:active{ transform: translateY(0px) scale(.98); }
+    .icon-btn svg{ width: 18px; height: 18px; }
+
+    .top-controls-sep{
+      width: 1px;
+      height: 22px;
+      background: rgba(255,255,255,.12);
+      margin: 0 2px;
+      border-radius: 999px;
+    }
+
+    @media (max-width: 720px){
+      .top-controls{ padding: 8px; border-radius: 16px; }
+      .top-controls-inner{
+        justify-content: center !important;
+      }
+    }
+
+
+    /* ===============================
+       Subtitle moved under header title (remove utility subtitle box)
+       =============================== */
+    .header-subtitle{
+      margin-top: 8px;
+      margin-bottom: 0;
+      opacity: .9;
+      font-size: 14px;
+      line-height: 1.55;
+      color: rgba(255,255,255,.82);
+    }
+    .brand-text{ display:flex; flex-direction:column; gap: 6px; }
+    .utility-subtitle{ display:none !important; }
+    .utility-bar{ display:none !important; }
+
+
+    /* ===============================
+       Quick Nav Search (inside "انتقل بسرعة")
+       =============================== */
+    .quick-search{
+      margin-top: 10px;
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: 16px;
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.10);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.08);
+      color: rgba(255,255,255,.9);
+    }
+    .quick-search-ic{
+      width: 18px; height: 18px;
+      display:grid; place-items:center;
+      opacity: .9;
+    }
+    .quick-search-ic svg{ width:18px; height:18px; }
+    .quick-search-input{
+      flex: 1;
+      border: 0;
+      outline: none;
+      background: transparent;
+      color: rgba(255,255,255,.92);
+      font-size: 14px;
+      letter-spacing: .2px;
+    }
+    .quick-search-input::placeholder{ color: rgba(255,255,255,.55); }
+    .quick-search-clear{
+      width: 34px; height: 34px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+      color: rgba(255,255,255,.85);
+      cursor:pointer;
+      display:grid; place-items:center;
+      transition: transform .16s ease, background .16s ease, border-color .16s ease;
+    }
+    .quick-search-clear:hover{
+      transform: translateY(-1px);
+      background: rgba(255,255,255,.06);
+      border-color: rgba(5,173,173,.40);
+    }
+    .quick-search-clear svg{ width:16px; height:16px; }
+    #quickSearchClear{ display:none; }
+
+    .chip.is-hidden{ display:none !important; }
+    main section.is-hidden,
+    main .glass-card.is-hidden{ display:none !important; }
+
+    @media (max-width: 720px){
+      .quick-search{ padding: 10px; border-radius: 14px; }
+      .quick-search-input{ font-size: 13px; }
+    }
+
+
+    /* ===============================
+       Quick Nav icon controls (font + language)
+       =============================== */
+    .quick-nav-title{
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .quick-controls{
+      display:flex;
+      align-items:center;
+      gap: 8px;
+      flex: 0 0 auto;
+    }
+    .qic-btn{
+      width: 36px;
+      height: 36px;
+      display:grid;
+      place-items:center;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.05);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.08);
+      color: rgba(255,255,255,.92);
+      cursor: pointer;
+      transition: transform .16s ease, border-color .16s ease, background .16s ease;
+    }
+    .qic-btn:hover{
+      transform: translateY(-1px);
+      border-color: rgba(5,173,173,.45);
+      background: rgba(255,255,255,.07);
+    }
+    .qic-btn:active{ transform: translateY(0px) scale(.98); }
+    .qic-btn svg{ width: 18px; height: 18px; }
+    .qic-sep{
+      width: 1px;
+      height: 20px;
+      background: rgba(255,255,255,.12);
+      border-radius: 999px;
+      margin: 0 2px;
+    }
+
+    /* RTL: controls on left, title on right */
+    body.lang-ar .quick-nav-title{ flex-direction: row-reverse; }
+    body.lang-ar .quick-controls{ flex-direction: row; }
+
+    @media (max-width: 720px){
+      .quick-nav-title{ flex-wrap: wrap; }
+    }
+
+
+    /* ===============================
+       Quick Nav spacing improvements (search vs chips + RTL title/control separation)
+       =============================== */
+    /* Space between search bar and chips row */
+    .quick-search{ margin-bottom: 10px !important; }
+    .quick-nav .chip-row,
+    .quick-nav .chips,
+    .quick-nav .quick-chips{
+      margin-top: 8px !important;
+    }
+
+    /* If chips are directly after quick-search without a wrapper */
+    .quick-search + *{ margin-top: 10px !important; }
+
+    /* Arabic: add breathing room between "انتقل بسرعة إلى" and controls group */
+    body.lang-ar .quick-nav-title{
+      gap: 16px !important;
+    }
+    body.lang-ar .quick-controls{
+      margin-inline-start: 10px !important;
+    }
+
+    /* Keep controls visually detached on small widths */
+    @media (max-width: 720px){
+      .quick-search{ margin-bottom: 12px !important; }
+      .quick-search + *{ margin-top: 12px !important; }
+      body.lang-ar .quick-nav-title{ gap: 14px !important; }
+    }
+
+
+    /* ===============================
+       Layout width tuning (wider cards + quick-nav equal width)
+       =============================== */
+    :root{
+      --container-max: 1280px; /* was narrower */
+      --container-pad: 18px;
+    }
+
+    .container{
+      max-width: var(--container-max) !important;
+      padding-left: var(--container-pad) !important;
+      padding-right: var(--container-pad) !important;
+    }
+
+    /* Ensure all top-level blocks use the same width rhythm */
+    .main-header,
+    .quick-nav,
+    main,
+    footer{
+      width: 100% !important;
+    }
+
+    /* If any block had its own max-width, normalize it */
+    .main-header,
+    .quick-nav,
+    .utility-wrap,
+    .section,
+    .section-wrap,
+    .footer-inner{
+      max-width: var(--container-max) !important;
+      margin-left: auto !important;
+      margin-right: auto !important;
+    }
+
+    /* Slightly widen grid cards and reduce excessive gaps */
+    .grid,
+    .cards-grid{
+      gap: 14px !important;
+    }
+    @media (min-width: 980px){
+      .grid,
+      .cards-grid{
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+      }
+    }
+
+    /* Quick-nav card: match the same outer spacing as section cards */
+    .quick-nav{
+      margin-top: 16px !important;
+      margin-bottom: 16px !important;
+    }
+
+
+    /* ===============================
+       Width enforcement (some builds don't use .container)
+       =============================== */
+    :root{
+      --container-max: 1280px;
+      --container-pad: 18px;
+    }
+    .container, .wrap, .shell, .page, .site, .app{
+      max-width: var(--container-max) !important;
+      margin-left: auto !important;
+      margin-right: auto !important;
+      padding-left: var(--container-pad) !important;
+      padding-right: var(--container-pad) !important;
+    }
+    /* If sections/cards are constrained individually */
+    main, header, footer{
+      max-width: var(--container-max) !important;
+      margin-left: auto !important;
+      margin-right: auto !important;
+      padding-left: var(--container-pad) !important;
+      padding-right: var(--container-pad) !important;
+    }
+
+    .quick-nav{
+      width: 100% !important;
+      max-width: none !important;
+    }
+
+    /* ===============================
+       Jump highlight (after quick-nav navigation)
+       =============================== */
+    .jump-highlight{
+      position: relative;
+      outline: 1px solid rgba(5,173,173,.55);
+      box-shadow:
+        0 0 0 4px rgba(5,173,173,.10),
+        0 18px 50px rgba(140,64,255,.18);
+      transform: translateY(-2px);
+      transition: box-shadow .28s ease, outline-color .28s ease, transform .28s ease;
+    }
+
+
+/* ===============================
+   SIZE + MOBILE PARITY OVERRIDES (ref: Eid layout)
+   - Wider cards
+   - Consistent container width for header / quick-nav / main
+   - Cleaner mobile spacing and type scale
+   =============================== */
+:root{
+  --container: 1280px;
+  --container-max: 1280px;
+  --container-pad: 18px;
+}
+
+/* enforce a single width rhythm across top blocks */
+.page-wrapper{
+  width: min(var(--container), calc(100% - 36px)) !important;
+  max-width: var(--container) !important;
+  margin: 0 auto !important;
+}
+.main-header,
+.quick-nav,
+main,
+footer{
+  width: 100% !important;
+  max-width: var(--container) !important;
+  margin-inline: auto !important;
+}
+
+/* subtle spacing between quick-search + chips */
+.quick-search{ margin-bottom: 14px !important; }
+.quick-search + *{ margin-top: 14px !important; }
+
+/* mobile: comfortable reading + full-width feel */
+@media (max-width: 720px){
+  .page-wrapper{ width: calc(100% - 28px) !important; }
+  .header-title{ font-size: calc(20px * var(--font-scale)) !important; line-height: 1.35 !important; }
+  .header-subtitle{ font-size: calc(13px * var(--font-scale)) !important; }
+  .card-title{ font-size: calc(15px * var(--font-scale)) !important; }
+  .card-body{ font-size: calc(13.5px * var(--font-scale)) !important; }
+}
+@media (max-width: 560px){
+  .page-wrapper{ width: calc(100% - 22px) !important; }
+  .main-header{ padding: 16px 14px !important; }
+  .quick-nav{ padding: 12px 12px !important; }
+  .chip-row{ gap: 8px !important; }
+}
+@media (max-width: 540px){
+  .card{ padding: 14px 14px 12px !important; }
+}
+
+
 </style>
 </head>
 <body class="lang-ar">
 <div class="page-wrapper">
 <!-- HEADER -->
 <header class="main-header">
-<div class="header-top glass-card">
-<button class="logo-box asset-group-trigger" data-asset-group="logos" type="button">
+  <div class="header-top glass-card">
+    
+
+    <div class="header-brand">
+      <div class="brand-cluster">
+        <button class="logo-box asset-group-trigger" data-asset-group="logos" type="button">
 <img alt="T&amp;S Logo" src="assets/logos/ts-logo-mark.svg"/>
 </button>
-<div class="header-text">
-<div class="hub-tag">
+        <div class="brand-text">
+          <div class="hub-tag">
 <span class="hub-tag-dot"></span>
 <span>T&amp;S Brand Hub</span>
 </div>
-<h1 class="header-title">
-<span class="tr-ar">دليل الهوية البصرية لموظفي T&amp;S</span>
-<span class="tr-en">This hub is the single source of truth for <strong>logos, colors, typography, and branded templates</strong><br>used across T&amp;S.
-            </span>
-</p>
-<div class="header-lang-nav">
-<div class="font-size-control">
-<span class="font-size-control-label tr-ar">حجم النص</span>
-<span class="font-size-control-label tr-en">Text size</span>
-<button class="font-size-btn" onclick="adjustFontScale(-0.1)" type="button">A-</button>
-<button class="font-size-btn" onclick="resetFontScale()" type="button">A</button>
-<button class="font-size-btn" onclick="adjustFontScale(0.1)" type="button">A+</button>
-</div>
-<div aria-label="Language toggle" class="lang-toggle">
-<span class="lang-label tr-ar">اللغة</span>
-<span class="lang-label tr-en">Language</span>
-<button class="lang-pill active" data-lang="ar" type="button">
-                AR
-              </button>
-<button class="lang-pill" data-lang="en" type="button">
-                EN
-              </button>
-</div>
-</div>
-</div>
-</div>
-<!-- QUICK NAV -->
+          <h1 class="header-title">
+  <span class="tr-ar">دليل الهوية البصرية لموظفي T&amp;S</span>
+  <span class="tr-en">Brand assets and templates for consistent T&amp;S output.</span>
+</h1>
+
+          <p class="header-subtitle">
+            <span class="tr-ar">مرجع سريع للشعار، الألوان، الخطوط، والقوالب الرسمية — جاهز للاستخدام.</span>
+            <span class="tr-en">A quick reference for logos, colors, typography, and approved templates—ready to use.</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- UTILITY BAR (moved from header) -->
+<div class="utility-wrap">
+<div class="utility-wrap">
+  <!-- QUICK NAV -->
 <nav aria-label="Quick navigation" class="quick-nav glass-card">
-<div class="quick-nav-title">
-<span class="tr-ar">انتقل بسرعة إلى:</span>
+<div class="quick-nav-title"><span class="tr-ar">انتقل بسرعة إلى:</span>
 <span class="tr-en">Jump to section:</span>
+<div class="quick-controls" aria-label="Controls">
+    <button class="qic-btn" type="button" id="q-font-dec" aria-label="تصغير الخط / Decrease text">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M6 12h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </button>
+    <button class="qic-btn" type="button" id="q-font-inc" aria-label="تكبير الخط / Increase text">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M12 6v12M6 12h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </button>
+    <span class="qic-sep" aria-hidden="true"></span>
+    <button class="qic-btn" type="button" id="q-lang-toggle" aria-label="تغيير اللغة / Toggle language">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z" stroke="currentColor" stroke-width="2"/>
+        <path d="M3 12h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <path d="M12 3c2.5 2.6 4 5.7 4 9s-1.5 6.4-4 9c-2.5-2.6-4-5.7-4-9s1.5-6.4 4-9Z" stroke="currentColor" stroke-width="2"/>
+      </svg>
+    </button>
+  </div>
 </div>
+
+  <div class="quick-search" role="search">
+    <span class="quick-search-ic" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none">
+        <path d="M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Z" stroke="currentColor" stroke-width="2"/>
+        <path d="M16.6 16.6 21 21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </span>
+    <input id="quickSearch" class="quick-search-input" type="search" autocomplete="off"
+      placeholder="ابحث داخل الدليل… / Search the hub…" aria-label="بحث / Search" />
+    <button id="quickSearchClear" class="quick-search-clear" type="button" aria-label="مسح / Clear">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </button>
+  </div>
 <div class="chip-row">
 <a class="chip" href="#logos">
 <span class="chip-dot"></span>
@@ -1612,7 +3018,7 @@ code{
 </a>
 </div>
 </nav>
-</header>
+</div>
 <!-- MAIN CONTENT -->
 <main class="content-grid">
 <!-- Row 1: Logo + Colors -->
@@ -2550,7 +3956,7 @@ code{
               previewImg: "https://raw.githubusercontent.com/toolsAndsolution/ts-brand-hub/refs/heads/main/assets/logos/ts-logo-light.png",
               downloads: [
                 {
-                  href: "https://raw.githubusercontent.com/toolsAndsolution/ts-brand-hub/refs/heads/main/assets/logos/ts-logo-light.svg",
+                  href: "assets/logos/ts-logo-light.svg",
                   labelAr: "تحميل SVG",
                   labelEn: "Download SVG"
                 },
@@ -2592,7 +3998,7 @@ code{
               previewImg: "https://raw.githubusercontent.com/toolsAndsolution/ts-brand-hub/refs/heads/main/assets/logos/ts-logo-light.png",
               downloads: [
                 {
-                  href: "https://raw.githubusercontent.com/toolsAndsolution/ts-brand-hub/refs/heads/main/assets/logos/ts-logo-light.svg",
+                  href: "assets/logos/ts-logo-light.svg",
                   labelAr: "تحميل SVG",
                   labelEn: "Download SVG"
                 },
@@ -2637,7 +4043,7 @@ code{
               titleEn: "Favicon Light",
               previewImg: "https://raw.githubusercontent.com/toolsAndsolution/ts-brand-hub/refs/heads/main/assets/icons/ts-favicon.png",
               downloads: [
-                { href: "https://raw.githubusercontent.com/toolsAndsolution/ts-brand-hub/refs/heads/main/assets/icons/ts-favicon.svg", labelAr: "تحميل SVG", labelEn: "Download SVG" },
+                { href: "assets/icons/ts-favicon.svg", labelAr: "تحميل SVG", labelEn: "Download SVG" },
                 { href: "https://raw.githubusercontent.com/toolsAndsolution/ts-brand-hub/refs/heads/main/assets/icons/ts-favicon.png", labelAr: "تحميل PNG", labelEn: "Download PNG" }
               ]
             }
@@ -2650,10 +4056,10 @@ code{
             {
               titleAr: "فيف أيكون دارك",
               titleEn: "Favicon Dark",
-              previewImg: "https://raw.githubusercontent.com/toolsAndsolution/ts-brand-hub/refs/heads/main/assets/icons/ts-favicon-dark.png",
+              previewImg: "assets/icons/ts-favicon-dark.png",
               downloads: [
                 { href: "https://raw.githubusercontent.com/toolsAndsolution/ts-brand-hub/refs/heads/main/assets/icons/ts-favicon-dark.svg", labelAr: "تحميل SVG", labelEn: "Download SVG" },
-                { href: "https://raw.githubusercontent.com/toolsAndsolution/ts-brand-hub/refs/heads/main/assets/icons/ts-favicon-dark.png", labelAr: "تحميل PNG", labelEn: "Download PNG" }
+                { href: "assets/icons/ts-favicon-dark.png", labelAr: "تحميل PNG", labelEn: "Download PNG" }
               ]
             }
           ]
@@ -2766,7 +4172,7 @@ code{
       }
 
 
-      function setLanguage(lang) {
+      window.setLanguage = function setLanguage(lang) {
         if (lang === "en") {
           htmlEl.setAttribute("lang", "en");
           htmlEl.setAttribute("dir", "ltr");
@@ -3532,5 +4938,293 @@ const arClosed = paletteToggle.querySelector(".tr-ar .text-when-closed");
   </script>
 <!-- TOAST -->
 <div class="toast-stack" id="toast-stack" aria-live="polite" aria-atomic="true"></div>
+<script>
+(function(){
+  if (typeof window.showToast === "function") return;
+
+  const stack = document.getElementById("toast-stack");
+
+  function iconSvg(){
+    return '<svg viewBox="0 0 24 24" aria-hidden="true" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  }
+
+  window.showToast = function(message){
+    if (!stack) return;
+
+    const t = document.createElement("div");
+    t.className = "toast";
+    t.innerHTML = '<div class="toast-ic">'+iconSvg()+'</div><div class="toast-msg"></div>';
+    t.querySelector(".toast-msg").textContent = message;
+
+    stack.appendChild(t);
+
+    requestAnimationFrame(()=> t.classList.add("show"));
+
+    const ttl = 1900;
+    setTimeout(()=>{
+      t.classList.remove("show");
+      setTimeout(()=> t.remove(), 260);
+    }, ttl);
+  };
+})();
+</script>
+<!-- Language/font robust init (ensures dir + classes on load) -->
+<script>
+(function(){
+  function applyLang(lang){
+    lang = (lang==="en") ? "en" : "ar";
+    document.documentElement.setAttribute("dir", lang==="ar" ? "rtl" : "ltr");
+    document.documentElement.setAttribute("lang", lang);
+    document.body.classList.toggle("lang-ar", lang==="ar");
+    document.body.classList.toggle("lang-en", lang==="en");
+    try{ localStorage.setItem("ts_lang", lang); }catch(e){}
+    // ensure any translation toggles run if present
+    if(typeof window.updateLanguageUI === "function") window.updateLanguageUI(lang);
+  }
+
+  // Ensure window.setLanguage exists
+  if(typeof window.setLanguage !== "function"){
+    window.setLanguage = applyLang;
+  }else{
+    const old = window.setLanguage;
+    window.setLanguage = function(lang){
+      try{ old(lang); }catch(e){ applyLang(lang); }
+      // some implementations may not set dir; enforce it
+      applyLang(lang);
+    };
+  }
+
+  // Apply saved language early
+  let saved = "ar";
+  try{ saved = localStorage.getItem("ts_lang") || "ar"; }catch(e){}
+  applyLang(saved);
+
+  // Font scale helpers (ensure dropdown works)
+  const root = document.documentElement;
+  function clamp(v,min,max){ return Math.max(min, Math.min(max, v)); }
+  if(typeof window.adjustFontScale !== "function"){
+    window.adjustFontScale = function(delta){
+      const cur = parseFloat(getComputedStyle(root).getPropertyValue("--font-scale")) || 1;
+      const next = clamp(cur + delta, 0.85, 1.15);
+      root.style.setProperty("--font-scale", next);
+      try{ localStorage.setItem("ts_font_scale", String(next)); }catch(e){}
+    };
+  }
+  if(typeof window.resetFontScale !== "function"){
+    window.resetFontScale = function(){
+      root.style.setProperty("--font-scale", 1);
+      try{ localStorage.setItem("ts_font_scale", "1"); }catch(e){}
+    };
+  }
+  // Restore saved scale
+  try{
+    const s = parseFloat(localStorage.getItem("ts_font_scale") || "1");
+    if(!Number.isNaN(s)) root.style.setProperty("--font-scale", clamp(s,0.85,1.15));
+  }catch(e){}
+})();
+</script>
+<!-- Language normalization guard (safe, no observers) -->
+<script>
+(function(){
+  const htmlEl = document.documentElement;
+  const body = document.body;
+
+  function getSavedLang(){
+    try{ return localStorage.getItem("ts_lang") || ""; }catch(e){ return ""; }
+  }
+
+  function applyLang(lang){
+    lang = (lang === "en") ? "en" : "ar";
+    const dir = (lang === "ar") ? "rtl" : "ltr";
+
+    // Only write when different (prevents loops / hangs)
+    if((htmlEl.getAttribute("lang") || "") !== lang) htmlEl.setAttribute("lang", lang);
+    if((htmlEl.getAttribute("dir") || "") !== dir) htmlEl.setAttribute("dir", dir);
+
+    const arOn = body.classList.contains("lang-ar");
+    const enOn = body.classList.contains("lang-en");
+    if(lang === "ar"){
+      if(!arOn) body.classList.add("lang-ar");
+      if(enOn) body.classList.remove("lang-en");
+    }else{
+      if(!enOn) body.classList.add("lang-en");
+      if(arOn) body.classList.remove("lang-ar");
+    }
+
+    try{ localStorage.setItem("ts_lang", lang); }catch(e){}
+  }
+
+  // Wrap existing setLanguage (if any) to always be safe + idempotent
+  const prev = window.setLanguage;
+  window.setLanguage = function(lang){
+    // prevent re-entrancy
+    if(window.__ts_lang_lock) return;
+    window.__ts_lang_lock = true;
+    try{
+      if(typeof prev === "function"){
+        try{ prev(lang); }catch(e){}
+      }
+      applyLang(lang);
+    } finally {
+      window.__ts_lang_lock = false;
+    }
+  };
+
+  // Initial: prefer saved lang, else keep current html lang/body class
+  let init = getSavedLang();
+  if(!init){
+    if(body.classList.contains("lang-en")) init = "en";
+    else if(body.classList.contains("lang-ar")) init = "ar";
+    else{
+      const l = (htmlEl.getAttribute("lang") || "").toLowerCase();
+      init = (l === "en") ? "en" : "ar";
+    }
+  }
+  applyLang(init);
+})();
+</script>
+<!-- Quick Nav Search Logic -->
+<script>
+(function(){
+  const input = document.getElementById('quickSearch');
+  const clearBtn = document.getElementById('quickSearchClear');
+  if(!input) return;
+
+  const chips = Array.from(document.querySelectorAll('.quick-nav .chip'));
+  const targets = Array.from(document.querySelectorAll('main section, main .glass-card'))
+    .filter(el => !el.closest('.quick-nav') && !el.closest('.top-controls') && !el.closest('.main-header'));
+
+  function norm(s){
+    return (s || '')
+      .toString()
+      .toLowerCase()
+      .trim()
+      .replace(/[\u064B-\u0652]/g,'')
+      .replace(/\s+/g,' ');
+  }
+
+  function apply(q){
+    const query = norm(q);
+    const has = query.length > 0;
+
+    if(clearBtn) clearBtn.style.display = has ? 'grid' : 'none';
+
+    chips.forEach(ch=>{
+      const text = norm(ch.textContent);
+      ch.classList.toggle('is-hidden', has && !text.includes(query));
+    });
+
+    targets.forEach(el=>{
+      const text = norm(el.textContent);
+      el.classList.toggle('is-hidden', has && !text.includes(query));
+    });
+  }
+
+  input.addEventListener('input', (e)=> apply(e.target.value));
+  if(clearBtn){
+    clearBtn.addEventListener('click', ()=>{
+      input.value = '';
+      input.focus();
+      apply('');
+    });
+  }
+
+  apply('');
+})();
+</script>
+<!-- Quick Nav icon controls actions -->
+<script>
+(function(){
+  const dec = document.getElementById("q-font-dec");
+  const inc = document.getElementById("q-font-inc");
+  const langBtn = document.getElementById("q-lang-toggle");
+
+  function currentLang(){
+    if(document.body.classList.contains("lang-en")) return "en";
+    if(document.body.classList.contains("lang-ar")) return "ar";
+    const l = (document.documentElement.getAttribute("lang") || "").toLowerCase();
+    return (l === "en") ? "en" : "ar";
+  }
+
+  function setLang(next){
+    if(typeof window.setLanguage === "function"){
+      window.setLanguage(next);
+    }else{
+      document.documentElement.setAttribute("lang", next);
+      document.documentElement.setAttribute("dir", next === "ar" ? "rtl" : "ltr");
+      document.body.classList.toggle("lang-ar", next === "ar");
+      document.body.classList.toggle("lang-en", next === "en");
+      try{ localStorage.setItem("ts_lang", next); }catch(e){}
+    }
+  }
+
+  function adjust(scaleDelta){
+    if(typeof window.adjustFontScale === "function"){
+      window.adjustFontScale(scaleDelta);
+      return;
+    }
+    const root = document.documentElement;
+    const cur = parseFloat(getComputedStyle(root).getPropertyValue("--font-scale")) || 1;
+    const next = Math.max(.85, Math.min(1.15, cur + scaleDelta));
+    root.style.setProperty("--font-scale", next);
+    try{ localStorage.setItem("ts_font_scale", String(next)); }catch(e){}
+  }
+
+  dec && dec.addEventListener("click", ()=> adjust(-0.1));
+  inc && inc.addEventListener("click", ()=> adjust(0.1));
+  langBtn && langBtn.addEventListener("click", ()=>{
+    const next = currentLang() === "ar" ? "en" : "ar";
+    setLang(next);
+  });
+})();
+</script>
+<!-- Quick Nav jump highlight -->
+<script>
+(function(){
+  function findTarget(hash){
+    if(!hash) return null;
+    const id = hash.replace('#','');
+    if(!id) return null;
+    const el = document.getElementById(id);
+    if(el) return el;
+    // fallback: any anchor
+    return document.querySelector('[data-section="'+id+'"]') || null;
+  }
+
+  function highlight(el){
+    if(!el) return;
+    // prefer highlighting the nearest glass card/section container
+    const card = el.closest('.glass-card') || el.closest('section') || el;
+    card.classList.add('jump-highlight');
+    window.clearTimeout(window.__jumpHLT);
+    window.__jumpHLT = window.setTimeout(()=> card.classList.remove('jump-highlight'), 1600);
+  }
+
+  // Handle chip clicks
+  document.addEventListener('click', (e)=>{
+    const a = e.target.closest('a');
+    if(!a) return;
+    const href = a.getAttribute('href') || '';
+    if(!href.startsWith('#')) return;
+    const tgt = findTarget(href);
+    // Wait a tick for smooth scroll to land
+    window.setTimeout(()=> highlight(tgt), 420);
+  });
+
+  // Handle direct hash changes
+  window.addEventListener('hashchange', ()=>{
+    const tgt = findTarget(location.hash);
+    window.setTimeout(()=> highlight(tgt), 120);
+  });
+
+  // On load with hash
+  window.addEventListener('load', ()=>{
+    if(location.hash){
+      const tgt = findTarget(location.hash);
+      window.setTimeout(()=> highlight(tgt), 260);
+    }
+  });
+})();
+</script>
 </body>
 </html>
