@@ -2979,6 +2979,157 @@ code{
       }
     }
 
+
+    /* ===============================
+       MOBILE RESPONSIVE + PALETTE/GRADIENTS MODALS HARD FIX
+       - Make modals scrollable on mobile (no page lock feeling)
+       - Fix palette layout to fill width and stack cleanly
+       - Fix gradients cards so they don't look nested/overlapped
+       =============================== */
+
+    /* 1) Modal overlay & dialog sizing for mobile */
+    .preview-overlay.visible{
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .preview-overlay{
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      touch-action: pan-y;
+    }
+    @media (max-width: 720px){
+      .preview-overlay{
+        align-items: flex-start !important;
+        justify-content: center !important;
+        padding: 12px !important;
+      }
+      .preview-dialog{
+        width: 100% !important;
+        max-width: 720px !important;
+        margin: 10px auto 18px !important;
+        max-height: calc(100vh - 28px) !important;
+        padding: 12px 12px 10px !important;
+      }
+      .preview-header{
+        position: sticky;
+        top: 0;
+        z-index: 2;
+        background: rgba(7, 10, 24, 0.96);
+        border-radius: 14px;
+        padding: 10px 10px 8px;
+        margin-bottom: 10px;
+        box-shadow: 0 10px 24px rgba(0,0,0,.35);
+      }
+      .preview-content{
+        max-height: calc(100vh - 170px) !important;
+        overflow: auto !important;
+        -webkit-overflow-scrolling: touch;
+        padding: 10px 8px 14px !important;
+      }
+    }
+
+    /* 2) Palette modal: fill width + responsive grid */
+    #palette-modal-content{
+      display: block !important;
+    }
+    .palette-modal-grid{
+      width: 100% !important;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px !important;
+      align-items: stretch;
+      justify-items: stretch;
+    }
+    @media (max-width: 900px){
+      .palette-modal-grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 520px){
+      .palette-modal-grid{ grid-template-columns: 1fr; gap: 10px !important; }
+    }
+    .palette-modal-item{
+      min-width: 0;
+    }
+    .palette-modal-swatch{
+      border-radius: 14px !important;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.10), 0 16px 26px rgba(0,0,0,.22);
+    }
+    .palette-modal-code{
+      margin-top: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: nowrap;
+    }
+    .palette-modal-code .btn{
+      flex: 0 0 auto;
+    }
+    .palette-modal-code .chip{
+      max-width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    /* 3) Gradients modal: clean vertical list + non-nested card look */
+    #gradients-content{
+      display: block !important;
+    }
+    #gradients-content.preview-body--group{
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: stretch !important;
+      justify-content: flex-start !important;
+      gap: 12px !important;
+      padding: 12px 10px 14px !important;
+    }
+
+    .gradient-card{
+      padding: 12px !important;
+      border-radius: 18px !important;
+      overflow: hidden;
+    }
+    .gradient-preview{
+      height: 68px !important;
+      border-radius: 16px !important;
+      border: 1px solid rgba(255,255,255,.12) !important;
+      box-shadow: 0 18px 34px rgba(0,0,0,.22);
+      margin-bottom: 10px;
+    }
+    .gradient-meta{
+      padding: 0 !important;
+      background: transparent !important;
+      border: 0 !important;
+    }
+    .gradient-css{
+      margin-top: 8px;
+      padding: 10px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    @media (max-width: 520px){
+      .gradient-preview{ height: 76px !important; }
+      .gradient-actions{ display: flex; flex-wrap: wrap; gap: 10px !important; }
+      .gradient-actions .btn{ flex: 1 1 140px; }
+    }
+
+    /* 4) General mobile responsiveness: ensure chips wrap and cards fit */
+    @media (max-width: 720px){
+      .chips, .chip-row, .quick-chips{
+        flex-wrap: wrap !important;
+        gap: 10px !important;
+      }
+      .chip{
+        white-space: nowrap;
+      }
+      .glass-card{
+        border-radius: 18px;
+      }
+    }
+
 </style>
 </head>
 <body class="lang-ar">
