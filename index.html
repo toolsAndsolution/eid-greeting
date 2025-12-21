@@ -3130,9 +3130,590 @@ code{
       }
     }
 
+
+    /* ===============================
+       Gradients info visibility fix (restore readable metadata)
+       =============================== */
+    /* Make the CSS line readable (no ellipsis), wrap on mobile, keep LTR */
+    .gradient-css{
+      white-space: normal !important;
+      overflow: visible !important;
+      text-overflow: clip !important;
+      word-break: break-word !important;
+      direction: ltr !important;
+      text-align: left !important;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !important;
+      font-size: 12px !important;
+      line-height: 1.35 !important;
+    }
+    /* Ensure meta section has enough padding and doesn't get clipped */
+    .gradient-meta{
+      padding: 10px 12px !important;
+      align-items: flex-start !important;
+      gap: 12px !important;
+    }
+    .gradient-name{
+      font-size: 13px !important;
+      line-height: 1.25 !important;
+    }
+    @media (max-width: 520px){
+      .gradient-meta{
+        flex-direction: column !important;
+        align-items: stretch !important;
+      }
+      .gradient-meta > div:last-child{
+        width: 100% !important;
+        justify-content: flex-start !important;
+      }
+      .copy-btn{
+        width: 100% !important;
+        justify-content: center !important;
+      }
+    }
+
+
+    .gradient-desc{
+      margin-top: 6px;
+      font-size: 12px;
+      line-height: 1.45;
+      color: rgba(255,255,255,.72);
+      max-width: 58ch;
+    }
+
+
+    /* ===============================
+       Gradients cards sizing boost (better readability)
+       =============================== */
+    .gradient-card{
+      padding: 16px !important;
+      border-radius: 20px !important;
+    }
+    .gradient-preview{
+      height: 92px !important;
+      border-radius: 18px !important;
+      margin-bottom: 12px !important;
+    }
+    .gradient-meta{
+      padding: 12px 12px !important;
+      gap: 12px !important;
+    }
+    .gradient-name{
+      font-size: 14px !important;
+      letter-spacing: .2px;
+    }
+    .gradient-desc{
+      font-size: 12.5px !important;
+      line-height: 1.5 !important;
+      color: rgba(255,255,255,.76) !important;
+    }
+    .gradient-css{
+      margin-top: 10px !important;
+      padding: 12px 12px !important;
+      border-radius: 14px !important;
+      font-size: 12.5px !important;
+      line-height: 1.45 !important;
+    }
+    .gradient-actions{
+      gap: 10px !important;
+    }
+    .gradient-actions .btn,
+    .gradient-actions .copy-btn{
+      height: 38px !important;
+      padding: 0 14px !important;
+      border-radius: 12px !important;
+      font-size: 12.5px !important;
+    }
+
+    @media (min-width: 980px){
+      .gradient-preview{ height: 104px !important; }
+      #gradients-content.preview-body--group{ gap: 14px !important; }
+      .gradient-card{ padding: 18px !important; }
+    }
+
+    @media (max-width: 520px){
+      .gradient-preview{ height: 96px !important; }
+      .gradient-actions{ display: flex !important; flex-wrap: wrap !important; }
+      .gradient-actions .btn,
+      .gradient-actions .copy-btn{ flex: 1 1 160px !important; }
+    }
+
+</style>
+
+<style id="tsg-curation-style">
+  /* Curated toolbar + favorites UI */
+  .tsg-toolbar{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    margin: 6px 0 14px;
+  }
+  .tsg-chips{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+  }
+  .tsg-searchWrap{
+    display:flex;
+    gap:10px;
+    align-items:center;
+  }
+  .tsg-search{
+    flex:1;
+    min-width: 140px;
+    padding: 10px 12px;
+    border-radius: 14px;
+    border: 1px solid rgba(255,255,255,.12);
+    background: rgba(255,255,255,.06);
+    color: inherit;
+    outline: none;
+  }
+  .tsg-chip{
+    border-radius: 999px;
+    padding: 8px 12px;
+    border: 1px solid rgba(255,255,255,.12);
+    background: rgba(255,255,255,.06);
+    color: inherit;
+    cursor:pointer;
+    user-select:none;
+  }
+  .tsg-chip.is-active{
+    border-color: rgba(5,173,173,.65);
+    box-shadow: 0 0 0 3px rgba(5,173,173,.18);
+  }
+  .tsg-sectionTitle{
+    margin: 14px 0 10px;
+    font-weight: 700;
+    opacity:.95;
+    letter-spacing: .2px;
+  }
+  .tsg-swatch{
+    position: relative;
+  }
+  #tsg-favs-toggle.is-active{
+    border-color: rgba(140,64,255,.7);
+    box-shadow: 0 0 0 3px rgba(140,64,255,.18);
+  }
+</style>
+
+<style id="tsg-gapfix-style">
+  /* Remove the big empty space inside the gradients modal */
+  #tsg-overlay .tsg-dialog{ padding-top: 14px !important; }
+  #tsg-overlay .tsg-head{ margin-bottom: 10px !important; }
+  #tsg-overlay .tsg-toolbar{ margin: 0 0 10px !important; }
+  #tsg-overlay .tsg-searchWrap{ margin-top: 0 !important; }
+  #tsg-overlay #tsg-grid{ margin-top: 0 !important; padding-top: 0 !important; }
+  #tsg-overlay .tsg-sectionTitle{ margin: 10px 0 8px !important; }
+</style>
+
+<style id="tsg-tight-no-search">
+  /* Hide search row if any remains and remove its space */
+  #tsg-overlay .tsg-searchWrap,
+  #tsg-overlay .tsg-search,
+  #tsg-overlay #tsg-search,
+  #tsg-overlay #tsg-search2{ display:none !important; }
+
+  /* Reduce internal gaps */
+  #tsg-overlay .tsg-tools{ margin: 0 !important; padding: 0 !important; }
+  #tsg-overlay .tsg-toolbar{ margin: 0 0 8px !important; padding: 8px 0 0 !important; }
+  #tsg-overlay .tsg-head{ padding-bottom: 10px !important; }
+  #tsg-overlay .tsg-body{ padding-top: 6px !important; }
+  #tsg-overlay #tsg-grid{ margin-top: 0 !important; padding-top: 0 !important; }
+</style>
+
+<style id="tsg-section-gap-fix">
+  /* Make section headers span the full grid width (prevents empty column gap) */
+  #tsg-overlay .tsg-sectionTitle{
+    grid-column: 1 / -1 !important;
+    width: 100% !important;
+    text-align: start;
+    margin: 8px 0 8px !important;
+    padding: 0 4px;
+  }
+  /* Slightly tighten grid gap so sections feel continuous */
+  #tsg-overlay #tsg-grid{
+    row-gap: 14px !important;
+  }
+</style>
+
+<style id="tsg-two-upgrades">
+  /* Bigger preview */
+  #tsg-overlay .tsg-swatch{ height: 138px !important; }
+  @media (min-width: 900px){
+    #tsg-overlay .tsg-swatch{ height: 154px !important; }
+  }
+
+  /* Full CSS drawer */
+  #tsg-overlay .tsg-full{
+    display:none;
+    margin-top: 10px;
+    padding: 10px 12px;
+    border-radius: 16px;
+    border: 1px solid rgba(255,255,255,.12);
+    background: rgba(255,255,255,.05);
+  }
+  #tsg-overlay .tsg-card.is-open .tsg-full{ display:block; }
+
+  #tsg-overlay .tsg-fullCode{
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    font-size: 12px;
+    color: rgba(255,255,255,.92);
+    white-space: pre-wrap;
+    word-break: break-word;
+    line-height: 1.45;
+  }
+  #tsg-overlay .tsg-fullActions{
+    display:flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+  }
+  #tsg-overlay .tsg-btn--tiny{
+    padding: 7px 10px;
+    font-size: 12px;
+  }
+</style>
+
+
+
+<style id="ts-modal-unify-style">
+  /* =========================================
+     Unified Modal System — match "Gradients" design
+     Applies to: Palette / Design Preview / Asset Preview
+     ========================================= */
+
+  /* Closed by default (avoid click-capture bugs) */
+  .preview-overlay,
+  #asset-preview-overlay,
+  #palette-overlay,
+  #design-overlay,
+  #preview-overlay{
+    display: none !important;
+    pointer-events: none !important;
+  }
+
+  /* Open states (support multiple open mechanisms) */
+  .preview-overlay.visible,
+  .preview-overlay.is-open,
+  .preview-overlay.open,
+  .preview-overlay[data-open="true"],
+  #asset-preview-overlay.visible,
+  #asset-preview-overlay.is-open,
+  #palette-overlay.visible,
+  #palette-overlay.is-open,
+  #design-overlay.visible,
+  #design-overlay.is-open,
+  #preview-overlay[aria-hidden="false"],
+  #preview-overlay.visible,
+  #preview-overlay.is-open{
+    display: grid !important;
+    pointer-events: auto !important;
+    position: fixed !important;
+    inset: 0 !important;
+    z-index: 9998 !important;
+    place-items: center !important;
+    padding: 20px !important;
+    background: rgba(0,0,0,.45) !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+  }
+
+  /* Dialog: same feel as .tsg-dialog */
+  .preview-overlay.visible .preview-dialog,
+  .preview-overlay.is-open .preview-dialog,
+  .preview-overlay.open .preview-dialog,
+  .preview-overlay[data-open="true"] .preview-dialog,
+  #asset-preview-overlay.visible .preview-dialog,
+  #asset-preview-overlay.is-open .preview-dialog,
+  #palette-overlay.visible .preview-dialog,
+  #palette-overlay.is-open .preview-dialog,
+  #design-overlay.visible .preview-dialog,
+  #design-overlay.is-open .preview-dialog,
+  #preview-overlay[aria-hidden="false"] .preview-dialog,
+  #preview-overlay.visible .preview-dialog,
+  #preview-overlay.is-open .preview-dialog{
+    width: min(980px, calc(100vw - 28px)) !important;
+    max-height: min(88vh, 860px) !important;
+    overflow: hidden !important;
+    border-radius: 26px !important;
+    border: 1px solid rgba(255,255,255,.14) !important;
+    background:
+      radial-gradient(900px 420px at 15% 0%, rgba(5,173,173,.18) 0%, rgba(5,173,173,0) 60%),
+      radial-gradient(900px 520px at 85% 0%, rgba(140,64,255,.16) 0%, rgba(140,64,255,0) 62%),
+      rgba(10,15,33,.92) !important;
+    box-shadow:
+      0 20px 70px rgba(0,0,0,.55),
+      inset 0 1px 0 rgba(255,255,255,.10) !important;
+  }
+
+  /* Header: same as gradients head */
+  .preview-header{
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 2 !important;
+    display:flex !important;
+    align-items: flex-start !important;
+    justify-content: space-between !important;
+    gap: 12px !important;
+    padding: 16px 18px !important;
+    border-bottom: 1px solid rgba(255,255,255,.10) !important;
+    background: linear-gradient(135deg, rgba(5,173,173,.14) 0%, rgba(140,64,255,.12) 60%, rgba(13,41,92,.14) 100%) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    border-top-left-radius: 26px !important;
+    border-top-right-radius: 26px !important;
+  }
+
+  .preview-title-wrap{
+    display:flex !important;
+    flex-direction: column !important;
+    gap: 6px !important;
+    min-width: 0 !important;
+  }
+
+  .preview-title{
+    font-weight: 900 !important;
+    font-size: 18px !important;
+    letter-spacing: .2px !important;
+    line-height: 1.2 !important;
+    opacity: .98 !important;
+  }
+  .preview-sub{
+    font-size: 12px !important;
+    opacity: .82 !important;
+    line-height: 1.35 !important;
+    max-width: 64ch !important;
+  }
+
+  /* Close button: match gradients icon button */
+  .preview-close-btn,
+  #design-close{
+    width: 40px !important;
+    height: 40px !important;
+    border-radius: 16px !important;
+    border: 1px solid rgba(255,255,255,.16) !important;
+    background: rgba(255,255,255,.06) !important;
+    color: rgba(255,255,255,.92) !important;
+    cursor:pointer !important;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.10) !important;
+    transition: transform .16s ease, border-color .16s ease, background .16s ease !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  .preview-close-btn:hover,
+  #design-close:hover{
+    transform: translateY(-1px) !important;
+    border-color: rgba(255,255,255,.24) !important;
+    background: rgba(255,255,255,.08) !important;
+  }
+  .preview-close-btn:active,
+  #design-close:active{
+    transform: translateY(0) !important;
+  }
+
+  /* Any "ghost" buttons inside modal header -> match gradients buttons */
+  .preview-header .btn,
+  .preview-header .btn-ghost,
+  .preview-header .btn-mini,
+  .preview-header button{
+    border: 1px solid rgba(255,255,255,.16) !important;
+    background: rgba(255,255,255,.06) !important;
+    color: rgba(255,255,255,.92) !important;
+    border-radius: 14px !important;
+    padding: 10px 12px !important;
+    font-weight: 900 !important;
+    font-size: 12px !important;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.10) !important;
+  }
+  .preview-header .btn:hover,
+  .preview-header .btn-ghost:hover,
+  .preview-header .btn-mini:hover,
+  .preview-header button:hover{
+    background: rgba(255,255,255,.08) !important;
+    border-color: rgba(255,255,255,.24) !important;
+  }
+
+  /* Body layout */
+  .preview-body,
+  .preview-content{
+    padding: 16px 18px 18px !important;
+    overflow: auto !important;
+    max-height: calc(min(88vh, 860px) - 76px) !important;
+  }
+
+  /* Actions area */
+  .preview-actions{
+    padding: 0 18px 18px !important;
+  }
+
+  /* Ensure modal content cards keep the same glassy look */
+  .preview-body .glass-card,
+  .preview-body .glass-panel,
+  .preview-body .asset-card{
+    border-radius: 20px !important;
+  }
+
+  @media (max-width: 720px){
+    .preview-overlay.visible,
+    .preview-overlay.is-open,
+    #asset-preview-overlay.visible,
+    #asset-preview-overlay.is-open,
+    #palette-overlay.visible,
+    #palette-overlay.is-open,
+    #design-overlay.visible,
+    #design-overlay.is-open,
+    #preview-overlay[aria-hidden="false"]{
+      padding: 12px !important;
+    }
+    .preview-title{ font-size: 16px !important; }
+    .preview-dialog{
+      width: min(980px, calc(100vw - 16px)) !important;
+      border-radius: 22px !important;
+    }
+    .preview-header{
+      padding: 14px 14px !important;
+      border-top-left-radius: 22px !important;
+      border-top-right-radius: 22px !important;
+    }
+    .preview-body,
+    .preview-content{ padding: 14px 14px 16px !important; }
+  }
+</style>
+
+<style id="ts-top-controls-safe">
+  /* ===== Top controls (LANG / + / -) — extracted from header safely ===== */
+  .top-controls-bar{
+    position: fixed;
+    top: 12px;
+    left: 12px;
+    z-index: 9999;
+    padding: 8px 10px;
+    border-radius: 16px;
+    border: 1px solid rgba(255,255,255,.14);
+    background: rgba(255,255,255,.06);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.10);
+    display: inline-flex;
+    align-items: center;
+    direction: ltr; /* keep order stable */
+  }
+
+  .top-controls-bar .quick-controls{
+    display:flex !important;
+    align-items:center !important;
+    gap:8px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+  .top-controls-bar .qic-sep{ display:none !important; }
+
+  .top-controls-bar .qic-btn{
+    width: 30px !important;
+    height: 30px !important;
+    border-radius: 12px !important;
+  }
+  .top-controls-bar .qic-btn svg{
+    width: 14px !important;
+    height: 14px !important;
+  }
+
+  /* Reserve space so header doesn't collide with fixed bar */
+  html.has-topbar header.main-header{ margin-top: 64px !important; }
+  @media (max-width: 720px){
+    html.has-topbar header.main-header{ margin-top: 58px !important; }
+    .top-controls-bar{ top: 10px; left: 10px; padding: 7px 9px; }
+    .top-controls-bar .qic-btn{ width: 28px !important; height: 28px !important; }
+  }
+
+  /* Hide hub search + tags row (no breaking markup) */
+  .quick-search, .chip-row, .quick-nav-title{ display:none !important; }
+</style>
+
+<style id="ts-hide-hub-tag-dot">
+  .hub-tag-dot{ display:none !important; }
+</style>
+
+<style id="ts-hide-chip-row">
+  .chip-row{ display:none !important; }
+  .chip-dot{ display:none !important; }
+</style>
+
+<style id="ts-hide-utility-quicknav">
+  .utility-wrap,.quick-nav{ display:none !important; }
+</style>
+
+<style id="ts-top-controls">
+  .top-controls-bar{
+    position: fixed;
+    top: 14px;
+    left: 14px;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    direction: ltr; /* keep order stable */
+    background: rgba(255,255,255,.06);
+    border: 1px solid rgba(255,255,255,.14);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.10);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    padding: 8px;
+    border-radius: 16px;
+  }
+  .top-controls-bar .tcb-btn{
+    width: 34px;
+    height: 34px;
+    border-radius: 14px;
+    border: 1px solid rgba(255,255,255,.14);
+    background: rgba(255,255,255,.07);
+    color: inherit;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+  .top-controls-bar .tcb-btn:hover{
+    background: rgba(255,255,255,.10);
+  }
+  .top-controls-bar .tcb-btn svg{
+    width: 16px;
+    height: 16px;
+    fill: currentColor;
+    opacity: .95;
+  }
+  /* keep content clear from the fixed bar */
+  body{ padding-top: 0 !important; }
+  @media (max-width: 720px){
+    .top-controls-bar{ top: 10px; left: 10px; padding: 7px; }
+    .top-controls-bar .tcb-btn{ width: 32px; height: 32px; }
+  }
+</style>
+
+<style id="ts-remove-stars">
+  .tsg-fav, #tsg-favs-toggle, .tsg-chip[data-tag="Top"]{ display:none !important; }
 </style>
 </head>
 <body class="lang-ar">
+
+<!-- TOP CONTROLS (Language + Font size) -->
+<div class="top-controls-bar" id="top-controls-bar" aria-label="Controls">
+  <button class="tcb-btn" id="top-lang-toggle" type="button" aria-label="تغيير اللغة / Change language" title="تغيير اللغة / Change language">
+    <!-- Globe -->
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 .001 20.001A10 10 0 0 0 12 2Zm7.93 9h-3.17a15.7 15.7 0 0 0-1.18-5.02A8.02 8.02 0 0 1 19.93 11ZM12 4c.9 0 2.33 2.06 3.02 7H8.98C9.67 6.06 11.1 4 12 4Zm-7.58 7a8.02 8.02 0 0 1 4.35-5.02A15.7 15.7 0 0 0 7.59 11H4.42ZM4.07 13h3.17c.22 1.86.67 3.55 1.18 5.02A8.02 8.02 0 0 1 4.07 13Zm7.93 7c-.9 0-2.33-2.06-3.02-7h6.04c-.69 4.94-2.12 7-3.02 7Zm3.23-1.98c.51-1.47.96-3.16 1.18-5.02h3.17a8.02 8.02 0 0 1-4.35 5.02Z"/></svg>
+  </button>
+
+  <button class="tcb-btn" id="top-font-inc" type="button" aria-label="تكبير الخط" title="تكبير الخط">
+    <!-- Plus -->
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 11H13V5a1 1 0 1 0-2 0v6H5a1 1 0 1 0 0 2h6v6a1 1 0 1 0 2 0v-6h6a1 1 0 1 0 0-2Z"/></svg>
+  </button>
+
+  <button class="tcb-btn" id="top-font-dec" type="button" aria-label="تصغير الخط" title="تصغير الخط">
+    <!-- Minus -->
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 11H5a1 1 0 1 0 0 2h14a1 1 0 1 0 0-2Z"/></svg>
+  </button>
+</div>
 <div class="page-wrapper">
 <!-- HEADER -->
 <header class="main-header">
@@ -3146,7 +3727,7 @@ code{
 </button>
         <div class="brand-text">
           <div class="hub-tag">
-<span class="hub-tag-dot"></span>
+
 <span>T&amp;S Brand Hub</span>
 </div>
           <h1 class="header-title">
@@ -3164,90 +3745,7 @@ code{
   </div>
 </header>
 
-<!-- UTILITY BAR (moved from header) -->
-<div class="utility-wrap">
-<div class="utility-wrap">
-  <!-- QUICK NAV -->
-<nav aria-label="Quick navigation" class="quick-nav glass-card">
-<div class="quick-nav-title"><span class="tr-ar">انتقل بسرعة إلى:</span>
-<span class="tr-en">Jump to section:</span>
-<div class="quick-controls" aria-label="Controls">
-    <button class="qic-btn" type="button" id="q-font-dec" aria-label="تصغير الخط / Decrease text">
-      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-        <path d="M6 12h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-      </svg>
-    </button>
-    <button class="qic-btn" type="button" id="q-font-inc" aria-label="تكبير الخط / Increase text">
-      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-        <path d="M12 6v12M6 12h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-      </svg>
-    </button>
-    <span class="qic-sep" aria-hidden="true"></span>
-    <button class="qic-btn" type="button" id="q-lang-toggle" aria-label="تغيير اللغة / Toggle language">
-      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-        <path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z" stroke="currentColor" stroke-width="2"/>
-        <path d="M3 12h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-        <path d="M12 3c2.5 2.6 4 5.7 4 9s-1.5 6.4-4 9c-2.5-2.6-4-5.7-4-9s1.5-6.4 4-9Z" stroke="currentColor" stroke-width="2"/>
-      </svg>
-    </button>
-  </div>
-</div>
 
-  <div class="quick-search" role="search">
-    <span class="quick-search-ic" aria-hidden="true">
-      <svg viewBox="0 0 24 24" fill="none">
-        <path d="M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Z" stroke="currentColor" stroke-width="2"/>
-        <path d="M16.6 16.6 21 21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-      </svg>
-    </span>
-    <input id="quickSearch" class="quick-search-input" type="search" autocomplete="off"
-      placeholder="ابحث داخل الدليل… / Search the hub…" aria-label="بحث / Search" />
-    <button id="quickSearchClear" class="quick-search-clear" type="button" aria-label="مسح / Clear">
-      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-        <path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-      </svg>
-    </button>
-  </div>
-<div class="chip-row">
-<a class="chip" href="#logos">
-<span class="chip-dot"></span>
-<span class="tr-ar">الشعار &amp; استخداماته</span>
-<span class="tr-en">Logo &amp; Usage</span>
-</a>
-<a class="chip" href="#colors">
-<span class="chip-dot"></span>
-<span class="tr-ar">لوحة الألوان</span>
-<span class="tr-en">Color Palette</span>
-</a>
-<a class="chip" href="#templates">
-<span class="chip-dot"></span>
-<span class="tr-ar">القوالب الرسمية</span>
-<span class="tr-en">Branded Templates</span>
-</a>
-<a class="chip" href="#files">
-<span class="chip-dot"></span>
-<span class="tr-ar">ملفات الهوية</span>
-<span class="tr-en">Brand Assets</span>
-</a>
-<a class="chip" href="#social">
-<span class="chip-dot"></span>
-<span class="tr-ar">أمثلة التصاميم</span>
-<span class="tr-en">Design Examples</span>
-</a>
-<a class="chip" href="#voice">
-<span class="chip-dot"></span>
-<span class="tr-ar">نبرة الكتابة</span>
-<span class="tr-en">Brand Voice</span>
-</a>
-<a class="chip" href="#contact">
-<span class="chip-dot"></span>
-<span class="tr-ar">للاستفسارات</span>
-<span class="tr-en">Contact</span>
-</a>
-</div>
-</nav>
-</div>
-<!-- MAIN CONTENT -->
 <main class="content-grid">
 <!-- Row 1: Logo + Colors -->
 <article class="card glass-card" id="logos">
@@ -3356,7 +3854,7 @@ code{
                 </span>
 </span>
 </button>
-<button class="btn btn-ghost" id="gradients-toggle" type="button">
+<button class="btn btn-ghost" id="gradients-toggle" type="button" onclick="event.preventDefault(); (window.__tsgOpen||window.__tsgOpenFallback) && (window.__tsgOpen||window.__tsgOpenFallback)();">
   <span aria-hidden="true" class="icon">
     <svg aria-hidden="true" fill="none" viewBox="0 0 24 24">
       <path d="M4 17c3-6 5-10 8-10s5 4 8 10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
@@ -4827,175 +5325,7 @@ const arClosed = paletteToggle.querySelector(".tr-ar .text-when-closed");
       };
     })();
   </script>
-<!-- BRAND GRADIENTS MODAL -->
-<div class="preview-overlay" id="gradients-overlay" aria-hidden="true" role="dialog" aria-modal="true">
-  <div class="preview-dialog" role="document" tabindex="-1">
-    <div class="preview-header">
-      <div class="preview-title-wrap">
-        <div class="preview-title">
-          <span class="tr-ar">اقتراحات تدرجات الهوية</span>
-          <span class="tr-en">Brand Gradient Suggestions</span>
-        </div>
-        <div class="preview-sub">
-          <span class="tr-ar">تدرجات جاهزة مبنية على ألوان T&amp;S — انسخ CSS مباشرة أو حمّل ملف JSON.</span>
-          <span class="tr-en">Ready-to-use gradients built from T&amp;S colors — copy CSS or download JSON.</span>
-        </div>
-      </div>
 
-      <div style="display:flex; gap:10px; align-items:center">
-        <button class="btn btn-ghost btn-mini" id="gradients-download-json" type="button" aria-label="Download gradients JSON">
-          <span aria-hidden="true" class="icon" style="margin-inline-end:8px">
-            <svg aria-hidden="true" fill="none" viewBox="0 0 24 24">
-              <path d="M12 3v10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-              <path d="M8 11l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M4 19h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-            </svg>
-          </span>
-          <span class="tr-ar">تحميل JSON</span>
-          <span class="tr-en">Download JSON</span>
-        </button>
-
-        <button aria-label="Close gradients" class="preview-close-btn" id="gradients-close" type="button">×</button>
-      </div>
-    </div>
-
-    <div class="preview-content preview-body--group" id="gradients-content"></div>
-  </div>
-</div>
-<script>
-    (function(){
-      const gradientsToggle = document.getElementById("gradients-toggle");
-      const gradientsOverlay = document.getElementById("gradients-overlay");
-      const gradientsClose = document.getElementById("gradients-close");
-      const gradientsContent = document.getElementById("gradients-content");
-      const gradientsDownload = document.getElementById("gradients-download-json");
-
-      if (!gradientsToggle || !gradientsOverlay || !gradientsClose || !gradientsContent) return;
-
-      let lastFocus = null;
-
-      const gradients = [
-        { id:"teal_navy", ar:"تيال → كحلي (CTA)", en:"Teal → Navy (CTA)", css:"linear-gradient(135deg, rgba(5,173,173,.28), rgba(13,41,92,.62))" },
-        { id:"violet_navy", ar:"بنفسجي → كحلي (Hero)", en:"Violet → Navy (Hero)", css:"linear-gradient(135deg, rgba(140,64,255,.24), rgba(13,41,92,.62))" },
-        { id:"plum_ink", ar:"برقوقي → حبر (Premium)", en:"Plum → Ink (Premium)", css:"linear-gradient(135deg, rgba(59,23,69,.48), rgba(10,15,33,.88))" },
-        { id:"teal_violet", ar:"تيال → بنفسجي (Highlight)", en:"Teal → Violet (Highlight)", css:"linear-gradient(135deg, rgba(5,173,173,.26), rgba(140,64,255,.22))" },
-        { id:"blue_ink", ar:"أزرق → حبر (Depth)", en:"Blue → Ink (Depth)", css:"linear-gradient(135deg, rgba(17,61,143,.34), rgba(10,15,33,.88))" },
-        { id:"red_plum", ar:"أحمر → برقوقي (Alert)", en:"Red → Plum (Alert)", css:"linear-gradient(135deg, rgba(240,71,74,.28), rgba(59,23,69,.62))" }
-      ];
-
-      function isAr(){
-        return document.body.classList.contains("lang-ar") || document.documentElement.getAttribute("dir")==="rtl";
-      }
-
-      function build(){
-        gradientsContent.innerHTML = "";
-        gradientsContent.classList.add("preview-body--group");
-
-        gradients.forEach(g=>{
-          const card = document.createElement("div");
-          card.className = "gradient-card";
-
-          const prev = document.createElement("div");
-          prev.className = "gradient-preview";
-          prev.style.background = g.css;
-
-          const meta = document.createElement("div");
-          meta.className = "gradient-meta";
-
-          const left = document.createElement("div");
-          left.style.minWidth = "0";
-          const name = document.createElement("div");
-          name.className = "gradient-name";
-          name.textContent = isAr() ? g.ar : g.en;
-
-          const code = document.createElement("div");
-          code.className = "gradient-css";
-          code.title = g.css;
-          code.textContent = g.css;
-
-          left.appendChild(name);
-          left.appendChild(code);
-
-          const actions = document.createElement("div");
-          actions.style.display = "flex";
-          actions.style.gap = "10px";
-          actions.style.alignItems = "center";
-
-          const copy = document.createElement("button");
-          copy.type = "button";
-          copy.className = "copy-btn";
-          copy.setAttribute("aria-label", "Copy CSS");
-          copy.style.padding = "8px 10px";
-          copy.innerHTML = '<span class="copy-label tr-ar">نسخ CSS</span><span class="copy-label tr-en">Copy CSS</span>';
-
-          copy.addEventListener("click", ()=>{
-            try{
-              navigator.clipboard.writeText(g.css);
-            }catch(_){}
-            // Use existing toast if available
-            if (typeof window.showToast === "function"){
-              window.showToast(isAr() ? "تم نسخ التدرج." : "Gradient copied.");
-            } else {
-              // fallback: quick visual feedback
-              copy.style.borderColor = "rgba(5,173,173,.55)";
-              setTimeout(()=>{ copy.style.borderColor = "rgba(255,255,255,.14)"; }, 700);
-            }
-          });
-
-          actions.appendChild(copy);
-          meta.appendChild(left);
-          meta.appendChild(actions);
-
-          card.appendChild(prev);
-          card.appendChild(meta);
-          gradientsContent.appendChild(card);
-        });
-      }
-
-      function open(){
-        lastFocus = document.activeElement;
-        build();
-        gradientsOverlay.classList.add("visible");
-        gradientsOverlay.setAttribute("aria-hidden", "false");
-        gradientsClose.focus();
-      }
-
-      function close(){
-        gradientsOverlay.classList.remove("visible");
-        gradientsOverlay.setAttribute("aria-hidden", "true");
-        if (lastFocus && typeof lastFocus.focus === "function") lastFocus.focus();
-      }
-
-      gradientsToggle.addEventListener("click", open);
-      gradientsClose.addEventListener("click", close);
-
-      gradientsOverlay.addEventListener("click", (e)=>{
-        if (e.target === gradientsOverlay) close();
-      });
-
-      document.addEventListener("keydown", (e)=>{
-        if (e.key === "Escape" && gradientsOverlay.classList.contains("visible")){
-          close();
-        }
-      });
-
-      if (gradientsDownload){
-        gradientsDownload.addEventListener("click", ()=>{
-          const payload = gradients.map(g=>({ id:g.id, name_ar:g.ar, name_en:g.en, css:g.css }));
-          const blob = new Blob([JSON.stringify(payload, null, 2)], {type:"application/json"});
-          const a = document.createElement("a");
-          a.href = URL.createObjectURL(blob);
-          a.download = "ts-brand-gradients.json";
-          document.body.appendChild(a);
-          a.click();
-          setTimeout(()=>{ URL.revokeObjectURL(a.href); a.remove(); }, 0);
-          if (typeof window.showToast === "function"){
-            window.showToast(isAr() ? "بدأ تحميل ملف التدرجات." : "Gradients JSON download started.");
-          }
-        });
-      }
-    })();
-  </script>
 <!-- COLOR PALETTE MODAL -->
 <div class="preview-overlay" id="palette-overlay" aria-hidden="true" role="dialog" aria-modal="true">
   <div class="preview-dialog" role="document" tabindex="-1">
@@ -5453,6 +5783,1487 @@ const arClosed = paletteToggle.querySelector(".tr-ar .text-when-closed");
     }
   });
 })();
+</script>
+<!-- ================================
+     Gradients modal hard fallback
+     (Works even if earlier JS/CSS fails)
+     ================================ -->
+<style id="gradients-hard-fallback-style">
+  /* Ensure toggle is clickable */
+  #gradients-toggle{ pointer-events: auto !important; }
+
+  /* Force overlay to be usable */
+  #gradients-overlay.preview-overlay{
+    z-index: 9999 !important;
+    display: flex !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
+
+  /* Open state: JS class OR hash target */
+  #gradients-overlay.preview-overlay.visible,
+  #gradients-overlay.preview-overlay:target{
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+
+  /* Ensure dialog is visible */
+  #gradients-overlay .preview-dialog{
+    display: flex !important;
+  }
+</style>
+
+
+
+<!-- ================================
+     T&S Gradients Suggestions (Rewritten)
+     ================================ -->
+<div id="tsg-overlay" class="tsg-overlay" aria-hidden="true" role="dialog" aria-modal="true">
+  <div class="tsg-dialog" role="document">
+    <div class="tsg-head">
+      <div class="tsg-titlewrap">
+        <div class="tsg-title">
+          <span class="tr-ar">اقتراحات تدرجات الهوية</span>
+          <span class="tr-en">Brand Gradient Suggestions</span>
+        </div>
+        <div class="tsg-sub">
+          <span class="tr-ar">تدرجات جاهزة مبنية على ألوان T&amp;S — انسخ CSS أو حمّل JSON.</span>
+          <span class="tr-en">Ready-to-use gradients built from T&amp;S colors — copy CSS or download JSON.</span>
+        </div>
+      </div>
+
+      <div class="tsg-head-actions">
+        <button type="button" class="tsg-btn tsg-btn--pill" id="tsg-download-json">
+          <span class="tr-ar">تحميل JSON</span>
+          <span class="tr-en">Download JSON</span>
+        </button>
+        <button type="button" class="tsg-btn tsg-btn--icon" id="tsg-close" aria-label="Close" onclick="event.preventDefault(); (window.__tsgClose||window.__tsgCloseFallback) && (window.__tsgClose||window.__tsgCloseFallback)();">×</button>
+      </div>
+    </div>
+
+    <div class="tsg-toolbar">
+      <div class="tsg-chips" id="tsg-chips"></div>
+
+      </div>
+
+    <div class="tsg-body">
+      <div id="tsg-grid" class="tsg-grid"></div>
+      <div id="tsg-empty" class="tsg-empty" style="display:none">
+        <span class="tr-ar">لا توجد نتائج.</span>
+        <span class="tr-en">No results.</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style id="tsg-style">
+  .tsg-overlay{
+    position: fixed;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(0,0,0,.45);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    z-index: 9999;
+  }
+  .tsg-overlay.is-open{ display: flex; }
+
+  .tsg-dialog{
+    width: min(980px, calc(100vw - 28px));
+    max-height: min(82vh, 900px);
+    overflow: auto;
+    border-radius: 22px;
+    border: 1px solid rgba(255,255,255,.14);
+    background: linear-gradient(135deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
+    box-shadow: 0 30px 70px rgba(0,0,0,.35);
+    color: rgba(255,255,255,.92);
+  }
+
+  .tsg-head{
+    display:flex;
+    gap: 14px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 18px 12px;
+    border-bottom: 1px solid rgba(255,255,255,.10);
+    background: linear-gradient(135deg, rgba(5,173,173,.16), rgba(140,64,255,.14));
+  }
+  .tsg-title{ font-weight: 950; font-size: 18px; letter-spacing: .2px; }
+  .tsg-sub{ margin-top: 4px; opacity: .80; font-size: 13px; }
+  .tsg-head-actions{ display:flex; gap: 10px; align-items:center; }
+
+  .tsg-btn{
+    border: 1px solid rgba(255,255,255,.16);
+    background: rgba(255,255,255,.06);
+    color: rgba(255,255,255,.92);
+    border-radius: 14px;
+    padding: 10px 12px;
+    font-weight: 900;
+    font-size: 12px;
+    cursor: pointer;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.10);
+    transition: transform .16s ease, border-color .16s ease, background .16s ease;
+    white-space: nowrap;
+  }
+  .tsg-btn:hover{ transform: translateY(-1px); border-color: rgba(255,255,255,.24); background: rgba(255,255,255,.08); }
+  .tsg-btn:active{ transform: translateY(0); }
+
+  .tsg-btn--ghost{ background: rgba(0,0,0,.12); }
+  .tsg-btn--pill{ border-radius: 999px; padding: 10px 14px; }
+  .tsg-btn--icon{
+    width: 40px; height: 40px;
+    border-radius: 999px;
+    display:grid; place-items:center;
+    font-size: 18px;
+    padding: 0;
+  }
+
+  .tsg-toolbar{
+    display:flex;
+    gap: 12px;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 12px 18px;
+  }
+
+  .tsg-chips{ display:flex; gap: 8px; flex-wrap: wrap; }
+  .tsg-chip{
+    border: 1px solid rgba(255,255,255,.14);
+    background: rgba(255,255,255,.05);
+    color: rgba(255,255,255,.90);
+    padding: 8px 10px;
+    border-radius: 999px;
+    font-weight: 950;
+    font-size: 12px;
+    cursor: pointer;
+    transition: transform .16s ease, border-color .16s ease, background .16s ease;
+    line-height: 1;
+  }
+  .tsg-chip:hover{ transform: translateY(-1px); border-color: rgba(255,255,255,.24); }
+  .tsg-chip.is-active{
+    border-color: rgba(5,173,173,.60);
+    background: rgba(5,173,173,.14);
+  }
+
+  .tsg-tools{
+    display:flex;
+    gap: 10px;
+    align-items:center;
+    flex: 1 1 320px;
+    justify-content: flex-end;
+  }
+  .tsg-search{
+    flex: 1 1 220px;
+    min-width: 200px;
+    max-width: 420px;
+    border-radius: 14px;
+    border: 1px solid rgba(255,255,255,.14);
+    background: rgba(255,255,255,.05);
+    color: rgba(255,255,255,.92);
+    padding: 10px 12px;
+    outline: none;
+  }
+  .tsg-search::placeholder{ color: rgba(255,255,255,.60); }
+
+  .tsg-body{ padding: 0 18px 18px; }
+
+  .tsg-grid{
+    display:grid;
+    grid-template-columns: repeat(2, minmax(0,1fr));
+    gap: 14px;
+  }
+
+  @media (max-width: 780px){
+    .tsg-grid{ grid-template-columns: 1fr; }
+    .tsg-tools{ width: 100%; justify-content: stretch; }
+    .tsg-search{ max-width: none; width: 100%; }
+  }
+
+  .tsg-card{
+    border: 1px solid rgba(255,255,255,.12);
+    background: linear-gradient(135deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+    border-radius: 18px;
+    padding: 12px;
+    box-shadow: 0 14px 30px rgba(0,0,0,.18);
+    transition: transform .16s ease, border-color .16s ease, background .16s ease;
+  }
+  .tsg-card:hover{
+    transform: translateY(-1px);
+    border-color: rgba(5,173,173,.44);
+    background: linear-gradient(135deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
+  }
+
+  .tsg-swatch{
+    height: 104px;
+    border-radius: 16px;
+    border: 1px solid rgba(255,255,255,.18);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  .tsg-swatch::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background: radial-gradient(520px 140px at 20% 0%, rgba(255,255,255,.18), transparent 55%);
+    pointer-events:none;
+  }
+
+  .tsg-badge{
+    position:absolute;
+    top: 10px;
+    inset-inline-end: 10px;
+    padding: 6px 10px;
+    border-radius: 999px;
+    background: rgba(0,0,0,.26);
+    border: 1px solid rgba(255,255,255,.16);
+    font-weight: 950;
+    font-size: 11px;
+    letter-spacing: .7px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+
+  .tsg-name{ margin-top: 10px; font-weight: 950; font-size: 14px; }
+  .tsg-desc{ margin-top: 6px; opacity: .84; font-size: 12px; line-height: 1.5; }
+
+  .tsg-row{
+    margin-top: 10px;
+    display:flex;
+    gap: 10px;
+    align-items:center;
+    flex-wrap: wrap;
+  }
+  .tsg-css{
+    flex: 1 1 260px;
+    min-width: 220px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    font-size: 11px;
+    background: rgba(255,255,255,.06);
+    border: 1px solid rgba(255,255,255,.12);
+    padding: 8px 10px;
+    border-radius: 999px;
+    color: rgba(255,255,255,.88);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .tsg-actions{ display:flex; gap: 8px; align-items:center; }
+
+  @media (max-width: 780px){
+    .tsg-css{ white-space: normal; border-radius: 14px; }
+    .tsg-actions{ width: 100%; justify-content: flex-start; }
+  }
+
+  /* tiny toast */
+  .tsg-toast{
+    position: fixed;
+    inset-inline-start: 14px;
+    bottom: 14px;
+    padding: 10px 12px;
+    border-radius: 14px;
+    background: rgba(0,0,0,.55);
+    border: 1px solid rgba(255,255,255,.16);
+    color: rgba(255,255,255,.92);
+    z-index: 10000;
+    font-weight: 850;
+    font-size: 12px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity .18s ease, transform .18s ease;
+    pointer-events: none;
+  }
+  .tsg-toast.is-on{
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+
+
+
+<script id="tsg-final">
+(function(){
+  var overlay = document.getElementById("tsg-overlay");
+  if(!overlay) return;
+
+  var grid = document.getElementById("tsg-grid");
+  var empty = document.getElementById("tsg-empty");
+  var closeBtn = document.getElementById("tsg-close");
+  var chipsWrap = document.getElementById("tsg-chips");
+  var search = document.getElementById("tsg-search");
+  var copyAll = document.getElementById("tsg-copy-all");
+  var dlJson = document.getElementById("tsg-download-json");
+  var fab = document.getElementById("tsg-fab");
+  document.addEventListener("click", function(e){ var t=e.target; if(t && t.closest && t.closest("#tsg-fab")){ e.preventDefault(); e.stopPropagation(); if(window.__tsgOpen){ window.__tsgOpen(); } } }, true);
+var altBtn = document.getElementById("gradients-toggle"); // optional
+
+  var gradients = [
+      // Core brand gradients
+      { id:"cta_teal_navy",            tag:"CTA",        ar:"تيال → كحلي",                 en:"Teal → Navy",                 css:"linear-gradient(135deg, #05ADAD 0%, #0D295C 100%)" },
+      { id:"hero_violet_blue",         tag:"Hero",       ar:"بنفسجي → أزرق",               en:"Violet → Blue",               css:"linear-gradient(135deg, #8C40FF 0%, #113D8F 100%)" },
+      { id:"premium_plum_ink",         tag:"Premium",    ar:"برقوقي → حبر",                en:"Plum → Ink",                  css:"linear-gradient(135deg, #3B1745 0%, #0A0F21 100%)" },
+      { id:"highlight_teal_violet",    tag:"Highlight",  ar:"تيال → بنفسجي",               en:"Teal → Violet",               css:"linear-gradient(135deg, #05ADAD 0%, #8C40FF 100%)" },
+      { id:"depth_blue_ink",           tag:"Depth",      ar:"أزرق → حبر",                  en:"Blue → Ink",                  css:"linear-gradient(135deg, #113D8F 0%, #0A0F21 100%)" },
+      { id:"alert_red_plum",           tag:"Alert",      ar:"أحمر → برقوقي",               en:"Red → Plum",                  css:"linear-gradient(135deg, #F0474A 0%, #3B1745 100%)" },
+
+      // Multi-stop (richer surfaces)
+      { id:"hero_teal_blue_ink",       tag:"Hero",       ar:"تيال → أزرق → حبر",           en:"Teal → Blue → Ink",           css:"linear-gradient(135deg, #05ADAD 0%, #113D8F 55%, #0A0F21 100%)" },
+      { id:"premium_plum_navy_ink",    tag:"Premium",    ar:"برقوقي → كحلي → حبر",         en:"Plum → Navy → Ink",           css:"linear-gradient(135deg, #3B1745 0%, #0D295C 55%, #0A0F21 100%)" },
+      { id:"highlight_violet_teal",    tag:"Highlight",  ar:"بنفسجي → تيال → أزرق",         en:"Violet → Teal → Blue",         css:"linear-gradient(135deg, #8C40FF 0%, #05ADAD 55%, #113D8F 100%)" },
+      { id:"cta_teal_teal_navy",       tag:"CTA",        ar:"تيال ناعم → تيال → كحلي",     en:"Soft Teal → Teal → Navy",     css:"linear-gradient(135deg, #05ADAD 0%, #05ADAD 35%, #0D295C 100%)" },
+
+      // Dark depth (backgrounds)
+      { id:"depth_navy_ink",           tag:"Depth",      ar:"كحلي → حبر",                  en:"Navy → Ink",                  css:"linear-gradient(135deg, #0D295C 0%, #0A0F21 100%)" },
+      { id:"depth_plum_navy",          tag:"Depth",      ar:"برقوقي → كحلي",               en:"Plum → Navy",                 css:"linear-gradient(135deg, #3B1745 0%, #0D295C 100%)" },
+      { id:"depth_violet_ink",         tag:"Depth",      ar:"بنفسجي → حبر",                en:"Violet → Ink",                css:"linear-gradient(135deg, #8C40FF 0%, #0A0F21 100%)" },
+      { id:"depth_blue_navy",          tag:"Depth",      ar:"أزرق → كحلي",                  en:"Blue → Navy",                 css:"linear-gradient(135deg, #113D8F 0%, #0D295C 100%)" },
+
+      // Alerts / emphasis
+      { id:"alert_red_navy",           tag:"Alert",      ar:"أحمر → كحلي",                  en:"Red → Navy",                  css:"linear-gradient(135deg, #F0474A 0%, #0D295C 100%)" },
+      { id:"alert_red_ink",            tag:"Alert",      ar:"أحمر → حبر",                   en:"Red → Ink",                   css:"linear-gradient(135deg, #F0474A 0%, #0A0F21 100%)" },
+      { id:"alert_red_violet",         tag:"Alert",      ar:"أحمر → بنفسجي",                en:"Red → Violet",                css:"linear-gradient(135deg, #F0474A 0%, #8C40FF 100%)" },
+
+      // Soft highlight / subtle cards
+      { id:"soft_teal_blue",           tag:"Highlight",  ar:"تيال خفيف → أزرق",             en:"Soft Teal → Blue",            css:"linear-gradient(135deg, rgba(5,173,173,.35) 0%, rgba(17,61,143,.35) 100%)" },
+      { id:"soft_violet_plum",         tag:"Highlight",  ar:"بنفسجي خفيف → برقوقي",         en:"Soft Violet → Plum",          css:"linear-gradient(135deg, rgba(140,64,255,.35) 0%, rgba(59,23,69,.35) 100%)" },
+      { id:"soft_blue_navy",           tag:"Highlight",  ar:"أزرق خفيف → كحلي",              en:"Soft Blue → Navy",            css:"linear-gradient(135deg, rgba(17,61,143,.35) 0%, rgba(13,41,92,.35) 100%)" },
+
+      // Radial (hero / spotlight)
+      { id:"radial_teal_ink",          tag:"Hero",       ar:"شعاعي: تيال → حبر",            en:"Radial: Teal → Ink",          css:"radial-gradient(circle at 30% 20%, #05ADAD 0%, #0A0F21 65%)" },
+      { id:"radial_violet_navy",       tag:"Hero",       ar:"شعاعي: بنفسجي → كحلي",         en:"Radial: Violet → Navy",       css:"radial-gradient(circle at 35% 20%, #8C40FF 0%, #0D295C 70%)" },
+      { id:"radial_red_plum",          tag:"Alert",      ar:"شعاعي: أحمر → برقوقي",         en:"Radial: Red → Plum",          css:"radial-gradient(circle at 35% 25%, #F0474A 0%, #3B1745 70%)" },
+
+      // Angular / dynamic
+      { id:"angle_teal_violet_ink",    tag:"Hero",       ar:"زاوية: تيال → بنفسجي → حبر",   en:"Angle: Teal → Violet → Ink",  css:"linear-gradient(115deg, #05ADAD 0%, #8C40FF 52%, #0A0F21 100%)" },
+      { id:"angle_blue_teal",          tag:"CTA",        ar:"زاوية: أزرق → تيال",            en:"Angle: Blue → Teal",          css:"linear-gradient(115deg, #113D8F 0%, #05ADAD 100%)" },
+      { id:"angle_plum_red",           tag:"Alert",      ar:"زاوية: برقوقي → أحمر",          en:"Angle: Plum → Red",           css:"linear-gradient(115deg, #3B1745 0%, #F0474A 100%)" }
+    ];
+
+  var tagMeta = {
+    all:{ar:"الكل",en:"All"},
+    cta:{ar:"CTA",en:"CTA"},
+    hero:{ar:"Hero",en:"Hero"},
+    premium:{ar:"Premium",en:"Premium"},
+    highlight:{ar:"Highlight",en:"Highlight"},
+    depth:{ar:"Depth",en:"Depth"},
+    alert:{ar:"Alert",en:"Alert"}
+  };
+
+  var descMap = {
+    cta:{ar:"مناسب للأزرار الأساسية وواجهات CTA.",en:"Best for primary buttons and CTA surfaces."},
+    hero:{ar:"مناسب للهيدر والواجهات البارزة.",en:"Best for hero headers and key highlights."},
+    premium:{ar:"مناسب للأقسام الرسمية والهوية الفاخرة.",en:"Best for premium / official sections."},
+    highlight:{ar:"مناسب لإبراز أقسام محددة دون مبالغة.",en:"Best to highlight sections subtly."},
+    depth:{ar:"مناسب للخلفيات العميقة والأقسام الطويلة.",en:"Best for deep backgrounds and long sections."},
+    alert:{ar:"مناسب للتنبيهات والتمييز بحذر.",en:"Best for alerts and caution states."}
+  };
+
+  var state = { tag:"all", q:"" };
+  var initialized = false;
+  var prevOverflow = "";
+
+  function isAr(){
+    var lang = (document.documentElement.getAttribute("lang") || "").toLowerCase();
+    var dir  = (document.documentElement.getAttribute("dir")  || "").toLowerCase();
+    return lang.indexOf("ar") === 0 || dir === "rtl";
+  }
+
+  function setSearchPlaceholder(){
+    if(!search) return;
+    search.placeholder = isAr() ? "ابحث في التدرجات..." : "Search gradients...";
+  }
+
+  function toast(msg){
+    var t = document.getElementById("tsg-toast");
+    if(!t){
+      t = document.createElement("div");
+      t.id = "tsg-toast";
+      t.className = "tsg-toast";
+      document.body.appendChild(t);
+    }
+    t.textContent = msg;
+    t.classList.add("is-on");
+    clearTimeout(t.__to);
+    t.__to = setTimeout(function(){ t.classList.remove("is-on"); }, 1400);
+  }
+
+  function copyText(str){
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      return navigator.clipboard.writeText(str).catch(function(){ return legacyCopy(str); });
+    }
+    return legacyCopy(str);
+  }
+
+  function legacyCopy(str){
+    return new Promise(function(resolve){
+      var ta = document.createElement("textarea");
+      ta.value = str;
+      ta.style.position = "fixed";
+      ta.style.opacity = "0";
+      document.body.appendChild(ta);
+      ta.select();
+      try{ document.execCommand("copy"); }catch(e){}
+      ta.remove();
+      resolve();
+    });
+  }
+
+  function download(filename, content, mime){
+    var blob = new Blob([content], { type: mime || "application/json" });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement("a");
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(function(){ URL.revokeObjectURL(url); }, 400);
+  }
+
+  function buildChips(){
+    if(!chipsWrap) return;
+    chipsWrap.innerHTML = "";
+    Object.keys(tagMeta).forEach(function(key){
+      var b = document.createElement("button");
+      b.type = "button";
+      b.className = "tsg-chip" + (state.tag === key ? " is-active" : "");
+      b.dataset.tag = key;
+      b.innerHTML = '<span class="tr-ar">'+tagMeta[key].ar+'</span><span class="tr-en">'+tagMeta[key].en+'</span>';
+      b.addEventListener("click", function(e){
+        e.preventDefault(); e.stopPropagation();
+        state.tag = key;
+        var chips = chipsWrap.querySelectorAll(".tsg-chip");
+        for(var i=0;i<chips.length;i++){
+          chips[i].classList.toggle("is-active", chips[i].dataset.tag === state.tag);
+        }
+        render();
+      });
+      chipsWrap.appendChild(b);
+    });
+  }
+
+  function matches(g){
+    if(state.tag !== "all" && g.tag !== state.tag) return false;
+    var q = (state.q || "").trim().toLowerCase();
+    if(!q) return true;
+    var blob = (g.id+" "+g.tag+" "+g.ar+" "+g.en+" "+g.css).toLowerCase();
+    return blob.indexOf(q) !== -1;
+  }
+
+  function card(g){
+    var d = descMap[g.tag] || { ar:"تدرج جاهز للاستخدام ضمن الهوية.", en:"Ready-to-use brand gradient." };
+
+    var el = document.createElement("div");
+    el.className = "tsg-card";
+
+    var sw = document.createElement("div");
+    sw.className = "tsg-swatch";
+    sw.style.background = g.css;
+
+    var badge = document.createElement("div");
+    badge.className = "tsg-badge";
+    badge.textContent = String(g.tag || "grad").toUpperCase();
+    sw.appendChild(badge);
+
+    var name = document.createElement("div");
+    name.className = "tsg-name";
+    name.innerHTML =
+      '<span class="tr-ar">'+g.ar+' ('+tagMeta[g.tag].ar+')</span>' +
+      '<span class="tr-en">'+g.en+' ('+tagMeta[g.tag].en+')</span>';
+
+    var desc = document.createElement("div");
+    desc.className = "tsg-desc";
+    desc.innerHTML = '<span class="tr-ar">'+d.ar+'</span><span class="tr-en">'+d.en+'</span>';
+
+    var row = document.createElement("div");
+    row.className = "tsg-row";
+
+    var code = document.createElement("div");
+    code.className = "tsg-css";
+    code.title = g.css;
+    code.textContent = g.css;
+
+    var actions = document.createElement("div");
+    actions.className = "tsg-actions";
+
+    var copyCss = document.createElement("button");
+    copyCss.type = "button";
+    copyCss.className = "tsg-btn tsg-btn--pill tsg-btn--ghost";
+    copyCss.innerHTML = '<span class="tr-ar">نسخ CSS</span><span class="tr-en">Copy CSS</span>';
+    copyCss.addEventListener("click", function(e){
+      e.preventDefault(); e.stopPropagation();
+      copyText(g.css).then(function(){ toast(isAr() ? "تم نسخ CSS" : "CSS copied"); });
+    });
+
+    var copyJson = document.createElement("button");
+    copyJson.type = "button";
+    copyJson.className = "tsg-btn tsg-btn--pill";
+    copyJson.innerHTML = '<span class="tr-ar">نسخ JSON</span><span class="tr-en">Copy JSON</span>';
+    copyJson.addEventListener("click", function(e){
+      e.preventDefault(); e.stopPropagation();
+      var payload = { id:g.id, tag:g.tag, ar:g.ar, en:g.en, css:g.css };
+      copyText(JSON.stringify(payload, null, 2)).then(function(){ toast(isAr() ? "تم نسخ JSON" : "JSON copied"); });
+    });
+
+    actions.appendChild(copyCss);
+    actions.appendChild(copyJson);
+
+    row.appendChild(code);
+    row.appendChild(actions);
+
+    el.appendChild(sw);
+    el.appendChild(name);
+    el.appendChild(desc);
+    el.appendChild(row);
+
+    sw.addEventListener("click", function(e){
+      e.preventDefault(); e.stopPropagation();
+      copyText(g.css).then(function(){ toast(isAr() ? "تم نسخ CSS" : "CSS copied"); });
+    });
+
+    return el;
+  }
+
+  function render(){
+    if(!grid) return;
+    grid.innerHTML = "";
+    var list = [];
+    for(var i=0;i<gradients.length;i++){
+      if(matches(gradients[i])) list.push(gradients[i]);
+    }
+    if(empty) empty.style.display = list.length ? "none" : "block";
+    for(var j=0;j<list.length;j++){
+      grid.appendChild(card(list[j]));
+    }
+    setSearchPlaceholder();
+  }
+
+  function open(){
+    if(!initialized){
+      buildChips();
+      initialized = true;
+    }
+    overlay.classList.add("is-open");
+    overlay.setAttribute("aria-hidden","false");
+    prevOverflow = document.body.style.overflow || "";
+    document.body.style.overflow = "hidden";
+    render();
+    if(closeBtn){ try{ closeBtn.focus(); }catch(_){} }
+  }
+
+  function close(){
+    overlay.classList.remove("is-open");
+    overlay.setAttribute("aria-hidden","true");
+    document.body.style.overflow = prevOverflow;
+  }
+
+  // Bind FAB + optional existing button
+  if(fab){
+    fab.addEventListener("click", function(e){ e.preventDefault(); e.stopPropagation(); open(); }, true);
+  }
+  if(altBtn){
+    altBtn.addEventListener("click", function(e){ e.preventDefault(); e.stopPropagation(); open(); }, true);
+  }
+  if(closeBtn){
+    closeBtn.addEventListener("click", function(e){ e.preventDefault(); e.stopPropagation(); close(); }, true);
+  }
+
+  overlay.addEventListener("click", function(e){ if(e.target === overlay) close(); });
+  document.addEventListener("keydown", function(e){ if(e.key === "Escape" && overlay.classList.contains("is-open")) close(); });
+
+  if(search){
+    setSearchPlaceholder();
+    search.addEventListener("input", function(){ state.q = search.value || ""; render(); });
+  }
+  if(copyAll){
+    copyAll.addEventListener("click", function(e){
+      e.preventDefault(); e.stopPropagation();
+      copyText(gradients.map(function(g){ return g.css; }).join("
+"))
+        .then(function(){ toast(isAr() ? "تم نسخ تدرجات CSS" : "Gradients CSS copied"); });
+    });
+  }
+  if(dlJson){
+    dlJson.addEventListener("click", function(e){
+      e.preventDefault(); e.stopPropagation();
+      var payload = gradients.map(function(g){ return { id:g.id, tag:g.tag, ar:g.ar, en:g.en, css:g.css }; });
+      download("ts-brand-gradients.json", JSON.stringify(payload, null, 2), "application/json");
+      toast(isAr() ? "تم تحميل JSON" : "JSON downloaded");
+    });
+  }
+
+  // Expose
+  window.__tsgOpen = open;
+  window.__tsgClose = close;
+
+})();
+</script>
+
+
+
+<!-- ================================
+     T&S Brand Gradients Suggestions (Standalone)
+     ================================ -->
+<div id="tsg-overlay" class="tsg-overlay" aria-hidden="true" role="dialog" aria-modal="true">
+  <div class="tsg-dialog" role="document">
+    <div class="tsg-head">
+      <div class="tsg-titlewrap">
+        <div class="tsg-title">
+          <span class="tr-ar">اقتراحات تدرجات الهوية</span>
+          <span class="tr-en">Brand Gradient Suggestions</span>
+        </div>
+        <div class="tsg-sub">
+          <span class="tr-ar">تدرجات جاهزة مبنية على ألوان T&amp;S — انسخ CSS أو حمّل JSON.</span>
+          <span class="tr-en">Ready-to-use gradients built from T&amp;S colors — copy CSS or download JSON.</span>
+        </div>
+      </div>
+
+      <div class="tsg-head-actions">
+        <button type="button" class="tsg-btn tsg-btn--pill" id="tsg-download-json">
+          <span class="tr-ar">تحميل JSON</span>
+          <span class="tr-en">Download JSON</span>
+        </button>
+        <button type="button" class="tsg-btn tsg-btn--icon" id="tsg-close" aria-label="Close">×</button>
+      </div>
+    </div>
+
+    <div class="tsg-toolbar">
+      <div class="tsg-chips" id="tsg-chips"></div>
+
+      </div>
+
+    <div class="tsg-body">
+      <div id="tsg-grid" class="tsg-grid"></div>
+      <div id="tsg-empty" class="tsg-empty" style="display:none">
+        <span class="tr-ar">لا توجد نتائج.</span>
+        <span class="tr-en">No results.</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style id="tsg-style">
+  .tsg-overlay{
+    position: fixed;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(0,0,0,.45);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    z-index: 10000;
+  }
+  .tsg-overlay.is-open{ display: flex; }
+
+  .tsg-dialog{
+    width: min(980px, calc(100vw - 28px));
+    max-height: min(82vh, 900px);
+    overflow: auto;
+    border-radius: 22px;
+    border: 1px solid rgba(255,255,255,.14);
+    background: linear-gradient(135deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
+    box-shadow: 0 30px 70px rgba(0,0,0,.35);
+    color: rgba(255,255,255,.92);
+  }
+
+  .tsg-head{
+    display:flex;
+    gap: 14px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 18px 12px;
+    border-bottom: 1px solid rgba(255,255,255,.10);
+    background: linear-gradient(135deg, rgba(5,173,173,.16), rgba(140,64,255,.14));
+  }
+  .tsg-title{ font-weight: 950; font-size: 18px; letter-spacing: .2px; }
+  .tsg-sub{ margin-top: 4px; opacity: .80; font-size: 13px; }
+  .tsg-head-actions{ display:flex; gap: 10px; align-items:center; }
+
+  .tsg-btn{
+    border: 1px solid rgba(255,255,255,.16);
+    background: rgba(255,255,255,.06);
+    color: rgba(255,255,255,.92);
+    border-radius: 14px;
+    padding: 10px 12px;
+    font-weight: 900;
+    font-size: 12px;
+    cursor: pointer;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.10);
+    transition: transform .16s ease, border-color .16s ease, background .16s ease;
+    white-space: nowrap;
+  }
+  .tsg-btn:hover{ transform: translateY(-1px); border-color: rgba(255,255,255,.24); background: rgba(255,255,255,.08); }
+  .tsg-btn:active{ transform: translateY(0); }
+
+  .tsg-btn--ghost{ background: rgba(0,0,0,.12); }
+  .tsg-btn--pill{ border-radius: 999px; padding: 10px 14px; }
+  .tsg-btn--icon{
+    width: 40px; height: 40px;
+    border-radius: 999px;
+    display:grid; place-items:center;
+    font-size: 18px;
+    padding: 0;
+  }
+
+  .tsg-toolbar{
+    display:flex;
+    gap: 12px;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 12px 18px;
+  }
+
+  .tsg-chips{ display:flex; gap: 8px; flex-wrap: wrap; }
+  .tsg-chip{
+    border: 1px solid rgba(255,255,255,.14);
+    background: rgba(255,255,255,.05);
+    color: rgba(255,255,255,.90);
+    padding: 8px 10px;
+    border-radius: 999px;
+    font-weight: 950;
+    font-size: 12px;
+    cursor: pointer;
+    transition: transform .16s ease, border-color .16s ease, background .16s ease;
+    line-height: 1;
+  }
+  .tsg-chip:hover{ transform: translateY(-1px); border-color: rgba(255,255,255,.24); }
+  .tsg-chip.is-active{
+    border-color: rgba(5,173,173,.60);
+    background: rgba(5,173,173,.14);
+  }
+
+  .tsg-tools{
+    display:flex;
+    gap: 10px;
+    align-items:center;
+    flex: 1 1 320px;
+    justify-content: flex-end;
+  }
+  .tsg-search{
+    flex: 1 1 220px;
+    min-width: 200px;
+    max-width: 420px;
+    border-radius: 14px;
+    border: 1px solid rgba(255,255,255,.14);
+    background: rgba(255,255,255,.05);
+    color: rgba(255,255,255,.92);
+    padding: 10px 12px;
+    outline: none;
+  }
+  .tsg-search::placeholder{ color: rgba(255,255,255,.60); }
+
+  .tsg-body{ padding: 0 18px 18px; }
+
+  .tsg-grid{
+    display:grid;
+    grid-template-columns: repeat(2, minmax(0,1fr));
+    gap: 14px;
+  }
+
+  @media (max-width: 780px){
+    .tsg-grid{ grid-template-columns: 1fr; }
+    .tsg-tools{ width: 100%; justify-content: stretch; }
+    .tsg-search{ max-width: none; width: 100%; }
+  }
+
+  .tsg-card{
+    border: 1px solid rgba(255,255,255,.12);
+    background: linear-gradient(135deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+    border-radius: 18px;
+    padding: 12px;
+    box-shadow: 0 14px 30px rgba(0,0,0,.18);
+    transition: transform .16s ease, border-color .16s ease, background .16s ease;
+  }
+  .tsg-card:hover{
+    transform: translateY(-1px);
+    border-color: rgba(5,173,173,.44);
+    background: linear-gradient(135deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
+  }
+
+  .tsg-swatch{
+    height: 104px;
+    border-radius: 16px;
+    border: 1px solid rgba(255,255,255,.18);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  .tsg-swatch::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background: radial-gradient(520px 140px at 20% 0%, rgba(255,255,255,.18), transparent 55%);
+    pointer-events:none;
+  }
+
+  .tsg-badge{
+    position:absolute;
+    top: 10px;
+    inset-inline-end: 10px;
+    padding: 6px 10px;
+    border-radius: 999px;
+    background: rgba(0,0,0,.26);
+    border: 1px solid rgba(255,255,255,.16);
+    font-weight: 950;
+    font-size: 11px;
+    letter-spacing: .7px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+
+  .tsg-name{ margin-top: 10px; font-weight: 950; font-size: 14px; }
+  .tsg-desc{ margin-top: 6px; opacity: .84; font-size: 12px; line-height: 1.5; }
+
+  .tsg-row{
+    margin-top: 10px;
+    display:flex;
+    gap: 10px;
+    align-items:center;
+    flex-wrap: wrap;
+  }
+  .tsg-css{
+    flex: 1 1 260px;
+    min-width: 220px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    font-size: 11px;
+    background: rgba(255,255,255,.06);
+    border: 1px solid rgba(255,255,255,.12);
+    padding: 8px 10px;
+    border-radius: 999px;
+    color: rgba(255,255,255,.88);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .tsg-actions{ display:flex; gap: 8px; align-items:center; }
+
+  @media (max-width: 780px){
+    .tsg-css{ white-space: normal; border-radius: 14px; }
+    .tsg-actions{ width: 100%; justify-content: flex-start; }
+  }
+
+  .tsg-toast{
+    position: fixed;
+    inset-inline-start: 14px;
+    bottom: 14px;
+    padding: 10px 12px;
+    border-radius: 14px;
+    background: rgba(0,0,0,.55);
+    border: 1px solid rgba(255,255,255,.16);
+    color: rgba(255,255,255,.92);
+    z-index: 10002;
+    font-weight: 850;
+    font-size: 12px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity .18s ease, transform .18s ease;
+    pointer-events: none;
+  }
+  .tsg-toast.is-on{ opacity: 1; transform: translateY(0); }
+</style>
+
+
+
+<!-- ================================
+     TSG Fab Clickability Patch (v3)
+     - Forces the floating button to the top-most layer
+     - Moves it to <body> to escape stacking contexts
+     - Adds pointerdown capture handler
+     - Provides a minimal __tsgOpen/__tsgClose fallback (in case earlier JS failed)
+     ================================ -->
+
+
+
+
+
+
+
+
+<!-- ================================
+     TSG Gradients (Robust: finds your top button and renders every time)
+     ================================ -->
+<style id="tsg-robust-style">
+  /* Ensure the top trigger is clickable even if a glass layer sits above it */
+  #gradients-toggle, [data-tsg-open] {
+    pointer-events: auto !important;
+    cursor: pointer !important;
+    position: relative;
+    z-index: 9999;
+  }
+</style>
+
+<script id="tsg-robust-bind">
+(function(){
+  // ====== Data (curated + categorized) ======
+  const GRADIENTS = [
+    // --- Top Picks (my curated defaults) ---
+    { id:"top_hero_teal_blue_ink",   tag:"Hero",     pick:true, ar:"هيرو مميز: تيال → أزرق → حبر",   en:"Top Hero: Teal → Blue → Ink",   css:"linear-gradient(135deg, #05ADAD 0%, #113D8F 55%, #0A0F21 100%)" },
+    { id:"top_cta_teal_navy",        tag:"CTA",      pick:true, ar:"CTA: تيال → كحلي",               en:"Top CTA: Teal → Navy",          css:"linear-gradient(135deg, #05ADAD 0%, #0D295C 100%)" },
+    { id:"top_premium_plum_ink",     tag:"Premium",  pick:true, ar:"Premium: برقوقي → حبر",           en:"Top Premium: Plum → Ink",       css:"linear-gradient(135deg, #3B1745 0%, #0A0F21 100%)" },
+    { id:"top_depth_navy_ink",       tag:"Depth",    pick:true, ar:"Depth: كحلي → حبر",               en:"Top Depth: Navy → Ink",         css:"linear-gradient(135deg, #0D295C 0%, #0A0F21 100%)" },
+    { id:"top_highlight_soft",       tag:"Highlight",pick:true, ar:"Highlight ناعم: تيال خفيف → أزرق خفيف", en:"Soft Highlight: Teal → Blue", css:"linear-gradient(135deg, rgba(5,173,173,.35) 0%, rgba(17,61,143,.35) 100%)" },
+    { id:"top_alert_red_ink",        tag:"Alert",    pick:true, ar:"Alert: أحمر → حبر",               en:"Top Alert: Red → Ink",          css:"linear-gradient(135deg, #F0474A 0%, #0A0F21 100%)" },
+    { id:"top_glass_teal",           tag:"Glass",    pick:true, ar:"Glass: زجاجي تيال",                en:"Top Glass: Teal",               css:"linear-gradient(135deg, rgba(5,173,173,.22) 0%, rgba(255,255,255,.06) 48%, rgba(13,41,92,.18) 100%)" },
+    { id:"top_radial_violet_navy",   tag:"Radial",   pick:true, ar:"Radial: شعاعي بنفسجي → كحلي",     en:"Top Radial: Violet → Navy",     css:"radial-gradient(circle at 35% 20%, #8C40FF 0%, #0D295C 70%)" },
+
+    // --- CTA (Buttons / active states) ---
+    { id:"cta_teal_navy",   tag:"CTA", ar:"تيال → كحلي",   en:"Teal → Navy",   css:"linear-gradient(135deg, #05ADAD 0%, #0D295C 100%)" },
+    { id:"cta_teal_blue",   tag:"CTA", ar:"تيال → أزرق",   en:"Teal → Blue",   css:"linear-gradient(135deg, #05ADAD 0%, #113D8F 100%)" },
+    { id:"cta_blue_teal",   tag:"CTA", ar:"أزرق → تيال",   en:"Blue → Teal",   css:"linear-gradient(135deg, #113D8F 0%, #05ADAD 100%)" },
+    { id:"cta_violet_teal", tag:"CTA", ar:"بنفسجي → تيال", en:"Violet → Teal", css:"linear-gradient(135deg, #8C40FF 0%, #05ADAD 100%)" },
+    { id:"cta_teal_violet", tag:"CTA", ar:"تيال → بنفسجي", en:"Teal → Violet", css:"linear-gradient(135deg, #05ADAD 0%, #8C40FF 100%)" },
+    { id:"cta_blue_navy",   tag:"CTA", ar:"أزرق → كحلي",   en:"Blue → Navy",   css:"linear-gradient(135deg, #113D8F 0%, #0D295C 100%)" },
+    { id:"cta_teal_ink",    tag:"CTA", ar:"تيال → حبر",    en:"Teal → Ink",    css:"linear-gradient(135deg, #05ADAD 0%, #0A0F21 100%)" },
+    { id:"cta_violet_navy", tag:"CTA", ar:"بنفسجي → كحلي", en:"Violet → Navy", css:"linear-gradient(135deg, #8C40FF 0%, #0D295C 100%)" },
+    { id:"cta_red_navy",    tag:"CTA", ar:"أحمر → كحلي",   en:"Red → Navy",    css:"linear-gradient(135deg, #F0474A 0%, #0D295C 100%)" },
+    { id:"cta_red_plum",    tag:"CTA", ar:"أحمر → برقوقي", en:"Red → Plum",    css:"linear-gradient(135deg, #F0474A 0%, #3B1745 100%)" },
+
+    // --- Hero (Headers / emphasis) ---
+    { id:"hero_violet_blue",      tag:"Hero", ar:"بنفسجي → أزرق",               en:"Violet → Blue",               css:"linear-gradient(135deg, #8C40FF 0%, #113D8F 100%)" },
+    { id:"hero_teal_blue_ink",    tag:"Hero", ar:"تيال → أزرق → حبر",           en:"Teal → Blue → Ink",           css:"linear-gradient(135deg, #05ADAD 0%, #113D8F 55%, #0A0F21 100%)" },
+    { id:"hero_violet_teal_navy", tag:"Hero", ar:"بنفسجي → تيال → كحلي",         en:"Violet → Teal → Navy",         css:"linear-gradient(135deg, #8C40FF 0%, #05ADAD 52%, #0D295C 100%)" },
+    { id:"hero_teal_violet_ink",  tag:"Hero", ar:"تيال → بنفسجي → حبر",          en:"Teal → Violet → Ink",          css:"linear-gradient(115deg, #05ADAD 0%, #8C40FF 52%, #0A0F21 100%)" },
+    { id:"hero_blue_violet_plum", tag:"Hero", ar:"أزرق → بنفسجي → برقوقي",       en:"Blue → Violet → Plum",         css:"linear-gradient(135deg, #113D8F 0%, #8C40FF 55%, #3B1745 100%)" },
+    { id:"hero_navy_blue_teal",   tag:"Hero", ar:"كحلي → أزرق → تيال",           en:"Navy → Blue → Teal",           css:"linear-gradient(135deg, #0D295C 0%, #113D8F 55%, #05ADAD 100%)" },
+    { id:"hero_plum_violet_blue", tag:"Hero", ar:"برقوقي → بنفسجي → أزرق",       en:"Plum → Violet → Blue",         css:"linear-gradient(135deg, #3B1745 0%, #8C40FF 55%, #113D8F 100%)" },
+    { id:"hero_ink_navy_teal",    tag:"Hero", ar:"حبر → كحلي → تيال",            en:"Ink → Navy → Teal",            css:"linear-gradient(135deg, #0A0F21 0%, #0D295C 55%, #05ADAD 100%)" },
+
+    // --- Premium (formal / executive) ---
+    { id:"premium_plum_ink",         tag:"Premium", ar:"برقوقي → حبر",           en:"Plum → Ink",                  css:"linear-gradient(135deg, #3B1745 0%, #0A0F21 100%)" },
+    { id:"premium_plum_navy_ink",    tag:"Premium", ar:"برقوقي → كحلي → حبر",     en:"Plum → Navy → Ink",           css:"linear-gradient(135deg, #3B1745 0%, #0D295C 55%, #0A0F21 100%)" },
+    { id:"premium_violet_plum_ink",  tag:"Premium", ar:"بنفسجي → برقوقي → حبر",   en:"Violet → Plum → Ink",         css:"linear-gradient(135deg, #8C40FF 0%, #3B1745 55%, #0A0F21 100%)" },
+    { id:"premium_navy_plum",        tag:"Premium", ar:"كحلي → برقوقي",           en:"Navy → Plum",                 css:"linear-gradient(135deg, #0D295C 0%, #3B1745 100%)" },
+    { id:"premium_blue_plum",        tag:"Premium", ar:"أزرق → برقوقي",           en:"Blue → Plum",                 css:"linear-gradient(135deg, #113D8F 0%, #3B1745 100%)" },
+    { id:"premium_ink_plum",         tag:"Premium", ar:"حبر → برقوقي",            en:"Ink → Plum",                  css:"linear-gradient(135deg, #0A0F21 0%, #3B1745 100%)" },
+
+    // --- Depth (backgrounds / long sections) ---
+    { id:"depth_navy_ink",    tag:"Depth", ar:"كحلي → حبر",    en:"Navy → Ink",   css:"linear-gradient(135deg, #0D295C 0%, #0A0F21 100%)" },
+    { id:"depth_blue_ink",    tag:"Depth", ar:"أزرق → حبر",    en:"Blue → Ink",   css:"linear-gradient(135deg, #113D8F 0%, #0A0F21 100%)" },
+    { id:"depth_violet_ink",  tag:"Depth", ar:"بنفسجي → حبر",  en:"Violet → Ink", css:"linear-gradient(135deg, #8C40FF 0%, #0A0F21 100%)" },
+    { id:"depth_plum_navy",   tag:"Depth", ar:"برقوقي → كحلي",  en:"Plum → Navy",  css:"linear-gradient(135deg, #3B1745 0%, #0D295C 100%)" },
+    { id:"depth_teal_ink",    tag:"Depth", ar:"تيال → حبر",     en:"Teal → Ink",   css:"linear-gradient(135deg, #05ADAD 0%, #0A0F21 100%)" },
+    { id:"depth_ink_navy",    tag:"Depth", ar:"حبر → كحلي",     en:"Ink → Navy",   css:"linear-gradient(135deg, #0A0F21 0%, #0D295C 100%)" },
+
+    // --- Highlight (soft cards / subtle) ---
+    { id:"highlight_soft_teal_blue",   tag:"Highlight", ar:"تيال خفيف → أزرق خفيف",      en:"Soft Teal → Soft Blue",      css:"linear-gradient(135deg, rgba(5,173,173,.35) 0%, rgba(17,61,143,.35) 100%)" },
+    { id:"highlight_soft_violet_plum", tag:"Highlight", ar:"بنفسجي خفيف → برقوقي خفيف",  en:"Soft Violet → Soft Plum",    css:"linear-gradient(135deg, rgba(140,64,255,.35) 0%, rgba(59,23,69,.35) 100%)" },
+    { id:"highlight_soft_blue_navy",   tag:"Highlight", ar:"أزرق خفيف → كحلي خفيف",      en:"Soft Blue → Soft Navy",      css:"linear-gradient(135deg, rgba(17,61,143,.35) 0%, rgba(13,41,92,.35) 100%)" },
+    { id:"highlight_soft_teal_violet", tag:"Highlight", ar:"تيال خفيف → بنفسجي خفيف",    en:"Soft Teal → Soft Violet",    css:"linear-gradient(135deg, rgba(5,173,173,.30) 0%, rgba(140,64,255,.30) 100%)" },
+    { id:"highlight_soft_red_plum",    tag:"Highlight", ar:"أحمر خفيف → برقوقي خفيف",    en:"Soft Red → Soft Plum",       css:"linear-gradient(135deg, rgba(240,71,74,.30) 0%, rgba(59,23,69,.30) 100%)" },
+    { id:"highlight_soft_teal_ink",    tag:"Highlight", ar:"تيال خفيف → حبر خفيف",        en:"Soft Teal → Soft Ink",       css:"linear-gradient(135deg, rgba(5,173,173,.30) 0%, rgba(10,15,33,.30) 100%)" },
+
+    // --- Alert (warnings / critical states) ---
+    { id:"alert_red_ink",    tag:"Alert", ar:"أحمر → حبر",    en:"Red → Ink",    css:"linear-gradient(135deg, #F0474A 0%, #0A0F21 100%)" },
+    { id:"alert_red_violet", tag:"Alert", ar:"أحمر → بنفسجي", en:"Red → Violet", css:"linear-gradient(135deg, #F0474A 0%, #8C40FF 100%)" },
+    { id:"alert_red_blue",   tag:"Alert", ar:"أحمر → أزرق",   en:"Red → Blue",   css:"linear-gradient(135deg, #F0474A 0%, #113D8F 100%)" },
+
+    // --- Radial (spotlight / hero accents) ---
+    { id:"radial_teal_ink",    tag:"Radial", ar:"شعاعي: تيال → حبر",      en:"Radial: Teal → Ink",    css:"radial-gradient(circle at 30% 20%, #05ADAD 0%, #0A0F21 65%)" },
+    { id:"radial_violet_navy", tag:"Radial", ar:"شعاعي: بنفسجي → كحلي",   en:"Radial: Violet → Navy", css:"radial-gradient(circle at 35% 20%, #8C40FF 0%, #0D295C 70%)" },
+    { id:"radial_red_plum",    tag:"Radial", ar:"شعاعي: أحمر → برقوقي",    en:"Radial: Red → Plum",    css:"radial-gradient(circle at 35% 25%, #F0474A 0%, #3B1745 70%)" },
+    { id:"radial_blue_ink",    tag:"Radial", ar:"شعاعي: أزرق → حبر",       en:"Radial: Blue → Ink",    css:"radial-gradient(circle at 30% 25%, #113D8F 0%, #0A0F21 70%)" },
+    { id:"radial_teal_navy",   tag:"Radial", ar:"شعاعي: تيال → كحلي",      en:"Radial: Teal → Navy",   css:"radial-gradient(circle at 30% 25%, #05ADAD 0%, #0D295C 70%)" },
+
+    // --- Glass (glassy overlays) ---
+    { id:"glass_teal",   tag:"Glass", ar:"زجاجي تيال",   en:"Glassy Teal",   css:"linear-gradient(135deg, rgba(5,173,173,.22) 0%, rgba(255,255,255,.06) 48%, rgba(13,41,92,.18) 100%)" },
+    { id:"glass_violet", tag:"Glass", ar:"زجاجي بنفسجي", en:"Glassy Violet", css:"linear-gradient(135deg, rgba(140,64,255,.22) 0%, rgba(255,255,255,.06) 48%, rgba(10,15,33,.18) 100%)" },
+    { id:"glass_red",    tag:"Glass", ar:"زجاجي أحمر",   en:"Glassy Red",    css:"linear-gradient(135deg, rgba(240,71,74,.22) 0%, rgba(255,255,255,.06) 48%, rgba(59,23,69,.18) 100%)" },
+    { id:"glass_blue",   tag:"Glass", ar:"زجاجي أزرق",   en:"Glassy Blue",   css:"linear-gradient(135deg, rgba(17,61,143,.22) 0%, rgba(255,255,255,.06) 48%, rgba(13,41,92,.18) 100%)" }
+  ];
+
+  const qs  = (sel, root=document) => root.querySelector(sel);
+  const qsa = (sel, root=document) => Array.from(root.querySelectorAll(sel));
+  const byId = (id) => document.getElementById(id);
+
+  const TAGS_ORDER = ["CTA","Hero","Premium","Depth","Highlight","Alert","Radial","Glass","All"];
+  const TAG_LABELS = {    All:      { ar:"الكل",    en:"All" },
+    CTA:      { ar:"CTA",     en:"CTA" },
+    Hero:     { ar:"Hero",    en:"Hero" },
+    Premium:  { ar:"Premium", en:"Premium" },
+    Depth:    { ar:"Depth",   en:"Depth" },
+    Highlight:{ ar:"Highlight",en:"Highlight" },
+    Alert:    { ar:"Alert",   en:"Alert" },
+    Radial:   { ar:"Radial",  en:"Radial" },
+    Glass:    { ar:"Glass",   en:"Glass" }
+  };
+  // ====== Helpers (ordering + compact display) ======
+  function normalizeCss(s){ return String(s||"").replace(/\s+/g," ").trim(); }
+  function compactCss(s){
+    const t = normalizeCss(s);
+    return t.length > 64 ? (t.slice(0,64) + "…") : t;
+  }
+  function typeRank(css){
+    const t = normalizeCss(css);
+    if(t.startsWith("linear-gradient")) return 0;
+    if(t.startsWith("radial-gradient")) return 1;
+    return 2; // glass/other
+  }
+  function hexCount(css){
+    const m = normalizeCss(css).match(/#/g);
+    return m ? m.length : 0;
+  }
+  function gradCompare(a,b){
+    // keep picks first, then simplest (2-stops) → richer, then id
+    const ap = a && a.pick ? 0 : 1;
+    const bp = b && b.pick ? 0 : 1;
+    if(ap !== bp) return ap - bp;
+    const tr = typeRank(a.css) - typeRank(b.css);
+    if(tr) return tr;
+    const hc = hexCount(a.css) - hexCount(b.css);
+    if(hc) return hc;
+    return String(a.id||"").localeCompare(String(b.id||""));
+  }
+
+
+  const LS_KEY = "tsg_favs_v1";
+  const state = { tag: "All", q:"" };
+
+  function isAr(){
+    const lang = (document.documentElement.getAttribute("lang") || "").toLowerCase();
+    const dir  = (document.documentElement.getAttribute("dir")  || "").toLowerCase();
+    return lang.startsWith("ar") || dir === "rtl";
+  }
+
+  function toast(msg){
+    let t = byId("tsg-toast");
+    if(!t){
+      t = document.createElement("div");
+      t.id = "tsg-toast";
+      t.className = "tsg-toast";
+      document.body.appendChild(t);
+    }
+    t.textContent = msg;
+    t.classList.add("is-on");
+    clearTimeout(t.__to);
+    t.__to = setTimeout(() => t.classList.remove("is-on"), 1400);
+  }
+
+  function legacyCopy(str){
+    return new Promise((resolve) => {
+      const ta = document.createElement("textarea");
+      ta.value = str;
+      ta.style.position = "fixed";
+      ta.style.opacity = "0";
+      document.body.appendChild(ta);
+      ta.select();
+      try{ document.execCommand("copy"); }catch(e){}
+      ta.remove();
+      resolve();
+    });
+  }
+
+  function copyText(str){
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      return navigator.clipboard.writeText(str).catch(() => legacyCopy(str));
+    }
+    return legacyCopy(str);
+  }
+
+  function getFavs(){
+    try{
+      const raw = localStorage.getItem(LS_KEY);
+      if(!raw) return new Set();
+      return new Set(JSON.parse(raw));
+    }catch(_){ return new Set(); }
+  }
+
+  function setFavs(set){
+    try{
+      localStorage.setItem(LS_KEY, JSON.stringify(Array.from(set)));
+    }catch(_){}
+  }
+
+  function ensureToolbar(){
+    const ov = byId("tsg-overlay");
+    if(!ov) return;
+
+    // Find a good place to inject (prefer header area inside the panel)
+    const panel = qs(".tsg-panel, .tsg-modal, .tsg-dialog, .tsg-wrap", ov) || qs("div", ov);
+    if(!panel) return;
+
+    if(byId("tsg-toolbar")) return;
+
+    const tb = document.createElement("div");
+    tb.id = "tsg-toolbar";
+    tb.className = "tsg-toolbar";
+
+    // Chips row
+    const chips = document.createElement("div");
+    chips.id = "tsg-chips2";
+    chips.className = "tsg-chips";
+
+    // Search
+    const searchWrap = document.createElement("div");
+    searchWrap.className = "tsg-searchWrap";
+
+    const inp = document.createElement("input");
+    inp.id = "tsg-search2";
+    inp.type = "search";
+    inp.className = "tsg-search";
+    inp.placeholder = isAr() ? "ابحث في التدرجات..." : "Search gradients...";
+    inp.autocomplete = "off";
+    inp.addEventListener("input", () => { state.q = inp.value || ""; render(); });
+
+    const favBtn = document.createElement("button");
+    favBtn.type = "button";
+    favBtn.id = "tsg-favs-toggle";
+    favBtn.className = "tsg-btn tsg-btn--pill tsg-btn--ghost";
+    favBtn.innerHTML = isAr() ? "⭐ المفضلة" : "⭐ Favorites";
+    favBtn.addEventListener("click", () => {
+      state.showFavs = !state.showFavs;
+      favBtn.classList.toggle("is-active", state.showFavs);
+      render();
+    });
+
+    searchWrap.appendChild(inp);
+    searchWrap.appendChild(favBtn);
+
+    tb.appendChild(chips);
+    tb.appendChild(searchWrap);
+
+    // Inject at top of panel
+    panel.insertBefore(tb, panel.firstChild);
+
+    // Chips build
+    TAGS_ORDER.forEach((key) => {
+      const b = document.createElement("button");
+      b.type = "button";
+      b.className = "tsg-chip" + (state.tag === key ? " is-active" : "");
+      b.dataset.tag = key;
+      const lab = TAG_LABELS[key] || { ar:key, en:key };
+      b.innerHTML = `<span class="tr-ar">${lab.ar}</span><span class="tr-en">${lab.en}</span>`;
+      b.addEventListener("click", () => {
+        state.tag = key;
+        qsa(".tsg-chip", chips).forEach(x => x.classList.toggle("is-active", x.dataset.tag === key));
+        render();
+      });
+      chips.appendChild(b);
+    });
+  }
+
+  function matches(g, favs){    if(state.tag !== "All"){
+
+      if(g.tag !== state.tag) return false;
+    }
+
+    const q = (state.q || "").trim().toLowerCase();
+    if(!q) return true;
+    const blob = (g.id + " " + g.tag + " " + g.ar + " " + g.en + " " + g.css).toLowerCase();
+    return blob.includes(q);
+  }
+
+  function render(){
+    const grid = byId("tsg-grid");
+    const empty = byId("tsg-empty");
+    if(!grid) return;
+
+    ensureToolbar();
+
+    const favs = getFavs();
+
+    // Sort: stable and tidy inside each section
+    let list = GRADIENTS.filter(g => matches(g, favs)).slice().sort(gradCompare);
+
+    grid.innerHTML = "";
+
+    if(!list.length){
+      if(empty) empty.style.display = "block";
+      return;
+    }
+    if(empty) empty.style.display = "none";
+
+    function makeSection(title){
+      const h = document.createElement("div");
+      h.className = "tsg-sectionTitle";
+      h.textContent = title;
+      return h;
+    }
+
+    function card(g){
+      const el = document.createElement("div");
+      el.className = "tsg-card";
+
+      const sw = document.createElement("div");
+      sw.className = "tsg-swatch";
+      sw.style.background = g.css;
+
+      const badge = document.createElement("div");
+      badge.className = "tsg-badge";
+      badge.textContent = String(g.tag || "grad").toUpperCase();
+      sw.appendChild(badge);
+      const name = document.createElement("div");
+      name.className = "tsg-name";
+      name.textContent = isAr() ? (g.ar + " (" + g.tag + ")") : (g.en + " (" + g.tag + ")");
+
+      const row = document.createElement("div");
+      row.className = "tsg-row";
+
+      const code = document.createElement("div");
+      code.className = "tsg-css";
+      code.title = g.css;
+      code.textContent = compactCss(g.css);
+
+      const actions = document.createElement("div");
+      actions.className = "tsg-actions";
+
+      const copyBtn = document.createElement("button");
+      copyBtn.type = "button";
+      copyBtn.className = "tsg-btn tsg-btn--pill tsg-btn--ghost";
+      copyBtn.textContent = isAr() ? "نسخ CSS" : "Copy CSS";
+      copyBtn.addEventListener("click", (e) => {
+        e.preventDefault(); e.stopPropagation();
+        copyText(g.css).then(() => toast(isAr() ? "تم نسخ CSS" : "CSS copied"));
+      });
+
+      const moreBtn = document.createElement("button");
+      moreBtn.type = "button";
+      moreBtn.className = "tsg-btn tsg-btn--pill tsg-btn--ghost tsg-btn--tiny";
+      moreBtn.textContent = isAr() ? "عرض كامل" : "Full";
+      moreBtn.setAttribute("aria-expanded", "false");
+      moreBtn.addEventListener("click", (e) => {
+        e.preventDefault(); e.stopPropagation();
+        const on = el.classList.toggle("is-open");
+        moreBtn.setAttribute("aria-expanded", on ? "true" : "false");
+        moreBtn.textContent = isAr() ? (on ? "إخفاء" : "عرض كامل") : (on ? "Hide" : "Full");
+      });
+
+      actions.appendChild(copyBtn);
+      actions.appendChild(moreBtn);
+
+      row.appendChild(code);
+      row.appendChild(actions);
+
+      const full = document.createElement("div");
+      full.className = "tsg-full";
+      const fullCode = document.createElement("div");
+      fullCode.className = "tsg-fullCode";
+      fullCode.textContent = normalizeCss(g.css);
+
+      const fullActions = document.createElement("div");
+      fullActions.className = "tsg-fullActions";
+
+      const fullCopy = document.createElement("button");
+      fullCopy.type = "button";
+      fullCopy.className = "tsg-btn tsg-btn--pill tsg-btn--ghost tsg-btn--tiny";
+      fullCopy.textContent = isAr() ? "نسخ" : "Copy";
+      fullCopy.addEventListener("click", (e) => {
+        e.preventDefault(); e.stopPropagation();
+        copyText(g.css).then(() => toast(isAr() ? "تم نسخ CSS" : "CSS copied"));
+      });
+
+      fullActions.appendChild(fullCopy);
+      full.appendChild(fullCode);
+      full.appendChild(fullActions);
+
+      el.appendChild(sw);
+      el.appendChild(name);
+      el.appendChild(row);
+      el.appendChild(full);
+
+      sw.addEventListener("click", (e) => {
+        e.preventDefault(); e.stopPropagation();
+        copyText(g.css).then(() => toast(isAr() ? "تم نسخ CSS" : "CSS copied"));
+      });
+
+      return el;
+    }
+
+    // Grouped rendering when "All" or "Favorites" to keep it tidy
+    if(state.tag === "All"){
+      const groups = {};
+      list.forEach(g => {
+        const k = g.tag;
+        (groups[k] ||= []).push(g);
+      });
+
+      const order = ["CTA","Hero","Premium","Depth","Highlight","Alert","Radial","Glass"];
+      order.forEach(k => {
+        if(!groups[k] || !groups[k].length) return;
+        const title = isAr()
+          ? (TAG_LABELS[k]?.ar || k) : (TAG_LABELS[k]?.en || k);
+        grid.appendChild(makeSection(title));
+        groups[k].slice().sort(gradCompare).forEach(g => grid.appendChild(card(g)));});
+    } else {
+      // Single category view
+      list.slice().sort(gradCompare).forEach(g => grid.appendChild(card(g)));}
+  }
+
+  function ensureOverlayExists(){ return byId("tsg-overlay"); }
+
+  function open(){
+    const ov = ensureOverlayExists();
+    if(!ov) return;
+    ov.classList.add("is-open");
+    ov.setAttribute("aria-hidden", "false");
+    render();
+  }
+
+  function close(){
+    const ov = byId("tsg-overlay");
+    if(!ov) return;
+    ov.classList.remove("is-open");
+    ov.setAttribute("aria-hidden", "true");
+  }
+
+  window.__tsgOpen = open;
+  window.__tsgClose = close;
+
+  function findTopTrigger(){
+    const byExact = byId("gradients-toggle");
+    if(byExact) return byExact;
+    const byData = qs("[data-tsg-open]");
+    if(byData) return byData;
+
+    const candidates = qsa("button,a,div,span");
+    const arNeedle1 = "اقتراح";
+    const arNeedle2 = "تدرج";
+    const enNeedle  = "gradient";
+    for(const el of candidates){
+      const txt = (el.textContent || "").trim().toLowerCase();
+      if(!txt) continue;
+      if((txt.includes(arNeedle1) && txt.includes(arNeedle2)) || txt.includes(enNeedle)){
+        return el;
+      }
+    }
+    return null;
+  }
+
+  function bind(){
+    const trigger = findTopTrigger();
+    if(trigger && !trigger.__tsgBound){
+      trigger.__tsgBound = true;
+      trigger.style.pointerEvents = "auto";
+      trigger.style.cursor = "pointer";
+      trigger.style.position = trigger.style.position || "relative";
+      trigger.style.zIndex = trigger.style.zIndex || "9999";
+
+      trigger.addEventListener("click", (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        open();
+      });
+
+      if(!trigger.getAttribute("onclick")){
+        trigger.setAttribute("onclick", "event.preventDefault(); window.__tsgOpen && window.__tsgOpen();");
+      }
+    }
+
+    const closeBtn = byId("tsg-close");
+    if(closeBtn && !closeBtn.__tsgBound){
+      closeBtn.__tsgBound = true;
+      closeBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        close();
+      });
+    }
+
+    const ov = byId("tsg-overlay");
+    if(ov && !ov.__tsgBound){
+      ov.__tsgBound = true;
+      ov.addEventListener("click", (e) => {
+        if(e.target === ov) close();
+      });
+    }
+
+    document.addEventListener("keydown", (e) => {
+      if(e.key === "Escape") close();
+    });
+  }
+
+  // Keep rebinding if the header re-renders
+  function boot(){
+    bind();
+    // render once in case the modal is already open
+    try{
+      const ov = byId("tsg-overlay");
+      if(ov && ov.classList.contains("is-open")) render();
+    }catch(_){}
+    const mo = new MutationObserver(() => bind());
+    mo.observe(document.body, { childList: true, subtree: true });
+  }
+
+  if(document.readyState === "loading"){
+    document.addEventListener("DOMContentLoaded", boot);
+  } else {
+    boot();
+  }
+})();
+</script>
+
+
+<script id="ts-top-controls-safe">
+  (function(){
+    function mountTopControls(){
+      try{
+        var qc = document.querySelector('.quick-controls');
+        if(!qc) return;
+        if(document.querySelector('.top-controls-bar')) return;
+
+        var bar = document.createElement('div');
+        bar.className = 'top-controls-bar';
+        bar.setAttribute('aria-label','Page controls');
+        bar.appendChild(qc); // move the REAL node (keeps all events/ids intact)
+
+        document.documentElement.classList.add('has-topbar');
+        document.body.insertBefore(bar, document.body.firstChild);
+      }catch(e){}
+    }
+    if(document.readyState === 'loading'){
+      document.addEventListener('DOMContentLoaded', mountTopControls, {once:true});
+    }else{
+      mountTopControls();
+    }
+  })();
+</script>
+
+<script id="ts-top-controls-js">
+  (function(){
+    function ready(fn){ if(document.readyState !== "loading"){ fn(); } else { document.addEventListener("DOMContentLoaded", fn); } }
+    ready(function(){
+      var btnLang = document.getElementById("top-lang-toggle");
+      var btnInc  = document.getElementById("top-font-inc");
+      var btnDec  = document.getElementById("top-font-dec");
+
+      if(btnInc && window.adjustFontScale){
+        btnInc.addEventListener("click", function(){ window.adjustFontScale(0.05); });
+      }
+      if(btnDec && window.adjustFontScale){
+        btnDec.addEventListener("click", function(){ window.adjustFontScale(-0.05); });
+      }
+
+      if(btnLang){
+        btnLang.addEventListener("click", function(){
+          var current = (document.documentElement.getAttribute("lang") || "ar").toLowerCase();
+          var next = current === "ar" ? "en" : "ar";
+          if(typeof window.setLanguage === "function"){
+            window.setLanguage(next);
+          } else if(typeof setLanguage === "function"){
+            setLanguage(next);
+          } else {
+            // Fallback: swap dir + basic toggles
+            document.documentElement.setAttribute("lang", next);
+            document.documentElement.setAttribute("dir", next === "ar" ? "rtl" : "ltr");
+            document.body.classList.toggle("lang-ar", next === "ar");
+            document.body.classList.toggle("lang-en", next === "en");
+          }
+        });
+      }
+    });
+  })();
 </script>
 </body>
 </html>
