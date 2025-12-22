@@ -3694,6 +3694,64 @@ code{
 <style id="ts-remove-stars">
   .tsg-fav, #tsg-favs-toggle, .tsg-chip[data-tag="Top"]{ display:none !important; }
 </style>
+
+<style id="ts-footer-layout-v2">
+  .site-footer{
+    padding: 14px 18px 14px;
+    font-size: calc(13px * var(--font-scale));
+    color: var(--text-secondary);
+  }
+  .footer-grid{
+    display:flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 14px;
+    width: 100%;
+  }
+  /* Ensure the "right" block stays on the right in both languages */
+  body.lang-ar .footer-grid{ direction: rtl; }
+  body.lang-en .footer-grid{ direction: ltr; }
+
+  .footer-right{
+    display:flex;
+    flex-direction: column;
+    gap: 6px;
+    text-align: right;
+  }
+  .footer-left{
+    text-align: left;
+    opacity: .9;
+    font-weight: 800;
+    letter-spacing: .2px;
+  }
+
+  .footer-meta{
+    display:flex;
+    flex-direction: column;
+    gap: 2px;
+    line-height: 1.25;
+  }
+  .footer-strong{
+    color: rgba(255,255,255,.92);
+    font-weight: 900;
+    letter-spacing: .2px;
+  }
+  .footer-date{
+    color: rgba(255,255,255,.78);
+    font-weight: 800;
+  }
+
+  @media (max-width: 720px){
+    .footer-grid{
+      flex-direction: column;
+      align-items: stretch;
+      gap: 10px;
+    }
+    .footer-right{ text-align: right; }
+    .footer-left{ text-align: right; } /* stacked: keep neat for ar */
+    body.lang-en .footer-left{ text-align: left; }
+  }
+</style>
 </head>
 <body class="lang-ar">
 
@@ -4558,18 +4616,25 @@ code{
 </article>
 </main>
 <footer class="site-footer glass-card">
-<div class="footer-main">
-<div class="footer-row">
-<span class="tr-ar">آخر تحديث للهوية: 07 / 12 / 2025</span>
-<span class="tr-en">Last brand update: 07 / 12 / 2025</span>
-<span class="tr-ar">هذه الصفحة للاستخدام الداخلي لموظفي T&amp;S فقط.</span>
-<span class="tr-en">This page is for internal use by T&amp;S employees only.</span>
-</div>
-<div class="footer-row">
-<span class="tr-ar">صُنع بــ❤️ في T&amp;S</span>
-<span class="tr-en">Made with ❤️ at T&amp;S</span>
-</div>
-</div>
+  <div class="footer-grid">
+    <!-- RIGHT: Version + Last update -->
+    <div class="footer-right">
+      <div class="footer-meta">
+        <span class="tr-ar">الإصدار: <strong class="footer-strong" id="hub-version">v1.0</strong></span>
+        <span class="tr-en">Version: <strong class="footer-strong" id="hub-version-en">v1.0</strong></span>
+      </div>
+      <div class="footer-meta">
+        <span class="tr-ar">آخر تحديث: <span class="footer-date" id="hub-updated">22 / 12 / 2025</span></span>
+        <span class="tr-en">Last update: <span class="footer-date" id="hub-updated-en">22 / 12 / 2025</span></span>
+      </div>
+    </div>
+
+    <!-- LEFT: Made by -->
+    <div class="footer-left">
+      <span class="tr-ar">صُنع بــ❤️ في T&amp;S</span>
+      <span class="tr-en">Made with ❤️ at T&amp;S</span>
+    </div>
+  </div>
 </footer>
 </div>
 <!-- ASSET PREVIEW MODAL -->
